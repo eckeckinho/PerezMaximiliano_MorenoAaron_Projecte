@@ -1,0 +1,6 @@
+@PerezMaximiliano_MorenoAaron_ProjecteAPI_HostAddress = http://localhost:5277
+
+GET {{PerezMaximiliano_MorenoAaron_ProjecteAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
