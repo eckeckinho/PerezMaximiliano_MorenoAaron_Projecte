@@ -34,7 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button_logo = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_logorestaurant = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -55,7 +55,7 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logorestaurant)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -109,13 +109,13 @@
             this.button_logo.Text = "LOGO";
             this.button_logo.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // pictureBox_logorestaurant
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(32, 187);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(256, 146);
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox_logorestaurant.Location = new System.Drawing.Point(32, 187);
+            this.pictureBox_logorestaurant.Name = "pictureBox_logorestaurant";
+            this.pictureBox_logorestaurant.Size = new System.Drawing.Size(256, 146);
+            this.pictureBox_logorestaurant.TabIndex = 6;
+            this.pictureBox_logorestaurant.TabStop = false;
             // 
             // textBox1
             // 
@@ -302,7 +302,7 @@
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBox_logorestaurant);
             this.Controls.Add(this.button_logo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -311,7 +311,7 @@
             this.Controls.Add(this.label1);
             this.Name = "RegistrarRestaurant";
             this.Text = "RegistrarRestaurant";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logorestaurant)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,7 +325,6 @@
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.Button button_logo;
         public System.Windows.Forms.TextBox textBox_contrasenya;
-        private System.Windows.Forms.PictureBox pictureBox1;
         public System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.TextBox textBox2;
         public System.Windows.Forms.TextBox textBox3;
@@ -346,5 +345,6 @@
         public System.Windows.Forms.TextBox textBox8;
         public System.Windows.Forms.TextBox textBox9;
         public System.Windows.Forms.TextBox textBox10;
+        public System.Windows.Forms.PictureBox pictureBox_logorestaurant;
     }
 }
