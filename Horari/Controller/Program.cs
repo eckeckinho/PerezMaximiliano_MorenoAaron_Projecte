@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PerezMaximiliano_MorenoAaron_Projecte
+namespace Horari.Controller
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            new HorariController();
         }
     }
 }

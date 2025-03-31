@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Taules.Controller;
 
-namespace Contacte
+namespace Taules.Controller
 {
     internal static class Program
     {
@@ -16,7 +17,7 @@ namespace Contacte
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            new TaulesController();
         }
     }
 }

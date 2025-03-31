@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Horari
+namespace Configuracio
 {
-    public partial class Form1 : Form
+    public partial class Configuracio : Form
     {
-        public Form1()
+        public Configuracio()
         {
             InitializeComponent();
         }
-
     }
 }

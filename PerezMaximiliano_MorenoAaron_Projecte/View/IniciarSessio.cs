@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Taules
+namespace PerezMaximiliano_MorenoAaron_Projecte.View
 {
-    public partial class Form1 : Form
+    public partial class IniciarSessio : Form
     {
-        public Form1()
+        public IniciarSessio()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
-﻿namespace Contacte
+﻿namespace Taules
 {
-    partial class Form1
+    partial class Taules
     {
         /// <summary>
         /// Required designer variable.

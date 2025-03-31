@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Reserves
+namespace PerezMaximiliano_MorenoAaron_Projecte.View
 {
-    public partial class Form1 : Form
+    public partial class RegistrarRestaurant : Form
     {
-        public Form1()
+        public RegistrarRestaurant()
         {
             InitializeComponent();
         }

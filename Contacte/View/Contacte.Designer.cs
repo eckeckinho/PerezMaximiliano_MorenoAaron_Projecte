@@ -1,6 +1,6 @@
-﻿namespace Configuracio
+﻿namespace Contacte
 {
-    partial class Form1
+    partial class Contacte
     {
         /// <summary>
         /// Required designer variable.

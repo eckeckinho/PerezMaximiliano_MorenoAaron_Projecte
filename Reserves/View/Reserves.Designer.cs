@@ -1,6 +1,6 @@
 ﻿namespace Reserves
 {
-    partial class Form1
+    partial class Reserves
     {
         /// <summary>
         /// Required designer variable.

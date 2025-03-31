@@ -1,6 +1,6 @@
-﻿namespace Horari
+﻿namespace PerezMaximiliano_MorenoAaron_Projecte.View
 {
-    partial class Form1
+    partial class IniciarSessio
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_usuari = new System.Windows.Forms.TextBox();
+            this.textBox_contrasenya = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button_entrar = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button_regisrest = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -48,21 +48,23 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "INICIAR SESSIÓ";
             // 
-            // textBox1
+            // textBox_usuari
             // 
-            this.textBox1.Location = new System.Drawing.Point(100, 125);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(191, 27);
-            this.textBox1.TabIndex = 1;
+            this.textBox_usuari.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.textBox_usuari.Location = new System.Drawing.Point(100, 125);
+            this.textBox_usuari.Multiline = true;
+            this.textBox_usuari.Name = "textBox_usuari";
+            this.textBox_usuari.Size = new System.Drawing.Size(191, 27);
+            this.textBox_usuari.TabIndex = 1;
             // 
-            // textBox2
+            // textBox_contrasenya
             // 
-            this.textBox2.Location = new System.Drawing.Point(100, 201);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(191, 27);
-            this.textBox2.TabIndex = 2;
+            this.textBox_contrasenya.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.textBox_contrasenya.Location = new System.Drawing.Point(100, 201);
+            this.textBox_contrasenya.Multiline = true;
+            this.textBox_contrasenya.Name = "textBox_contrasenya";
+            this.textBox_contrasenya.Size = new System.Drawing.Size(191, 27);
+            this.textBox_contrasenya.TabIndex = 2;
             // 
             // label2
             // 
@@ -91,14 +93,14 @@
             this.button_entrar.Text = "ENTRAR";
             this.button_entrar.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // button_regisrest
             // 
-            this.button2.Location = new System.Drawing.Point(138, 352);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(97, 61);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "REGISTRAR RESTAURANT";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button_regisrest.Location = new System.Drawing.Point(138, 350);
+            this.button_regisrest.Name = "button_regisrest";
+            this.button_regisrest.Size = new System.Drawing.Size(97, 61);
+            this.button_regisrest.TabIndex = 6;
+            this.button_regisrest.Text = "REGISTRAR RESTAURANT";
+            this.button_regisrest.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -109,20 +111,20 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "O";
             // 
-            // Form1
+            // IniciarSessio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(388, 475);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button_regisrest);
             this.Controls.Add(this.button_entrar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_contrasenya);
+            this.Controls.Add(this.textBox_usuari);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "IniciarSessio";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -132,13 +134,13 @@
         #endregion
 
         public System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_usuari;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
         public System.Windows.Forms.Button button_entrar;
         private System.Windows.Forms.Label label4;
+        public System.Windows.Forms.TextBox textBox_contrasenya;
+        public System.Windows.Forms.Button button_regisrest;
     }
 }
 
