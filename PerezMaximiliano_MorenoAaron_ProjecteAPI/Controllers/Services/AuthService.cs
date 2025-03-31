@@ -21,6 +21,11 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
             // Implementar logica de Login
             // ... 
 
+            if (user == null)
+            {
+
+            }
+
             // Cambiar el return cuando se implemente la logica
             return user.correu;
         }
