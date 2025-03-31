@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerezMaximiliano_MorenoAaro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerezMaximiliano_MorenoAaron_ProjecteAPI", "PerezMaximiliano_MorenoAaron_ProjecteAPI\PerezMaximiliano_MorenoAaron_ProjecteAPI.csproj", "{8B9BC7A6-93D2-4E13-8199-8DFBF4D4935B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoriProjecte", "RepositoriProjecte\RepositoriProjecte.csproj", "{E9C159D5-4253-4340-9812-A7909BA02C97}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reserves", "Reserves\Reserves.csproj", "{D32D404A-79CA-4967-8C78-8E77CD136705}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taules", "Taules\Taules.csproj", "{C1EB4150-D262-4645-8F7E-D35355C5E1EB}"
@@ -19,9 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuracio", "Configuraci
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Horari", "Horari\Horari.csproj", "{8EAA64FD-6A87-4A4D-B3AD-9A8B18E1E0FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{5D66D888-CC8C-472A-891D-107C1F1EF3E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{5D66D888-CC8C-472A-891D-107C1F1EF3E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entitats", "Entitats\Entitats.csproj", "{DF369A57-DEC4-498E-B645-E85CBC29DA07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entitats", "Entitats\Entitats.csproj", "{DF369A57-DEC4-498E-B645-E85CBC29DA07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +35,6 @@ Global
 		{8B9BC7A6-93D2-4E13-8199-8DFBF4D4935B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B9BC7A6-93D2-4E13-8199-8DFBF4D4935B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B9BC7A6-93D2-4E13-8199-8DFBF4D4935B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9C159D5-4253-4340-9812-A7909BA02C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9C159D5-4253-4340-9812-A7909BA02C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9C159D5-4253-4340-9812-A7909BA02C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9C159D5-4253-4340-9812-A7909BA02C97}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D32D404A-79CA-4967-8C78-8E77CD136705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D32D404A-79CA-4967-8C78-8E77CD136705}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D32D404A-79CA-4967-8C78-8E77CD136705}.Release|Any CPU.ActiveCfg = Release|Any CPU
