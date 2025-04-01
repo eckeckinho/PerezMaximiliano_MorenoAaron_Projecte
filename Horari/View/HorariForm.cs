@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Horari.View
 {
-    public partial class Horari : Form
+    public partial class HorariForm : Form
     {
-        public Horari()
+        public HorariForm()
         {
             InitializeComponent();
         }

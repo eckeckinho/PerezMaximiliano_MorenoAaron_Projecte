@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Taules
+namespace Contacte
 {
-    public partial class Taules : Form
+    public partial class ContacteForm : Form
     {
-        public Taules()
+        public ContacteForm()
         {
             InitializeComponent();
         }

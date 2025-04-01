@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Reserves
 {
-    public partial class Reserves : Form
+    public partial class ReservesForm : Form
     {
-        public Reserves()
+        public ReservesForm()
         {
             InitializeComponent();
         }

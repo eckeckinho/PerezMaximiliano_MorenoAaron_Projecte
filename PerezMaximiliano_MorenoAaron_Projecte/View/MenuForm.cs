@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Configuracio
+namespace PerezMaximiliano_MorenoAaron_Projecte.View
 {
-    public partial class Configuracio : Form
+    public partial class MenuForm : Form
     {
-        public Configuracio()
+        public MenuForm()
         {
             InitializeComponent();
         }

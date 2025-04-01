@@ -12,11 +12,20 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.Controller
 
         RegistrarRestaurant r = new RegistrarRestaurant();
         public RegistrarController() {
-        
-                
+
+            SetListeners();
             r.ShowDialog();
         
-        }    
+        }
 
+        private void SetListeners()
+        {
+            r.button_logo.Click += Button_logo_Click;
+        }
+
+        private void Button_logo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

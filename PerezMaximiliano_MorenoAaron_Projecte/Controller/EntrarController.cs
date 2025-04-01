@@ -27,11 +27,11 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
         private void Button_regisrest_Click(object sender, EventArgs e)
         {
             RegistrarController r = new RegistrarController();
-
         }
 
         private void Button_entrar_Click(object sender, EventArgs e)
         {
+            
         }
     }
 }
