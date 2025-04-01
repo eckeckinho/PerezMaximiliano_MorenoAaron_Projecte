@@ -1,6 +1,6 @@
 ﻿namespace PerezMaximiliano_MorenoAaron_Projecte.View
 {
-    partial class IniciarSessio
+    partial class IniciarSessioForm
     {
         /// <summary>
         /// Required designer variable.

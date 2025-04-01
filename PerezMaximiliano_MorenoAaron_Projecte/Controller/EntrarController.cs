@@ -1,4 +1,4 @@
-﻿using PerezMaximiliano_MorenoAaron_Projecte.Controller;
+﻿using PerezMaximiliano_MorenoAaron_Projecte;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,8 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 {
     public class EntrarController
     {
-        IniciarSessio f1 = new IniciarSessio();
+        IniciarSessioForm f1 = new IniciarSessioForm();
+
         public EntrarController() {
 
             SetListeners();
