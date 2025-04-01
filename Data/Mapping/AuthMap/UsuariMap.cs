@@ -1,8 +1,8 @@
-﻿using Entitats.Auth;
+﻿using Entitats.AuthClasses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Data.Mappings.Auth
+namespace Data.Mappings.AuthMap
 {
     public class UsuariMap : IEntityTypeConfiguration<Usuari>
     {

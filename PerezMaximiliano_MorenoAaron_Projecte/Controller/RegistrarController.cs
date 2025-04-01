@@ -1,4 +1,4 @@
-﻿using Entitats.Auth;
+﻿using Entitats.RestaurantClasses;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfaces;
@@ -18,9 +18,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
         Bitmap imgTemp;
         private readonly IAuthService _authService;
 
-        public RegistrarController(IAuthService authService) 
+        public RegistrarController(IAuthService authService)
         {
             _authService = authService;
+        }
+        public RegistrarController() 
+        {
             SetListeners();
             f.ShowDialog();
         }
@@ -49,7 +52,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                 //tipusPreuId = (f.comboBox_tipuspreu.SelectedItem as TipusPreu)?.Id
             };
 
-             _authService.RegistreRestaurantAsync(newRestaurant);
+            _authService.RegistreRestaurantAsync(newRestaurant);
         }
 
         private void Button_logo_Click(object sender, EventArgs e)
@@ -71,15 +74,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                     MessageBox.Show("El logo debe tener exactamente 150x150 píxeles.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-        }
-        private void SetListeners()
-        {
-            r.button_logo.Click += Button_logo_Click;
-        }
-
-        private void Button_logo_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

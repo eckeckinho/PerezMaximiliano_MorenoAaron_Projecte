@@ -1,5 +1,7 @@
-﻿using Data.Mappings.Auth;
-using Entitats.Auth;
+﻿using Data.Mapping.RestaurantMap;
+using Data.Mappings.AuthMap;
+using Entitats.AuthClasses;
+using Entitats.RestaurantClasses;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,10 +19,15 @@ namespace Data
 
         public DbSet<Usuari> Usuaris { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<TipusCuina> TipusCuinas { get; set; }
+        public DbSet<TipusPreu> TipusPreus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UsuariMap());
+            modelBuilder.ApplyConfiguration(new RestaurantMap());
+            modelBuilder.ApplyConfiguration(new TipusCuinaMap());
+            modelBuilder.ApplyConfiguration(new TipusPreuMap());
 
             base.OnModelCreating(modelBuilder);
         }

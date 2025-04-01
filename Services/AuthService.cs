@@ -1,5 +1,5 @@
 ﻿using Data;
-using Entitats.Auth;
+using Entitats.RestaurantClasses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfaces;

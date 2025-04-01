@@ -1,4 +1,4 @@
-﻿using Entitats.Auth;
+﻿using Entitats.RestaurantClasses;
 using System.Threading.Tasks;
 
 namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfaces

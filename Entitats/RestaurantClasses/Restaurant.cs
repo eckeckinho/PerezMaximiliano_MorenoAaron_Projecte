@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Entitats.Auth
+namespace Entitats.RestaurantClasses
 {
     public class Restaurant
     {
