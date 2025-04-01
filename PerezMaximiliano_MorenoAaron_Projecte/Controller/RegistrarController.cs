@@ -18,11 +18,14 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
         Bitmap imgTemp;
         private readonly IAuthService _authService;
 
+        public RegistrarController()
+        {
+            SetListeners();
+            f.ShowDialog();
+        }
         public RegistrarController(IAuthService authService) 
         {
             _authService = authService;
-            SetListeners();
-            f.ShowDialog();
         }
 
         private void SetListeners()
@@ -72,14 +75,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                 }
             }
         }
-        private void SetListeners()
-        {
-            r.button_logo.Click += Button_logo_Click;
-        }
-
-        private void Button_logo_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
