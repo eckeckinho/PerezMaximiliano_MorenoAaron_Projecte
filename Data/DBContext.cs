@@ -16,6 +16,7 @@ namespace Data
         }
 
         public DbSet<Usuari> Usuaris { get; set; }
+        public DbSet<Restaurant> Restaurants { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

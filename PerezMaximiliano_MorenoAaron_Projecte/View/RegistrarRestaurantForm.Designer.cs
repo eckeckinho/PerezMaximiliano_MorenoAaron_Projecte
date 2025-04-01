@@ -1,6 +1,6 @@
 ﻿namespace PerezMaximiliano_MorenoAaron_Projecte.View
 {
-    partial class RegistrarRestaurant
+    partial class RegistrarRestaurantForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,14 +34,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button_logo = new System.Windows.Forms.Button();
-            this.pictureBox_logorestaurant = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.pictureBox_logo = new System.Windows.Forms.PictureBox();
+            this.textBox_nom = new System.Windows.Forms.TextBox();
+            this.textBox_telefon = new System.Windows.Forms.TextBox();
+            this.textBox_correu = new System.Windows.Forms.TextBox();
+            this.textBox_provincia = new System.Windows.Forms.TextBox();
+            this.textBox_poblacio = new System.Windows.Forms.TextBox();
+            this.textBox_codipostal = new System.Windows.Forms.TextBox();
+            this.textBox_carrer = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -52,10 +52,11 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logorestaurant)).BeginInit();
+            this.textBox_aforament = new System.Windows.Forms.TextBox();
+            this.button_registrar = new System.Windows.Forms.Button();
+            this.comboBox_tipuscuina = new System.Windows.Forms.ComboBox();
+            this.comboBox_tipuspreu = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -109,62 +110,62 @@
             this.button_logo.Text = "LOGO";
             this.button_logo.UseVisualStyleBackColor = true;
             // 
-            // pictureBox_logorestaurant
+            // pictureBox_logo
             // 
-            this.pictureBox_logorestaurant.Location = new System.Drawing.Point(32, 187);
-            this.pictureBox_logorestaurant.Name = "pictureBox_logorestaurant";
-            this.pictureBox_logorestaurant.Size = new System.Drawing.Size(256, 146);
-            this.pictureBox_logorestaurant.TabIndex = 6;
-            this.pictureBox_logorestaurant.TabStop = false;
+            this.pictureBox_logo.Location = new System.Drawing.Point(77, 191);
+            this.pictureBox_logo.Name = "pictureBox_logo";
+            this.pictureBox_logo.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox_logo.TabIndex = 6;
+            this.pictureBox_logo.TabStop = false;
             // 
-            // textBox1
+            // textBox_nom
             // 
-            this.textBox1.Location = new System.Drawing.Point(431, 68);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(187, 20);
-            this.textBox1.TabIndex = 7;
+            this.textBox_nom.Location = new System.Drawing.Point(431, 68);
+            this.textBox_nom.Name = "textBox_nom";
+            this.textBox_nom.Size = new System.Drawing.Size(187, 20);
+            this.textBox_nom.TabIndex = 7;
             // 
-            // textBox2
+            // textBox_telefon
             // 
-            this.textBox2.Location = new System.Drawing.Point(733, 68);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(187, 20);
-            this.textBox2.TabIndex = 8;
+            this.textBox_telefon.Location = new System.Drawing.Point(733, 68);
+            this.textBox_telefon.Name = "textBox_telefon";
+            this.textBox_telefon.Size = new System.Drawing.Size(187, 20);
+            this.textBox_telefon.TabIndex = 8;
             // 
-            // textBox3
+            // textBox_correu
             // 
-            this.textBox3.Location = new System.Drawing.Point(733, 103);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(187, 20);
-            this.textBox3.TabIndex = 9;
+            this.textBox_correu.Location = new System.Drawing.Point(733, 103);
+            this.textBox_correu.Name = "textBox_correu";
+            this.textBox_correu.Size = new System.Drawing.Size(187, 20);
+            this.textBox_correu.TabIndex = 9;
             // 
-            // textBox4
+            // textBox_provincia
             // 
-            this.textBox4.Location = new System.Drawing.Point(431, 108);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(187, 20);
-            this.textBox4.TabIndex = 10;
+            this.textBox_provincia.Location = new System.Drawing.Point(431, 108);
+            this.textBox_provincia.Name = "textBox_provincia";
+            this.textBox_provincia.Size = new System.Drawing.Size(187, 20);
+            this.textBox_provincia.TabIndex = 10;
             // 
-            // textBox5
+            // textBox_poblacio
             // 
-            this.textBox5.Location = new System.Drawing.Point(431, 146);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(187, 20);
-            this.textBox5.TabIndex = 11;
+            this.textBox_poblacio.Location = new System.Drawing.Point(431, 146);
+            this.textBox_poblacio.Name = "textBox_poblacio";
+            this.textBox_poblacio.Size = new System.Drawing.Size(187, 20);
+            this.textBox_poblacio.TabIndex = 11;
             // 
-            // textBox6
+            // textBox_codipostal
             // 
-            this.textBox6.Location = new System.Drawing.Point(431, 181);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(187, 20);
-            this.textBox6.TabIndex = 12;
+            this.textBox_codipostal.Location = new System.Drawing.Point(431, 181);
+            this.textBox_codipostal.Name = "textBox_codipostal";
+            this.textBox_codipostal.Size = new System.Drawing.Size(187, 20);
+            this.textBox_codipostal.TabIndex = 12;
             // 
-            // textBox7
+            // textBox_carrer
             // 
-            this.textBox7.Location = new System.Drawing.Point(431, 219);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(187, 20);
-            this.textBox7.TabIndex = 13;
+            this.textBox_carrer.Location = new System.Drawing.Point(431, 219);
+            this.textBox_carrer.Name = "textBox_carrer";
+            this.textBox_carrer.Size = new System.Drawing.Size(187, 20);
+            this.textBox_carrer.TabIndex = 13;
             // 
             // label4
             // 
@@ -256,38 +257,50 @@
             this.label13.TabIndex = 24;
             this.label13.Text = "Tipus Cuina";
             // 
-            // textBox8
+            // textBox_aforament
             // 
-            this.textBox8.Location = new System.Drawing.Point(733, 222);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(187, 20);
-            this.textBox8.TabIndex = 23;
+            this.textBox_aforament.Location = new System.Drawing.Point(733, 222);
+            this.textBox_aforament.Name = "textBox_aforament";
+            this.textBox_aforament.Size = new System.Drawing.Size(187, 20);
+            this.textBox_aforament.TabIndex = 23;
             // 
-            // textBox9
+            // button_registrar
             // 
-            this.textBox9.Location = new System.Drawing.Point(733, 187);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(187, 20);
-            this.textBox9.TabIndex = 22;
+            this.button_registrar.Location = new System.Drawing.Point(796, 288);
+            this.button_registrar.Name = "button_registrar";
+            this.button_registrar.Size = new System.Drawing.Size(124, 42);
+            this.button_registrar.TabIndex = 27;
+            this.button_registrar.Text = "REGISTRAR-SE";
+            this.button_registrar.UseVisualStyleBackColor = true;
             // 
-            // textBox10
+            // comboBox_tipuscuina
             // 
-            this.textBox10.Location = new System.Drawing.Point(733, 147);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(187, 20);
-            this.textBox10.TabIndex = 21;
+            this.comboBox_tipuscuina.FormattingEnabled = true;
+            this.comboBox_tipuscuina.Location = new System.Drawing.Point(733, 147);
+            this.comboBox_tipuscuina.Name = "comboBox_tipuscuina";
+            this.comboBox_tipuscuina.Size = new System.Drawing.Size(187, 21);
+            this.comboBox_tipuscuina.TabIndex = 28;
             // 
-            // RegistrarRestaurant
+            // comboBox_tipuspreu
+            // 
+            this.comboBox_tipuspreu.FormattingEnabled = true;
+            this.comboBox_tipuspreu.Location = new System.Drawing.Point(733, 188);
+            this.comboBox_tipuspreu.Name = "comboBox_tipuspreu";
+            this.comboBox_tipuspreu.Size = new System.Drawing.Size(187, 21);
+            this.comboBox_tipuspreu.TabIndex = 29;
+            // 
+            // RegistrarRestaurantForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(966, 365);
+            this.ClientSize = new System.Drawing.Size(1033, 365);
+            this.Controls.Add(this.comboBox_tipuspreu);
+            this.Controls.Add(this.comboBox_tipuscuina);
+            this.Controls.Add(this.button_registrar);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox10);
+            this.Controls.Add(this.textBox_aforament);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -295,23 +308,23 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.pictureBox_logorestaurant);
+            this.Controls.Add(this.textBox_carrer);
+            this.Controls.Add(this.textBox_codipostal);
+            this.Controls.Add(this.textBox_poblacio);
+            this.Controls.Add(this.textBox_provincia);
+            this.Controls.Add(this.textBox_correu);
+            this.Controls.Add(this.textBox_telefon);
+            this.Controls.Add(this.textBox_nom);
+            this.Controls.Add(this.pictureBox_logo);
             this.Controls.Add(this.button_logo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox_contrasenya);
             this.Controls.Add(this.textBox_usuari);
             this.Controls.Add(this.label1);
-            this.Name = "RegistrarRestaurant";
+            this.Name = "RegistrarRestaurantForm";
             this.Text = "RegistrarRestaurant";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logorestaurant)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,18 +333,17 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox_usuari;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.Button button_logo;
         public System.Windows.Forms.TextBox textBox_contrasenya;
-        public System.Windows.Forms.TextBox textBox1;
-        public System.Windows.Forms.TextBox textBox2;
-        public System.Windows.Forms.TextBox textBox3;
-        public System.Windows.Forms.TextBox textBox4;
-        public System.Windows.Forms.TextBox textBox5;
-        public System.Windows.Forms.TextBox textBox6;
-        public System.Windows.Forms.TextBox textBox7;
+        public System.Windows.Forms.TextBox textBox_nom;
+        public System.Windows.Forms.TextBox textBox_telefon;
+        public System.Windows.Forms.TextBox textBox_correu;
+        public System.Windows.Forms.TextBox textBox_provincia;
+        public System.Windows.Forms.TextBox textBox_poblacio;
+        public System.Windows.Forms.TextBox textBox_codipostal;
+        public System.Windows.Forms.TextBox textBox_carrer;
         public System.Windows.Forms.Label label4;
         public System.Windows.Forms.Label label5;
         public System.Windows.Forms.Label label6;
@@ -342,9 +354,11 @@
         public System.Windows.Forms.Label label11;
         public System.Windows.Forms.Label label12;
         public System.Windows.Forms.Label label13;
-        public System.Windows.Forms.TextBox textBox8;
-        public System.Windows.Forms.TextBox textBox9;
-        public System.Windows.Forms.TextBox textBox10;
-        public System.Windows.Forms.PictureBox pictureBox_logorestaurant;
+        public System.Windows.Forms.TextBox textBox_aforament;
+        public System.Windows.Forms.PictureBox pictureBox_logo;
+        public System.Windows.Forms.Button button_registrar;
+        public System.Windows.Forms.TextBox textBox_usuari;
+        public System.Windows.Forms.ComboBox comboBox_tipuscuina;
+        public System.Windows.Forms.ComboBox comboBox_tipuspreu;
     }
 }

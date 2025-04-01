@@ -11,6 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<DBContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+//builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

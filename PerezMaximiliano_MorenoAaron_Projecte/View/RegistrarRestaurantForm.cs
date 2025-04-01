@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PerezMaximiliano_MorenoAaron_Projecte.View
 {
-    public partial class IniciarSessio : Form
+    public partial class RegistrarRestaurantForm : Form
     {
-        public IniciarSessio()
+        public RegistrarRestaurantForm()
         {
             InitializeComponent();
         }

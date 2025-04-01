@@ -12,7 +12,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
         private readonly DBContext _context;
         private readonly IAuthService _authService;
 
-        public AuthController(DBContext context, IAuthService authService)
+        public AuthController(DBContext context, IAuthService authService) 
         {
             _context = context;
             _authService = authService;
@@ -28,7 +28,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login(string email, string password)
         {
-            await _authService.LoginAsync(email, password);
+            await _authService.LoginUsuariAsync(email, password);
             return Ok();
         }
     }
