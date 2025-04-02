@@ -2,6 +2,7 @@
 using PerezMaximiliano_MorenoAaron_Projecte.View;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfaces;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,16 +18,32 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
         RegistrarRestaurantForm f = new RegistrarRestaurantForm();
         Bitmap imgTemp;
         private readonly IAuthService _authService;
+        private readonly ITipusService _tipusService;
 
-        public RegistrarController(IAuthService authService)
+
+        public RegistrarController(IAuthService authService, ITipusService tipusService)
         {
             _authService = authService;
-        }
-        public RegistrarController() 
-        {
+            _tipusService = tipusService;
+
+            f = new RegistrarRestaurantForm();
+
             SetListeners();
+            LoadData();
             f.ShowDialog();
         }
+
+        private async void LoadData()
+        {
+            var cuines = await _tipusService.GetTipusCuines(); 
+            var preus = await _tipusService.GetTipusPreus(); 
+
+            f.comboBox_tipuscuina.DataSource = cuines;
+            f.comboBox_tipuscuina.DisplayMember = "descripcio";
+            f.comboBox_tipuspreu.DataSource = preus;
+            f.comboBox_tipuspreu.DisplayMember = "descripcio";
+        }
+
 
         private void SetListeners()
         {
@@ -36,21 +53,23 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
         private void Button_registrar_Click(object sender, EventArgs e)
         {
-            Restaurant newRestaurant = new Restaurant
-            {
-                nomCompte = f.textBox_usuari.Text,
-                contrasenyaCompte = f.textBox_contrasenya.Text,
-                nomRestaurant = f.textBox_nom.Text,
-                pais = f.textBox_provincia.Text,
-                ciutat = f.textBox_poblacio.Text,
-                codiPostal = f.textBox_codipostal.Text,
-                carrer = f.textBox_carrer.Text,
-                telefon = f.textBox_telefon.Text,
-                correu = f.textBox_correu.Text,
-                aforament = int.Parse(f.textBox_aforament.Text),
-                //tipusCuinaId = (f.comboBox_tipuscuina.SelectedItem as TipusCuina)?.Id, 
-                //tipusPreuId = (f.comboBox_tipuspreu.SelectedItem as TipusPreu)?.Id
-            };
+            //Restaurant newRestaurant = new Restaurant
+            //{
+            //    nomCompte = f.textBox_usuari.Text,
+            //    contrasenyaCompte = f.textBox_contrasenya.Text,
+            //    nomRestaurant = f.textBox_nom.Text,
+            //    pais = f.textBox_provincia.Text,
+            //    ciutat = f.textBox_poblacio.Text,
+            //    codiPostal = f.textBox_codipostal.Text,
+            //    carrer = f.textBox_carrer.Text,
+            //    telefon = f.textBox_telefon.Text,
+            //    correu = f.textBox_correu.Text,
+            //    aforament = int.Parse(f.textBox_aforament.Text),
+            //    //tipusCuinaId = (f.comboBox_tipuscuina.SelectedItem as TipusCuina)?.Id, 
+            //    //tipusPreuId = (f.comboBox_tipuspreu.SelectedItem as TipusPreu)?.Id
+            //};
+
+            Restaurant newRestaurant = new Restaurant();
 
             _authService.RegistreRestaurantAsync(newRestaurant);
         }

@@ -11,12 +11,14 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
     public class AuthService : IAuthService
     {
         private readonly DBContext _context;
-        private readonly IConfiguration _configuration;
 
-        public AuthService(DBContext context, IConfiguration configuration)
+        public AuthService()
+        {
+        }
+
+        public AuthService(DBContext context)
         {
             _context = context;
-            _configuration = configuration;
         }
 
         public Task<string> LoginRestaurantAsync(string email, string password)
@@ -29,9 +31,10 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
             throw new NotImplementedException();
         }
 
-        public Task<string> RegistreRestaurantAsync(Restaurant newRestaurant)
+        public async Task<string> RegistreRestaurantAsync(Restaurant newRestaurant)
         {
-            throw new NotImplementedException();
+            string text = "hola";
+            return text;
         }
 
         public Task<string> RegistreUsuariAsync(string email, string password)

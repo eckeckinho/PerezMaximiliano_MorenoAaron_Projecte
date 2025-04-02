@@ -2,6 +2,9 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfaces;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services;
+using Services.Interfaces;
+using Services;
+using PerezMaximiliano_MorenoAaron_Projecte;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +14,11 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<DBContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ITipusService, TipusService>();
 //builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 
+builder.Services.AddScoped<RegistrarController>();
+builder.Services.AddScoped<EntrarController>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

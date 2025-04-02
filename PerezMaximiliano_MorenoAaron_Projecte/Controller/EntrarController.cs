@@ -1,5 +1,10 @@
-﻿using PerezMaximiliano_MorenoAaron_Projecte;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PerezMaximiliano_MorenoAaron_Projecte;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
+using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services;
+using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfaces;
+using Services;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +16,19 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
     public class EntrarController
     {
         IniciarSessioForm f1 = new IniciarSessioForm();
+        private readonly IServiceProvider _serviceProvider;
+        private readonly IAuthService _authService;
+        private readonly ITipusService _tipusService;
 
-        public EntrarController() {
+        public EntrarController(IAuthService authService, ITipusService tipusService, IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+            _authService = authService;
+            _tipusService = tipusService;
+            f1 = new IniciarSessioForm();
 
             SetListeners();
             f1.ShowDialog();
-        
         }
 
         private void SetListeners()
@@ -27,7 +39,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
         private void Button_regisrest_Click(object sender, EventArgs e)
         {
-            RegistrarController r = new RegistrarController();
+            _serviceProvider.GetRequiredService<RegistrarController>();
         }
 
         private void Button_entrar_Click(object sender, EventArgs e)

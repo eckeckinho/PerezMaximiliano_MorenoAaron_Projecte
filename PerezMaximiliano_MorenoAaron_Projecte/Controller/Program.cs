@@ -1,22 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Windows.Forms;
+using Services;
 
 namespace PerezMaximiliano_MorenoAaron_Projecte
 {
     internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new EntrarController();
+
+            // Crea una nueva colección de servicios. Esto es el contenedor de dependencias.
+
+            var services = new ServiceCollection();
+
+            // Aquí se agregan los servicios necesarios para la aplicación,
+            // como el contexto de base de datos, servicios y controladores.
+
+            services.AddProjectServicesRegistre();
+
+            // Registra los controladores para que puedan ser inyectados en otros lugares.
+            // Estos son los controladores que gestionan la lógica de la UI.
+
+            services.AddScoped<EntrarController>();
+            services.AddScoped<RegistrarController>();
+
+            // Construye el proveedor de servicios a partir de la colección de servicios.
+            // El proveedor de servicios es responsable de crear instancias de los servicios y controladores.
+
+            using (var serviceProvider = services.BuildServiceProvider())
+            {
+                // Solicita el servicio de EntrarController, que es el controlador principal de la vista de "entrar" en la aplicación.
+                // Aquí se usa GetRequiredService para asegurarse de que se obtenga la instancia de EntrarController correctamente.
+
+                serviceProvider.GetRequiredService<EntrarController>();
+            }
         }
     }
 }
