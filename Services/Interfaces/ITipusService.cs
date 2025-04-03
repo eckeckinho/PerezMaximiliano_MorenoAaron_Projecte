@@ -10,5 +10,6 @@ namespace Services.Interfaces
         Task<List<TipusCuina>> GetTipusCuines();
         Task<List<TipusPreu>> GetTipusPreus();
         Task<List<TipusEstat>> GetTipusEstats();
+        Task<List<TipusPlat>> GetTipusPlats();
     }
 }

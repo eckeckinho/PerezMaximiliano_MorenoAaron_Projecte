@@ -21,6 +21,8 @@ namespace Data
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<TipusCuina> TipusCuinas { get; set; }
         public DbSet<TipusPreu> TipusPreus { get; set; }
+        public DbSet<Plat> Plats { get; set; }
+        public DbSet<TipusPlat> TipusPlats { get; set; }
         public DbSet<Reserva> Reservas { get; set; }
         public DbSet<TipusEstat> TipusEstats { get; set; }
 
@@ -30,6 +32,8 @@ namespace Data
             modelBuilder.ApplyConfiguration(new RestaurantMap());
             modelBuilder.ApplyConfiguration(new TipusCuinaMap());
             modelBuilder.ApplyConfiguration(new TipusPreuMap());
+            modelBuilder.ApplyConfiguration(new PlatMap());
+            modelBuilder.ApplyConfiguration(new TipusPlatMap());
             modelBuilder.ApplyConfiguration(new ReservaMap());
             modelBuilder.ApplyConfiguration(new TipusEstatMap());
 

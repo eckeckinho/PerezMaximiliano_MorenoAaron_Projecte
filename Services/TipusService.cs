@@ -34,5 +34,10 @@ namespace Services
         {
             return await _context.TipusEstats.ToListAsync();
         }
+
+        public async Task<List<TipusPlat>> GetTipusPlats()
+        {
+            return await _context.TipusPlats.ToListAsync();
+        }
     }
 }
