@@ -7,7 +7,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfac
     {
         Task<string> LoginUsuariAsync(string email, string password);
         Task<string> RegistreUsuariAsync(string email, string password);
-        Task<string> LoginRestaurantAsync(string email, string password);
-        Task RegistreRestaurantAsync(Restaurant newRestaurant);
+        Task<(bool, Restaurant)> LoginRestaurantAsync(string usuariRestaurant, string password);
+        Task<bool> RegistreRestaurantAsync(Restaurant newRestaurant);
     }
 }

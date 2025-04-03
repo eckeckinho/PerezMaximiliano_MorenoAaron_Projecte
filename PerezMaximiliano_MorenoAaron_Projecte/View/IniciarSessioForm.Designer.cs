@@ -111,7 +111,7 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "O";
             // 
-            // IniciarSessio
+            // IniciarSessioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -124,7 +124,7 @@
             this.Controls.Add(this.textBox_contrasenya);
             this.Controls.Add(this.textBox_usuari);
             this.Controls.Add(this.label1);
-            this.Name = "IniciarSessio";
+            this.Name = "IniciarSessioForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -134,13 +134,13 @@
         #endregion
 
         public System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox_usuari;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.Button button_entrar;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.TextBox textBox_contrasenya;
         public System.Windows.Forms.Button button_regisrest;
+        public System.Windows.Forms.TextBox textBox_usuari;
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using Entitats.RestaurantClasses;
+﻿using BCrypt.Net;
+using Entitats.RestaurantClasses;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfaces;
@@ -20,8 +21,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
         Image logo;
         private readonly IAuthService _authService;
         private readonly ITipusService _tipusService;
-
-
+        BcryptAuthenticationException _authenticationException;
         public RegistrarController(IAuthService authService, ITipusService tipusService)
         {
             _authService = authService;
@@ -54,7 +54,9 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
         private async void Button_registrar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(f.textBox_usuari.Text) &&
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(f.textBox_usuari.Text) &&
                 !string.IsNullOrWhiteSpace(f.textBox_contrasenya.Text) &&
                 !string.IsNullOrWhiteSpace(f.textBox_nom.Text) &&
                 !string.IsNullOrWhiteSpace(f.textBox_provincia.Text) &&
@@ -68,44 +70,71 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                 !string.IsNullOrWhiteSpace(f.textBox_paginaweb.Text) &&
                 f.comboBox_tipuscuina.SelectedItem != null &&
                 f.comboBox_tipuspreu.SelectedItem != null)
-            {
-
-                byte[] logoByteArray = logo != null ? ImageToByteArray(logo) : null;
-
-                Restaurant newRestaurant = new Restaurant
                 {
-                    nomCompte = f.textBox_usuari.Text,
-                    contrasenyaCompte = f.textBox_contrasenya.Text,
-                    nomRestaurant = f.textBox_nom.Text,
-                    pais = f.textBox_provincia.Text,
-                    ciutat = f.textBox_poblacio.Text,
-                    codiPostal = f.textBox_codipostal.Text,
-                    carrer = f.textBox_carrer.Text,
-                    telefon = f.textBox_telefon.Text,
-                    correu = f.textBox_correu.Text,
-                    aforament = int.Parse(f.textBox_aforament.Text),
-                    tipusCuinaId = ((TipusCuina)f.comboBox_tipuscuina.SelectedItem).id,
-                    tipusPreuId = ((TipusPreu)f.comboBox_tipuspreu.SelectedItem).id,
-                    valoraciomedia = 0,
-                    descripcio = f.textBox_descripcio.Text,
-                    paginaWeb = f.textBox_paginaweb.Text,
-                    logo = logoByteArray
-                };
 
-                await _authService.RegistreRestaurantAsync(newRestaurant);
-            }
-            else
+                    byte[] logoByteArray = logo != null ? ImageToByteArray(logo) : null;
+
+                    Restaurant newRestaurant = new Restaurant
+                    {
+                        nomCompte = f.textBox_usuari.Text,
+                        contrasenyaCompte = BCrypt.Net.BCrypt.HashPassword(f.textBox_contrasenya.Text),
+                        nomRestaurant = f.textBox_nom.Text,
+                        pais = f.textBox_provincia.Text,
+                        ciutat = f.textBox_poblacio.Text,
+                        codiPostal = f.textBox_codipostal.Text,
+                        carrer = f.textBox_carrer.Text,
+                        telefon = f.textBox_telefon.Text,
+                        correu = f.textBox_correu.Text,
+                        aforament = int.Parse(f.textBox_aforament.Text),
+                        tipusCuinaId = ((TipusCuina)f.comboBox_tipuscuina.SelectedItem).id,
+                        tipusPreuId = ((TipusPreu)f.comboBox_tipuspreu.SelectedItem).id,
+                        valoraciomedia = 0,
+                        descripcio = f.textBox_descripcio.Text,
+                        paginaWeb = f.textBox_paginaweb.Text,
+                        logo = logoByteArray
+                    };
+
+                    bool resultatRegistre = await _authService.RegistreRestaurantAsync(newRestaurant);
+
+                    if (resultatRegistre)
+                    {
+                        f.textBox_usuari.Clear();
+                        f.textBox_contrasenya.Clear();
+                        f.textBox_nom.Clear();
+                        f.textBox_provincia.Clear();
+                        f.textBox_poblacio.Clear();
+                        f.textBox_codipostal.Clear();
+                        f.textBox_carrer.Clear();
+                        f.textBox_telefon.Clear();
+                        f.textBox_correu.Clear();
+                        f.textBox_aforament.Clear();
+                        f.textBox_descripcio.Clear();
+                        f.textBox_paginaweb.Clear();
+                        f.comboBox_tipuscuina.SelectedItem = null;
+                        f.comboBox_tipuspreu.SelectedItem = null;
+                        f.pictureBox_logo.Image = null;
+
+                        MessageBox.Show("Restaurant registrat amb exit, ja pots iniciar sessio.", "Registre exitos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } else
+                    {
+                        MessageBox.Show("Ja existeix aquest nom d'usuari, prova un altre.", "Nom existent", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Completi tots els camps requerits.", "Camps incomplerts", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            } catch (Exception ex)
             {
-                MessageBox.Show("Completi tots els camps requerits.", "Camps incomplerts", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+                MessageBox.Show("Error al registrar restaurant." + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }    
         }
-
 
         private void Button_logo_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
-            openFileDialog.Title = "Seleccione el logo del restaurante";
+            openFileDialog.Filter = "Arxius d'imatge|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            openFileDialog.Title = "Seleccioni el logo del restaurant";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -117,7 +146,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                 }
                 else
                 {
-                    MessageBox.Show("El logo debe tener exactamente 150x150 píxeles.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("El logo ha de ser exactament 150x150 pixels.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -131,5 +160,11 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                 return ms.ToArray(); 
             }
         }
+
+
+        //public string HashPassword(string password)
+        //{
+        //    return BCrypt.HashPassword(password);
+        //}
     }
 }

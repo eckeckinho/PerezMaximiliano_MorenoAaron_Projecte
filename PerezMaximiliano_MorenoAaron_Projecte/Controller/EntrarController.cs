@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PerezMaximiliano_MorenoAaron_Projecte
 {
@@ -42,9 +43,21 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             _serviceProvider.GetRequiredService<RegistrarController>();
         }
 
-        private void Button_entrar_Click(object sender, EventArgs e)
+        private async void Button_entrar_Click(object sender, EventArgs e)
         {
-            
+            var nomUsuariRest = f1.textBox_usuari.Text;
+            var pswdUsuariRest = f1.textBox_contrasenya.Text;
+
+            var (resultatLogin, restaurant) = await _authService.LoginRestaurantAsync(nomUsuariRest, pswdUsuariRest);
+
+            if (resultatLogin)
+            {
+                MessageBox.Show($"Benvingut, {restaurant.nomCompte}!", "Login realitzat amb exit", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Usuari o contrasenya incorrectes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
