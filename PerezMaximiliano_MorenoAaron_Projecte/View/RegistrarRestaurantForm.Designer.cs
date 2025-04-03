@@ -56,6 +56,10 @@
             this.button_registrar = new System.Windows.Forms.Button();
             this.comboBox_tipuscuina = new System.Windows.Forms.ComboBox();
             this.comboBox_tipuspreu = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox_descripcio = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox_paginaweb = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -289,11 +293,47 @@
             this.comboBox_tipuspreu.Size = new System.Drawing.Size(187, 21);
             this.comboBox_tipuspreu.TabIndex = 29;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(946, 71);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(57, 13);
+            this.label14.TabIndex = 30;
+            this.label14.Text = "Descripcio";
+            // 
+            // textBox_descripcio
+            // 
+            this.textBox_descripcio.Location = new System.Drawing.Point(1009, 68);
+            this.textBox_descripcio.Name = "textBox_descripcio";
+            this.textBox_descripcio.Size = new System.Drawing.Size(187, 20);
+            this.textBox_descripcio.TabIndex = 31;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(946, 106);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(63, 13);
+            this.label15.TabIndex = 32;
+            this.label15.Text = "Pagina web";
+            // 
+            // textBox_paginaweb
+            // 
+            this.textBox_paginaweb.Location = new System.Drawing.Point(1009, 103);
+            this.textBox_paginaweb.Name = "textBox_paginaweb";
+            this.textBox_paginaweb.Size = new System.Drawing.Size(187, 20);
+            this.textBox_paginaweb.TabIndex = 33;
+            // 
             // RegistrarRestaurantForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1033, 365);
+            this.ClientSize = new System.Drawing.Size(1232, 365);
+            this.Controls.Add(this.textBox_paginaweb);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.textBox_descripcio);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.comboBox_tipuspreu);
             this.Controls.Add(this.comboBox_tipuscuina);
             this.Controls.Add(this.button_registrar);
@@ -360,5 +400,9 @@
         public System.Windows.Forms.TextBox textBox_usuari;
         public System.Windows.Forms.ComboBox comboBox_tipuscuina;
         public System.Windows.Forms.ComboBox comboBox_tipuspreu;
+        public System.Windows.Forms.Label label14;
+        public System.Windows.Forms.TextBox textBox_descripcio;
+        public System.Windows.Forms.Label label15;
+        public System.Windows.Forms.TextBox textBox_paginaweb;
     }
 }

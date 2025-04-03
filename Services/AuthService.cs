@@ -31,10 +31,14 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
             throw new NotImplementedException();
         }
 
-        public async Task<string> RegistreRestaurantAsync(Restaurant newRestaurant)
+        public async Task RegistreRestaurantAsync(Restaurant newRestaurant)
         {
-            string text = "hola";
-            return text;
+            try
+            {
+                _context.Restaurants.Add(newRestaurant);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex) { }
         }
 
         public Task<string> RegistreUsuariAsync(string email, string password)

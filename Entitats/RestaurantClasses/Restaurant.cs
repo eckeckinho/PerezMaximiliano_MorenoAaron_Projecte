@@ -18,9 +18,9 @@ namespace Entitats.RestaurantClasses
         public string telefon { get; set; }
         public string correu { get; set; }
         public string paginaWeb { get; set; }
-        public string logo { get; set; }
+        public byte[] logo { get; set; }
         public int aforament { get; set; }
-        public decimal valoracioMitjana { get; set; }
+        public decimal? valoraciomedia { get; set; }
         public int tipusCuinaId { get; set; }
         public int tipusPreuId { get; set; }
         public string contrasenyaCompte { get; set; }
