@@ -12,7 +12,7 @@ namespace Services
 {
     public static class InjectarDependencies
     {
-        public static IServiceCollection AddProjectServicesRegistre(this IServiceCollection services)
+        public static IServiceCollection AddProjectServices(this IServiceCollection services)
         {
             string connectionString = "Server=.\\SQLEXPRESS;Database=MorenoAaron_PerezMaximiliano_ProjecteFinal;Trusted_Connection=True;TrustServerCertificate=True;";
 

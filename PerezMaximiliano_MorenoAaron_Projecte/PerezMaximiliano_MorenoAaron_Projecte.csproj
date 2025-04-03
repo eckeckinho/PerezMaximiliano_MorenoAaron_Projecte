@@ -283,13 +283,33 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Configuracio\Configuracio.csproj">
+      <Project>{4d47efdd-515d-4e29-a708-50cadbc773f6}</Project>
+      <Name>Configuracio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contacte\Contacte.csproj">
+      <Project>{efc27471-0e0f-4069-ba6e-f1bd70ea4cba}</Project>
+      <Name>Contacte</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entitats\Entitats.csproj">
       <Project>{df369a57-dec4-498e-b645-e85cbc29da07}</Project>
       <Name>Entitats</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Horari\Horari.csproj">
+      <Project>{8eaa64fd-6a87-4a4d-b3ad-9a8b18e1e0ff}</Project>
+      <Name>Horari</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reserves\Reserves.csproj">
+      <Project>{d32d404a-79ca-4967-8c78-8e77cd136705}</Project>
+      <Name>Reserves</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{5ce6d2af-4201-4e58-9d02-53d1dbb2bfcc}</Project>
       <Name>Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Taules\Taules.csproj">
+      <Project>{c1eb4150-d262-4645-8f7e-d35355c5e1eb}</Project>
+      <Name>Taules</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

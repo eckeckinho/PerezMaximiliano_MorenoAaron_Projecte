@@ -8,5 +8,16 @@ namespace Reserves.Controller
 {
     public class ReservesController
     {
+        ReservesForm f;
+        public ReservesController() 
+        { 
+            f = new ReservesForm();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            f.ShowDialog();
+        }
     }
 }

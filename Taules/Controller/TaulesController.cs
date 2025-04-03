@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace Taules.Controller
 {
-    internal class TaulesController
+    public class TaulesController
     {
+        TaulesForm f;
+        public TaulesController()
+        {
+            f = new TaulesForm();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            f.ShowDialog();
+        }
     }
 }

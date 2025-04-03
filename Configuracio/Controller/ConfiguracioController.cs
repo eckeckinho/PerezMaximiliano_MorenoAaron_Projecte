@@ -8,5 +8,16 @@ namespace Configuracio.Controller
 {
     public class ConfiguracioController
     {
+        ConfiguracioForm f;
+        public ConfiguracioController() 
+        {
+            f = new ConfiguracioForm();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            f.ShowDialog();
+        }
     }
 }

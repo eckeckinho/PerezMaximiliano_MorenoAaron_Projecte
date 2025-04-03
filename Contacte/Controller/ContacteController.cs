@@ -8,5 +8,16 @@ namespace Contacte.Controller
 {
     public class ContacteController
     {
+        ContacteForm f;
+        public ContacteController() 
+        {
+            f = new ContacteForm();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            f.ShowDialog();
+        }
     }
 }

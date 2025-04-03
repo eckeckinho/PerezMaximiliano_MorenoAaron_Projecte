@@ -2,6 +2,11 @@
 using System;
 using System.Windows.Forms;
 using Services;
+using Reserves.Controller;
+using Taules.Controller;
+using Contacte.Controller;
+using Configuracio.Controller;
+using Horari.Controller;
 
 namespace PerezMaximiliano_MorenoAaron_Projecte
 {
@@ -20,7 +25,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             // Aquí se agregan los servicios necesarios para la aplicación,
             // como el contexto de base de datos, servicios y controladores.
 
-            services.AddProjectServicesRegistre();
+            services.AddProjectServices();
 
             // Registra los controladores para que puedan ser inyectados en otros lugares.
             // Estos son los controladores que gestionan la lógica de la UI.
@@ -28,6 +33,11 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             services.AddScoped<EntrarController>();
             services.AddScoped<RegistrarController>();
             services.AddScoped<RegistrarController>();
+            services.AddScoped<ReservesController>();
+            services.AddScoped<TaulesController>();
+            services.AddScoped<ContacteController>();
+            services.AddScoped<ConfiguracioController>();
+            services.AddScoped<HorariController>();
 
             // Construye el proveedor de servicios a partir de la colección de servicios.
             // El proveedor de servicios es responsable de crear instancias de los servicios y controladores.
