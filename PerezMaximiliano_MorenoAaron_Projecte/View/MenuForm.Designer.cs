@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox_logo = new System.Windows.Forms.PictureBox();
+            this.label_nomrestaurant = new System.Windows.Forms.Label();
             this.button_reserves = new System.Windows.Forms.Button();
             this.button_taules = new System.Windows.Forms.Button();
             this.button_configuracio = new System.Windows.Forms.Button();
             this.button_contacte = new System.Windows.Forms.Button();
             this.button_horari = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // pictureBox_logo
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(255, 26);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(259, 112);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox_logo.Location = new System.Drawing.Point(255, 26);
+            this.pictureBox_logo.Name = "pictureBox_logo";
+            this.pictureBox_logo.Size = new System.Drawing.Size(259, 112);
+            this.pictureBox_logo.TabIndex = 0;
+            this.pictureBox_logo.TabStop = false;
             // 
-            // label1
+            // label_nomrestaurant
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.label1.Location = new System.Drawing.Point(298, 154);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "NOM RESTAURANT";
+            this.label_nomrestaurant.AutoSize = true;
+            this.label_nomrestaurant.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.label_nomrestaurant.Location = new System.Drawing.Point(298, 154);
+            this.label_nomrestaurant.Name = "label_nomrestaurant";
+            this.label_nomrestaurant.Size = new System.Drawing.Size(165, 20);
+            this.label_nomrestaurant.TabIndex = 1;
+            this.label_nomrestaurant.Text = "NOM RESTAURANT";
             // 
             // button_reserves
             // 
@@ -111,24 +111,23 @@
             this.Controls.Add(this.button_configuracio);
             this.Controls.Add(this.button_taules);
             this.Controls.Add(this.button_reserves);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label_nomrestaurant);
+            this.Controls.Add(this.pictureBox_logo);
             this.Name = "MenuForm";
             this.Text = "MenuForm";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button_reserves;
-        private System.Windows.Forms.Button button_taules;
-        private System.Windows.Forms.Button button_configuracio;
-        private System.Windows.Forms.Button button_contacte;
-        private System.Windows.Forms.Button button_horari;
+        public System.Windows.Forms.PictureBox pictureBox_logo;
+        public System.Windows.Forms.Label label_nomrestaurant;
+        public System.Windows.Forms.Button button_reserves;
+        public System.Windows.Forms.Button button_taules;
+        public System.Windows.Forms.Button button_contacte;
+        public System.Windows.Forms.Button button_configuracio;
+        public System.Windows.Forms.Button button_horari;
     }
 }

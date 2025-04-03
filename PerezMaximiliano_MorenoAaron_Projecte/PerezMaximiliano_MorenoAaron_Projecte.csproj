@@ -238,6 +238,12 @@
     <Compile Include="View\IniciarSessioForm.Designer.cs">
       <DependentUpon>IniciarSessioForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\MenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MenuForm.Designer.cs">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\RegistrarRestaurantForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +261,9 @@
     </Compile>
     <EmbeddedResource Include="View\IniciarSessioForm.resx">
       <DependentUpon>IniciarSessioForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MenuForm.resx">
+      <DependentUpon>MenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\RegistrarRestaurantForm.resx">
       <DependentUpon>RegistrarRestaurantForm.cs</DependentUpon>

@@ -27,6 +27,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
             services.AddScoped<EntrarController>();
             services.AddScoped<RegistrarController>();
+            services.AddScoped<RegistrarController>();
 
             // Construye el proveedor de servicios a partir de la colección de servicios.
             // El proveedor de servicios es responsable de crear instancias de los servicios y controladores.

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Entitats.RestaurantClasses;
+using Microsoft.Extensions.DependencyInjection;
 using PerezMaximiliano_MorenoAaron_Projecte;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services;
@@ -16,7 +17,8 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 {
     public class EntrarController
     {
-        IniciarSessioForm f1 = new IniciarSessioForm();
+        IniciarSessioForm f1;
+        MenuForm fm;
         private readonly IServiceProvider _serviceProvider;
         private readonly IAuthService _authService;
         private readonly ITipusService _tipusService;
@@ -27,6 +29,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             _authService = authService;
             _tipusService = tipusService;
             f1 = new IniciarSessioForm();
+            fm = new MenuForm();
 
             SetListeners();
             f1.ShowDialog();
@@ -52,12 +55,40 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
             if (resultatLogin)
             {
+                f1.Hide();
                 MessageBox.Show($"Benvingut, {restaurant.nomCompte}!", "Login realitzat amb exit", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadDataMenu(restaurant);
+                fm.ShowDialog();
             }
             else
             {
                 MessageBox.Show("Usuari o contrasenya incorrectes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void LoadDataMenu(Restaurant restaurant)
+        {
+            fm.label_nomrestaurant.Text = restaurant.nomRestaurant;
+
+            if (restaurant.logo != null && restaurant.logo.Length > 0)
+            {
+                try
+                {
+                    using (var ms = new System.IO.MemoryStream(restaurant.logo))
+                    {
+                        fm.pictureBox_logo.Image = System.Drawing.Image.FromStream(ms);  
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al carregar l'imagte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                fm.pictureBox_logo.Image = null; 
+            }
+        }
+
     }
 }
