@@ -1,11 +1,11 @@
-﻿using Entitats.RestaurantClasses;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Entitats.PlatClasses;
 
-namespace Data.Mapping.RestaurantMap
+namespace Data.Mapping.PlatMap
 {
     public class PlatMap : IEntityTypeConfiguration<Plat>
     {

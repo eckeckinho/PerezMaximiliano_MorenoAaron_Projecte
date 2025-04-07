@@ -3,6 +3,7 @@ using Entitats.RestaurantClasses;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfaces;
+using Reserves;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,18 +18,19 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 {
     public class RegistrarController
     {
-        RegistrarRestaurantForm f = new RegistrarRestaurantForm();
+        RegistrarRestaurantForm f;
         Image logo;
         private readonly IAuthService _authService;
         private readonly ITipusService _tipusService;
-        BcryptAuthenticationException _authenticationException;
         public RegistrarController(IAuthService authService, ITipusService tipusService)
         {
             _authService = authService;
             _tipusService = tipusService;
+        }
 
+        public void ShowForm()
+        {
             f = new RegistrarRestaurantForm();
-
             SetListeners();
             LoadData();
             f.ShowDialog();
@@ -36,12 +38,9 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
         private async void LoadData()
         {
-            var cuines = await _tipusService.GetTipusCuines(); 
-            var preus = await _tipusService.GetTipusPreus(); 
-
-            f.comboBox_tipuscuina.DataSource = cuines;
+            f.comboBox_tipuscuina.DataSource = await _tipusService.GetTipusCuines(); 
             f.comboBox_tipuscuina.DisplayMember = "descripcio";
-            f.comboBox_tipuspreu.DataSource = preus;
+            f.comboBox_tipuspreu.DataSource = await _tipusService.GetTipusPreus(); 
             f.comboBox_tipuspreu.DisplayMember = "descripcio";
         }
 

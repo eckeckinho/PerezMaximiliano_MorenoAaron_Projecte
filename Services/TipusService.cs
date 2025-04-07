@@ -1,4 +1,5 @@
 ﻿using Data;
+using Entitats.PlatClasses;
 using Entitats.ReservaClasses;
 using Entitats.RestaurantClasses;
 using Microsoft.EntityFrameworkCore;

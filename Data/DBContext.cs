@@ -1,9 +1,13 @@
-﻿using Data.Mapping.ReservaMap;
+﻿using Data.Mapping.PlatMap;
+using Data.Mapping.ReservaMap;
 using Data.Mapping.RestaurantMap;
+using Data.Mapping.TaulaMap;
 using Data.Mappings.AuthMap;
 using Entitats.AuthClasses;
+using Entitats.PlatClasses;
 using Entitats.ReservaClasses;
 using Entitats.RestaurantClasses;
+using Entitats.TaulaClasses;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,6 +29,7 @@ namespace Data
         public DbSet<TipusPlat> TipusPlats { get; set; }
         public DbSet<Reserva> Reservas { get; set; }
         public DbSet<TipusEstat> TipusEstats { get; set; }
+        public DbSet<Taula> Taules { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,6 +41,7 @@ namespace Data
             modelBuilder.ApplyConfiguration(new TipusPlatMap());
             modelBuilder.ApplyConfiguration(new ReservaMap());
             modelBuilder.ApplyConfiguration(new TipusEstatMap());
+            modelBuilder.ApplyConfiguration(new TaulaMap());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -81,13 +81,13 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
         private void Button_reserves_Click(object sender, EventArgs e)
         {
-            _serviceProvider.GetRequiredService<ReservesController>();
+            _serviceProvider.GetRequiredService<ReservesController>().ShowForm();
 
         }
 
         private void Button_regisrest_Click(object sender, EventArgs e)
         {
-            _serviceProvider.GetRequiredService<RegistrarController>();
+            _serviceProvider.GetRequiredService<RegistrarController>().ShowForm();
         }
 
         private async void Button_entrar_Click(object sender, EventArgs e)
@@ -99,6 +99,10 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
             if (resultatLogin)
             {
+                // Setteamos el restaurante el cual ha realizado login correctamente para poderlo usar en todos los controllers de la aplicacion
+                var contextRest = _serviceProvider.GetRequiredService<IRestaurantContext>();
+                contextRest.restaurantActual = restaurant;
+                   
                 f1.Hide();
                 MessageBox.Show($"Benvingut, {restaurant.nomCompte}!", "Login realitzat amb exit", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SetListenersMenu();

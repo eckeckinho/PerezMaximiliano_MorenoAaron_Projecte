@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entitats.RestaurantClasses
+namespace Entitats.PlatClasses
 {
     public class TipusPlat
     {

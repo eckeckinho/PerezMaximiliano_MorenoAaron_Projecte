@@ -7,6 +7,7 @@ using Taules.Controller;
 using Contacte.Controller;
 using Configuracio.Controller;
 using Horari.Controller;
+using Services.Interfaces;
 
 namespace PerezMaximiliano_MorenoAaron_Projecte
 {
@@ -32,7 +33,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
             services.AddScoped<EntrarController>();
             services.AddScoped<RegistrarController>();
-            services.AddScoped<RegistrarController>();
             services.AddScoped<ReservesController>();
             services.AddScoped<TaulesController>();
             services.AddScoped<ContacteController>();
@@ -49,6 +49,8 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
                 serviceProvider.GetRequiredService<EntrarController>();
             }
+
+            Application.Run();
         }
     }
 }

@@ -17,7 +17,6 @@ namespace Reserves
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new ReservesController();
         }
     }
 }
