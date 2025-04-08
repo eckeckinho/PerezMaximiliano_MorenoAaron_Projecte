@@ -53,6 +53,7 @@
             // 
             this.textBox_aforamentActual.Location = new System.Drawing.Point(544, 372);
             this.textBox_aforamentActual.Name = "textBox_aforamentActual";
+            this.textBox_aforamentActual.ReadOnly = true;
             this.textBox_aforamentActual.Size = new System.Drawing.Size(58, 20);
             this.textBox_aforamentActual.TabIndex = 66;
             // 
@@ -60,6 +61,7 @@
             // 
             this.textBox_aforamentMaxim.Location = new System.Drawing.Point(544, 402);
             this.textBox_aforamentMaxim.Name = "textBox_aforamentMaxim";
+            this.textBox_aforamentMaxim.ReadOnly = true;
             this.textBox_aforamentMaxim.Size = new System.Drawing.Size(58, 20);
             this.textBox_aforamentMaxim.TabIndex = 65;
             // 
@@ -86,6 +88,8 @@
             this.dataGridView_taules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_taules.Location = new System.Drawing.Point(42, 83);
             this.dataGridView_taules.Name = "dataGridView_taules";
+            this.dataGridView_taules.ReadOnly = true;
+            this.dataGridView_taules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_taules.Size = new System.Drawing.Size(560, 262);
             this.dataGridView_taules.TabIndex = 62;
             // 

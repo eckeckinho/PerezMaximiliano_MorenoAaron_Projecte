@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Controller\Program.cs" />
     <Compile Include="Controller\TaulesController.cs" />
-    <Compile Include="Model\RepositoriTaules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\TaulesForm.cs">
       <SubType>Form</SubType>
@@ -80,6 +79,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entitats\Entitats.csproj">
+      <Project>{df369a57-dec4-498e-b645-e85cbc29da07}</Project>
+      <Name>Entitats</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{5ce6d2af-4201-4e58-9d02-53d1dbb2bfcc}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -75,7 +75,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
         private void Button_taules_Click(object sender, EventArgs e)
         {
-            _serviceProvider.GetRequiredService<TaulesController>();
+            _serviceProvider.GetRequiredService<TaulesController>().ShowForm();
 
         }
 

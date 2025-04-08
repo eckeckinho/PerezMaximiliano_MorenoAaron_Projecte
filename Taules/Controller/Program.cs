@@ -17,7 +17,6 @@ namespace Taules.Controller
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new TaulesController();
         }
     }
 }

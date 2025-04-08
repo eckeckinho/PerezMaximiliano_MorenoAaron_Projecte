@@ -23,6 +23,7 @@ namespace Services
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITipusService, TipusService>();
             services.AddScoped<IReservaService, ReservaService>();
+            services.AddScoped<ITaulaService, TaulaService>();
 
             return services;
         }
