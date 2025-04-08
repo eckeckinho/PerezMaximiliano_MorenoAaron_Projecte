@@ -11,6 +11,7 @@ namespace Entitats.ReservaClasses
         public DateTime datareserva { get; set; } 
         public int numcomensals { get; set; } 
         public int estatid { get; set; } 
-        public int taulaid { get; set; } 
+        public int taulaid { get; set; }
+        public int usuariId { get; set; }
     }
 }

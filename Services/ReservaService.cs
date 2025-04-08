@@ -30,7 +30,7 @@ namespace Services
 
             if (idTaulesRestaurant.Count > 0)
             {
-                var reservesRestaurant =  _context.Reservas.Where(x => idTaulesRestaurant.Contains(x.taulaid) && x.estatid == idEstat).ToList();
+                var reservesRestaurant =  _context.Reservas.Where(x => idTaulesRestaurant.Contains(x.taulaid) && x.estatid == idEstat).OrderByDescending(x => x.id).ToList();
 
                 return reservesRestaurant;
             }
