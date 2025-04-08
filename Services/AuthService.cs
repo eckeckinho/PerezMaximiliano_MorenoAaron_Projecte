@@ -1,5 +1,6 @@
 ﻿using BCrypt.Net;
 using Data;
+using Entitats.AuthClasses;
 using Entitats.RestaurantClasses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -79,9 +80,27 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
             }
         }
 
-        public Task<string> RegistreUsuariAsync(string email, string password)
+        public async Task<bool> RegistreUsuariAsync(Usuari newUsuari)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var usuari = await _context.Usuaris.Where(x => x.correu == newUsuari.correu).FirstOrDefaultAsync();
+
+                if (usuari == null)
+                {
+                    _context.Usuaris.Add(newUsuari);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al registrar usuari. " + ex.Message, ex);
+            }
         }
     }
 }

@@ -30,11 +30,13 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.button_afegir = new System.Windows.Forms.Button();
-            this.dataGridView_taules = new System.Windows.Forms.DataGridView();
-            this.button_guardar = new System.Windows.Forms.Button();
-            this.dateTimePicker_diareserva = new System.Windows.Forms.DateTimePicker();
+            this.dataGridView_reserves = new System.Windows.Forms.DataGridView();
+            this.button_finalitzar = new System.Windows.Forms.Button();
+            this.dateTimePicker_diareserva_desde = new System.Windows.Forms.DateTimePicker();
             this.comboBox_estatreserva = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_taules)).BeginInit();
+            this.dateTimePicker_diareserva_hasta = new System.Windows.Forms.DateTimePicker();
+            this.button_cancelar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_reserves)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -56,52 +58,76 @@
             this.button_afegir.Text = "AFEGIR";
             this.button_afegir.UseVisualStyleBackColor = true;
             // 
-            // dataGridView_taules
+            // dataGridView_reserves
             // 
-            this.dataGridView_taules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_taules.Location = new System.Drawing.Point(39, 148);
-            this.dataGridView_taules.Name = "dataGridView_taules";
-            this.dataGridView_taules.Size = new System.Drawing.Size(621, 305);
-            this.dataGridView_taules.TabIndex = 53;
+            this.dataGridView_reserves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_reserves.Location = new System.Drawing.Point(39, 148);
+            this.dataGridView_reserves.Name = "dataGridView_reserves";
+            this.dataGridView_reserves.ReadOnly = true;
+            this.dataGridView_reserves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_reserves.Size = new System.Drawing.Size(621, 305);
+            this.dataGridView_reserves.TabIndex = 53;
             // 
-            // button_guardar
+            // button_finalitzar
             // 
-            this.button_guardar.Location = new System.Drawing.Point(580, 491);
-            this.button_guardar.Name = "button_guardar";
-            this.button_guardar.Size = new System.Drawing.Size(80, 36);
-            this.button_guardar.TabIndex = 54;
-            this.button_guardar.Text = "GUARDAR";
-            this.button_guardar.UseVisualStyleBackColor = true;
+            this.button_finalitzar.Location = new System.Drawing.Point(493, 491);
+            this.button_finalitzar.Name = "button_finalitzar";
+            this.button_finalitzar.Size = new System.Drawing.Size(80, 36);
+            this.button_finalitzar.TabIndex = 54;
+            this.button_finalitzar.Text = "FINALITZAR";
+            this.button_finalitzar.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker_diareserva
+            // dateTimePicker_diareserva_desde
             // 
-            this.dateTimePicker_diareserva.Location = new System.Drawing.Point(496, 110);
-            this.dateTimePicker_diareserva.Name = "dateTimePicker_diareserva";
-            this.dateTimePicker_diareserva.Size = new System.Drawing.Size(164, 20);
-            this.dateTimePicker_diareserva.TabIndex = 55;
+            this.dateTimePicker_diareserva_desde.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker_diareserva_desde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_diareserva_desde.Location = new System.Drawing.Point(39, 109);
+            this.dateTimePicker_diareserva_desde.Name = "dateTimePicker_diareserva_desde";
+            this.dateTimePicker_diareserva_desde.Size = new System.Drawing.Size(164, 20);
+            this.dateTimePicker_diareserva_desde.TabIndex = 55;
             // 
             // comboBox_estatreserva
             // 
             this.comboBox_estatreserva.FormattingEnabled = true;
-            this.comboBox_estatreserva.Location = new System.Drawing.Point(336, 110);
+            this.comboBox_estatreserva.Location = new System.Drawing.Point(539, 112);
             this.comboBox_estatreserva.Name = "comboBox_estatreserva";
             this.comboBox_estatreserva.Size = new System.Drawing.Size(121, 21);
             this.comboBox_estatreserva.TabIndex = 56;
+            // 
+            // dateTimePicker_diareserva_hasta
+            // 
+            this.dateTimePicker_diareserva_hasta.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker_diareserva_hasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_diareserva_hasta.Location = new System.Drawing.Point(209, 109);
+            this.dateTimePicker_diareserva_hasta.Name = "dateTimePicker_diareserva_hasta";
+            this.dateTimePicker_diareserva_hasta.Size = new System.Drawing.Size(164, 20);
+            this.dateTimePicker_diareserva_hasta.TabIndex = 57;
+            // 
+            // button_cancelar
+            // 
+            this.button_cancelar.Location = new System.Drawing.Point(580, 491);
+            this.button_cancelar.Name = "button_cancelar";
+            this.button_cancelar.Size = new System.Drawing.Size(80, 36);
+            this.button_cancelar.TabIndex = 58;
+            this.button_cancelar.Text = "CANCELAR";
+            this.button_cancelar.UseVisualStyleBackColor = true;
             // 
             // ReservesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 579);
+            this.Controls.Add(this.button_cancelar);
+            this.Controls.Add(this.dateTimePicker_diareserva_hasta);
             this.Controls.Add(this.comboBox_estatreserva);
-            this.Controls.Add(this.dateTimePicker_diareserva);
-            this.Controls.Add(this.button_guardar);
-            this.Controls.Add(this.dataGridView_taules);
+            this.Controls.Add(this.dateTimePicker_diareserva_desde);
+            this.Controls.Add(this.button_finalitzar);
+            this.Controls.Add(this.dataGridView_reserves);
             this.Controls.Add(this.button_afegir);
             this.Controls.Add(this.label1);
             this.Name = "ReservesForm";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_taules)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_reserves)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,10 +137,12 @@
 
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Button button_afegir;
-        public System.Windows.Forms.DataGridView dataGridView_taules;
-        public System.Windows.Forms.Button button_guardar;
-        public System.Windows.Forms.DateTimePicker dateTimePicker_diareserva;
+        public System.Windows.Forms.DataGridView dataGridView_reserves;
+        public System.Windows.Forms.Button button_finalitzar;
+        public System.Windows.Forms.DateTimePicker dateTimePicker_diareserva_desde;
         public System.Windows.Forms.ComboBox comboBox_estatreserva;
+        public System.Windows.Forms.DateTimePicker dateTimePicker_diareserva_hasta;
+        public System.Windows.Forms.Button button_cancelar;
     }
 }
 
