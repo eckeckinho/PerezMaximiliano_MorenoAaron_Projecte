@@ -1,7 +1,7 @@
 ﻿using Data;
+using Entitats.AuthClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfaces;
 
 namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 {
@@ -10,12 +10,10 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
     public class AuthController : ControllerBase
     {
         private readonly DBContext _context;
-        private readonly IAuthService _authService;
 
-        public AuthController(DBContext context, IAuthService authService) 
+        public AuthController(DBContext context) 
         {
             _context = context;
-            _authService = authService;
         }
 
         [HttpGet("GetUsers")]
@@ -25,11 +23,58 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
             return Ok(users);
         }
 
-        [HttpPost("Login")]
-        public async Task<IActionResult> Login(string email, string password)
+        [HttpPost("LoginUsuari")]
+        public async Task<IActionResult> LoginUsuari(string email, string password)
         {
-            await _authService.LoginUsuariAsync(email, password);
-            return Ok();
+            try
+            {
+                var usuari = await _context.Usuaris.Where(x => x.correu == email).FirstOrDefaultAsync();
+
+                if (usuari != null)
+                {
+                    if (BCrypt.Net.BCrypt.Verify(password, usuari.contrasenya))
+                    {
+                        return Ok("Loguejat correctament.");
+
+                    }
+                    else
+                    {
+                        return Unauthorized("Contrasenya incorrecta");
+                    }
+                }
+                else
+                {
+                    return NotFound("Usuari no trobat");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al loguear usuari. " + ex.Message, ex);
+            }
+        }
+
+        [HttpPost("RegistreUsuari")]
+        public async Task<IActionResult> RegistreUsuari(Usuari newUsuari)
+        {
+            try
+            {
+                var usuari = await _context.Usuaris.Where(x => x.correu == newUsuari.correu).FirstOrDefaultAsync();
+
+                if (usuari == null)
+                {
+                    _context.Usuaris.Add(newUsuari);
+                    await _context.SaveChangesAsync();
+                    return Ok("Registrat correctament.");
+                }
+                else
+                {
+                    return Conflict("L'usuari ja existeix.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al registrar usuari. " + ex.Message, ex);
+            }
         }
     }
 }

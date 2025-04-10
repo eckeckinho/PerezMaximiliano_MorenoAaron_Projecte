@@ -51,12 +51,6 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
             }
         }
 
-
-        public Task<string> LoginUsuariAsync(string email, string password)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<bool> RegistreRestaurantAsync(Restaurant newRestaurant)
         {
             try
@@ -77,29 +71,6 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
             catch (Exception ex) 
             {
                 throw new Exception("Error al registrar restaurant. " + ex.Message, ex);
-            }
-        }
-
-        public async Task<bool> RegistreUsuariAsync(Usuari newUsuari)
-        {
-            try
-            {
-                var usuari = await _context.Usuaris.Where(x => x.correu == newUsuari.correu).FirstOrDefaultAsync();
-
-                if (usuari == null)
-                {
-                    _context.Usuaris.Add(newUsuari);
-                    await _context.SaveChangesAsync();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al registrar usuari. " + ex.Message, ex);
             }
         }
     }

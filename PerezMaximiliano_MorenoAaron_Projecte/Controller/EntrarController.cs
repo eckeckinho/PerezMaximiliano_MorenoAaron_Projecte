@@ -138,6 +138,5 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                 fm.pictureBox_logo.Image = null; 
             }
         }
-
     }
 }
