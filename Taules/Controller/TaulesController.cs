@@ -8,12 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Taules.View;
 
 namespace Taules.Controller
 {
     public class TaulesController
     {
         TaulesForm f;
+        AfegirTaulaForm fa;
         private readonly ITaulaService _taulaService;
 
         public TaulesController(ITaulaService taulaService)
@@ -24,6 +26,7 @@ namespace Taules.Controller
         public void ShowForm()
         {
             f = new TaulesForm();
+            fa = new AfegirTaulaForm();
             SetListeners();
             LoadData();
 
@@ -35,6 +38,65 @@ namespace Taules.Controller
             f.button_afegir.Click += Button_afegir_Click;
             f.button_editar.Click += Button_editar_Click;
             f.button_eliminar.Click += Button_eliminar_Click;
+            fa.button_afegir_editar_taula.Click += Button_afegir_editar_taula_Click;
+            f.dataGridView_taules.SelectionChanged += DataGridView_taules_SelectionChanged;
+        }
+
+        private void DataGridView_taules_SelectionChanged(object sender, EventArgs e)
+        {
+            if (f.dataGridView_taules.SelectedRows.Count == 1)
+            {
+                f.button_editar.Enabled = true;
+            }
+            else if (f.dataGridView_taules.SelectedRows.Count >= 1)
+            {
+                f.button_eliminar.Enabled = true;
+                f.button_editar.Enabled = false;
+            }
+            else
+            {
+                f.button_editar.Enabled = false;
+                f.button_eliminar.Enabled = false;
+            }
+        }
+
+        private async void Button_afegir_editar_taula_Click(object sender, EventArgs e)
+        {
+            var comensalsTaula = (int)fa.numericUpDown_numcomensals.Value;
+
+            if (fa.button_afegir_editar_taula.Text.Equals("AFEGIR"))
+            {
+
+                var response = await _taulaService.AddTaulaAsync(comensalsTaula);
+
+                if (response)
+                {
+                    MessageBox.Show("Taula afegida correctament.", "Afegir taula", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                    fa.Close();
+                }
+                else
+                {
+                    MessageBox.Show("No s'ha pogut afegir la taula.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } else {
+                var taulaSeleccionada = f.dataGridView_taules.SelectedRows[0].DataBoundItem as Taula;
+
+                taulaSeleccionada.numComensals = comensalsTaula;
+
+                bool response = await _taulaService.UpdateTaulaAsync(taulaSeleccionada);
+
+                if (response)
+                {
+                    MessageBox.Show("Taula editada.", "Edicio exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                    fa.Close();
+                }
+                else
+                {
+                    MessageBox.Show("No es possible editar la taula seleccionada.", "Edicio denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         private void Button_eliminar_Click(object sender, EventArgs e)
@@ -73,12 +135,25 @@ namespace Taules.Controller
 
         private void Button_editar_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (fa.button_afegir_editar_taula.Text.Equals("AFEGIR"))
+            {
+                fa.button_afegir_editar_taula.Text = "EDITAR";
+            }
+            var taulaSeleccionada = f.dataGridView_taules.SelectedRows[0].DataBoundItem as Taula;
+
+            fa.numericUpDown_numcomensals.Value = taulaSeleccionada.numComensals;
+
+            fa.ShowDialog();
         }
 
         private void Button_afegir_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (fa.button_afegir_editar_taula.Text.Equals("EDITAR"))
+            {
+                fa.button_afegir_editar_taula.Text = "AFEGIR";
+            }
+
+            fa.ShowDialog();
         }
 
         private async void LoadData()

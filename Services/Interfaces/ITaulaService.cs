@@ -13,5 +13,7 @@ namespace Services.Interfaces
         int GetAforamentActual();
         int GetAforamentMaxim();
         bool DeleteTaules(List<Taula> taulesSeleccionades);
+        Task<bool> AddTaulaAsync(int comensalsTaula);
+        Task<bool> UpdateTaulaAsync(Taula taulaSeleccionada);
     }
 }

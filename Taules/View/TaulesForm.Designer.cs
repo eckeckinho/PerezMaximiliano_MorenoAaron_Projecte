@@ -42,6 +42,7 @@
             // 
             // button_editar
             // 
+            this.button_editar.Enabled = false;
             this.button_editar.Location = new System.Drawing.Point(437, 46);
             this.button_editar.Name = "button_editar";
             this.button_editar.Size = new System.Drawing.Size(67, 31);
@@ -95,6 +96,7 @@
             // 
             // button_eliminar
             // 
+            this.button_eliminar.Enabled = false;
             this.button_eliminar.Location = new System.Drawing.Point(510, 46);
             this.button_eliminar.Name = "button_eliminar";
             this.button_eliminar.Size = new System.Drawing.Size(73, 31);

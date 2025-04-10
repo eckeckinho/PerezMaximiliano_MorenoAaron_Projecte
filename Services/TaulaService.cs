@@ -2,6 +2,7 @@
 using Entitats.ReservaClasses;
 using Entitats.RestaurantClasses;
 using Entitats.TaulaClasses;
+using Microsoft.EntityFrameworkCore;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,39 @@ namespace Services
         public List<Taula> GetTaules()
         {
             return _context.Taules.Where(x => x.restaurantId == _restaurantActual.id).OrderBy(x => x.numComensals).ToList();
+        }
+
+        public async Task<bool> AddTaulaAsync(int comensalsTaula)
+        {
+            try
+            {
+                Taula newTaula = new Taula()
+                {
+                    numComensals = comensalsTaula,
+                    asignada = false,
+                    restaurantId = _restaurantActual.id
+                };
+
+                _context.Taules.Add(newTaula);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al afegir taula. " + ex.Message, ex);
+            }
+        }
+
+        public async Task<bool> UpdateTaulaAsync(Taula taulaSeleccionada)
+        {
+            if (taulaSeleccionada == null) return false;
+
+            _context.Taules.Update(taulaSeleccionada);
+
+            int changes = await _context.SaveChangesAsync();
+
+            if (changes > 0) return true;
+            return false;
         }
     }
 }
