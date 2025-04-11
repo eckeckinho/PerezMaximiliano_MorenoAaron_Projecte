@@ -16,4 +16,10 @@ namespace Entitats.AuthClasses
         public string pais { get; set; }
         public string telefon { get; set; }
     }
+
+    public class LoginReq
+    {
+        public string correu { get; set; }
+        public string contrasenya { get; set; }
+    }
 }

@@ -24,17 +24,17 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
         }
 
         [HttpPost("LoginUsuari")]
-        public async Task<IActionResult> LoginUsuari(string email, string password)
+        public async Task<IActionResult> LoginUsuari([FromBody] LoginReq loginRequest)
         {
             try
             {
-                var usuari = await _context.Usuaris.Where(x => x.correu == email).FirstOrDefaultAsync();
+                var usuari = await _context.Usuaris.Where(x => x.correu == loginRequest.correu).FirstOrDefaultAsync();
 
                 if (usuari != null)
                 {
-                    if (BCrypt.Net.BCrypt.Verify(password, usuari.contrasenya))
+                    if (BCrypt.Net.BCrypt.Verify(loginRequest.contrasenya, usuari.contrasenya))
                     {
-                        return Ok("Loguejat correctament.");
+                        return Ok(usuari);
 
                     }
                     else
@@ -54,7 +54,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
         }
 
         [HttpPost("RegistreUsuari")]
-        public async Task<IActionResult> RegistreUsuari(Usuari newUsuari)
+        public async Task<IActionResult> RegistreUsuari([FromBody] Usuari newUsuari)
         {
             try
             {
@@ -62,6 +62,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 
                 if (usuari == null)
                 {
+                    newUsuari.contrasenya = BCrypt.Net.BCrypt.HashPassword(newUsuari.contrasenya);
                     _context.Usuaris.Add(newUsuari);
                     await _context.SaveChangesAsync();
                     return Ok("Registrat correctament.");
