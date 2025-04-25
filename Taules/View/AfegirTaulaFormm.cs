@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Taules.View
 {
-    public partial class AfegirTaulaForm : Form
+    public partial class AfegirTaulaFormm : Form
     {
-        public AfegirTaulaForm()
+        public AfegirTaulaFormm()
         {
             InitializeComponent();
         }

@@ -3,11 +3,10 @@ using System;
 using System.Windows.Forms;
 using Services;
 using Reserves.Controller;
-using Taules.Controller;
 using Contacte.Controller;
 using Configuracio.Controller;
-using Horari.Controller;
 using Services.Interfaces;
+using Taules.Controller;
 
 namespace PerezMaximiliano_MorenoAaron_Projecte
 {
@@ -32,12 +31,11 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             // Estos son los controladores que gestionan la lógica de la UI.
 
             services.AddScoped<EntrarController>();
-            services.AddScoped<RegistrarController>();
             services.AddScoped<ReservesController>();
             services.AddScoped<TaulesController>();
+            services.AddScoped<HorariController>();
             services.AddScoped<ContacteController>();
             services.AddScoped<ConfiguracioController>();
-            services.AddScoped<HorariController>();
 
             // Construye el proveedor de servicios a partir de la colección de servicios.
             // El proveedor de servicios es responsable de crear instancias de los servicios y controladores.

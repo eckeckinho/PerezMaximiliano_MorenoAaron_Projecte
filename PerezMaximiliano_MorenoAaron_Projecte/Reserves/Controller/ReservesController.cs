@@ -1,4 +1,5 @@
 ﻿using Entitats.ReservaClasses;
+using PerezMaximiliano_MorenoAaron_Projecte.View;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,43 +12,40 @@ namespace Reserves.Controller
 {
     public class ReservesController
     {
-        ReservesForm f;
+        private MenuForm fm;
         private readonly IReservaService _reservaService;
         private readonly ITipusService _tipusService;
 
-        public ReservesController(IReservaService reservaService, ITipusService tipusService) 
-        { 
+        public ReservesController(IReservaService reservaService, ITipusService tipusService)
+        {
             _reservaService = reservaService;
             _tipusService = tipusService;
         }
 
-        public void ShowForm()
+        public void Inicialitzar()
         {
-            f = new ReservesForm();
             SetListeners();
             LoadData();
-
-            f.Show();
         }
 
         private void SetListeners()
         {
-            f.button_finalitzar.Click += Button_finalitzar_Click;
-            f.button_cancelar.Click += Button_cancelar_Click;
-            f.button_afegir.Click += Button_afegir_Click;
-            f.comboBox_estatreserva.SelectedIndexChanged += ComboBox_estatreserva_SelectedIndexChanged;
-            f.dateTimePicker_diareserva_desde.ValueChanged += DateTimePicker_diareserva_desde_ValueChanged;
-            f.dateTimePicker_diareserva_hasta.ValueChanged += DateTimePicker_diareserva_hasta_ValueChanged;
-            f.dataGridView_reserves.SelectionChanged += DataGridView_reserves_SelectionChanged;
+            fm.buttonReserva_finalitzar.Click += Button_finalitzar_Click;
+            fm.buttonReserva_cancelar.Click += Button_cancelar_Click;
+            fm.button_afegir.Click += Button_afegir_Click;
+            fm.comboBoxReserva_estat.SelectedIndexChanged += ComboBox_estatreserva_SelectedIndexChanged;
+            fm.dateTimePickerReserva_desde.ValueChanged += DateTimePicker_diareserva_desde_ValueChanged;
+            fm.dateTimePickerReserva_hasta.ValueChanged += DateTimePicker_diareserva_hasta_ValueChanged;
+            fm.dataGridViewReserva_reserves.SelectionChanged += DataGridView_reserves_SelectionChanged;
         }
 
         private void Button_cancelar_Click(object sender, EventArgs e)
         {
-            if (f.dataGridView_reserves.SelectedRows.Count > 0)
+            if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0)
             {
                 List<Reserva> reservasSeleccionadas = new List<Reserva>();
 
-                foreach (DataGridViewRow row in f.dataGridView_reserves.SelectedRows)
+                foreach (DataGridViewRow row in fm.dataGridViewReserva_reserves.SelectedRows)
                 {
                     var reserva = row.DataBoundItem as Reserva;
 
@@ -103,11 +101,11 @@ namespace Reserves.Controller
 
         private void Button_finalitzar_Click(object sender, EventArgs e)
         {
-            if (f.dataGridView_reserves.SelectedRows.Count > 0)
+            if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0)
             {
                 List<Reserva> reservasSeleccionadas = new List<Reserva>();
 
-                foreach (DataGridViewRow row in f.dataGridView_reserves.SelectedRows)
+                foreach (DataGridViewRow row in fm.dataGridViewReserva_reserves.SelectedRows)
                 {
                     var reserva = row.DataBoundItem as Reserva;
 
@@ -123,7 +121,8 @@ namespace Reserves.Controller
                 {
                     MessageBox.Show("Reserves finalitzades.", "Finalitzacio exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadDgvReservas();
-                } else
+                }
+                else
                 {
                     MessageBox.Show("No es possible finalitzar les reserves seleccionades.", "Finalitzacio denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -136,35 +135,47 @@ namespace Reserves.Controller
 
         private async void LoadData()
         {
-            f.comboBox_estatreserva.DataSource = await _tipusService.GetTipusEstats();
-            f.comboBox_estatreserva.DisplayMember = "descripcio";
+            fm.comboBoxReserva_estat.DataSource = await _tipusService.GetTipusEstats();
+            fm.comboBoxReserva_estat.DisplayMember = "descripcio";
 
             LoadDgvReservas();
         }
 
         private void LoadDgvReservas()
         {
-            // Implementar async en caso necesario (?)
+            try
+            {
+                var estatReserva = fm.comboBoxReserva_estat.SelectedItem as TipusEstat;
+                var dataReservaDesde = fm.dateTimePickerReserva_desde.Value;
+                var dataReservaHasta = fm.dateTimePickerReserva_hasta.Value;
 
-            var estatReserva = f.comboBox_estatreserva.SelectedItem as TipusEstat;
-            var dataReservaDesde = f.dateTimePicker_diareserva_desde.Value;
-            var dataReservaHasta = f.dateTimePicker_diareserva_hasta.Value;
-            
-            f.dataGridView_reserves.DataSource = _reservaService.GetReservesRestaurant(estatReserva.id, dataReservaDesde, dataReservaHasta);
+                var reserves = _reservaService.GetReservesRestaurant(estatReserva.id, dataReservaDesde, dataReservaHasta);
+                fm.dataGridViewReserva_reserves.DataSource = reserves;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error carregant reserves: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void ActivarBotonGuardar()
         {
-            var estatReserva = f.comboBox_estatreserva.SelectedItem as TipusEstat;
+            var estatReserva = fm.comboBoxReserva_estat.SelectedItem as TipusEstat;
 
-            if (f.dataGridView_reserves.SelectedRows.Count > 0 && estatReserva.descripcio.Trim().ToUpper().Equals("P"))
+            if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0 && estatReserva.descripcio.Trim().ToUpper().Equals("P"))
             {
-                f.button_finalitzar.Enabled = true;
+                fm.buttonReserva_finalitzar.Enabled = true;
             }
             else
             {
-                f.button_finalitzar.Enabled = false;
+                fm.buttonReserva_finalitzar.Enabled = false;
             }
+        }
+
+        public void SetForm(MenuForm menuForm)
+        {
+            fm = menuForm;
         }
     }
 }

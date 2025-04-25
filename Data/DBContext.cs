@@ -1,9 +1,11 @@
-﻿using Data.Mapping.PlatMap;
+﻿using Data.Mapping.ContacteClasses;
+using Data.Mapping.PlatMap;
 using Data.Mapping.ReservaMap;
 using Data.Mapping.RestaurantMap;
 using Data.Mapping.TaulaMap;
 using Data.Mappings.AuthMap;
 using Entitats.AuthClasses;
+using Entitats.ContacteClasses;
 using Entitats.PlatClasses;
 using Entitats.ReservaClasses;
 using Entitats.RestaurantClasses;
@@ -30,6 +32,10 @@ namespace Data
         public DbSet<Reserva> Reservas { get; set; }
         public DbSet<TipusEstat> TipusEstats { get; set; }
         public DbSet<Taula> Taules { get; set; }
+        public DbSet<MissatgesUsuari> MissatgesUsuaris { get; set; }
+        public DbSet<MissatgesView> MissatgesView { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,6 +48,8 @@ namespace Data
             modelBuilder.ApplyConfiguration(new ReservaMap());
             modelBuilder.ApplyConfiguration(new TipusEstatMap());
             modelBuilder.ApplyConfiguration(new TaulaMap());
+            modelBuilder.ApplyConfiguration(new MissatgesUsuariMap());
+            modelBuilder.ApplyConfiguration(new MissatgesViewMap());
 
             base.OnModelCreating(modelBuilder);
         }

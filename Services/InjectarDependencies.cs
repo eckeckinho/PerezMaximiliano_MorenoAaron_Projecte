@@ -18,12 +18,15 @@ namespace Services
 
             services.AddDbContext<DBContext>(options => options.UseSqlServer(connectionString));
 
-            services.AddSingleton<IRestaurantContext, RestaurantContext>();
+            services.AddScoped<IRestaurantContext, RestaurantContext>();
 
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITipusService, TipusService>();
             services.AddScoped<IReservaService, ReservaService>();
             services.AddScoped<ITaulaService, TaulaService>();
+            services.AddScoped<IContacteService, ContacteService>();
+            services.AddScoped<IHorariService, HorariService>();
+            services.AddScoped<IConfiguracioService, ConfiguracioService>();
 
             return services;
         }

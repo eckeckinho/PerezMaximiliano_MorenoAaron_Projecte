@@ -1,5 +1,6 @@
 ﻿using Entitats.ReservaClasses;
 using Entitats.TaulaClasses;
+using PerezMaximiliano_MorenoAaron_Projecte.View;
 using Services;
 using Services.Interfaces;
 using System;
@@ -14,7 +15,7 @@ namespace Taules.Controller
 {
     public class TaulesController
     {
-        TaulesForm f;
+        private MenuForm fm;
         AfegirTaulaForm fa;
         private readonly ITaulaService _taulaService;
 
@@ -23,48 +24,50 @@ namespace Taules.Controller
             _taulaService = taulaService;
         }
 
-        public void ShowForm()
+        public void Inicialitzar()
         {
-            f = new TaulesForm();
-            fa = new AfegirTaulaForm();
-            SetListeners();
-            LoadData();
-
-            f.Show();
+            if (fa == null)
+            {
+                fa = new AfegirTaulaForm();
+                SetListeners();
+                LoadData();
+            }
         }
 
         private void SetListeners()
         {
-            f.button_afegir.Click += Button_afegir_Click;
-            f.button_editar.Click += Button_editar_Click;
-            f.button_eliminar.Click += Button_eliminar_Click;
-            fa.button_afegir_editar_taula.Click += Button_afegir_editar_taula_Click;
-            f.dataGridView_taules.SelectionChanged += DataGridView_taules_SelectionChanged;
+            fm.buttonTaula_afegir.Click += Button_afegir_Click;
+            fm.buttonTaula_editar.Click += Button_editar_Click;
+            fm.buttonTaula_eliminar.Click += Button_eliminar_Click;
+            fm.dataGridViewTaula_taules.SelectionChanged += DataGridView_taules_SelectionChanged;
+
+            fa.buttonTaula_afegir_editar.Click += Button_afegir_editar_taula_Click;
         }
 
         private void DataGridView_taules_SelectionChanged(object sender, EventArgs e)
         {
-            if (f.dataGridView_taules.SelectedRows.Count == 1)
+            if (fm.dataGridViewTaula_taules.SelectedRows.Count == 1)
             {
-                f.button_editar.Enabled = true;
+                fm.buttonTaula_editar.Enabled = true;
+                fm.buttonTaula_eliminar.Enabled = true;
             }
-            else if (f.dataGridView_taules.SelectedRows.Count >= 1)
+            else if (fm.dataGridViewTaula_taules.SelectedRows.Count > 1)
             {
-                f.button_eliminar.Enabled = true;
-                f.button_editar.Enabled = false;
+                fm.buttonTaula_editar.Enabled = false;
+                fm.buttonTaula_eliminar.Enabled = true;
             }
             else
             {
-                f.button_editar.Enabled = false;
-                f.button_eliminar.Enabled = false;
+                fm.buttonTaula_editar.Enabled = false;
+                fm.buttonTaula_eliminar.Enabled = false;
             }
         }
 
         private async void Button_afegir_editar_taula_Click(object sender, EventArgs e)
         {
-            var comensalsTaula = (int)fa.numericUpDown_numcomensals.Value;
+            var comensalsTaula = (int)fa.numericUpDownTaula_numcomensals.Value;
 
-            if (fa.button_afegir_editar_taula.Text.Equals("AFEGIR"))
+            if (fa.buttonTaula_afegir_editar.Text.Equals("AFEGIR"))
             {
 
                 var response = await _taulaService.AddTaulaAsync(comensalsTaula);
@@ -79,8 +82,10 @@ namespace Taules.Controller
                 {
                     MessageBox.Show("No s'ha pogut afegir la taula.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            } else {
-                var taulaSeleccionada = f.dataGridView_taules.SelectedRows[0].DataBoundItem as Taula;
+            }
+            else
+            {
+                var taulaSeleccionada = fm.dataGridViewTaula_taules.SelectedRows[0].DataBoundItem as Taula;
 
                 taulaSeleccionada.numComensals = comensalsTaula;
 
@@ -101,11 +106,11 @@ namespace Taules.Controller
 
         private void Button_eliminar_Click(object sender, EventArgs e)
         {
-            if (f.dataGridView_taules.SelectedRows.Count > 0)
+            if (fm.dataGridViewTaula_taules.SelectedRows.Count > 0)
             {
                 List<Taula> taulesSeleccionades = new List<Taula>();
 
-                foreach (DataGridViewRow row in f.dataGridView_taules.SelectedRows)
+                foreach (DataGridViewRow row in fm.dataGridViewTaula_taules.SelectedRows)
                 {
                     var taula = row.DataBoundItem as Taula;
 
@@ -135,32 +140,37 @@ namespace Taules.Controller
 
         private void Button_editar_Click(object sender, EventArgs e)
         {
-            if (fa.button_afegir_editar_taula.Text.Equals("AFEGIR"))
+            if (fa.buttonTaula_afegir_editar.Text.Equals("AFEGIR"))
             {
-                fa.button_afegir_editar_taula.Text = "EDITAR";
+                fa.buttonTaula_afegir_editar.Text = "EDITAR";
             }
-            var taulaSeleccionada = f.dataGridView_taules.SelectedRows[0].DataBoundItem as Taula;
+            var taulaSeleccionada = fm.dataGridViewTaula_taules.SelectedRows[0].DataBoundItem as Taula;
 
-            fa.numericUpDown_numcomensals.Value = taulaSeleccionada.numComensals;
+            fa.numericUpDownTaula_numcomensals.Value = taulaSeleccionada.numComensals;
 
             fa.ShowDialog();
         }
 
         private void Button_afegir_Click(object sender, EventArgs e)
         {
-            if (fa.button_afegir_editar_taula.Text.Equals("EDITAR"))
+            if (fa.buttonTaula_afegir_editar.Text.Equals("EDITAR"))
             {
-                fa.button_afegir_editar_taula.Text = "AFEGIR";
+                fa.buttonTaula_afegir_editar.Text = "AFEGIR";
             }
 
             fa.ShowDialog();
         }
 
-        private async void LoadData()
+        private void LoadData()
         {
-            f.dataGridView_taules.DataSource = _taulaService.GetTaules();
-            f.textBox_aforamentActual.Text = _taulaService.GetAforamentActual().ToString();
-            f.textBox_aforamentMaxim.Text = _taulaService.GetAforamentMaxim().ToString();
+            fm.dataGridViewTaula_taules.DataSource = _taulaService.GetTaules();
+            fm.textBoxTaula_aforamentActual.Text = _taulaService.GetAforamentActual().ToString();
+            fm.textBoxTaula_aforamentMaxim.Text = _taulaService.GetAforamentMaxim().ToString();
+        }
+
+        public void SetForm(MenuForm menuForm)
+        {
+            fm = menuForm;
         }
     }
 }

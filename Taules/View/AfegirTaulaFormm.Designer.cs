@@ -1,6 +1,6 @@
 ﻿namespace Taules.View
 {
-    partial class AfegirTaulaForm
+    partial class AfegirTaulaFormm
     {
         /// <summary>
         /// Required designer variable.

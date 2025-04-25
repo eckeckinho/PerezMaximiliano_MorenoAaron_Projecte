@@ -14,11 +14,13 @@ namespace Services
     public class ReservaService : IReservaService
     {
         private readonly DBContext _context;
+        //private readonly IRestaurantContext _restContext;
         private readonly Restaurant _restaurantActual;
 
         public ReservaService(DBContext context, IRestaurantContext restContext)
         {
             _context = context;
+            //_restContext = restContext;
             _restaurantActual = restContext.restaurantActual;
         }
 
@@ -74,25 +76,42 @@ namespace Services
 
         public List<Reserva> GetReservesRestaurant(int idEstat, DateTime desde, DateTime hasta)
         {
-            // Obtener IDs de las mesas del restaurante actual
             var idTaulesRestaurant = _context.Taules
                 .Where(x => x.restaurantId == _restaurantActual.id)
                 .Select(x => x.id)
                 .ToList();
 
-            if (idTaulesRestaurant.Count == 0) return new List<Reserva>();  // Devuelve una lista vacía si no hay mesas
-
-            // Construir la consulta paso a paso y aplicar los filtros
+            if (idTaulesRestaurant.Count == 0)
+                return new List<Reserva>();
 
             var reservasRestaurante = _context.Reservas
                 .Where(x => idTaulesRestaurant.Contains(x.taulaid))
                 .Where(x => x.estatid == idEstat)
-                .Where(x => x.datareserva >= desde.Date && x.datareserva <= hasta.Date)
+                .Where(x => x.datareserva >= desde.Date && x.datareserva < hasta.Date.AddDays(1))
                 .OrderByDescending(x => x.id)
                 .ToList();
 
             return reservasRestaurante;
         }
 
+        public async Task<List<Reserva>> GetReservesRestaurantAsync(int idEstat, DateTime desde, DateTime hasta)
+        {
+            var idTaulesRestaurant = await _context.Taules
+                .Where(x => x.restaurantId == _restaurantActual.id)
+                .Select(x => x.id)
+                .ToListAsync();
+
+            if (idTaulesRestaurant.Count == 0)
+                return new List<Reserva>();
+
+            var reservasRestaurante = await _context.Reservas
+                .Where(x => idTaulesRestaurant.Contains(x.taulaid))
+                .Where(x => x.estatid == idEstat)
+                .Where(x => x.datareserva >= desde.Date && x.datareserva <= hasta.Date)
+                .OrderByDescending(x => x.id)
+                .ToListAsync();
+
+            return reservasRestaurante;
+        }
     }
 }

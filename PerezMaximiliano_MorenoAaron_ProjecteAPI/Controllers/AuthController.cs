@@ -1,5 +1,6 @@
 ﻿using Data;
 using Entitats.AuthClasses;
+using Entitats.ContacteClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,37 +25,37 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
         }
 
         [HttpPost("LoginUsuari")]
-        public async Task<IActionResult> LoginUsuari(string email, string password)
+        public async Task<IActionResult> LoginUsuari([FromBody] LoginReq loginRequest)
         {
             try
             {
-                var usuari = await _context.Usuaris.Where(x => x.correu == email).FirstOrDefaultAsync();
+                var usuari = await _context.Usuaris.Where(x => x.correu == loginRequest.correu).FirstOrDefaultAsync();
 
                 if (usuari != null)
                 {
-                    if (BCrypt.Net.BCrypt.Verify(password, usuari.contrasenya))
+                    if (BCrypt.Net.BCrypt.Verify(loginRequest.contrasenya, usuari.contrasenya))
                     {
-                        return Ok("Loguejat correctament.");
+                        return Ok(usuari);
 
                     }
                     else
                     {
-                        return Unauthorized("Contrasenya incorrecta");
+                        return Unauthorized();
                     }
                 }
                 else
                 {
-                    return NotFound("Usuari no trobat");
+                    return NotFound();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al loguear usuari. " + ex.Message, ex);
+                throw new Exception();
             }
         }
 
         [HttpPost("RegistreUsuari")]
-        public async Task<IActionResult> RegistreUsuari(Usuari newUsuari)
+        public async Task<IActionResult> RegistreUsuari([FromBody] Usuari newUsuari)
         {
             try
             {
@@ -62,18 +63,19 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 
                 if (usuari == null)
                 {
+                    newUsuari.contrasenya = BCrypt.Net.BCrypt.HashPassword(newUsuari.contrasenya);
                     _context.Usuaris.Add(newUsuari);
                     await _context.SaveChangesAsync();
-                    return Ok("Registrat correctament.");
+                    return Ok();
                 }
                 else
                 {
-                    return Conflict("L'usuari ja existeix.");
+                    return Conflict();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al registrar usuari. " + ex.Message, ex);
+                throw new Exception();
             }
         }
     }
