@@ -10,11 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PerezMaximiliano_MorenoAaron_Projecte.View
+namespace Taules.View
 {
-    public partial class MenuForm : MaterialForm
+    public partial class NovaContrasenyaForm : MaterialForm
     {
-        public MenuForm()
+        public NovaContrasenyaForm()
         {
             InitializeComponent();
 
@@ -29,11 +29,9 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             Color formBackColor = Color.White;
 
             materialSkinManager.ColorScheme = new ColorScheme(mainColor, hoverColor, formBackColor, mainColor, textColor);
-
-            this.FormClosed += (s, e) => Application.Exit();
         }
 
-        private void MenuForm_Load(object sender, EventArgs e)
+        private void NovaContrasenyaForm_Load(object sender, EventArgs e)
         {
 
         }

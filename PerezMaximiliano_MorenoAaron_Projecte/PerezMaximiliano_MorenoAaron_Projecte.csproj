@@ -237,12 +237,24 @@
   <ItemGroup>
     <Compile Include="Configuracio\Controller\ConfiguracioController.cs" />
     <Compile Include="Contacte\Controller\ContacteController.cs" />
+    <Compile Include="Contacte\View\ObrirMissatgeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contacte\View\ObrirMissatgeForm.Designer.cs">
+      <DependentUpon>ObrirMissatgeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Horari\Controller\HorariController.cs" />
     <Compile Include="Login\Controller\EntrarController.cs" />
     <Compile Include="MainMenu\Controller\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reserves\Controller\ReservesController.cs" />
     <Compile Include="Taules\Controller\TaulesController.cs" />
+    <Compile Include="Configuracio\View\NovaContrasenyaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracio\View\NovaContrasenyaForm.Designer.cs">
+      <DependentUpon>NovaContrasenyaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Taules\View\AfegirTaulaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +273,9 @@
     <Compile Include="MainMenu\View\MenuForm.Designer.cs">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Contacte\View\ObrirMissatgeForm.resx">
+      <DependentUpon>ObrirMissatgeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -270,6 +285,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Configuracio\View\NovaContrasenyaForm.resx">
+      <DependentUpon>NovaContrasenyaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Taules\View\AfegirTaulaForm.resx">
       <DependentUpon>AfegirTaulaForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,4 +1,5 @@
-﻿using Entitats.ReservaClasses;
+﻿using Entitats.AuthClasses;
+using Entitats.ReservaClasses;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -11,7 +12,7 @@ namespace Services.Interfaces
     {
         Task<List<Reserva>> GetReservesRestaurantAsync(int idEstat, DateTime desde, DateTime hasta);
         List<Reserva> GetReservesRestaurant(int idEstat, DateTime desde, DateTime hasta);
-        bool FinalitzarReserves(List<Reserva> reservesSeleccionades);
-        bool CancelarReserves(List<Reserva> reservesSeleccionades);
+        bool CanviarEstatReserva(List<Reserva> reservesSeleccionades, int nouEstat);
+        Usuari GetUsuariReserva(int usuariId);
     }
 }

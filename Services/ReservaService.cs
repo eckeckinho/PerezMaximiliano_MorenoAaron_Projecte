@@ -1,4 +1,5 @@
 ﻿using Data;
+using Entitats.AuthClasses;
 using Entitats.ReservaClasses;
 using Entitats.RestaurantClasses;
 using Microsoft.EntityFrameworkCore;
@@ -24,38 +25,13 @@ namespace Services
             _restaurantActual = restContext.restaurantActual;
         }
 
-        public bool CancelarReserves(List<Reserva> reservesSeleccionades)
+        public bool CanviarEstatReserva(List<Reserva> reservesSeleccionades, int nouEstat)
         {
             if (reservesSeleccionades == null || reservesSeleccionades.Count == 0) return false;
 
             foreach (Reserva reserva in reservesSeleccionades)
             {
-                reserva.estatid = 6;
-
-                var taulaAssignada = _context.Taules.Where(x => x.id == reserva.taulaid).FirstOrDefault();
-
-                if (taulaAssignada != null && taulaAssignada.asignada != null && taulaAssignada.asignada == true)
-                {
-                    taulaAssignada.asignada = false;
-                }
-
-                _context.Taules.Update(taulaAssignada);
-                _context.Reservas.Update(reserva);
-            }
-
-            int changes = _context.SaveChanges();
-
-            if (changes > 0) return true;
-            return false;
-        }
-
-        public bool FinalitzarReserves(List<Reserva> reservesSeleccionades)
-        {
-            if (reservesSeleccionades == null || reservesSeleccionades.Count == 0) return false;
-
-            foreach (Reserva reserva in reservesSeleccionades)
-            {
-                reserva.estatid = 5;
+                reserva.estatid = nouEstat;
 
                 var taulaAssignada = _context.Taules.Where(x => x.id == reserva.taulaid).FirstOrDefault();
 
@@ -112,6 +88,27 @@ namespace Services
                 .ToListAsync();
 
             return reservasRestaurante;
+        }
+
+        public Usuari GetUsuariReserva(int usuariId)
+        {
+            try
+            {
+                var usuari = _context.Usuaris.Where(x => x.id == usuariId).FirstOrDefault();
+
+                if (usuari == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return usuari;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al trobar l'usuari. " + ex.Message, ex);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Entitats.ReservaClasses;
+﻿using Entitats.ContacteClasses;
+using Entitats.ReservaClasses;
 using Entitats.TaulaClasses;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
 using Services;
@@ -16,6 +17,7 @@ namespace Contacte.Controller
     public class ContacteController
     {
         private MenuForm fm;
+        ObrirMissatgeForm fo;
         private readonly IContacteService _contacteService;
 
         public ContacteController(IContacteService contacteService)
@@ -24,9 +26,13 @@ namespace Contacte.Controller
         }
 
         public void Inicialitzar()
-        {   
-            SetListeners();
-            LoadData();
+        {
+            if (fo == null)
+            {
+                fo = new ObrirMissatgeForm();
+                SetListeners();
+                LoadData();
+            }
         }
 
         private void SetListeners()
@@ -35,7 +41,6 @@ namespace Contacte.Controller
             fm.dateTimePickerContacte_desde.ValueChanged += DateTimePicker_desde_ValueChanged;
             fm.dateTimePickerContacte_hasta.ValueChanged += DateTimePicker_hasta_ValueChanged;
             fm.textBoxContacte_filtre.TextChanged += TextBox_filtre_TextChanged;
-            //fm.dataGridViewContacte_missatges.SelectionChanged += DataGridView_missatges_SelectionChanged;
         }
 
         private void TextBox_filtre_TextChanged(object sender, EventArgs e)
@@ -55,12 +60,29 @@ namespace Contacte.Controller
 
         private void Button_obrir_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (fm.dataGridViewContacte_missatges.SelectedRows.Count > 0)
+            {
+                var missatgeSeleccionat = fm.dataGridViewContacte_missatges.SelectedRows[0].DataBoundItem as MissatgesView;
+
+                if (missatgeSeleccionat != null)
+                {
+                    fo.Text = $"Autor: {missatgeSeleccionat.correu} ({missatgeSeleccionat.nom} {missatgeSeleccionat.cognoms}) - Data: {missatgeSeleccionat.dataMissatge:dd/MM/yyyy HH:mm} - Telèfon: {missatgeSeleccionat.telefon}";
+                    fo.multiLineContacte_missatge.Text = missatgeSeleccionat.missatge;
+                    fo.ShowDialog();
+                }
+            }
         }
 
         private void LoadData()
-        {
-            LoadDataDgvMissatges();
+        {      
+        LoadDataDgvMissatges();
+            fm.dataGridViewContacte_missatges.Columns["id"].Visible = false;
+            fm.dataGridViewContacte_missatges.Columns["missatge"].Visible = false;
+            fm.dataGridViewContacte_missatges.Columns["restaurantId"].Visible = false;
+            fm.dataGridViewContacte_missatges.Columns["nom"].Visible = false;
+            fm.dataGridViewContacte_missatges.Columns["cognoms"].Visible = false;
+            fm.dataGridViewContacte_missatges.Columns["telefon"].Visible = false;
+            fm.dataGridViewContacte_missatges.Columns["dataMissatge"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
         }
 
 

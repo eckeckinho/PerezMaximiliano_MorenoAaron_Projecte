@@ -34,8 +34,7 @@ namespace Data
         public DbSet<Taula> Taules { get; set; }
         public DbSet<MissatgesUsuari> MissatgesUsuaris { get; set; }
         public DbSet<MissatgesView> MissatgesView { get; set; }
-
-
+        public DbSet<FavoritsUsuari> FavoritsUsuaris { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -50,6 +49,7 @@ namespace Data
             modelBuilder.ApplyConfiguration(new TaulaMap());
             modelBuilder.ApplyConfiguration(new MissatgesUsuariMap());
             modelBuilder.ApplyConfiguration(new MissatgesViewMap());
+            modelBuilder.ApplyConfiguration(new FavoritsUsuariMap());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -36,8 +36,7 @@ namespace Services
             {
                 missatges = missatges.Where(x =>
                     (x.correu.ToLower().Trim().Contains(filtre)) ||
-                    (x.assumpte.ToLower().Trim().Contains(filtre)) ||
-                    (x.missatge.ToLower().Trim().Contains(filtre))
+                    (x.assumpte.ToLower().Trim().Contains(filtre))
                 );
             }
 

@@ -110,6 +110,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             //fm.button_configuracio.Click += Button_configuracio_Click;
             //fm.button_horari.Click += Button_horari_Click;
             fm.materialTabControl1.SelectedIndexChanged += MaterialTabControl1_SelectedIndexChanged;
+            fm.buttonMain_tancarSessio.Click += ButtonMain_tancarSessio_Click;
+        }
+
+        private void ButtonMain_tancarSessio_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
 
         private void MaterialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -143,8 +149,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                     var configuracioController = _serviceProvider.GetRequiredService<ConfiguracioController>();
                     configuracioController.SetForm(fm);
                     configuracioController.Inicialitzar();
-                    break;
-                case "tabPageTancar":
                     break;
             }
         }

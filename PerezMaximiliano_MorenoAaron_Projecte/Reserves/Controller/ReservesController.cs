@@ -1,4 +1,5 @@
 ﻿using Entitats.ReservaClasses;
+using Entitats.TaulaClasses;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
 using Services.Interfaces;
 using System;
@@ -32,11 +33,48 @@ namespace Reserves.Controller
         {
             fm.buttonReserva_finalitzar.Click += Button_finalitzar_Click;
             fm.buttonReserva_cancelar.Click += Button_cancelar_Click;
+            fm.buttonReserva_enProces.Click += Button_enProces_Click;
             fm.button_afegir.Click += Button_afegir_Click;
             fm.comboBoxReserva_estat.SelectedIndexChanged += ComboBox_estatreserva_SelectedIndexChanged;
             fm.dateTimePickerReserva_desde.ValueChanged += DateTimePicker_diareserva_desde_ValueChanged;
             fm.dateTimePickerReserva_hasta.ValueChanged += DateTimePicker_diareserva_hasta_ValueChanged;
             fm.dataGridViewReserva_reserves.SelectionChanged += DataGridView_reserves_SelectionChanged;
+        }
+
+        private void Button_enProces_Click(object sender, EventArgs e)
+        {
+            if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0)
+            {
+                List<Reserva> reservasSeleccionadas = new List<Reserva>();
+
+                foreach (DataGridViewRow row in fm.dataGridViewReserva_reserves.SelectedRows)
+                {
+                    var reserva = row.DataBoundItem as Reserva;
+
+                    if (reserva != null)
+                    {
+                        reservasSeleccionadas.Add(reserva);
+                    }
+                }
+
+                //L'estat P té l'ID 4.
+                var nouEstat = 4;
+                bool resultatEnProces = _reservaService.CanviarEstatReserva(reservasSeleccionadas, nouEstat);
+
+                if (resultatEnProces)
+                {
+                    MessageBox.Show("Reserves en proces.", "En proces exitos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadDgvReservas();
+                }
+                else
+                {
+                    MessageBox.Show("No es possible possar en proces les reserves seleccionades.", "En proces denegat", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hi ha reserves seleccionades.");
+            }
         }
 
         private void Button_cancelar_Click(object sender, EventArgs e)
@@ -55,7 +93,9 @@ namespace Reserves.Controller
                     }
                 }
 
-                bool resultatCancelacio = _reservaService.CancelarReserves(reservasSeleccionadas);
+                //L'estat C té l'ID 6.
+                var nouEstat = 6;
+                bool resultatCancelacio = _reservaService.CanviarEstatReserva(reservasSeleccionadas, nouEstat);
 
                 if (resultatCancelacio)
                 {
@@ -76,7 +116,32 @@ namespace Reserves.Controller
         private void DataGridView_reserves_SelectionChanged(object sender, EventArgs e)
         {
             ActivarBotonGuardar();
+            CargarDgvUsuari();
         }
+
+        private void CargarDgvUsuari()
+        {
+            if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0)
+            {
+                var reservaSeleccionada = fm.dataGridViewReserva_reserves.SelectedRows[0].DataBoundItem as Reserva;
+
+                var usuariReserva = _reservaService.GetUsuariReserva(reservaSeleccionada.usuariId);
+                fm.textBoxReserva_idUsuari.Text = usuariReserva.id.ToString();
+                fm.textBoxReserva_correuUsuari.Text = usuariReserva.correu;
+                fm.textBoxReserva_nomUsuari.Text = usuariReserva.nom;
+                fm.textBoxReserva_cognomsUsuari.Text = usuariReserva.cognoms;
+                fm.textBoxReserva_telefonUsuari.Text = usuariReserva.telefon;
+            }
+            else
+            {
+                fm.textBoxReserva_idUsuari.Text = "";
+                fm.textBoxReserva_correuUsuari.Text = "";
+                fm.textBoxReserva_nomUsuari.Text = "";
+                fm.textBoxReserva_cognomsUsuari.Text = "";
+                fm.textBoxReserva_telefonUsuari.Text = "";
+            }
+        }
+            
 
         private void DateTimePicker_diareserva_hasta_ValueChanged(object sender, EventArgs e)
         {
@@ -115,7 +180,9 @@ namespace Reserves.Controller
                     }
                 }
 
-                bool resultatFinalitzacio = _reservaService.FinalitzarReserves(reservasSeleccionadas);
+                //L'estat F té l'ID 5.
+                var nouEstat = 5;
+                bool resultatFinalitzacio = _reservaService.CanviarEstatReserva(reservasSeleccionadas, nouEstat);
 
                 if (resultatFinalitzacio)
                 {
@@ -137,6 +204,11 @@ namespace Reserves.Controller
         {
             fm.comboBoxReserva_estat.DataSource = await _tipusService.GetTipusEstats();
             fm.comboBoxReserva_estat.DisplayMember = "descripcio";
+
+            fm.dataGridViewReserva_reserves.Columns["id"].Visible = false;
+            fm.dataGridViewReserva_reserves.Columns["taulaId"].Visible = false;
+            fm.dataGridViewReserva_reserves.Columns["usuariId"].Visible = false;
+            fm.dataGridViewReserva_reserves.Columns["estatId"].Visible = false;
 
             LoadDgvReservas();
         }
@@ -166,10 +238,26 @@ namespace Reserves.Controller
             if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0 && estatReserva.descripcio.Trim().ToUpper().Equals("P"))
             {
                 fm.buttonReserva_finalitzar.Enabled = true;
+                fm.buttonReserva_cancelar.Enabled = true;
+                fm.buttonReserva_enProces.Enabled = false;
+            }
+            else if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0 && estatReserva.descripcio.Trim().ToUpper().Equals("C"))
+            {
+                fm.buttonReserva_finalitzar.Enabled = true;
+                fm.buttonReserva_cancelar.Enabled = false;
+                fm.buttonReserva_enProces.Enabled = true;
+            }
+            else if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0 && estatReserva.descripcio.Trim().ToUpper().Equals("F"))
+            {
+                fm.buttonReserva_finalitzar.Enabled = false;
+                fm.buttonReserva_cancelar.Enabled = true;
+                fm.buttonReserva_enProces.Enabled = true;
             }
             else
             {
                 fm.buttonReserva_finalitzar.Enabled = false;
+                fm.buttonReserva_cancelar.Enabled = false;
+                fm.buttonReserva_enProces.Enabled = false;
             }
         }
 

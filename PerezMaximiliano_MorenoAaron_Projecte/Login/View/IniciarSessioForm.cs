@@ -29,6 +29,8 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             Color formBackColor = Color.White;
 
             materialSkinManager.ColorScheme = new ColorScheme(mainColor, hoverColor, formBackColor, mainColor, textColor);
+
+            this.FormClosed += (s, e) => Application.Exit();
         }
         private void IniciarSessioForm_Load(object sender, EventArgs e)
         {

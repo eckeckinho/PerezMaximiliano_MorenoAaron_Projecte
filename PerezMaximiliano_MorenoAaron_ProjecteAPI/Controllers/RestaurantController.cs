@@ -1,4 +1,5 @@
 ﻿using Data;
+using Entitats.ContacteClasses;
 using Entitats.RestaurantClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +47,52 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
                     .ToListAsync();
             }
                 return Ok(restaurants);
+        }
+
+        [HttpGet("GetAllRestaurants")]
+        public async Task<IActionResult> GetAllRestaurants()
+        {
+            var restaurants = await _context.Restaurants.ToListAsync();
+
+            return Ok(restaurants);
+        }
+
+        [HttpGet("GetRestaurantsFavorits")]
+        public async Task<IActionResult> GetRestaurantsFavorits([FromQuery] int usuariId)
+        {
+            var restaurantsFavoritsUsuari = await _context.FavoritsUsuaris.Where(f => f.usuariid == usuariId).ToListAsync();
+
+            return Ok(restaurantsFavoritsUsuari);
+        }
+
+        [HttpPost("AddRestaurantFavoritUsuari")]
+        public async Task<IActionResult> AddRestaurantFavoritUsuari([FromBody] FavoritsUsuari restFavoritUsuari)
+        {
+            try
+            {
+                _context.FavoritsUsuaris.Add(restFavoritUsuari);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost("DeleteRestaurantFavoritUsuari")]
+        public async Task<IActionResult> DeleteRestaurantFavoritUsuari([FromBody] FavoritsUsuari restFavoritUsuari)
+        {
+            try
+            {
+                _context.FavoritsUsuaris.Remove(restFavoritUsuari);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
     }
 }

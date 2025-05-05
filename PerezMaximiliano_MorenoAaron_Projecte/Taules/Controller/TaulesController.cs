@@ -166,6 +166,8 @@ namespace Taules.Controller
             fm.dataGridViewTaula_taules.DataSource = _taulaService.GetTaules();
             fm.textBoxTaula_aforamentActual.Text = _taulaService.GetAforamentActual().ToString();
             fm.textBoxTaula_aforamentMaxim.Text = _taulaService.GetAforamentMaxim().ToString();
+            fm.dataGridViewTaula_taules.Columns["id"].Visible = false;
+            fm.dataGridViewTaula_taules.Columns["restaurantId"].Visible = false;
         }
 
         public void SetForm(MenuForm menuForm)

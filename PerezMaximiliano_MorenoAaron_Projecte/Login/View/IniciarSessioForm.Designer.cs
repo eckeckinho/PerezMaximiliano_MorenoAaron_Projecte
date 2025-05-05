@@ -41,6 +41,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.materialCheckboxEntrar_veureContrasenya = new MaterialSkin.Controls.MaterialCheckbox();
             this.button_entrar = new MaterialSkin.Controls.MaterialButton();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
@@ -53,6 +54,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.materialCheckboxRegistrar_veureContrasenya = new MaterialSkin.Controls.MaterialCheckbox();
             this.button_registrar = new MaterialSkin.Controls.MaterialButton();
             this.textBox_paginaweb = new MaterialSkin.Controls.MaterialTextBox2();
             this.materialLabel18 = new MaterialSkin.Controls.MaterialLabel();
@@ -84,8 +86,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBox_usuariRegis = new MaterialSkin.Controls.MaterialTextBox2();
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.pictureBox_logo = new System.Windows.Forms.PictureBox();
-            this.materialCheckboxEntrar_veureContrasenya = new MaterialSkin.Controls.MaterialCheckbox();
-            this.materialCheckboxRegistrar_veureContrasenya = new MaterialSkin.Controls.MaterialCheckbox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -197,9 +197,25 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPage1.Location = new System.Drawing.Point(4, 39);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1306, 788);
+            this.tabPage1.Size = new System.Drawing.Size(1338, 866);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Entrar";
+            // 
+            // materialCheckboxEntrar_veureContrasenya
+            // 
+            this.materialCheckboxEntrar_veureContrasenya.AutoSize = true;
+            this.materialCheckboxEntrar_veureContrasenya.Depth = 0;
+            this.materialCheckboxEntrar_veureContrasenya.ImageKey = "icons8-cierre-de-sesión-redondeado-hacia-la-izquierda-32.png";
+            this.materialCheckboxEntrar_veureContrasenya.Location = new System.Drawing.Point(741, 319);
+            this.materialCheckboxEntrar_veureContrasenya.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckboxEntrar_veureContrasenya.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckboxEntrar_veureContrasenya.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckboxEntrar_veureContrasenya.Name = "materialCheckboxEntrar_veureContrasenya";
+            this.materialCheckboxEntrar_veureContrasenya.ReadOnly = false;
+            this.materialCheckboxEntrar_veureContrasenya.Ripple = true;
+            this.materialCheckboxEntrar_veureContrasenya.Size = new System.Drawing.Size(35, 37);
+            this.materialCheckboxEntrar_veureContrasenya.TabIndex = 133;
+            this.materialCheckboxEntrar_veureContrasenya.UseVisualStyleBackColor = true;
             // 
             // button_entrar
             // 
@@ -366,7 +382,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(1314, 831);
+            this.materialTabControl1.Size = new System.Drawing.Size(1346, 909);
             this.materialTabControl1.TabIndex = 38;
             // 
             // tabPage2
@@ -408,9 +424,25 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPage2.Location = new System.Drawing.Point(4, 39);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1306, 788);
+            this.tabPage2.Size = new System.Drawing.Size(1322, 827);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Registrar ";
+            // 
+            // materialCheckboxRegistrar_veureContrasenya
+            // 
+            this.materialCheckboxRegistrar_veureContrasenya.AutoSize = true;
+            this.materialCheckboxRegistrar_veureContrasenya.Depth = 0;
+            this.materialCheckboxRegistrar_veureContrasenya.ImageKey = "icons8-cierre-de-sesión-redondeado-hacia-la-izquierda-32.png";
+            this.materialCheckboxRegistrar_veureContrasenya.Location = new System.Drawing.Point(275, 146);
+            this.materialCheckboxRegistrar_veureContrasenya.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckboxRegistrar_veureContrasenya.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckboxRegistrar_veureContrasenya.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckboxRegistrar_veureContrasenya.Name = "materialCheckboxRegistrar_veureContrasenya";
+            this.materialCheckboxRegistrar_veureContrasenya.ReadOnly = false;
+            this.materialCheckboxRegistrar_veureContrasenya.Ripple = true;
+            this.materialCheckboxRegistrar_veureContrasenya.Size = new System.Drawing.Size(35, 37);
+            this.materialCheckboxRegistrar_veureContrasenya.TabIndex = 134;
+            this.materialCheckboxRegistrar_veureContrasenya.UseVisualStyleBackColor = true;
             // 
             // button_registrar
             // 
@@ -1024,44 +1056,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.pictureBox_logo.TabIndex = 44;
             this.pictureBox_logo.TabStop = false;
             // 
-            // materialCheckboxEntrar_veureContrasenya
-            // 
-            this.materialCheckboxEntrar_veureContrasenya.AutoSize = true;
-            this.materialCheckboxEntrar_veureContrasenya.Depth = 0;
-            this.materialCheckboxEntrar_veureContrasenya.ImageKey = "icons8-cierre-de-sesión-redondeado-hacia-la-izquierda-32.png";
-            this.materialCheckboxEntrar_veureContrasenya.Location = new System.Drawing.Point(741, 319);
-            this.materialCheckboxEntrar_veureContrasenya.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCheckboxEntrar_veureContrasenya.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialCheckboxEntrar_veureContrasenya.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCheckboxEntrar_veureContrasenya.Name = "materialCheckboxEntrar_veureContrasenya";
-            this.materialCheckboxEntrar_veureContrasenya.ReadOnly = false;
-            this.materialCheckboxEntrar_veureContrasenya.Ripple = true;
-            this.materialCheckboxEntrar_veureContrasenya.Size = new System.Drawing.Size(35, 37);
-            this.materialCheckboxEntrar_veureContrasenya.TabIndex = 133;
-            this.materialCheckboxEntrar_veureContrasenya.UseVisualStyleBackColor = true;
-            // 
-            // materialCheckboxRegistrar_veureContrasenya
-            // 
-            this.materialCheckboxRegistrar_veureContrasenya.AutoSize = true;
-            this.materialCheckboxRegistrar_veureContrasenya.Depth = 0;
-            this.materialCheckboxRegistrar_veureContrasenya.ImageKey = "icons8-cierre-de-sesión-redondeado-hacia-la-izquierda-32.png";
-            this.materialCheckboxRegistrar_veureContrasenya.Location = new System.Drawing.Point(275, 146);
-            this.materialCheckboxRegistrar_veureContrasenya.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCheckboxRegistrar_veureContrasenya.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialCheckboxRegistrar_veureContrasenya.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCheckboxRegistrar_veureContrasenya.Name = "materialCheckboxRegistrar_veureContrasenya";
-            this.materialCheckboxRegistrar_veureContrasenya.ReadOnly = false;
-            this.materialCheckboxRegistrar_veureContrasenya.Ripple = true;
-            this.materialCheckboxRegistrar_veureContrasenya.Size = new System.Drawing.Size(35, 37);
-            this.materialCheckboxRegistrar_veureContrasenya.TabIndex = 134;
-            this.materialCheckboxRegistrar_veureContrasenya.UseVisualStyleBackColor = true;
-            // 
             // IniciarSessioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1320, 898);
+            this.ClientSize = new System.Drawing.Size(1352, 976);
             this.Controls.Add(this.materialTabControl1);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialLabel1);

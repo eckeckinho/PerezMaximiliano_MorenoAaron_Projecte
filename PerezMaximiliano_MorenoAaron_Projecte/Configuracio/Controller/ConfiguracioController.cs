@@ -13,13 +13,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Taules.View;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Configuracio.Controller
 {
     public class ConfiguracioController
     {
         private MenuForm fm;
+        NovaContrasenyaForm fn;
         private readonly IConfiguracioService _configuracioService;
         private readonly ITipusService _tipusService;
 
@@ -31,29 +31,79 @@ namespace Configuracio.Controller
 
         public void Inicialitzar()
         {
-            SetListeners();
-            LoadData();
+            if (fn == null)
+            {
+                fn = new NovaContrasenyaForm();
+                SetListeners();
+                LoadData();
+            }
         }
 
         private void SetListeners()
         {
             fm.buttonConfiguracio_editar.Click += Button_editar_click;
-            fm.materialCheckboxConfiguracio_veureContrasenya.CheckedChanged += Checkbox_veureContrasenya_CheckedChanged;
-
+            fm.buttonConfiguracio_newContrasenya.Click += Button_newContrasenya_click;
+            fn.materialCheckboxConfiguracio_veureContrasenyaNova.CheckedChanged += MaterialCheckbox_veureContrasenyaNova_CheckedChanged;
+            fn.materialCheckboxConfiguracio_veureContrasenyaRepetir.CheckedChanged += MaterialCheckbox_veureContrasenyaRepetir_CheckedChanged;
+            fn.buttonConfiguracio_canviarContrasenya.Click += ButtonConfiguracio_canviarContrasenya_Click;
         }
 
-        private void Checkbox_veureContrasenya_CheckedChanged(object sender, EventArgs e)
+        private void ButtonConfiguracio_canviarContrasenya_Click(object sender, EventArgs e)
         {
-            if (fm.materialCheckboxConfiguracio_veureContrasenya.Checked)
+            if (!string.IsNullOrEmpty(fn.textBoxConfiguracio_novaContrasenya.Text) && !string.IsNullOrEmpty(fn.textBoxConfiguracio_repetirContrasenya.Text))
             {
-                fm.textBoxConfiguracio_contrasenya.PasswordChar = '\0'; 
+                if (fn.textBoxConfiguracio_novaContrasenya.Text.Equals(fn.textBoxConfiguracio_repetirContrasenya.Text))
+                {
+                    var respostaCanviContrasenya = _configuracioService.CanviarContrasenyaRestaurant(fn.textBoxConfiguracio_novaContrasenya.Text);
+
+                    if (respostaCanviContrasenya != null)
+                    {
+                        MessageBox.Show("Contrasenya canviada correctament.", "Contrasenya canviada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        fn.textBoxConfiguracio_repetirContrasenya.Text = "";
+                        fn.textBoxConfiguracio_novaContrasenya.Text = "";
+                        fn.Close();
+                    } else
+                    {
+                        MessageBox.Show("Error canviant la contrasenya.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                } else
+                {
+                    MessageBox.Show("Les contrasenyes no coincideixen.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } else
+            {
+                MessageBox.Show("Insereix una contrasenya nova.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MaterialCheckbox_veureContrasenyaRepetir_CheckedChanged(object sender, EventArgs e)
+        {
+            if (fn.materialCheckboxConfiguracio_veureContrasenyaRepetir.Checked)
+            {
+                fn.textBoxConfiguracio_repetirContrasenya.PasswordChar = '\0';
             }
             else
             {
-                fm.textBoxConfiguracio_contrasenya.PasswordChar = '●'; 
+                fn.textBoxConfiguracio_repetirContrasenya.PasswordChar = '●';
             }
         }
 
+        private void MaterialCheckbox_veureContrasenyaNova_CheckedChanged(object sender, EventArgs e)
+        {
+            if (fn.materialCheckboxConfiguracio_veureContrasenyaNova.Checked)
+            {
+                fn.textBoxConfiguracio_novaContrasenya.PasswordChar = '\0';
+            }
+            else
+            {
+                fn.textBoxConfiguracio_novaContrasenya.PasswordChar = '●';
+            }
+        }
+
+        private void Button_newContrasenya_click(object sender, EventArgs e)
+        {
+            fn.ShowDialog();
+        }
 
         private void Button_editar_click(object sender, EventArgs e)
         {
@@ -84,7 +134,6 @@ namespace Configuracio.Controller
         private void SetRestaurantData(Restaurant restaurant)
         {
             fm.textBoxConfiguracio_usuari.Text = restaurant.nomCompte;
-            fm.textBoxConfiguracio_contrasenya.Text = restaurant.contrasenyaCompte;
             fm.comboBoxConfiguracio_tipuscuina.SelectedValue = restaurant.tipusCuinaId;
             fm.comboBoxConfiguracio_tipuspreu.SelectedValue = restaurant.tipusPreuId;
             fm.textBoxConfiguracio_nom.Text = restaurant.nomRestaurant;
