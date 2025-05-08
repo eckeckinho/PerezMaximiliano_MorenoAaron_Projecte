@@ -10,10 +10,11 @@ namespace Services.Interfaces
     public interface ITaulaService
     {
         List<Taula> GetTaules();
+        List<Taula> GetTaulesDisponibles();
         int GetAforamentActual();
         int GetAforamentMaxim();
         bool DeleteTaules(List<Taula> taulesSeleccionades);
-        Task<bool> AddTaulaAsync(int comensalsTaula);
-        Task<bool> UpdateTaulaAsync(Taula taulaSeleccionada);
+        bool AddTaula(int comensalsTaula);
+        bool UpdateTaula(Taula taulaSeleccionada);
     }
 }

@@ -16,7 +16,7 @@ namespace Services
         {
             string connectionString = "Server=.\\SQLEXPRESS;Database=MorenoAaron_PerezMaximiliano_ProjecteFinal;Trusted_Connection=True;TrustServerCertificate=True;";
 
-            services.AddDbContext<DBContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<DBContext>(options =>options.UseSqlServer(connectionString));
 
             services.AddScoped<IRestaurantContext, RestaurantContext>();
 
@@ -27,6 +27,7 @@ namespace Services
             services.AddScoped<IContacteService, ContacteService>();
             services.AddScoped<IHorariService, HorariService>();
             services.AddScoped<IConfiguracioService, ConfiguracioService>();
+            services.AddScoped<IUsuariService, UsuariService>();
 
             return services;
         }

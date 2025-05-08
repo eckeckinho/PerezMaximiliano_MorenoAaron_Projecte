@@ -3,8 +3,10 @@ using Data;
 using Entitats.AuthClasses;
 using Entitats.RestaurantClasses;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.Extensions.Configuration;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfaces;
+using Services.Interfaces;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,20 +16,17 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
     public class AuthService : IAuthService
     {
         private readonly DBContext _context;
-        public AuthService()
-        {
-        }
 
-        public AuthService(DBContext context)
+        public AuthService(DBContext context, IRestaurantContext restContext)
         {
             _context = context;
         }
 
-        public async Task<(bool, Restaurant)> LoginRestaurantAsync(string usuariRestaurant, string password)
+        public (bool, Restaurant) LoginRestaurant(string usuariRestaurant, string password)
         {
             try
             {
-                var restaurant = await _context.Restaurants.Where(x => x.nomCompte == usuariRestaurant).FirstOrDefaultAsync();
+                var restaurant = _context.Restaurants.Where(x => x.nomCompte == usuariRestaurant).FirstOrDefault();
 
                 if (restaurant != null)
                 {
@@ -51,16 +50,16 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
             }
         }
 
-        public async Task<bool> RegistreRestaurantAsync(Restaurant newRestaurant)
+        public bool RegistreRestaurant(Restaurant newRestaurant)
         {
             try
             {
-                var restaurant = await _context.Restaurants.Where(x => x.nomCompte == newRestaurant.nomCompte).FirstOrDefaultAsync();
+                var restaurant = _context.Restaurants.Where(x => x.nomCompte == newRestaurant.nomCompte).FirstOrDefaultAsync();
 
                 if (restaurant == null)
                 {
                     _context.Restaurants.Add(newRestaurant);
-                    await _context.SaveChangesAsync();
+                    _context.SaveChanges();
                     return true;
                 }
                 else
@@ -72,6 +71,6 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
             {
                 throw new Exception("Error al registrar restaurant. " + ex.Message, ex);
             }
-        }
+        }  
     }
 }

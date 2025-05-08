@@ -29,8 +29,10 @@ namespace Services
             filtre = filtre?.Trim().ToLower();
 
             var missatges = _context.MissatgesView
+                .AsNoTracking()  // Al ser una vista uso AsNoTracking para que coja los datos mas recientes y no los del caché
                 .Where(x => x.restaurantId == _restaurantActual.id)
                 .Where(x => x.dataMissatge >= desde.Date && x.dataMissatge < hasta.Date.AddDays(1));
+
 
             if (!string.IsNullOrEmpty(filtre))
             {
@@ -41,6 +43,24 @@ namespace Services
             }
 
             return missatges.ToList();
+        }
+
+        public void MarcarMissatgeLlegit(MissatgesView missatgeSeleccionat)
+        {
+            try
+            {
+                var missatge = _context.MissatgesUsuaris.FirstOrDefault(x => x.id == missatgeSeleccionat.id && x.restaurantId == _restaurantActual.id);
+
+                if (missatge != null)
+                {
+                    missatge.llegit = true;
+                    _context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al marcar el missatge com a llegit", ex);
+            }
         }
     }
 }

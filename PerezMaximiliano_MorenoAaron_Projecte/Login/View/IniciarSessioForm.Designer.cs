@@ -54,6 +54,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.materialLabel19 = new MaterialSkin.Controls.MaterialLabel();
             this.materialCheckboxRegistrar_veureContrasenya = new MaterialSkin.Controls.MaterialCheckbox();
             this.button_registrar = new MaterialSkin.Controls.MaterialButton();
             this.textBox_paginaweb = new MaterialSkin.Controls.MaterialTextBox2();
@@ -197,7 +198,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPage1.Location = new System.Drawing.Point(4, 39);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1338, 866);
+            this.tabPage1.Size = new System.Drawing.Size(1402, 882);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Entrar";
             // 
@@ -382,12 +383,13 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(1346, 909);
+            this.materialTabControl1.Size = new System.Drawing.Size(1410, 925);
             this.materialTabControl1.TabIndex = 38;
             // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.materialLabel19);
             this.tabPage2.Controls.Add(this.materialCheckboxRegistrar_veureContrasenya);
             this.tabPage2.Controls.Add(this.button_registrar);
             this.tabPage2.Controls.Add(this.textBox_paginaweb);
@@ -424,9 +426,22 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPage2.Location = new System.Drawing.Point(4, 39);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1322, 827);
+            this.tabPage2.Size = new System.Drawing.Size(1386, 882);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Registrar ";
+            // 
+            // materialLabel19
+            // 
+            this.materialLabel19.AutoSize = true;
+            this.materialLabel19.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel19.Depth = 0;
+            this.materialLabel19.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel19.Location = new System.Drawing.Point(54, 248);
+            this.materialLabel19.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel19.Name = "materialLabel19";
+            this.materialLabel19.Size = new System.Drawing.Size(197, 19);
+            this.materialLabel19.TabIndex = 135;
+            this.materialLabel19.Text = "Recomanació: 150 x 150 px";
             // 
             // materialCheckboxRegistrar_veureContrasenya
             // 
@@ -954,7 +969,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.button_logo.Depth = 0;
             this.button_logo.HighEmphasis = true;
             this.button_logo.Icon = null;
-            this.button_logo.Location = new System.Drawing.Point(81, 239);
+            this.button_logo.Location = new System.Drawing.Point(85, 214);
             this.button_logo.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button_logo.MouseState = MaterialSkin.MouseState.HOVER;
             this.button_logo.Name = "button_logo";
@@ -1061,7 +1076,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1352, 976);
+            this.ClientSize = new System.Drawing.Size(1416, 992);
             this.Controls.Add(this.materialTabControl1);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialLabel1);
@@ -1102,9 +1117,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        public MaterialSkin.Controls.MaterialTextBox2 textBox_usuari;
         private System.Windows.Forms.Panel panel3;
-        public MaterialSkin.Controls.MaterialTextBox2 textBox_contrasenya;
         private System.Windows.Forms.PictureBox pictureBox3;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
@@ -1155,6 +1168,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
         public MaterialSkin.Controls.MaterialButton button_entrar;
         public MaterialSkin.Controls.MaterialCheckbox materialCheckboxEntrar_veureContrasenya;
         public MaterialSkin.Controls.MaterialCheckbox materialCheckboxRegistrar_veureContrasenya;
+        private MaterialSkin.Controls.MaterialLabel materialLabel19;
     }
 }
 

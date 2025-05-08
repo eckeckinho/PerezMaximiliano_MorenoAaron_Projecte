@@ -14,6 +14,7 @@ namespace Entitats.ContacteClasses
         public DateTime? dataMissatge { get; set; }
         public int restaurantId { get; set; }
         public int usuariId { get; set; }
+        public bool llegit { get; set; }
     }
 
     public class MissatgesView
@@ -27,5 +28,6 @@ namespace Entitats.ContacteClasses
         public string missatge { get; set; }
         public DateTime? dataMissatge { get; set; }
         public int restaurantId { get; set; }
+        public bool llegit { get; set; }
     }
 }

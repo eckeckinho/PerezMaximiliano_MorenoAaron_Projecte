@@ -5,6 +5,7 @@ using Services;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,8 +31,8 @@ namespace Taules.Controller
             {
                 fa = new AfegirTaulaForm();
                 SetListeners();
-                LoadData();
             }
+            LoadData();
         }
 
         private void SetListeners()
@@ -40,8 +41,29 @@ namespace Taules.Controller
             fm.buttonTaula_editar.Click += Button_editar_Click;
             fm.buttonTaula_eliminar.Click += Button_eliminar_Click;
             fm.dataGridViewTaula_taules.SelectionChanged += DataGridView_taules_SelectionChanged;
+            fm.dataGridViewTaula_taules.CellFormatting += DataGridView_taules_CellFormatting;
 
             fa.buttonTaula_afegir_editar.Click += Button_afegir_editar_taula_Click;
+        }
+
+        private void DataGridView_taules_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (fm.dataGridViewTaula_taules.Columns[e.ColumnIndex].Name == "asignada")
+            {
+                bool ocupada = Convert.ToBoolean(e.Value);
+
+                DataGridViewRow row = fm.dataGridViewTaula_taules.Rows[e.RowIndex];
+                if (ocupada)
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightCoral; 
+                }
+                else
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;  
+                }
+            }
+
+            //fm.dataGridViewTaula_taules.Columns["asignada"].Visible = false;
         }
 
         private void DataGridView_taules_SelectionChanged(object sender, EventArgs e)
@@ -63,14 +85,14 @@ namespace Taules.Controller
             }
         }
 
-        private async void Button_afegir_editar_taula_Click(object sender, EventArgs e)
+        private void Button_afegir_editar_taula_Click(object sender, EventArgs e)
         {
             var comensalsTaula = (int)fa.numericUpDownTaula_numcomensals.Value;
 
             if (fa.buttonTaula_afegir_editar.Text.Equals("AFEGIR"))
             {
 
-                var response = await _taulaService.AddTaulaAsync(comensalsTaula);
+                var response = _taulaService.AddTaula(comensalsTaula);
 
                 if (response)
                 {
@@ -89,7 +111,7 @@ namespace Taules.Controller
 
                 taulaSeleccionada.numComensals = comensalsTaula;
 
-                bool response = await _taulaService.UpdateTaulaAsync(taulaSeleccionada);
+                bool response = _taulaService.UpdateTaula(taulaSeleccionada);
 
                 if (response)
                 {

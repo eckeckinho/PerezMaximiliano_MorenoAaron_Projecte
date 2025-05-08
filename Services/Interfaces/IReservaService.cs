@@ -10,9 +10,9 @@ namespace Services.Interfaces
 {
     public interface IReservaService
     {
-        Task<List<Reserva>> GetReservesRestaurantAsync(int idEstat, DateTime desde, DateTime hasta);
         List<Reserva> GetReservesRestaurant(int idEstat, DateTime desde, DateTime hasta);
         bool CanviarEstatReserva(List<Reserva> reservesSeleccionades, int nouEstat);
         Usuari GetUsuariReserva(int usuariId);
+        bool AfegirReserva(Reserva newReserva);
     }
 }

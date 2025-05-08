@@ -36,36 +36,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             f.ShowDialog();
         }
 
-        private async void LoadData()
+        private void LoadData()
         {
-            f.comboBox_tipuscuina.DataSource = await _tipusService.GetTipusCuines();
+            f.comboBox_tipuscuina.DataSource = _tipusService.GetTipusCuines();
             f.comboBox_tipuscuina.DisplayMember = "descripcio";
-            f.comboBox_tipuspreu.DataSource = await _tipusService.GetTipusPreus();
+            f.comboBox_tipuspreu.DataSource = _tipusService.GetTipusPreus();
             f.comboBox_tipuspreu.DisplayMember = "descripcio";
-        }
-
-        private void LoadDataMenu(Restaurant restaurant)
-        {
-            //fm.label_nomrestaurant.Text = restaurant.nomRestaurant;
-
-            //if (restaurant.logo != null && restaurant.logo.Length > 0)
-            //{
-            //    try
-            //    {
-            //        using (var ms = new System.IO.MemoryStream(restaurant.logo))
-            //        {
-            //            fm.pictureBox_logo.Image = System.Drawing.Image.FromStream(ms);
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show($"Error al carregar l'imagte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
-            //else
-            //{
-            //    fm.pictureBox_logo.Image = null;
-            //}
         }
 
         private void SetListeners()
@@ -104,11 +80,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
         private void SetListenersMenu()
         {
-            //fm.button_reserves.Click += Button_reserves_Click;
-            //fm.button_taules.Click += Button_taules_Click;
-            //fm.button_contacte.Click += Button_contacte_Click;
-            //fm.button_configuracio.Click += Button_configuracio_Click;
-            //fm.button_horari.Click += Button_horari_Click;
             fm.materialTabControl1.SelectedIndexChanged += MaterialTabControl1_SelectedIndexChanged;
             fm.buttonMain_tancarSessio.Click += ButtonMain_tancarSessio_Click;
         }
@@ -125,11 +96,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
             switch (tabName)
             {
-                //case "tabPageReserves":
-                //    var reservesController = _serviceProvider.GetRequiredService<ReservesController>();
-                //    reservesController.SetForm(fm);
-                //    reservesController.Inicialitzar();
-                //    break;
                 case "tabPageTaules":
                     var taulesController = _serviceProvider.GetRequiredService<TaulesController>();
                     taulesController.SetForm(fm);
@@ -153,12 +119,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             }
         }
 
-        private async void Button_entrar_Click(object sender, EventArgs e)
+        private void Button_entrar_Click(object sender, EventArgs e)
         {
             var nomUsuariRest = f.textBox_usuariEntrar.Text;
             var pswdUsuariRest = f.textBox_contrasenyaEntrar.Text;
 
-            var (resultatLogin, restaurant) = await _authService.LoginRestaurantAsync(nomUsuariRest, pswdUsuariRest);
+            var (resultatLogin, restaurant) = _authService.LoginRestaurant(nomUsuariRest, pswdUsuariRest);
 
             if (resultatLogin)
             {
@@ -173,7 +139,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                 f.Hide();
                 fm.Text = $"Benvingut, {restaurant.nomCompte}!";
                 SetListenersMenu();
-                LoadDataMenu(restaurant);
                 fm.ShowDialog();
             }
             else
@@ -182,12 +147,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             }
         }
 
-        private async void Button_registrar_Click(object sender, EventArgs e)
+        private void Button_registrar_Click(object sender, EventArgs e)
         {
             try
-            {
-                if (!string.IsNullOrWhiteSpace(f.textBox_usuari.Text) &&
-                !string.IsNullOrWhiteSpace(f.textBox_contrasenya.Text) &&
+             {
+                if (!string.IsNullOrWhiteSpace(f.textBox_usuariRegis.Text) &&
+                !string.IsNullOrWhiteSpace(f.textbox_contrasenyaRegis.Text) &&
                 !string.IsNullOrWhiteSpace(f.textBox_nom.Text) &&
                 !string.IsNullOrWhiteSpace(f.textBox_pais.Text) &&
                 !string.IsNullOrWhiteSpace(f.textBox_poblacio.Text) &&
@@ -206,9 +171,9 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
                     Restaurant newRestaurant = new Restaurant
                     {
-                        nomCompte = f.textBox_usuari.Text,
-                        contrasenyaCompte = BCrypt.Net.BCrypt.HashPassword(f.textBox_contrasenya.Text),
-                        nomRestaurant = f.textBox_nom.Text,
+                        nomCompte = f.textBox_usuariRegis.Text,
+                        contrasenyaCompte = BCrypt.Net.BCrypt.HashPassword(f.textbox_contrasenyaRegis.Text),
+                        nomRestaurant = f.textbox_contrasenyaRegis.Text,
                         pais = f.textBox_pais.Text,
                         ciutat = f.textBox_poblacio.Text,
                         codiPostal = f.textBox_codipostal.Text,
@@ -224,12 +189,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                         logo = logoByteArray
                     };
 
-                    bool resultatRegistre = await _authService.RegistreRestaurantAsync(newRestaurant);
+                    bool resultatRegistre = _authService.RegistreRestaurant(newRestaurant);
 
                     if (resultatRegistre)
                     {
-                        f.textBox_usuari.Clear();
-                        f.textBox_contrasenya.Clear();
+                        f.textBox_usuariRegis.Clear();
+                        f.textbox_contrasenyaRegis.Clear();
                         f.textBox_nom.Clear();
                         f.textBox_pais.Clear();
                         f.textBox_poblacio.Clear();
@@ -272,13 +237,13 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             {
                 logo = Image.FromFile(openFileDialog.FileName);
 
-                if (logo.Width == 150 && logo.Height == 150)
+                if (logo.Width <= 150 && logo.Height <= 150)
                 {
                     f.pictureBox_logo.Image = logo;
                 }
                 else
                 {
-                    MessageBox.Show("El logo ha de ser exactament 150x150 pixels.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("El logo ha de tenir un màxim de 150x150 píxels.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

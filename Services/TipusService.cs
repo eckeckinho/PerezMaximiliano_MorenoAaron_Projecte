@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,24 +22,24 @@ namespace Services
             _context = context;
         }
 
-        public async Task<List<TipusCuina>> GetTipusCuines()
+        public List<TipusCuina> GetTipusCuines()
         {
-            return await _context.TipusCuinas.ToListAsync();
+            return _context.TipusCuinas.ToList();
         }
 
-        public async Task<List<TipusPreu>> GetTipusPreus()
+        public List<TipusPreu> GetTipusPreus()
         {
-            return await _context.TipusPreus.ToListAsync();
+            return _context.TipusPreus.ToList();
         }
 
-        public async Task<List<TipusEstat>> GetTipusEstats()
+        public List<TipusEstat> GetTipusEstats()
         {
-            return await _context.TipusEstats.ToListAsync();
+            return _context.TipusEstats.ToList();
         }
 
-        public async Task<List<TipusPlat>> GetTipusPlats()
+        public List<TipusPlat> GetTipusPlats()
         {
-            return await _context.TipusPlats.ToListAsync();
+            return _context.TipusPlats.ToList();
         }
     }
 }

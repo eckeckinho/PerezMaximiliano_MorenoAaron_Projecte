@@ -1,4 +1,5 @@
 ﻿using Data.Mapping.ContacteClasses;
+using Data.Mapping.HorariMap;
 using Data.Mapping.PlatMap;
 using Data.Mapping.ReservaMap;
 using Data.Mapping.RestaurantMap;
@@ -6,6 +7,7 @@ using Data.Mapping.TaulaMap;
 using Data.Mappings.AuthMap;
 using Entitats.AuthClasses;
 using Entitats.ContacteClasses;
+using Entitats.HorariClasses;
 using Entitats.PlatClasses;
 using Entitats.ReservaClasses;
 using Entitats.RestaurantClasses;
@@ -35,6 +37,7 @@ namespace Data
         public DbSet<MissatgesUsuari> MissatgesUsuaris { get; set; }
         public DbSet<MissatgesView> MissatgesView { get; set; }
         public DbSet<FavoritsUsuari> FavoritsUsuaris { get; set; }
+        public DbSet<Horari> Horaris { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -50,6 +53,7 @@ namespace Data
             modelBuilder.ApplyConfiguration(new MissatgesUsuariMap());
             modelBuilder.ApplyConfiguration(new MissatgesViewMap());
             modelBuilder.ApplyConfiguration(new FavoritsUsuariMap());
+            modelBuilder.ApplyConfiguration(new HorariMap());
 
             base.OnModelCreating(modelBuilder);
         }

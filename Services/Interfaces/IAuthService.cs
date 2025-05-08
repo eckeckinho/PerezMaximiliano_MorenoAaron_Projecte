@@ -6,7 +6,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfac
 {
     public interface IAuthService
     {
-        Task<(bool, Restaurant)> LoginRestaurantAsync(string usuariRestaurant, string password);
-        Task<bool> RegistreRestaurantAsync(Restaurant newRestaurant);
+        (bool, Restaurant) LoginRestaurant(string usuariRestaurant, string password);
+        bool RegistreRestaurant(Restaurant newRestaurant);
     }
 }

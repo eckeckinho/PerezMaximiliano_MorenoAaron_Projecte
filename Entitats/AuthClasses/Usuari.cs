@@ -22,4 +22,10 @@ namespace Entitats.AuthClasses
         public string correu { get; set; }
         public string contrasenya { get; set; }
     }
+
+    public class ContrasenyaRequest
+    {
+        public int idUsuari { get; set; }
+        public string contrasenya { get; set; }
+    }
 }

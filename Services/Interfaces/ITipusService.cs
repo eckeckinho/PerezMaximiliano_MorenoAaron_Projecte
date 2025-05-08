@@ -8,9 +8,9 @@ namespace Services.Interfaces
 {
     public interface ITipusService
     {
-        Task<List<TipusCuina>> GetTipusCuines();
-        Task<List<TipusPreu>> GetTipusPreus();
-        Task<List<TipusEstat>> GetTipusEstats();
-        Task<List<TipusPlat>> GetTipusPlats();
+        List<TipusCuina> GetTipusCuines();
+        List<TipusPreu> GetTipusPreus();
+        List<TipusEstat> GetTipusEstats();
+        List<TipusPlat> GetTipusPlats();
     }
 }

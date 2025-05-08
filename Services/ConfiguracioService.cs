@@ -23,20 +23,15 @@ namespace Services
             _restaurantActual = restContext.restaurantActual;
         }
 
-        public Task<bool> ActualitzarRestaurantConfig(Restaurant restaurant)
+        public bool CanviarContrasenyaRestaurant(string novaContrasenya)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<bool> CanviarContrasenyaRestaurant(string novaContrasenya)
-        {
-            var restaurant = await _context.Restaurants.Where(x => x.nomCompte == _restaurantActual.nomCompte).FirstOrDefaultAsync();
+            var restaurant = _context.Restaurants.Where(x => x.nomCompte == _restaurantActual.nomCompte).FirstOrDefault();
 
             if (restaurant != null)
             {
                 _restaurantActual.contrasenyaCompte = BCrypt.Net.BCrypt.HashPassword(novaContrasenya);
                 _context.Restaurants.Update(_restaurantActual); 
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return true;
             }
             else
@@ -50,16 +45,16 @@ namespace Services
             return _restaurantActual;
         }
 
-        public async Task<bool> RegistreRestaurantAsync(Restaurant newRestaurant)
+        public bool RegistreRestaurantAsync(Restaurant newRestaurant)
         {
             try
             {
-                var restaurant = await _context.Restaurants.Where(x => x.nomCompte == newRestaurant.nomCompte).FirstOrDefaultAsync();
+                var restaurant = _context.Restaurants.Where(x => x.nomCompte == newRestaurant.nomCompte).FirstOrDefault();
 
                 if (restaurant == null)
                 {
                     _context.Restaurants.Add(newRestaurant);
-                    await _context.SaveChangesAsync();
+                    _context.SaveChanges();
                     return true;
                 }
                 else
@@ -70,6 +65,42 @@ namespace Services
             catch (Exception ex)
             {
                 throw new Exception("Error al registrar restaurant. " + ex.Message, ex);
+            }
+        }
+
+        public bool UpdateRestaurant(Restaurant updateRestaurant)
+        {
+            try
+            {
+                var restaurantAct = _context.Restaurants.Where(x => x.nomCompte == _restaurantActual.nomCompte).FirstOrDefault();
+
+                var nomUsat = _context.Restaurants.Any(x => x.nomCompte == updateRestaurant.nomCompte && x.id != restaurantAct.id);
+
+                if (nomUsat) return false;
+
+                restaurantAct.nomCompte = updateRestaurant.nomCompte;
+                restaurantAct.nomRestaurant = updateRestaurant.nomRestaurant;
+                restaurantAct.pais = updateRestaurant.pais;
+                restaurantAct.ciutat = updateRestaurant.ciutat;
+                restaurantAct.codiPostal = updateRestaurant.codiPostal;
+                restaurantAct.carrer = updateRestaurant.carrer;
+                restaurantAct.telefon = updateRestaurant.telefon;
+                restaurantAct.correu = updateRestaurant.correu;
+                restaurantAct.aforament = updateRestaurant.aforament;
+                restaurantAct.tipusCuinaId = updateRestaurant.tipusCuinaId;
+                restaurantAct.tipusPreuId = updateRestaurant.tipusPreuId;
+                restaurantAct.descripcio = updateRestaurant.descripcio;
+                restaurantAct.descripcio = updateRestaurant.descripcio;
+                restaurantAct.paginaWeb = updateRestaurant.paginaWeb;
+                restaurantAct.logo = updateRestaurant.logo;
+
+                _context.Restaurants.Update(restaurantAct);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualitzar el restaurant. " + ex.Message, ex);
             }
         }
     }

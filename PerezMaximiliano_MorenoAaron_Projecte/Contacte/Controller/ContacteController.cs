@@ -6,6 +6,7 @@ using Services;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +42,21 @@ namespace Contacte.Controller
             fm.dateTimePickerContacte_desde.ValueChanged += DateTimePicker_desde_ValueChanged;
             fm.dateTimePickerContacte_hasta.ValueChanged += DateTimePicker_hasta_ValueChanged;
             fm.textBoxContacte_filtre.TextChanged += TextBox_filtre_TextChanged;
+            fm.dataGridViewContacte_missatges.CellFormatting += DataGridViewContacte_missatges_CellFormatting; 
+        }
+
+        private void DataGridViewContacte_missatges_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (fm.dataGridViewContacte_missatges.Columns[e.ColumnIndex].Name == "llegit")
+            {
+                bool llegit = Convert.ToBoolean(e.Value);
+
+                DataGridViewRow row = fm.dataGridViewContacte_missatges.Rows[e.RowIndex];
+                if (llegit)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Gray;
+                }
+            }
         }
 
         private void TextBox_filtre_TextChanged(object sender, EventArgs e)
@@ -68,14 +84,16 @@ namespace Contacte.Controller
                 {
                     fo.Text = $"Autor: {missatgeSeleccionat.correu} ({missatgeSeleccionat.nom} {missatgeSeleccionat.cognoms}) - Data: {missatgeSeleccionat.dataMissatge:dd/MM/yyyy HH:mm} - Telèfon: {missatgeSeleccionat.telefon}";
                     fo.multiLineContacte_missatge.Text = missatgeSeleccionat.missatge;
+                    _contacteService.MarcarMissatgeLlegit(missatgeSeleccionat);
                     fo.ShowDialog();
+                    LoadDataDgvMissatges();
                 }
             }
         }
 
         private void LoadData()
         {      
-        LoadDataDgvMissatges();
+            LoadDataDgvMissatges();
             fm.dataGridViewContacte_missatges.Columns["id"].Visible = false;
             fm.dataGridViewContacte_missatges.Columns["missatge"].Visible = false;
             fm.dataGridViewContacte_missatges.Columns["restaurantId"].Visible = false;

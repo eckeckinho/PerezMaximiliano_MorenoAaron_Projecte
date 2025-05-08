@@ -29,13 +29,18 @@ namespace Services
 
             foreach (Taula taula in taulesSeleccionades)
             {
+                var reservesAssociades = _context.Reservas.Where(r => r.taulaid == taula.id).ToList();
+                if (reservesAssociades.Any())
+                {
+                    _context.Reservas.RemoveRange(reservesAssociades);
+                }
+
                 _context.Taules.Remove(taula);
             }
 
             int changes = _context.SaveChanges();
 
-            if (changes > 0) return true;
-            return false;
+            return changes > 0;
         }
 
         public int GetAforamentActual()
@@ -59,7 +64,12 @@ namespace Services
             return _context.Taules.Where(x => x.restaurantId == _restaurantActual.id).OrderBy(x => x.numComensals).ToList();
         }
 
-        public async Task<bool> AddTaulaAsync(int comensalsTaula)
+        public List<Taula> GetTaulesDisponibles()
+        {
+            return _context.Taules.Where(x => x.restaurantId == _restaurantActual.id && x.asignada == false).OrderBy(x => x.numComensals).ToList();
+        }
+
+        public bool AddTaula(int comensalsTaula)
         {
             try
             {
@@ -71,7 +81,7 @@ namespace Services
                 };
 
                 _context.Taules.Add(newTaula);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return true;
             }
             catch (Exception ex)
@@ -80,13 +90,13 @@ namespace Services
             }
         }
 
-        public async Task<bool> UpdateTaulaAsync(Taula taulaSeleccionada)
+        public bool UpdateTaula(Taula taulaSeleccionada)
         {
             if (taulaSeleccionada == null) return false;
 
             _context.Taules.Update(taulaSeleccionada);
 
-            int changes = await _context.SaveChangesAsync();
+            int changes = _context.SaveChanges();
 
             if (changes > 0) return true;
             return false;

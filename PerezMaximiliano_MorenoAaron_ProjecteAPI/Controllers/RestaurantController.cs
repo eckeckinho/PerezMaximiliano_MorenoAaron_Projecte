@@ -80,14 +80,23 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
             }
         }
 
-        [HttpPost("DeleteRestaurantFavoritUsuari")]
-        public async Task<IActionResult> DeleteRestaurantFavoritUsuari([FromBody] FavoritsUsuari restFavoritUsuari)
+        [HttpDelete("DeleteRestaurantFavoritUsuari")]
+        public async Task<IActionResult> DeleteRestaurantFavoritUsuari([FromQuery] int usuariId, [FromQuery] int restaurantId)
         {
             try
             {
-                _context.FavoritsUsuaris.Remove(restFavoritUsuari);
-                await _context.SaveChangesAsync();
-                return Ok();
+                var restaurantFavoritUsuari = await _context.FavoritsUsuaris.Where(x => x.usuariid == usuariId && x.restaurantid == restaurantId).FirstOrDefaultAsync();
+
+                if (restaurantFavoritUsuari != null)
+                {
+                    _context.FavoritsUsuaris.Remove(restaurantFavoritUsuari);
+                    await _context.SaveChangesAsync();
+                    return Ok();
+                } else
+                {
+                    return NotFound();
+                }
+
             }
             catch (Exception ex)
             {

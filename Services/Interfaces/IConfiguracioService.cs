@@ -11,7 +11,7 @@ namespace Services.Interfaces
     public interface IConfiguracioService
     {
         Restaurant GetRestaurantConfig();
-        Task<bool> CanviarContrasenyaRestaurant(String novaContrasenya);
-        Task<bool> ActualitzarRestaurantConfig(Restaurant restaurant);
+        bool CanviarContrasenyaRestaurant(String novaContrasenya);
+        bool UpdateRestaurant(Restaurant updateRestaurant);
     }
 }

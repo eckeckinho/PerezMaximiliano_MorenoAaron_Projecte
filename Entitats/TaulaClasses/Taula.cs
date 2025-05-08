@@ -8,7 +8,7 @@ namespace Entitats.TaulaClasses
     {
         public int id { get; set; }
         public int numComensals { get; set; }
-        public bool? asignada { get; set; }
+        public bool asignada { get; set; }
         public int restaurantId { get; set; }
     }
 }
