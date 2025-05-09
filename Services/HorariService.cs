@@ -58,16 +58,32 @@ namespace Services
             }
         }
 
-
         public List<Horari> GetHorarisDia(int dia)
         {
             try
             {
-                int restaurantId = _restaurantActual.id;
+                // Recoger las franjas horarias del restaurante para el día específico
+                var horaris = _context.Horaris
+                    .Where(h => h.restaurantid == _restaurantActual.id && h.dia == dia)
+                    .ToList();
+
+                return horaris;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al cargar los horarios. " + ex.Message, ex);
+            }
+        }
+
+        public List<Horari> GetHorarisDia(DateTime data)
+        {
+            try
+            {
+                int diaSetmana = ((int)data.DayOfWeek + 6) % 7 + 1;
 
                 // Recoger las franjas horarias del restaurante para el día específico
                 var horaris = _context.Horaris
-                    .Where(h => h.restaurantid == restaurantId && h.dia == dia)
+                    .Where(h => h.restaurantid == _restaurantActual.id && h.dia == diaSetmana)
                     .ToList();
 
                 return horaris;

@@ -9,6 +9,8 @@ namespace Services.Interfaces
     public interface IHorariService
     {
         bool SetHoraris(List<Horari> horaris);
+        List<Horari> GetHorarisDia(DateTime data);
         List<Horari> GetHorarisDia(int dia);
+
     }
 }

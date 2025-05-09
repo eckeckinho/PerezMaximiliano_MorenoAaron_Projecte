@@ -19,22 +19,22 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
         }
 
         [HttpGet("GetRestaurants")]
-        public async Task<IActionResult> GetRestaurants(string ubicacio, string nomRestaurant)
+        public async Task<IActionResult> GetRestaurants(string? ubicacio, string? nomRestaurant)
         {
             List<Restaurant> restaurants = new List<Restaurant>();
 
-            if (String.IsNullOrEmpty(ubicacio) && String.IsNullOrEmpty(nomRestaurant))
+            if (String.IsNullOrWhiteSpace(ubicacio) && String.IsNullOrWhiteSpace(nomRestaurant))
             {
                 restaurants = await _context.Restaurants.ToListAsync();
-            } else if (!String.IsNullOrEmpty(ubicacio) || !String.IsNullOrEmpty(nomRestaurant))
+            } else if (String.IsNullOrWhiteSpace(ubicacio) || String.IsNullOrWhiteSpace(nomRestaurant))
             {
-                if (!String.IsNullOrEmpty(ubicacio))
+                if (!String.IsNullOrWhiteSpace(ubicacio))
                 {
                     restaurants = await _context.Restaurants
                         .Where(r => r.ciutat.ToLower().Equals(ubicacio.ToLower()))
                         .ToListAsync();
                 }
-                if (!String.IsNullOrEmpty(nomRestaurant))
+                if (!String.IsNullOrWhiteSpace(nomRestaurant))
                 {
                     restaurants = await _context.Restaurants
                         .Where(r => r.nomRestaurant.ToLower().Contains(nomRestaurant.ToLower()))

@@ -35,6 +35,8 @@
             this.dateTimePickerAfegirReserva_data = new System.Windows.Forms.DateTimePicker();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.buttonAfegirReserva_reservar = new MaterialSkin.Controls.MaterialButton();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.comboBoxAfegirReserva_franjaHoraria = new MaterialSkin.Controls.MaterialComboBox();
             this.SuspendLayout();
             // 
             // comboBoxAfegirReserva_usuari
@@ -112,7 +114,7 @@
             // 
             this.dateTimePickerAfegirReserva_data.CustomFormat = "dd/MM/yyyy";
             this.dateTimePickerAfegirReserva_data.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerAfegirReserva_data.Location = new System.Drawing.Point(343, 117);
+            this.dateTimePickerAfegirReserva_data.Location = new System.Drawing.Point(595, 113);
             this.dateTimePickerAfegirReserva_data.Name = "dateTimePickerAfegirReserva_data";
             this.dateTimePickerAfegirReserva_data.Size = new System.Drawing.Size(121, 20);
             this.dateTimePickerAfegirReserva_data.TabIndex = 68;
@@ -123,7 +125,7 @@
             this.materialLabel3.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel3.Location = new System.Drawing.Point(298, 117);
+            this.materialLabel3.Location = new System.Drawing.Point(550, 113);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(39, 19);
@@ -138,7 +140,7 @@
             this.buttonAfegirReserva_reservar.Depth = 0;
             this.buttonAfegirReserva_reservar.HighEmphasis = true;
             this.buttonAfegirReserva_reservar.Icon = null;
-            this.buttonAfegirReserva_reservar.Location = new System.Drawing.Point(490, 106);
+            this.buttonAfegirReserva_reservar.Location = new System.Drawing.Point(732, 106);
             this.buttonAfegirReserva_reservar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonAfegirReserva_reservar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonAfegirReserva_reservar.Name = "buttonAfegirReserva_reservar";
@@ -150,11 +152,48 @@
             this.buttonAfegirReserva_reservar.UseAccentColor = false;
             this.buttonAfegirReserva_reservar.UseVisualStyleBackColor = true;
             // 
+            // materialLabel1
+            // 
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.Location = new System.Drawing.Point(300, 80);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(100, 19);
+            this.materialLabel1.TabIndex = 72;
+            this.materialLabel1.Text = "Franja horària";
+            // 
+            // comboBoxAfegirReserva_franjaHoraria
+            // 
+            this.comboBoxAfegirReserva_franjaHoraria.AutoResize = false;
+            this.comboBoxAfegirReserva_franjaHoraria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.comboBoxAfegirReserva_franjaHoraria.Depth = 0;
+            this.comboBoxAfegirReserva_franjaHoraria.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBoxAfegirReserva_franjaHoraria.DropDownHeight = 174;
+            this.comboBoxAfegirReserva_franjaHoraria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAfegirReserva_franjaHoraria.DropDownWidth = 121;
+            this.comboBoxAfegirReserva_franjaHoraria.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.comboBoxAfegirReserva_franjaHoraria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.comboBoxAfegirReserva_franjaHoraria.FormattingEnabled = true;
+            this.comboBoxAfegirReserva_franjaHoraria.IntegralHeight = false;
+            this.comboBoxAfegirReserva_franjaHoraria.ItemHeight = 43;
+            this.comboBoxAfegirReserva_franjaHoraria.Location = new System.Drawing.Point(301, 102);
+            this.comboBoxAfegirReserva_franjaHoraria.MaxDropDownItems = 4;
+            this.comboBoxAfegirReserva_franjaHoraria.MouseState = MaterialSkin.MouseState.OUT;
+            this.comboBoxAfegirReserva_franjaHoraria.Name = "comboBoxAfegirReserva_franjaHoraria";
+            this.comboBoxAfegirReserva_franjaHoraria.Size = new System.Drawing.Size(114, 49);
+            this.comboBoxAfegirReserva_franjaHoraria.StartIndex = 0;
+            this.comboBoxAfegirReserva_franjaHoraria.TabIndex = 71;
+            // 
             // AfegirReservaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 188);
+            this.ClientSize = new System.Drawing.Size(839, 188);
+            this.Controls.Add(this.materialLabel1);
+            this.Controls.Add(this.comboBoxAfegirReserva_franjaHoraria);
             this.Controls.Add(this.buttonAfegirReserva_reservar);
             this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.dateTimePickerAfegirReserva_data);
@@ -180,5 +219,7 @@
         public System.Windows.Forms.DateTimePicker dateTimePickerAfegirReserva_data;
         public MaterialSkin.Controls.MaterialLabel materialLabel3;
         public MaterialSkin.Controls.MaterialButton buttonAfegirReserva_reservar;
+        public MaterialSkin.Controls.MaterialLabel materialLabel1;
+        public MaterialSkin.Controls.MaterialComboBox comboBoxAfegirReserva_franjaHoraria;
     }
 }

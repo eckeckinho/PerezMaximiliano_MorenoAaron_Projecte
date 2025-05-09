@@ -1,4 +1,5 @@
 ﻿using Entitats.AuthClasses;
+using Entitats.HorariClasses;
 using Entitats.ReservaClasses;
 using Entitats.TaulaClasses;
 using PerezMaximiliano_MorenoAaron_Projecte.Reserves.View;
@@ -22,13 +23,16 @@ namespace Reserves.Controller
         private readonly ITipusService _tipusService;
         private readonly ITaulaService _taulaService;
         private readonly IUsuariService _usuariService;
+        private readonly IHorariService _horariService;
 
-        public ReservesController(IReservaService reservaService, ITipusService tipusService, ITaulaService taulaService, IUsuariService usuariService)
+
+        public ReservesController(IReservaService reservaService, ITipusService tipusService, ITaulaService taulaService, IUsuariService usuariService, IHorariService horariService)
         {
             _reservaService = reservaService;
             _tipusService = tipusService;
             _taulaService = taulaService;
             _usuariService = usuariService;
+            _horariService = horariService;
         }
 
         public void Inicialitzar()
@@ -52,7 +56,36 @@ namespace Reserves.Controller
             fm.dateTimePickerReserva_hasta.ValueChanged += DateTimePicker_diareserva_hasta_ValueChanged;
             fm.dataGridViewReserva_reserves.SelectionChanged += DataGridView_reserves_SelectionChanged;
 
-            fr.buttonAfegirReserva_reservar.Click += ButtonAfegirReserva_reservar_Click; ;
+            fr.buttonAfegirReserva_reservar.Click += ButtonAfegirReserva_reservar_Click; 
+            fr.dateTimePickerAfegirReserva_data.ValueChanged += DateTimePickerAfegirReserva_data_ValueChanged;
+            fr.comboBoxAfegirReserva_franjaHoraria.SelectedIndexChanged += ComboBoxAfegirReserva_franjaHoraria_SelectedIndexChanged; ;
+        }
+
+        private void ComboBoxAfegirReserva_franjaHoraria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (fr.comboBoxAfegirReserva_franjaHoraria.SelectedItem is Horari franjaSeleccionada)
+            {
+                var data = fr.dateTimePickerAfegirReserva_data.Value;
+                CarregarTaulesDisponibles(data, franjaSeleccionada);
+            }
+        }
+
+        private void DateTimePickerAfegirReserva_data_ValueChanged(object sender, EventArgs e)
+        {
+            var data = fr.dateTimePickerAfegirReserva_data.Value;
+
+            var franges = _horariService.GetHorarisDia(data);
+            fr.comboBoxAfegirReserva_franjaHoraria.SelectedIndexChanged -= ComboBoxAfegirReserva_franjaHoraria_SelectedIndexChanged;
+
+            fr.comboBoxAfegirReserva_franjaHoraria.DataSource = franges;
+            fr.comboBoxAfegirReserva_franjaHoraria.DisplayMember = "ToString";
+
+            fr.comboBoxAfegirReserva_franjaHoraria.SelectedIndexChanged += ComboBoxAfegirReserva_franjaHoraria_SelectedIndexChanged;
+
+            if (franges.Any())
+            {
+                fr.comboBoxAfegirReserva_franjaHoraria.SelectedIndex = 0;
+            }
         }
 
         private void ButtonAfegirReserva_reservar_Click(object sender, EventArgs e)
@@ -212,7 +245,6 @@ namespace Reserves.Controller
         {
             fr.dateTimePickerAfegirReserva_data.Value = DateTime.Now;
             fr.comboBoxAfegirReserva_usuari.SelectedIndex = 0;
-            CarregarTaulesDisponibles();
             fr.ShowDialog();
         }
 
@@ -267,12 +299,12 @@ namespace Reserves.Controller
             fr.comboBoxAfegirReserva_usuari.DisplayMember = "correu";
             CargarVista();
             fr.comboBoxAfegirReserva_taula.DisplayMember = "numComensals";
-
+            //fr.comboBoxAfegirReserva_franjaHoraria.DataSource = _reservaService.GetFranjaHoraria();
         }
 
-        private void CarregarTaulesDisponibles()
+        private void CarregarTaulesDisponibles(DateTime data, Horari franja)
         {
-            var taulesDisponibles = _taulaService.GetTaulesDisponibles();
+            var taulesDisponibles = _taulaService.GetTaulesDisponibles(data, franja);
             fr.comboBoxAfegirReserva_taula.DataSource = taulesDisponibles;
 
             if (taulesDisponibles.Count <= 0)
@@ -305,7 +337,6 @@ namespace Reserves.Controller
 
         private void CargarVista()
         {
-            CarregarTaulesDisponibles();
             LoadDgvReservas();
         }
 

@@ -1,4 +1,5 @@
 ﻿using Data;
+using Entitats.HorariClasses;
 using Entitats.ReservaClasses;
 using Entitats.RestaurantClasses;
 using Entitats.TaulaClasses;
@@ -64,10 +65,32 @@ namespace Services
             return _context.Taules.Where(x => x.restaurantId == _restaurantActual.id).OrderBy(x => x.numComensals).ToList();
         }
 
-        public List<Taula> GetTaulesDisponibles()
+        public List<Taula> GetTaulesDisponibles(DateTime data, Horari franja)
         {
-            return _context.Taules.Where(x => x.restaurantId == _restaurantActual.id && x.asignada == false).OrderBy(x => x.numComensals).ToList();
+            var taulesRestaurant = _context.Taules
+                .Where(t => t.restaurantId == _restaurantActual.id)
+                .ToList();
+
+            // Obtener las reservas que coinciden con la fecha y se solapan con la franja
+            var taulesReservadesIds = _context.Reservas
+                .Where(r =>
+                    r.datareserva.Date == data.Date &&
+                    r.hora >= franja.hora_inici &&
+                    r.hora < franja.hora_final &&
+                    r.estatid == 4)
+                .Select(r => r.taulaid)
+                .Distinct()
+                .ToList();
+
+            // Filtrar mesas no reservadas
+            var taulesDisponibles = taulesRestaurant
+                .Where(t => !taulesReservadesIds.Contains(t.id))
+                .OrderBy(t => t.numComensals)
+                .ToList();
+
+            return taulesDisponibles;
         }
+
 
         public bool AddTaula(int comensalsTaula)
         {

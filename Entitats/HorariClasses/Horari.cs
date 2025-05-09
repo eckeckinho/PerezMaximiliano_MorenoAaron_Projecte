@@ -11,5 +11,6 @@ namespace Entitats.HorariClasses
         public int dia { get; set; }
         public TimeSpan hora_inici { get; set; }
         public TimeSpan hora_final { get; set; }
+        public override string ToString() { return $"{hora_inici:hh\\:mm} - {hora_final:hh\\:mm}"; }
     }
 }
