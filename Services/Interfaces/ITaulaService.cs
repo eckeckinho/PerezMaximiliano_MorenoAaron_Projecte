@@ -1,18 +1,16 @@
 ﻿using Entitats.HorariClasses;
-using Entitats.RestaurantClasses;
 using Entitats.TaulaClasses;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Interfaces
 {
     public interface ITaulaService
     {
         List<Taula> GetTaules();
+        List<int> GetCapacitatsDisponibles();
         List<Taula> GetTaulesDisponibles(DateTime data, Horari franja);
-        int GetAforamentActual();
+        int? GetAforamentActual();
         int GetAforamentMaxim();
         bool DeleteTaules(List<Taula> taulesSeleccionades);
         bool AddTaula(int comensalsTaula);

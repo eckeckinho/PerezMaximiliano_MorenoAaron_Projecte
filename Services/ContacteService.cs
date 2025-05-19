@@ -1,15 +1,11 @@
 ﻿using Data;
 using Entitats.ContacteClasses;
-using Entitats.ReservaClasses;
 using Entitats.RestaurantClasses;
-using Entitats.TaulaClasses;
 using Microsoft.EntityFrameworkCore;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services
 {
@@ -29,7 +25,7 @@ namespace Services
             filtre = filtre?.Trim().ToLower();
 
             var missatges = _context.MissatgesView
-                .AsNoTracking()  // Al ser una vista uso AsNoTracking para que coja los datos mas recientes y no los del caché
+                .AsNoTracking()  // Al ser una vista uso AsNoTracking para que coja los datos mas recientes y no los del caché, sino no actualiza las rows de la vista.
                 .Where(x => x.restaurantId == _restaurantActual.id)
                 .Where(x => x.dataMissatge >= desde.Date && x.dataMissatge < hasta.Date.AddDays(1));
 
@@ -59,7 +55,7 @@ namespace Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al marcar el missatge com a llegit", ex);
+                throw new Exception("Error al marcar el missatge com a llegit. " + ex.Message, ex);
             }
         }
     }

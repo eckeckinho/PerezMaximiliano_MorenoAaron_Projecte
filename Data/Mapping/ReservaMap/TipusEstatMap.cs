@@ -1,9 +1,5 @@
-﻿using Entitats.RestaurantClasses;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Entitats.ReservaClasses;
 
 namespace Data.Mapping.ReservaMap

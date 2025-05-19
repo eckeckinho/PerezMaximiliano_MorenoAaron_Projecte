@@ -2,14 +2,9 @@
 using Entitats.PlatClasses;
 using Entitats.ReservaClasses;
 using Entitats.RestaurantClasses;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Services.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services
 {

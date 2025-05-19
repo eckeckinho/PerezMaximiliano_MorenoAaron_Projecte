@@ -1,14 +1,8 @@
-﻿using Entitats.ReservaClasses;
-using Entitats.TaulaClasses;
+﻿using Entitats.TaulaClasses;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
-using Services;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Taules.View;
 
@@ -34,6 +28,10 @@ namespace Taules.Controller
             }
             LoadData();
         }
+        public void SetForm(MenuForm menuForm)
+        {
+            fm = menuForm;
+        }
 
         private void SetListeners()
         {
@@ -41,50 +39,20 @@ namespace Taules.Controller
             fm.buttonTaula_editar.Click += Button_editar_Click;
             fm.buttonTaula_eliminar.Click += Button_eliminar_Click;
             fm.dataGridViewTaula_taules.SelectionChanged += DataGridView_taules_SelectionChanged;
-            fm.dataGridViewTaula_taules.CellFormatting += DataGridView_taules_CellFormatting;
 
             fa.buttonTaula_afegir_editar.Click += Button_afegir_editar_taula_Click;
         }
 
-        private void DataGridView_taules_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void LoadData()
         {
-            if (fm.dataGridViewTaula_taules.Columns[e.ColumnIndex].Name == "asignada")
-            {
-                bool ocupada = Convert.ToBoolean(e.Value);
-
-                DataGridViewRow row = fm.dataGridViewTaula_taules.Rows[e.RowIndex];
-                if (ocupada)
-                {
-                    row.DefaultCellStyle.BackColor = Color.LightCoral; 
-                }
-                else
-                {
-                    row.DefaultCellStyle.BackColor = Color.LightGreen;  
-                }
-            }
-
-            //fm.dataGridViewTaula_taules.Columns["asignada"].Visible = false;
+            fm.dataGridViewTaula_taules.DataSource = _taulaService.GetTaules();
+            fm.textBoxTaula_aforamentActual.Text = _taulaService.GetAforamentActual().ToString();
+            fm.textBoxTaula_aforamentMaxim.Text = _taulaService.GetAforamentMaxim().ToString();
+            fm.dataGridViewTaula_taules.Columns["id"].Visible = false;
+            fm.dataGridViewTaula_taules.Columns["restaurantId"].Visible = false;
         }
 
-        private void DataGridView_taules_SelectionChanged(object sender, EventArgs e)
-        {
-            if (fm.dataGridViewTaula_taules.SelectedRows.Count == 1)
-            {
-                fm.buttonTaula_editar.Enabled = true;
-                fm.buttonTaula_eliminar.Enabled = true;
-            }
-            else if (fm.dataGridViewTaula_taules.SelectedRows.Count > 1)
-            {
-                fm.buttonTaula_editar.Enabled = false;
-                fm.buttonTaula_eliminar.Enabled = true;
-            }
-            else
-            {
-                fm.buttonTaula_editar.Enabled = false;
-                fm.buttonTaula_eliminar.Enabled = false;
-            }
-        }
-
+        // Añadir o editar mesa según el botón pulsado previamente
         private void Button_afegir_editar_taula_Click(object sender, EventArgs e)
         {
             var comensalsTaula = (int)fa.numericUpDownTaula_numcomensals.Value;
@@ -126,6 +94,7 @@ namespace Taules.Controller
             }
         }
 
+        // Eliminar taula seleccionada
         private void Button_eliminar_Click(object sender, EventArgs e)
         {
             if (fm.dataGridViewTaula_taules.SelectedRows.Count > 0)
@@ -160,6 +129,7 @@ namespace Taules.Controller
             }
         }
 
+        // Decidir si el metodo será para editar o añadir una mesa (en este caso editar)
         private void Button_editar_Click(object sender, EventArgs e)
         {
             if (fa.buttonTaula_afegir_editar.Text.Equals("AFEGIR"))
@@ -173,6 +143,7 @@ namespace Taules.Controller
             fa.ShowDialog();
         }
 
+        // Decidir si el metodo será para editar o añadir una mesa (en este caso añadir)
         private void Button_afegir_Click(object sender, EventArgs e)
         {
             if (fa.buttonTaula_afegir_editar.Text.Equals("EDITAR"))
@@ -183,18 +154,24 @@ namespace Taules.Controller
             fa.ShowDialog();
         }
 
-        private void LoadData()
+        // Activar o desactivar botones segun las filas del datagrid seleccionados
+        private void DataGridView_taules_SelectionChanged(object sender, EventArgs e)
         {
-            fm.dataGridViewTaula_taules.DataSource = _taulaService.GetTaules();
-            fm.textBoxTaula_aforamentActual.Text = _taulaService.GetAforamentActual().ToString();
-            fm.textBoxTaula_aforamentMaxim.Text = _taulaService.GetAforamentMaxim().ToString();
-            fm.dataGridViewTaula_taules.Columns["id"].Visible = false;
-            fm.dataGridViewTaula_taules.Columns["restaurantId"].Visible = false;
-        }
-
-        public void SetForm(MenuForm menuForm)
-        {
-            fm = menuForm;
+            if (fm.dataGridViewTaula_taules.SelectedRows.Count == 1)
+            {
+                fm.buttonTaula_editar.Enabled = true;
+                fm.buttonTaula_eliminar.Enabled = true;
+            }
+            else if (fm.dataGridViewTaula_taules.SelectedRows.Count > 1)
+            {
+                fm.buttonTaula_editar.Enabled = false;
+                fm.buttonTaula_eliminar.Enabled = true;
+            }
+            else
+            {
+                fm.buttonTaula_editar.Enabled = false;
+                fm.buttonTaula_eliminar.Enabled = false;
+            }
         }
     }
 }

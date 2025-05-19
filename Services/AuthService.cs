@@ -1,15 +1,10 @@
-﻿using BCrypt.Net;
-using Data;
-using Entitats.AuthClasses;
+﻿using Data;
 using Entitats.RestaurantClasses;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using Microsoft.Extensions.Configuration;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfaces;
 using Services.Interfaces;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
 {

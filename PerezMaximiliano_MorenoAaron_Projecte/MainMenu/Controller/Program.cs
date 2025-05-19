@@ -5,7 +5,6 @@ using Services;
 using Reserves.Controller;
 using Contacte.Controller;
 using Configuracio.Controller;
-using Services.Interfaces;
 using Taules.Controller;
 
 namespace PerezMaximiliano_MorenoAaron_Projecte
@@ -22,13 +21,11 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
             var services = new ServiceCollection();
 
-            // Aquí se agregan los servicios necesarios para la aplicación,
-            // como el contexto de base de datos, servicios y controladores.
+            // Aquí se agregan los servicios necesarios para la aplicación, como el contexto de base de datos, servicios y controladores.
 
             services.AddProjectServices();
 
             // Registra los controladores para que puedan ser inyectados en otros lugares.
-            // Estos son los controladores que gestionan la lógica de la UI.
 
             services.AddScoped<EntrarController>();
             services.AddScoped<ReservesController>();
@@ -37,13 +34,11 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             services.AddScoped<ContacteController>();
             services.AddScoped<ConfiguracioController>();
 
-            // Construye el proveedor de servicios a partir de la colección de servicios.
-            // El proveedor de servicios es responsable de crear instancias de los servicios y controladores.
+            // Construye el proveedor de servicios a partir de la colección de servicios. (es responsable de crear instancias de los servicios y controladores)
 
             using (var serviceProvider = services.BuildServiceProvider())
             {
-                // Solicita el servicio de EntrarController, que es el controlador principal de la vista de "entrar" en la aplicación.
-                // Aquí se usa GetRequiredService para asegurarse de que se obtenga la instancia de EntrarController correctamente.
+                // Solicita el servicio de EntrarController (Obtiene la instancia de EntrarController correctamente).
 
                 serviceProvider.GetRequiredService<EntrarController>();
             }

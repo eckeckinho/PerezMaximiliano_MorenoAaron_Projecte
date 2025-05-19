@@ -26,7 +26,8 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
             if (String.IsNullOrWhiteSpace(ubicacio) && String.IsNullOrWhiteSpace(nomRestaurant))
             {
                 restaurants = await _context.Restaurants.ToListAsync();
-            } else if (String.IsNullOrWhiteSpace(ubicacio) || String.IsNullOrWhiteSpace(nomRestaurant))
+            }
+            else if (String.IsNullOrWhiteSpace(ubicacio) || String.IsNullOrWhiteSpace(nomRestaurant))
             {
                 if (!String.IsNullOrWhiteSpace(ubicacio))
                 {
@@ -40,13 +41,14 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
                         .Where(r => r.nomRestaurant.ToLower().Contains(nomRestaurant.ToLower()))
                         .ToListAsync();
                 }
-            } else
+            }
+            else
             {
                 restaurants = await _context.Restaurants
                     .Where(r => r.ciutat.ToLower().Equals(ubicacio.ToLower()) && r.nomRestaurant.ToLower().Contains(nomRestaurant.ToLower()))
                     .ToListAsync();
             }
-                return Ok(restaurants);
+            return Ok(restaurants);
         }
 
         [HttpGet("GetAllRestaurants")]
@@ -92,7 +94,8 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
                     _context.FavoritsUsuaris.Remove(restaurantFavoritUsuari);
                     await _context.SaveChangesAsync();
                     return Ok();
-                } else
+                }
+                else
                 {
                     return NotFound();
                 }
@@ -100,7 +103,9 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                {
+                    return BadRequest();
+                }
             }
         }
     }

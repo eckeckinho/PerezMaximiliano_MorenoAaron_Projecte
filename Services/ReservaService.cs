@@ -2,13 +2,11 @@
 using Entitats.AuthClasses;
 using Entitats.ReservaClasses;
 using Entitats.RestaurantClasses;
-using Microsoft.EntityFrameworkCore;
+using Entitats.TaulaClasses;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services
 {
@@ -27,17 +25,14 @@ namespace Services
         {
             try
             {
-                if (newReserva != null)
-                {
-                    AssignarTaula(newReserva.taulaid);
-                    _context.Reservas.Add(newReserva);
-                    _context.SaveChanges();
+                if (newReserva == null) return false;
 
-                    return true;
-                } else
-                {
-                    return false;
-                }
+                newReserva.restaurantid = _restaurantActual.id; 
+
+                _context.Reservas.Add(newReserva);
+                _context.SaveChanges();
+
+                return true;
             }
             catch (Exception ex)
             {
@@ -45,49 +40,39 @@ namespace Services
             }
         }
 
+
         public bool CanviarEstatReserva(List<Reserva> reservesSeleccionades, int nouEstat)
         {
             if (reservesSeleccionades == null || reservesSeleccionades.Count == 0) return false;
 
             foreach (Reserva reserva in reservesSeleccionades)
             {
-                switch (nouEstat)
-                {
-                    case 4: // En procés → mesa ocupada
-                        AssignarTaula(reserva.taulaid);
-                        break;
-                    case 5: // Finalitzada → mesa libre
-                    case 6: // Cancel·lada → mesa libre
-                        AlliberarTaula(reserva.taulaid);
-                        break;
-                }
-
                 reserva.estatid = nouEstat;
                 _context.Reservas.Update(reserva);
             }
 
             int changes = _context.SaveChanges();
 
-            return changes > 0;
+            if (changes > 0)
+            {
+                return true; 
+            } else
+            {
+                return false;
+            }
         }
 
 
         public List<Reserva> GetReservesRestaurant(int idEstat, DateTime desde, DateTime hasta)
         {
-            var idTaulesRestaurant = _context.Taules
-                .Where(x => x.restaurantId == _restaurantActual.id)
-                .Select(x => x.id)
-                .ToList();
+            var idTaulesRestaurant = _context.Taules.Where(x => x.restaurantId == _restaurantActual.id).Select(x => x.id).ToList();
 
-            if (idTaulesRestaurant.Count == 0)
-                return new List<Reserva>();
+            if (idTaulesRestaurant.Count == 0) return new List<Reserva>();
 
-            var reservasRestaurante = _context.Reservas
-                .Where(x => idTaulesRestaurant.Contains(x.taulaid))
-                .Where(x => x.estatid == idEstat)
-                .Where(x => x.datareserva >= desde.Date && x.datareserva < hasta.Date.AddDays(1))
-                .OrderByDescending(x => x.id)
-                .ToList();
+
+            // Devuelve las reservas del restaurante filtrados por estado y fecha (intervalo de fechas)
+            var reservasRestaurante = _context.Reservas.Where(x => idTaulesRestaurant.Contains(x.taulaid)).Where(x => x.estatid == idEstat)
+                .Where(x => x.datareserva >= desde.Date && x.datareserva < hasta.Date.AddDays(1)).OrderByDescending(x => x.id).ToList();
 
             return reservasRestaurante;
         }
@@ -113,69 +98,87 @@ namespace Services
             }
         }
 
-        public bool UpdateEstatTaula(int taulaId)
+        public List<Reserva> GetReservesDia(DateTime dia)
         {
-            try
-            {
-                var taula = _context.Taules.Where(x => x.id == taulaId).FirstOrDefault();
-                if (taula != null && taula.asignada == true)
-                {
-                    taula.asignada = false;
-                    _context.Taules.Update(taula);
-                    _context.SaveChanges();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al actualitzar l'estat de la taula. " + ex.Message, ex);
-            }
+            var idTaulesRestaurant = _context.Taules.Where(x => x.restaurantId == _restaurantActual.id).Select(x => x.id).ToList();
+
+            if (idTaulesRestaurant.Count == 0) return new List<Reserva>();
+
+            // Devuelve las reservas pendientes del restaurante filtrados por día
+            var reservasDelDia = _context.Reservas.Where(x => idTaulesRestaurant.Contains(x.taulaid)).Where(x => x.datareserva.Date == dia.Date)
+                .Where(x => x.estatid == (int)EstatReserva.EnProces).OrderBy(x => x.datareserva).ToList();
+
+            return reservasDelDia;
         }
 
-        public bool AssignarTaula(int taulaId)
+        public Taula GetTaulaDisponible(int? numComensals, DateTime data, TimeSpan? novaHora, int novaDurada)
         {
-            try
-            {
-                var taula = _context.Taules.FirstOrDefault(x => x.id == taulaId);
-                if (taula != null && taula.asignada == false)
-                {
-                    taula.asignada = true;
-                    _context.Taules.Update(taula);
-                    _context.SaveChanges();
-                    return true;
-                }
+            // Coger las mesas del rest por numero de comensales
+            var taules = _context.Taules.Where(t => t.numComensals == numComensals && t.restaurantId == _restaurantActual.id).ToList();
 
+            // Coger las reservas del dia pendientes
+            var reservesDelDia = _context.Reservas.Where(r => r.datareserva.Date == data.Date && (r.estatid == (int)EstatReserva.EnProces)).ToList();
+
+            foreach (var taula in taules)
+            {
+                // Comprobar si hay alguna mesa libre para esa hora
+                bool solapada = reservesDelDia.Any(r => r.taulaid == taula.id && SolapaAmbReservaExistente(novaHora, novaDurada, r.hora, r.durada));
+
+                // Devuelve la primera mesa disponible que no esté ocupada en el rango de horas
+                if (!solapada)
+                {
+                    return taula;
+                }
+            }
+
+            return null; 
+        }
+
+        private bool SolapaAmbReservaExistente(TimeSpan? novaHora, int novaDuracio, TimeSpan? horaExistente, int duracioExistente)
+        {
+            if (!novaHora.HasValue || !horaExistente.HasValue) return false;
+
+            TimeSpan fiNova = novaHora.Value.Add(TimeSpan.FromMinutes(novaDuracio)); // Calcular la hora de fin de la reserva nueva
+            TimeSpan fiExistente = horaExistente.Value.Add(TimeSpan.FromMinutes(duracioExistente)); // Calcular la hora de fin de la reserva existente 
+
+            // Comprobar si la nueva reserva empieza antes de que termine la reserva existente, y si la reserva existente empieza antes de que termine la nueva reserva
+
+            if (novaHora.Value < fiExistente && horaExistente.Value < fiNova)
+            {
+                return true; // Si ambas coinciden (solapadas)
+            }
+            else
+            {
                 return false;
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al assignar la taula. " + ex.Message, ex);
-            }
         }
 
-        public bool AlliberarTaula(int taulaId)
+        public bool ActualitzarReserva(Reserva reserva)
         {
             try
             {
-                var taula = _context.Taules.FirstOrDefault(x => x.id == taulaId);
-                if (taula != null && taula.asignada == true)
-                {
-                    taula.asignada = false;
-                    _context.Taules.Update(taula);
-                    _context.SaveChanges();
-                    return true;
-                }
+                if (reserva == null) return false;
 
-                return false;
+                var reservaExistente = _context.Reservas.Find(reserva.id);
+
+                if (reservaExistente == null) return false;
+
+                reservaExistente.datareserva = reserva.datareserva;
+                reservaExistente.numcomensals = reserva.numcomensals;
+                reservaExistente.taulaid = reserva.taulaid;
+                reservaExistente.durada = reserva.durada;
+                reservaExistente.hora = reserva.hora;
+                reservaExistente.usuariId = reserva.usuariId;
+
+                _context.SaveChanges();
+
+                return true;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al alliberar la taula. " + ex.Message, ex);
+                throw new Exception("Error al actualitzar la reserva. " + ex.Message, ex);
             }
         }
+
     }
 }

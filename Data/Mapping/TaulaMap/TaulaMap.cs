@@ -1,9 +1,5 @@
-﻿using Entitats.ReservaClasses;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Entitats.TaulaClasses;
 
 namespace Data.Mapping.TaulaMap

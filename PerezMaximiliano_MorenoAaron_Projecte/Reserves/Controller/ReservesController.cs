@@ -1,17 +1,15 @@
 ﻿using Entitats.AuthClasses;
 using Entitats.HorariClasses;
 using Entitats.ReservaClasses;
-using Entitats.TaulaClasses;
+using Pabo.Calendar;
 using PerezMaximiliano_MorenoAaron_Projecte.Reserves.View;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Taules.View;
 
 namespace Reserves.Controller
 {
@@ -24,6 +22,7 @@ namespace Reserves.Controller
         private readonly ITaulaService _taulaService;
         private readonly IUsuariService _usuariService;
         private readonly IHorariService _horariService;
+        private Reserva reserva;
 
 
         public ReservesController(IReservaService reservaService, ITipusService tipusService, ITaulaService taulaService, IUsuariService usuariService, IHorariService horariService)
@@ -40,9 +39,18 @@ namespace Reserves.Controller
             if (fr == null)
             {
                 fr = new AfegirReservaForm();
+                fr.monthCalendarReserva_horari.MinDate = DateTime.Today;
+                fr.monthCalendarReserva_horari.MaxDate = DateTime.Today.AddYears(1);
                 SetListeners();
                 LoadData();
             }
+
+            PintarDiesAmbHorari();
+        }
+
+        public void SetForm(MenuForm menuForm)
+        {
+            fm = menuForm;
         }
 
         private void SetListeners()
@@ -55,154 +63,486 @@ namespace Reserves.Controller
             fm.dateTimePickerReserva_desde.ValueChanged += DateTimePicker_diareserva_desde_ValueChanged;
             fm.dateTimePickerReserva_hasta.ValueChanged += DateTimePicker_diareserva_hasta_ValueChanged;
             fm.dataGridViewReserva_reserves.SelectionChanged += DataGridView_reserves_SelectionChanged;
+            fm.buttonReserva_actualitzar.Click += ButtonReserva_actualitzar_Click;
 
-            fr.buttonAfegirReserva_reservar.Click += ButtonAfegirReserva_reservar_Click; 
-            fr.dateTimePickerAfegirReserva_data.ValueChanged += DateTimePickerAfegirReserva_data_ValueChanged;
-            fr.comboBoxAfegirReserva_franjaHoraria.SelectedIndexChanged += ComboBoxAfegirReserva_franjaHoraria_SelectedIndexChanged; ;
+            fr.buttonAfegirReserva_reservar.Click += ButtonAfegirReserva_reservar_Click;
+            fr.buttonAfegirReserva_actualitzar.Click += ButtonAfegirReserva_actualitzar_Click;
+            fr.comboBoxAfegirReserva_franjaHoraria.SelectedIndexChanged += ComboBoxAfegirReserva_franjaHoraria_SelectedIndexChanged;
+            fr.comboBoxAfegirReserva_taula.SelectedIndexChanged += ComboBoxAfegirReserva_taula_SelectedIndexChanged;
+            fr.monthCalendarReserva_horari.DaySelected += MonthCalendarReserva_horari_DaySelected;
+            fr.comboBoxAfegirReserva_durada.SelectedIndexChanged += ComboBoxAfegirReserva_durada_SelectedIndexChanged;
+        }
+
+        private void LoadData()
+        {
+            fm.comboBoxReserva_estat.DataSource = _tipusService.GetTipusEstats();
+            fm.comboBoxReserva_estat.DisplayMember = "descripcio";
+
+            fm.dataGridViewReserva_reserves.Columns["id"].Visible = false;
+            fm.dataGridViewReserva_reserves.Columns["taulaId"].Visible = false;
+            fm.dataGridViewReserva_reserves.Columns["usuariId"].Visible = false;
+            fm.dataGridViewReserva_reserves.Columns["estatId"].Visible = false;
+            fm.dataGridViewReserva_reserves.Columns["restaurantid"].Visible = false;
+
+            fr.comboBoxAfegirReserva_usuari.DataSource = _usuariService.GetUsuaris();
+            fr.comboBoxAfegirReserva_usuari.DisplayMember = "correu";
+
+            var capacitatsTaules = _taulaService.GetCapacitatsDisponibles();
+            fr.comboBoxAfegirReserva_taula.DataSource = capacitatsTaules;
+
+            List<int> duradesReserves = new List<int> { 60, 90, 120 };
+            fr.comboBoxAfegirReserva_durada.DataSource = duradesReserves;
+
+            LoadDgvReservas();
+        }
+
+        private void LoadDgvReservas()
+        {
+            try
+            {
+                if (fm.comboBoxReserva_estat.SelectedItem == null)
+                {
+                    MessageBox.Show("Selecciona un estat de reserva.", "Advertència", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var estatReserva = fm.comboBoxReserva_estat.SelectedItem as TipusEstat;
+                var dataReservaDesde = fm.dateTimePickerReserva_desde.Value;
+                var dataReservaHasta = fm.dateTimePickerReserva_hasta.Value;
+
+                var reserves = _reservaService.GetReservesRestaurant(estatReserva.id, dataReservaDesde, dataReservaHasta);
+                fm.dataGridViewReserva_reserves.DataSource = reserves;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error carregant reserves: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void PintarDiesAmbHorari()
+        {
+            var diesAmbHorari = _horariService.GetDiesAmbHorari();
+            var excepcions = _horariService.GetHorariExcepcions();
+
+            if (diesAmbHorari == null || diesAmbHorari.Count == 0) return;
+
+            DateTime avui = DateTime.Today;
+            DateTime fi = avui.AddMonths(12);
+
+            // Recorrer cada día desde hoy hasta dentro de 12 meses
+            for (DateTime data = avui; data <= fi; data = data.AddDays(1))
+            {
+                int diaSetmana = (int)data.DayOfWeek;
+
+                // Si es domingo (0), se asigna 7 para que la semana empiece en lunes
+                if (diaSetmana == 0)
+                {
+                    diaSetmana = 7;
+                }
+
+                bool esLaborable = diesAmbHorari.Contains(diaSetmana); // Comprobar si el día es laborable 
+                bool esFestiu = excepcions.Any(e => e.data_inici.Date <= data && data <= e.data_final.Date); // Comprobar si el día es festivo 
+
+                // Quitar cualquier información previa del calendario para ese día
+                fr.monthCalendarReserva_horari.RemoveDateInfo(data);
+
+                if (esLaborable && !esFestiu)
+                {
+                    // Si es laborable y no festivo, colorear de verde claro
+                    var item = new DateItem
+                    {
+                        Date = data,
+                        BackColor1 = Color.LightGreen
+                    };
+                    fr.monthCalendarReserva_horari.AddDateInfo(item);
+                }
+                else if (esFestiu)
+                {
+                    // Si es festivo, colorear de gris
+                    var item = new DateItem
+                    {
+                        Date = data,
+                        BackColor1 = Color.Gray
+                    };
+                    fr.monthCalendarReserva_horari.AddDateInfo(item);
+                }
+            }
+
+            // Refrescar el calendario para mostrar los cambios
+            fr.monthCalendarReserva_horari.Refresh();
+        }
+
+
+        private void ComboBoxAfegirReserva_durada_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var franjaSeleccionada = fr.comboBoxAfegirReserva_franjaHoraria.SelectedItem as Horari;
+
+            if (franjaSeleccionada != null)
+            {
+                DateTime data = fr.monthCalendarReserva_horari.SelectedDates.Cast<DateTime>().FirstOrDefault().Date;
+
+                // Cargar las horas disponibles para esa fecha y franja
+                CarregarHoresDisponibles(data, franjaSeleccionada);
+            }
+        }
+
+        // Abrir el form de modificar reserva y cargar los componentes
+        private void ButtonReserva_actualitzar_Click(object sender, EventArgs e)
+        {
+            if (fm.dataGridViewReserva_reserves.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Selecciona una única reserva per modificar.", "Atenció", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            reserva = fm.dataGridViewReserva_reserves.SelectedRows[0].DataBoundItem as Reserva;
+
+            if (reserva == null)
+            {
+                MessageBox.Show("Reserva no vàlida.");
+                return;
+            }
+
+            fr.Text = "Modificar reserva";
+            fr.buttonAfegirReserva_actualitzar.Visible = true;
+            fr.buttonAfegirReserva_reservar.Visible = false;
+
+            // Cargar el formulario con los datos de la reserva y seleccionando los elementos de la reserva a modificar
+            fr.comboBoxAfegirReserva_usuari.DataSource = _usuariService.GetUsuaris();
+            fr.comboBoxAfegirReserva_usuari.DisplayMember = "correu";
+            fr.comboBoxAfegirReserva_usuari.SelectedItem = _reservaService.GetUsuariReserva(reserva.usuariId);
+
+            var capacitatsTaules = _taulaService.GetCapacitatsDisponibles();
+            fr.comboBoxAfegirReserva_taula.DataSource = capacitatsTaules;
+            fr.comboBoxAfegirReserva_taula.SelectedItem = reserva.numcomensals;
+
+            fr.monthCalendarReserva_horari.ClearSelection();
+            fr.monthCalendarReserva_horari.SelectDate(reserva.datareserva);
+
+            var franjes = _horariService.GetHorarisDia(reserva.datareserva);
+            fr.comboBoxAfegirReserva_franjaHoraria.DataSource = franjes;
+            var franjaSeleccionada = franjes.FirstOrDefault(f => reserva.hora >= f.hora_inici && reserva.hora < f.hora_final);
+
+            if (franjaSeleccionada != null)
+            {
+                fr.comboBoxAfegirReserva_franjaHoraria.SelectedItem = franjaSeleccionada;
+            }
+
+            fr.comboBoxAfegirReserva_durada.DataSource = new List<int> { 60, 90, 120 }; 
+            fr.comboBoxAfegirReserva_durada.SelectedItem = reserva.durada;
+
+            fr.ShowDialog();
+        }
+
+        // Modificar la reserva seleccionada
+        private void ButtonAfegirReserva_actualitzar_Click(object sender, EventArgs e)
+        {
+            if (reserva == null)
+            {
+                MessageBox.Show("No hi ha cap reserva seleccionada per actualitzar.");
+                return;
+            }
+
+            if (fr.monthCalendarReserva_horari.SelectedDates.Count == 0)
+            {
+                MessageBox.Show("Please select a date before updating the reservation.");
+                return;
+            }
+
+            // Obtener los valores seleccionados en los combos
+            int numComensals = (int)fr.comboBoxAfegirReserva_taula.SelectedItem;
+            DateTime dataReserva = fr.monthCalendarReserva_horari.SelectedDates[0];
+            TimeSpan horaReserva = (TimeSpan)fr.comboBoxAfegirReserva_hora.SelectedItem;
+            int duradaReserva = (int)fr.comboBoxAfegirReserva_durada.SelectedItem;
+            int usuariId = ((Usuari)fr.comboBoxAfegirReserva_usuari.SelectedItem).id;
+
+            var taulaDisponible = _reservaService.GetTaulaDisponible(numComensals, dataReserva, horaReserva, duradaReserva);
+
+            if (taulaDisponible == null)
+            {
+                MessageBox.Show("No hi ha cap taula disponible per a aquest horari.", "Sense disponibilitat", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Reserva reservaModificada = new Reserva
+            {
+                id = reserva.id,
+                taulaid = taulaDisponible.id,
+                usuariId = usuariId,
+                datareserva = dataReserva,
+                numcomensals = numComensals,
+                hora = horaReserva,
+                durada = duradaReserva,
+                estatid = reserva.estatid,
+                restaurantid = reserva.restaurantid
+            };
+
+            bool resultat = _reservaService.ActualitzarReserva(reservaModificada);
+
+            if (resultat)
+            {
+                reserva = null;
+                fr.Close();
+                MessageBox.Show("Reserva actualitzada correctament.");
+                LoadDgvReservas(); 
+            }
+            else
+            {
+                MessageBox.Show("Error al actualitzar la reserva.");
+            }
+        }
+
+        private void MonthCalendarReserva_horari_DaySelected(object sender, DaySelectedEventArgs e)
+        {
+            var dataSeleccionada = fr.monthCalendarReserva_horari.SelectedDates.Cast<DateTime>().Select(d => d.Date).FirstOrDefault();
+
+            // Buscar si la fecha seleccionada está pintada de verde (es decir: que es laborable y por lo tanto seleccionable para reservar)
+            var dateInfoArray = fr.monthCalendarReserva_horari.GetDateInfo(dataSeleccionada);
+            var dateInfo = dateInfoArray?.FirstOrDefault(); 
+
+            if (dateInfo == null || dateInfo.BackColor1 != Color.LightGreen)
+            {
+                // Día no permitido, cancelar / no permitir que se seleccione
+                MessageBox.Show("Aquest dia no està disponible per a reserves.", "Data no vàlida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                fr.monthCalendarReserva_horari.ClearSelection();
+                fr.comboBoxAfegirReserva_franjaHoraria.DataSource = null;
+                fr.comboBoxAfegirReserva_hora.DataSource = null;
+            }
+            else
+            {
+                // Día permitido, cargar las franjas horarias disponibles para la fecha seleccionada
+                ComboBoxAfegirReserva_taula_SelectedIndexChanged(fr.comboBoxAfegirReserva_taula, EventArgs.Empty);
+            }
+        }
+
+        private void ComboBoxAfegirReserva_taula_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (fr.comboBoxAfegirReserva_taula.SelectedItem == null) return;
+
+            int capacitatSeleccionada = (int)fr.comboBoxAfegirReserva_taula.SelectedItem;
+
+            var data = fr.monthCalendarReserva_horari.SelectedDates.Cast<DateTime>().Select(d => d.Date).FirstOrDefault();
+
+            var franges = _horariService.GetHorarisDia(data);
+
+            // Evitar que salte el evento mientras se actualiza el DataSource
+            fr.comboBoxAfegirReserva_franjaHoraria.SelectedIndexChanged -= ComboBoxAfegirReserva_franjaHoraria_SelectedIndexChanged;
+
+            // Limpiar las franjas horarias
+            fr.comboBoxAfegirReserva_franjaHoraria.DataSource = null;
+
+            // Cargar las franjas horarias en caso de que hayan
+            if (franges != null && franges.Any())
+            {
+                fr.comboBoxAfegirReserva_franjaHoraria.DataSource = franges;
+                fr.comboBoxAfegirReserva_franjaHoraria.DisplayMember = "ToString";
+                fr.comboBoxAfegirReserva_franjaHoraria.SelectedIndex = 0;
+            }
+            else
+            {
+                // Limpiar las horas si no hay franjas horarias
+                fr.comboBoxAfegirReserva_hora.DataSource = null;
+            }
+
+            // Volver a activar el evento
+            fr.comboBoxAfegirReserva_franjaHoraria.SelectedIndexChanged += ComboBoxAfegirReserva_franjaHoraria_SelectedIndexChanged;
+
+            // Llamar manualmente al evento si hay elementos para que cargue directamente las horas disponibles de la franja en concreto
+            if (franges != null && franges.Any())
+            {
+                ComboBoxAfegirReserva_franjaHoraria_SelectedIndexChanged(fr.comboBoxAfegirReserva_franjaHoraria, EventArgs.Empty);
+            }
         }
 
         private void ComboBoxAfegirReserva_franjaHoraria_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (fr.comboBoxAfegirReserva_franjaHoraria.SelectedItem is Horari franjaSeleccionada)
+            var franjaSeleccionada = fr.comboBoxAfegirReserva_franjaHoraria.SelectedItem as Horari;
+
+            if (franjaSeleccionada != null)
             {
-                var data = fr.dateTimePickerAfegirReserva_data.Value;
-                CarregarTaulesDisponibles(data, franjaSeleccionada);
+                DateTime data = fr.monthCalendarReserva_horari.SelectedDates.Cast<DateTime>().FirstOrDefault().Date;
+
+                // Cargar las horas disponibles para esa fecha y franja
+                CarregarHoresDisponibles(data, franjaSeleccionada);
             }
         }
-
-        private void DateTimePickerAfegirReserva_data_ValueChanged(object sender, EventArgs e)
+        private void CarregarHoresDisponibles(DateTime data, Horari franjaSeleccionada)
         {
-            var data = fr.dateTimePickerAfegirReserva_data.Value;
+            int capacitatSeleccionada = (int)fr.comboBoxAfegirReserva_taula.SelectedItem;
 
-            var franges = _horariService.GetHorarisDia(data);
-            fr.comboBoxAfegirReserva_franjaHoraria.SelectedIndexChanged -= ComboBoxAfegirReserva_franjaHoraria_SelectedIndexChanged;
+            if (fr.comboBoxAfegirReserva_durada.SelectedItem == null) return; 
 
-            fr.comboBoxAfegirReserva_franjaHoraria.DataSource = franges;
-            fr.comboBoxAfegirReserva_franjaHoraria.DisplayMember = "ToString";
+            int duradaSeleccionada = (int)fr.comboBoxAfegirReserva_durada.SelectedItem;
 
-            fr.comboBoxAfegirReserva_franjaHoraria.SelectedIndexChanged += ComboBoxAfegirReserva_franjaHoraria_SelectedIndexChanged;
+            var taulesDisponibles = _taulaService.GetTaules().Where(t => t.numComensals == capacitatSeleccionada).ToList();
 
-            if (franges.Any())
+            var reservesDelDia = _reservaService.GetReservesDia(data).Where(r =>
+                    r.estatid == (int)EstatReserva.EnProces &&
+                    taulesDisponibles.Any(t => t.id == r.taulaid) &&
+                    (reserva == null)) // Excluir la reserva que se modifica para así poder seleccionar la misma hora,
+                                       // sino, en caso de que todas las mesas del mismo tamaño coincidan en la hora, no podría coincidir la hora
+                .ToList();
+
+            List<TimeSpan> horesDisponibles = new List<TimeSpan>();
+
+            // Vamos probando horas dentro de la franja horaria, desde el inicio hasta el final, moviéndonos en intervalos de 15 minutos.
+            // Cada 'hora' representa un posible inicio para una nueva reserva.
+
+            for (TimeSpan hora = franjaSeleccionada.hora_inici;
+                 hora.Add(TimeSpan.FromMinutes(duradaSeleccionada)) <= franjaSeleccionada.hora_final; // La nueva reserva debe terminar antes o justo al final de la franja
+                 hora = hora.Add(TimeSpan.FromMinutes(15))) // Avanzamos 15 minutos para probar la siguiente hora posible
             {
-                fr.comboBoxAfegirReserva_franjaHoraria.SelectedIndex = 0;
+                int taulesOcupades = 0; 
+
+                // Revisamos todas las reservas existentes para ver si alguna se solapa con esta hora
+                foreach (var reserva in reservesDelDia)
+                {
+                    if (reserva.hora.HasValue)
+                    {
+                        // Hora de inicio y fin de la reserva ya existente
+                        TimeSpan horaIniciReserva = reserva.hora.Value;
+                        TimeSpan horaFiReserva = horaIniciReserva.Add(TimeSpan.FromMinutes(reserva.durada)); // Sumamos la duracion para saber cuando acabará la reserva
+
+                        // Hora de fin si la nueva reserva empieza en 'hora'
+                        TimeSpan horaNovaFi = hora.Add(TimeSpan.FromMinutes(duradaSeleccionada));  // Sumamos la duracion para saber cuando acabará la reserva
+
+                        // Verificamos si la nueva reserva y la existente se solapan en el tiempo
+                        bool solapen = hora < horaFiReserva && horaNovaFi > horaIniciReserva;
+
+                        if (solapen)
+                            taulesOcupades++; // En caso de solaparse, contamos esta mesa como ocupada
+                    }
+                }
+
+                // Si hay mesas libres para esta hora, la añadimos a la lista de horas disponibles
+                if (taulesOcupades < taulesDisponibles.Count)
+                {
+                    horesDisponibles.Add(hora);
+                }
             }
+
+            fr.comboBoxAfegirReserva_hora.DataSource = horesDisponibles;
         }
 
+        // Reservar una nueva reserva 
         private void ButtonAfegirReserva_reservar_Click(object sender, EventArgs e)
         {
             if (fr.comboBoxAfegirReserva_usuari.SelectedItem != null && fr.comboBoxAfegirReserva_taula.SelectedItem != null)
             {
+                // Coger el usuario
                 var usuari = fr.comboBoxAfegirReserva_usuari.SelectedItem as Usuari;
-                var taula = fr.comboBoxAfegirReserva_taula.SelectedItem as Taula;
 
-                if (usuari != null && taula != null)
+                // Coger el número de comensales
+                int? numComensals = null;
+                if (fr.comboBoxAfegirReserva_taula.SelectedItem != null)
                 {
-                    Reserva novaReserva = new Reserva
+                    numComensals = (int)fr.comboBoxAfegirReserva_taula.SelectedItem;
+                }
+
+                // Coger la fecha
+                var data = fr.monthCalendarReserva_horari.SelectedDates.Cast<DateTime>().Select(d => d.Date).FirstOrDefault();
+
+                // Coger la hora
+                TimeSpan? hora = null;
+                if (fr.comboBoxAfegirReserva_hora.SelectedItem != null)
+                {
+                    hora = (TimeSpan)fr.comboBoxAfegirReserva_hora.SelectedItem;
+                }
+
+                // Coger la duración
+                int durada = (int)fr.comboBoxAfegirReserva_durada.SelectedItem;
+
+                if (usuari != null && numComensals != null)
+                {
+                    // Coger la mesa disponible y reservarla en caso de que haya mesa disponible
+                    var taulaDisponible = _reservaService.GetTaulaDisponible(numComensals, data, hora, durada);
+
+                    if (taulaDisponible != null)
                     {
-                        taulaid = taula.id,
-                        usuariId = usuari.id,
-                        datareserva = fr.dateTimePickerAfegirReserva_data.Value,
-                        numcomensals = taula.numComensals,
-                        hora = fr.dateTimePickerAfegirReserva_data.Value.TimeOfDay,
-                        estatid = 4, // En proces
-                    };
-                    var resultat = _reservaService.AfegirReserva(novaReserva);
-                    if (resultat)
-                    {
-                        fr.Close();
-                        MessageBox.Show("Reserva afegida amb èxit.", "Èxit", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CargarVista();
+                        Reserva novaReserva = new Reserva
+                        {
+                            taulaid = taulaDisponible.id,
+                            usuariId = usuari.id,
+                            datareserva = data.Date,
+                            numcomensals = numComensals,
+                            hora = hora.Value,
+                            estatid = (int)EstatReserva.EnProces, 
+                            durada = (int)fr.comboBoxAfegirReserva_durada.SelectedItem,
+                            restaurantid = 0
+                        };
+
+                        var resultat = _reservaService.AfegirReserva(novaReserva);
+
+                        if (resultat)
+                        {
+                            fr.Close();
+                            MessageBox.Show("Reserva afegida amb èxit.", "Èxit", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadDgvReservas();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al afegir la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Error al afegir la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No hi ha cap taula disponible per a aquest horari.", "Sense disponibilitat", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                } else
+
+                }
+                else
                 {
                     MessageBox.Show("Ompli els camps.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-        private void Button_enProces_Click(object sender, EventArgs e)
-        {
-            if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0)
-            {
-                List<Reserva> reservasSeleccionadas = new List<Reserva>();
-
-                foreach (DataGridViewRow row in fm.dataGridViewReserva_reserves.SelectedRows)
-                {
-                    var reserva = row.DataBoundItem as Reserva;
-
-                    if (reserva != null)
-                    {
-                        reservasSeleccionadas.Add(reserva);
-                    }
-                }
-
-                //L'estat P té l'ID 4.
-                var nouEstat = 4;
-                bool resultatEnProces = _reservaService.CanviarEstatReserva(reservasSeleccionadas, nouEstat);
-
-                if (resultatEnProces)
-                {
-                    MessageBox.Show("Reserves en proces.", "En proces exitos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarVista();
-                }
-                else
-                {
-                    MessageBox.Show("No es possible possar en proces les reserves seleccionades.", "En proces denegat", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
             else
             {
-                MessageBox.Show("No hi ha reserves seleccionades.");
-            }
-        }
-
-        private void Button_cancelar_Click(object sender, EventArgs e)
-        {
-            if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0)
-            {
-                List<Reserva> reservasSeleccionadas = new List<Reserva>();
-
-                foreach (DataGridViewRow row in fm.dataGridViewReserva_reserves.SelectedRows)
-                {
-                    var reserva = row.DataBoundItem as Reserva;
-
-                    if (reserva != null)
-                    {
-                        reservasSeleccionadas.Add(reserva);
-                    }
-                }
-
-                //L'estat C té l'ID 6.
-                var nouEstat = 6;
-                bool resultatCancelacio = _reservaService.CanviarEstatReserva(reservasSeleccionadas, nouEstat);
-
-                if (resultatCancelacio)
-                {
-                    MessageBox.Show("Reserves cancelades.", "Cancelacio exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarVista();
-                }
-                else
-                {
-                    MessageBox.Show("No es possible cancelar les reserves seleccionades.", "Cancelacio denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            else
-            {
-                MessageBox.Show("No hi ha reserves seleccionades.");
+                MessageBox.Show("Ompli els camps.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void DataGridView_reserves_SelectionChanged(object sender, EventArgs e)
         {
             ActivarBotonGuardar();
-            CargarDgvUsuari();
+            CargarInfoUsuari();
         }
 
-        private void CargarDgvUsuari()
+        private void ActivarBotonGuardar()
+        {
+            var estatReserva = fm.comboBoxReserva_estat.SelectedItem as TipusEstat;
+
+            if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0 && estatReserva.id == (int)EstatReserva.EnProces)
+            {
+                fm.buttonReserva_finalitzar.Enabled = true;
+                fm.buttonReserva_cancelar.Enabled = true;
+                fm.buttonReserva_enProces.Enabled = false;
+                fm.buttonReserva_actualitzar.Enabled = true;
+            }
+            else if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0 && estatReserva.id == (int)EstatReserva.Cancelada)
+            {
+                fm.buttonReserva_finalitzar.Enabled = true;
+                fm.buttonReserva_cancelar.Enabled = false;
+                fm.buttonReserva_enProces.Enabled = true;
+                fm.buttonReserva_actualitzar.Enabled = false;
+            }
+            else if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0 && estatReserva.id == (int)EstatReserva.Finalitzada)
+            {
+                fm.buttonReserva_finalitzar.Enabled = false;
+                fm.buttonReserva_cancelar.Enabled = true;
+                fm.buttonReserva_enProces.Enabled = true;
+                fm.buttonReserva_actualitzar.Enabled = false;
+            }
+            else
+            {
+                fm.buttonReserva_finalitzar.Enabled = false;
+                fm.buttonReserva_cancelar.Enabled = false;
+                fm.buttonReserva_enProces.Enabled = false;
+                fm.buttonReserva_actualitzar.Enabled = false;
+            }
+        }
+
+        private void CargarInfoUsuari()
         {
             if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0)
             {
@@ -224,7 +564,6 @@ namespace Reserves.Controller
                 fm.textBoxReserva_telefonUsuari.Text = "";
             }
         }
-            
 
         private void DateTimePicker_diareserva_hasta_ValueChanged(object sender, EventArgs e)
         {
@@ -238,17 +577,71 @@ namespace Reserves.Controller
 
         private void ComboBox_estatreserva_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarVista();
+            LoadDgvReservas();
         }
 
+        // Abrir form de añadir reserva y actualizar campos
         private void Button_afegir_Click(object sender, EventArgs e)
         {
-            fr.dateTimePickerAfegirReserva_data.Value = DateTime.Now;
+            // Refrescar usuarios
+            fr.comboBoxAfegirReserva_usuari.DataSource = _usuariService.GetUsuaris();
+            fr.comboBoxAfegirReserva_usuari.DisplayMember = "correu";
             fr.comboBoxAfegirReserva_usuari.SelectedIndex = 0;
+
+            // Refrescar capacidades disponibles
+            var capacitatsTaules = _taulaService.GetCapacitatsDisponibles();
+            fr.comboBoxAfegirReserva_taula.DataSource = capacitatsTaules;
+            if (capacitatsTaules.Any())fr.comboBoxAfegirReserva_taula.SelectedIndex = 0;
+
+            // Limpiar franja horaria y hora
+            fr.comboBoxAfegirReserva_franjaHoraria.DataSource = null;
+            fr.comboBoxAfegirReserva_hora.DataSource = null;
+
+            PintarDiesAmbHorari();
+
+            fr.buttonAfegirReserva_actualitzar.Visible = false;
+            fr.buttonAfegirReserva_reservar.Visible = true;
+
             fr.ShowDialog();
         }
 
+        // Poner en proceso la reserva seleccionada
+        private void Button_enProces_Click(object sender, EventArgs e)
+        {
+            if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0)
+            {
+                List<Reserva> reservasSeleccionadas = new List<Reserva>();
 
+                foreach (DataGridViewRow row in fm.dataGridViewReserva_reserves.SelectedRows)
+                {
+                    var reserva = row.DataBoundItem as Reserva;
+
+                    if (reserva != null)
+                    {
+                        reservasSeleccionadas.Add(reserva);
+                    }
+                }
+
+                var nouEstat = (int)EstatReserva.EnProces;
+                bool resultatEnProces = _reservaService.CanviarEstatReserva(reservasSeleccionadas, nouEstat);
+
+                if (resultatEnProces)
+                {
+                    MessageBox.Show("Reserves en proces.", "En proces exitos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadDgvReservas();
+                }
+                else
+                {
+                    MessageBox.Show("No es possible possar en proces les reserves seleccionades.", "En proces denegat", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hi ha reserves seleccionades.");
+            }
+        }
+
+        // Finalizar la reserva seleccionada
         private void Button_finalitzar_Click(object sender, EventArgs e)
         {
             if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0)
@@ -265,14 +658,13 @@ namespace Reserves.Controller
                     }
                 }
 
-                //L'estat F té l'ID 5.
-                var nouEstat = 5;
+                var nouEstat = (int)EstatReserva.Finalitzada;
                 bool resultatFinalitzacio = _reservaService.CanviarEstatReserva(reservasSeleccionadas, nouEstat);
 
                 if (resultatFinalitzacio)
                 {
                     MessageBox.Show("Reserves finalitzades.", "Finalitzacio exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarVista();
+                    LoadDgvReservas();
                 }
                 else
                 {
@@ -285,94 +677,40 @@ namespace Reserves.Controller
             }
         }
 
-        private void LoadData()
+        // Cancelar la reserva seleccionada
+        private void Button_cancelar_Click(object sender, EventArgs e)
         {
-            fm.comboBoxReserva_estat.DataSource = _tipusService.GetTipusEstats();
-            fm.comboBoxReserva_estat.DisplayMember = "descripcio";
-
-            fm.dataGridViewReserva_reserves.Columns["id"].Visible = false;
-            fm.dataGridViewReserva_reserves.Columns["taulaId"].Visible = false;
-            fm.dataGridViewReserva_reserves.Columns["usuariId"].Visible = false;
-            fm.dataGridViewReserva_reserves.Columns["estatId"].Visible = false;
-
-            fr.comboBoxAfegirReserva_usuari.DataSource = _usuariService.GetUsuaris();
-            fr.comboBoxAfegirReserva_usuari.DisplayMember = "correu";
-            CargarVista();
-            fr.comboBoxAfegirReserva_taula.DisplayMember = "numComensals";
-            //fr.comboBoxAfegirReserva_franjaHoraria.DataSource = _reservaService.GetFranjaHoraria();
-        }
-
-        private void CarregarTaulesDisponibles(DateTime data, Horari franja)
-        {
-            var taulesDisponibles = _taulaService.GetTaulesDisponibles(data, franja);
-            fr.comboBoxAfegirReserva_taula.DataSource = taulesDisponibles;
-
-            if (taulesDisponibles.Count <= 0)
+            if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0)
             {
-                fm.buttonReserva_afegir.Enabled = false;
+                List<Reserva> reservasSeleccionadas = new List<Reserva>();
+
+                foreach (DataGridViewRow row in fm.dataGridViewReserva_reserves.SelectedRows)
+                {
+                    var reserva = row.DataBoundItem as Reserva;
+
+                    if (reserva != null)
+                    {
+                        reservasSeleccionadas.Add(reserva);
+                    }
+                }
+
+                var nouEstat = (int)EstatReserva.Cancelada;
+                bool resultatCancelacio = _reservaService.CanviarEstatReserva(reservasSeleccionadas, nouEstat);
+
+                if (resultatCancelacio)
+                {
+                    MessageBox.Show("Reserves cancelades.", "Cancelacio exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadDgvReservas();
+                }
+                else
+                {
+                    MessageBox.Show("No es possible cancelar les reserves seleccionades.", "Cancelacio denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
-                fm.buttonReserva_afegir.Enabled = true;
-                fr.comboBoxAfegirReserva_taula.SelectedIndex = 0;
+                MessageBox.Show("No hi ha reserves seleccionades.");
             }
-        }
-
-        private void LoadDgvReservas()
-        {
-            try
-            {
-                var estatReserva = fm.comboBoxReserva_estat.SelectedItem as TipusEstat;
-                var dataReservaDesde = fm.dateTimePickerReserva_desde.Value;
-                var dataReservaHasta = fm.dateTimePickerReserva_hasta.Value;
-
-                var reserves = _reservaService.GetReservesRestaurant(estatReserva.id, dataReservaDesde, dataReservaHasta);
-                fm.dataGridViewReserva_reserves.DataSource = reserves;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error carregant reserves: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void CargarVista()
-        {
-            LoadDgvReservas();
-        }
-
-        private void ActivarBotonGuardar()
-        {
-            var estatReserva = fm.comboBoxReserva_estat.SelectedItem as TipusEstat;
-
-            if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0 && estatReserva.descripcio.Trim().ToUpper().Equals("P"))
-            {
-                fm.buttonReserva_finalitzar.Enabled = true;
-                fm.buttonReserva_cancelar.Enabled = true;
-                fm.buttonReserva_enProces.Enabled = false;
-            }
-            else if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0 && estatReserva.descripcio.Trim().ToUpper().Equals("C"))
-            {
-                fm.buttonReserva_finalitzar.Enabled = true;
-                fm.buttonReserva_cancelar.Enabled = false;
-                fm.buttonReserva_enProces.Enabled = true;
-            }
-            else if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0 && estatReserva.descripcio.Trim().ToUpper().Equals("F"))
-            {
-                fm.buttonReserva_finalitzar.Enabled = false;
-                fm.buttonReserva_cancelar.Enabled = true;
-                fm.buttonReserva_enProces.Enabled = true;
-            }
-            else
-            {
-                fm.buttonReserva_finalitzar.Enabled = false;
-                fm.buttonReserva_cancelar.Enabled = false;
-                fm.buttonReserva_enProces.Enabled = false;
-            }
-        }
-
-        public void SetForm(MenuForm menuForm)
-        {
-            fm = menuForm;
         }
     }
 }

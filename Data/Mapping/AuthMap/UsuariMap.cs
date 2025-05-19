@@ -1,5 +1,4 @@
 ﻿using Entitats.AuthClasses;
-using Entitats.ContacteClasses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

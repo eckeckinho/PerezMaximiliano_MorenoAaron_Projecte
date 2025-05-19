@@ -1,14 +1,8 @@
 ﻿using Data;
-using Entitats.ReservaClasses;
 using Entitats.RestaurantClasses;
-using Entitats.TaulaClasses;
-using Microsoft.EntityFrameworkCore;
 using Services.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services
 {
@@ -43,29 +37,6 @@ namespace Services
         public Restaurant GetRestaurantConfig()
         {
             return _restaurantActual;
-        }
-
-        public bool RegistreRestaurantAsync(Restaurant newRestaurant)
-        {
-            try
-            {
-                var restaurant = _context.Restaurants.Where(x => x.nomCompte == newRestaurant.nomCompte).FirstOrDefault();
-
-                if (restaurant == null)
-                {
-                    _context.Restaurants.Add(newRestaurant);
-                    _context.SaveChanges();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al registrar restaurant. " + ex.Message, ex);
-            }
         }
 
         public bool UpdateRestaurant(Restaurant updateRestaurant)

@@ -109,5 +109,27 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet("GetAllUsuaris")]
+        public async Task<IActionResult> GetAllUsuaris()
+        {
+            try
+            {
+                var usuaris = await _context.Usuaris.ToListAsync();
+
+                if (usuaris != null)
+                {
+                    return Ok(usuaris);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

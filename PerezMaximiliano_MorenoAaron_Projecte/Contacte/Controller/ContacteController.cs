@@ -1,15 +1,8 @@
 ﻿using Entitats.ContacteClasses;
-using Entitats.ReservaClasses;
-using Entitats.TaulaClasses;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
-using Services;
 using Services.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Taules.View;
 
@@ -28,6 +21,7 @@ namespace Contacte.Controller
 
         public void Inicialitzar()
         {
+            LoadDataDgvMissatges();
             if (fo == null)
             {
                 fo = new ObrirMissatgeForm();
@@ -93,7 +87,6 @@ namespace Contacte.Controller
 
         private void LoadData()
         {      
-            LoadDataDgvMissatges();
             fm.dataGridViewContacte_missatges.Columns["id"].Visible = false;
             fm.dataGridViewContacte_missatges.Columns["missatge"].Visible = false;
             fm.dataGridViewContacte_missatges.Columns["restaurantId"].Visible = false;

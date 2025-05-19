@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Entitats.PlatClasses;
 
 namespace Data.Mapping.PlatMap

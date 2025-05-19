@@ -74,6 +74,7 @@
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.dataGridViewContacte_missatges = new System.Windows.Forms.DataGridView();
             this.tabPageTaules = new System.Windows.Forms.TabPage();
+            this.dataGridViewTaula_taules = new System.Windows.Forms.DataGridView();
             this.textBoxTaula_aforamentMaxim = new MaterialSkin.Controls.MaterialTextBox();
             this.textBoxTaula_aforamentActual = new MaterialSkin.Controls.MaterialTextBox();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
@@ -82,6 +83,7 @@
             this.buttonTaula_editar = new MaterialSkin.Controls.MaterialButton();
             this.buttonTaula_afegir = new MaterialSkin.Controls.MaterialButton();
             this.tabPageReserves = new System.Windows.Forms.TabPage();
+            this.buttonReserva_actualitzar = new MaterialSkin.Controls.MaterialButton();
             this.materialLabel25 = new MaterialSkin.Controls.MaterialLabel();
             this.buttonReserva_enProces = new MaterialSkin.Controls.MaterialButton();
             this.textBoxReserva_idUsuari = new MaterialSkin.Controls.MaterialTextBox2();
@@ -99,6 +101,9 @@
             this.dataGridViewReserva_reserves = new System.Windows.Forms.DataGridView();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPageHorari = new System.Windows.Forms.TabPage();
+            this.monthCalendarHorari_horari = new Pabo.Calendar.MonthCalendar();
+            this.buttonHorari_desassignarFestiu = new MaterialSkin.Controls.MaterialButton();
+            this.buttonHorari_assignarFestiu = new MaterialSkin.Controls.MaterialButton();
             this.buttonHorari_deleteFranjaDiumenge = new MaterialSkin.Controls.MaterialButton();
             this.buttonHorari_deleteFranjaDissabte = new MaterialSkin.Controls.MaterialButton();
             this.buttonHorari_deleteFranjaDivendres = new MaterialSkin.Controls.MaterialButton();
@@ -128,17 +133,16 @@
             this.buttonHorari_addFranjaDimarts = new MaterialSkin.Controls.MaterialButton();
             this.buttonHorari_addFranjaDilluns = new MaterialSkin.Controls.MaterialButton();
             this.buttonHorari_configurar = new MaterialSkin.Controls.MaterialButton();
-            this.dataGridViewTaula_taules = new System.Windows.Forms.DataGridView();
             this.tabPageConfiguracio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConfiguracio_logo)).BeginInit();
             this.tabPageContacte.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContacte_missatges)).BeginInit();
             this.tabPageTaules.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTaula_taules)).BeginInit();
             this.tabPageReserves.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReserva_reserves)).BeginInit();
             this.materialTabControl1.SuspendLayout();
             this.tabPageHorari.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTaula_taules)).BeginInit();
             this.SuspendLayout();
             // 
             // imageList1
@@ -936,6 +940,17 @@
             this.tabPageTaules.TabIndex = 1;
             this.tabPageTaules.Text = "Taules";
             // 
+            // dataGridViewTaula_taules
+            // 
+            this.dataGridViewTaula_taules.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewTaula_taules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTaula_taules.Location = new System.Drawing.Point(120, 144);
+            this.dataGridViewTaula_taules.Name = "dataGridViewTaula_taules";
+            this.dataGridViewTaula_taules.ReadOnly = true;
+            this.dataGridViewTaula_taules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewTaula_taules.Size = new System.Drawing.Size(653, 262);
+            this.dataGridViewTaula_taules.TabIndex = 84;
+            // 
             // textBoxTaula_aforamentMaxim
             // 
             this.textBoxTaula_aforamentMaxim.AnimateReadOnly = true;
@@ -1061,6 +1076,7 @@
             // tabPageReserves
             // 
             this.tabPageReserves.BackColor = System.Drawing.Color.White;
+            this.tabPageReserves.Controls.Add(this.buttonReserva_actualitzar);
             this.tabPageReserves.Controls.Add(this.materialLabel25);
             this.tabPageReserves.Controls.Add(this.buttonReserva_enProces);
             this.tabPageReserves.Controls.Add(this.textBoxReserva_idUsuari);
@@ -1083,6 +1099,27 @@
             this.tabPageReserves.TabIndex = 6;
             this.tabPageReserves.Text = "Reserves";
             // 
+            // buttonReserva_actualitzar
+            // 
+            this.buttonReserva_actualitzar.AutoSize = false;
+            this.buttonReserva_actualitzar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonReserva_actualitzar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonReserva_actualitzar.Depth = 0;
+            this.buttonReserva_actualitzar.Enabled = false;
+            this.buttonReserva_actualitzar.HighEmphasis = true;
+            this.buttonReserva_actualitzar.Icon = null;
+            this.buttonReserva_actualitzar.Location = new System.Drawing.Point(621, 6);
+            this.buttonReserva_actualitzar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonReserva_actualitzar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonReserva_actualitzar.Name = "buttonReserva_actualitzar";
+            this.buttonReserva_actualitzar.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonReserva_actualitzar.Size = new System.Drawing.Size(114, 20);
+            this.buttonReserva_actualitzar.TabIndex = 118;
+            this.buttonReserva_actualitzar.Text = "ACTUALITZAR";
+            this.buttonReserva_actualitzar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonReserva_actualitzar.UseAccentColor = false;
+            this.buttonReserva_actualitzar.UseVisualStyleBackColor = true;
+            // 
             // materialLabel25
             // 
             this.materialLabel25.AutoSize = true;
@@ -1102,6 +1139,7 @@
             this.buttonReserva_enProces.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonReserva_enProces.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.buttonReserva_enProces.Depth = 0;
+            this.buttonReserva_enProces.Enabled = false;
             this.buttonReserva_enProces.HighEmphasis = true;
             this.buttonReserva_enProces.Icon = null;
             this.buttonReserva_enProces.Location = new System.Drawing.Point(377, 482);
@@ -1163,6 +1201,7 @@
             this.buttonReserva_finalitzar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonReserva_finalitzar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.buttonReserva_finalitzar.Depth = 0;
+            this.buttonReserva_finalitzar.Enabled = false;
             this.buttonReserva_finalitzar.HighEmphasis = true;
             this.buttonReserva_finalitzar.Icon = null;
             this.buttonReserva_finalitzar.Location = new System.Drawing.Point(499, 482);
@@ -1183,6 +1222,7 @@
             this.buttonReserva_cancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonReserva_cancelar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.buttonReserva_cancelar.Depth = 0;
+            this.buttonReserva_cancelar.Enabled = false;
             this.buttonReserva_cancelar.HighEmphasis = true;
             this.buttonReserva_cancelar.Icon = null;
             this.buttonReserva_cancelar.Location = new System.Drawing.Point(621, 482);
@@ -1205,7 +1245,7 @@
             this.buttonReserva_afegir.Depth = 0;
             this.buttonReserva_afegir.HighEmphasis = true;
             this.buttonReserva_afegir.Icon = null;
-            this.buttonReserva_afegir.Location = new System.Drawing.Point(621, 6);
+            this.buttonReserva_afegir.Location = new System.Drawing.Point(503, 6);
             this.buttonReserva_afegir.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonReserva_afegir.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonReserva_afegir.Name = "buttonReserva_afegir";
@@ -1401,6 +1441,9 @@
             // tabPageHorari
             // 
             this.tabPageHorari.BackColor = System.Drawing.Color.White;
+            this.tabPageHorari.Controls.Add(this.monthCalendarHorari_horari);
+            this.tabPageHorari.Controls.Add(this.buttonHorari_desassignarFestiu);
+            this.tabPageHorari.Controls.Add(this.buttonHorari_assignarFestiu);
             this.tabPageHorari.Controls.Add(this.buttonHorari_deleteFranjaDiumenge);
             this.tabPageHorari.Controls.Add(this.buttonHorari_deleteFranjaDissabte);
             this.tabPageHorari.Controls.Add(this.buttonHorari_deleteFranjaDivendres);
@@ -1436,6 +1479,67 @@
             this.tabPageHorari.Size = new System.Drawing.Size(1186, 690);
             this.tabPageHorari.TabIndex = 4;
             this.tabPageHorari.Text = "Horari";
+            // 
+            // monthCalendarHorari_horari
+            // 
+            this.monthCalendarHorari_horari.ActiveMonth.Month = 5;
+            this.monthCalendarHorari_horari.ActiveMonth.Year = 2025;
+            this.monthCalendarHorari_horari.Culture = new System.Globalization.CultureInfo("en-US");
+            this.monthCalendarHorari_horari.Footer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.monthCalendarHorari_horari.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.monthCalendarHorari_horari.Header.TextColor = System.Drawing.Color.White;
+            this.monthCalendarHorari_horari.ImageList = null;
+            this.monthCalendarHorari_horari.Location = new System.Drawing.Point(875, 87);
+            this.monthCalendarHorari_horari.MaxDate = new System.DateTime(2026, 5, 14, 0, 0, 0, 0);
+            this.monthCalendarHorari_horari.MinDate = new System.DateTime(2025, 5, 14, 0, 0, 0, 0);
+            this.monthCalendarHorari_horari.Month.BackgroundImage = null;
+            this.monthCalendarHorari_horari.Month.DateFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.monthCalendarHorari_horari.Month.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.monthCalendarHorari_horari.Name = "monthCalendarHorari_horari";
+            this.monthCalendarHorari_horari.Size = new System.Drawing.Size(281, 221);
+            this.monthCalendarHorari_horari.TabIndex = 195;
+            this.monthCalendarHorari_horari.Weekdays.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.monthCalendarHorari_horari.Weeknumbers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            // 
+            // buttonHorari_desassignarFestiu
+            // 
+            this.buttonHorari_desassignarFestiu.AutoSize = false;
+            this.buttonHorari_desassignarFestiu.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_desassignarFestiu.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_desassignarFestiu.Depth = 0;
+            this.buttonHorari_desassignarFestiu.HighEmphasis = true;
+            this.buttonHorari_desassignarFestiu.Icon = null;
+            this.buttonHorari_desassignarFestiu.Location = new System.Drawing.Point(1011, 50);
+            this.buttonHorari_desassignarFestiu.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_desassignarFestiu.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_desassignarFestiu.Name = "buttonHorari_desassignarFestiu";
+            this.buttonHorari_desassignarFestiu.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_desassignarFestiu.Size = new System.Drawing.Size(104, 20);
+            this.buttonHorari_desassignarFestiu.TabIndex = 194;
+            this.buttonHorari_desassignarFestiu.Text = "DESASSIGNAR";
+            this.buttonHorari_desassignarFestiu.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_desassignarFestiu.UseAccentColor = false;
+            this.buttonHorari_desassignarFestiu.UseVisualStyleBackColor = true;
+            // 
+            // buttonHorari_assignarFestiu
+            // 
+            this.buttonHorari_assignarFestiu.AutoSize = false;
+            this.buttonHorari_assignarFestiu.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_assignarFestiu.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_assignarFestiu.Depth = 0;
+            this.buttonHorari_assignarFestiu.HighEmphasis = true;
+            this.buttonHorari_assignarFestiu.Icon = null;
+            this.buttonHorari_assignarFestiu.Location = new System.Drawing.Point(906, 50);
+            this.buttonHorari_assignarFestiu.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_assignarFestiu.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_assignarFestiu.Name = "buttonHorari_assignarFestiu";
+            this.buttonHorari_assignarFestiu.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_assignarFestiu.Size = new System.Drawing.Size(77, 20);
+            this.buttonHorari_assignarFestiu.TabIndex = 193;
+            this.buttonHorari_assignarFestiu.Text = "ASSIGNAR";
+            this.buttonHorari_assignarFestiu.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_assignarFestiu.UseAccentColor = false;
+            this.buttonHorari_assignarFestiu.UseVisualStyleBackColor = true;
             // 
             // buttonHorari_deleteFranjaDiumenge
             // 
@@ -1865,7 +1969,7 @@
             this.buttonHorari_configurar.Depth = 0;
             this.buttonHorari_configurar.HighEmphasis = true;
             this.buttonHorari_configurar.Icon = null;
-            this.buttonHorari_configurar.Location = new System.Drawing.Point(906, 312);
+            this.buttonHorari_configurar.Location = new System.Drawing.Point(773, 390);
             this.buttonHorari_configurar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonHorari_configurar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonHorari_configurar.Name = "buttonHorari_configurar";
@@ -1876,18 +1980,6 @@
             this.buttonHorari_configurar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.buttonHorari_configurar.UseAccentColor = false;
             this.buttonHorari_configurar.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewTaula_taules
-            // 
-            this.dataGridViewTaula_taules.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewTaula_taules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTaula_taules.Location = new System.Drawing.Point(120, 144);
-            this.dataGridViewTaula_taules.Name = "dataGridViewTaula_taules";
-            this.dataGridViewTaula_taules.ReadOnly = true;
-            this.dataGridViewTaula_taules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTaula_taules.Size = new System.Drawing.Size(653, 262);
-            this.dataGridViewTaula_taules.TabIndex = 84;
-            this.dataGridViewTaula_taules.AutoGenerateColumns = true;
             // 
             // MenuForm
             // 
@@ -1909,13 +2001,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContacte_missatges)).EndInit();
             this.tabPageTaules.ResumeLayout(false);
             this.tabPageTaules.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTaula_taules)).EndInit();
             this.tabPageReserves.ResumeLayout(false);
             this.tabPageReserves.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReserva_reserves)).EndInit();
             this.materialTabControl1.ResumeLayout(false);
             this.tabPageHorari.ResumeLayout(false);
             this.tabPageHorari.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTaula_taules)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2021,5 +2113,9 @@
         public MaterialSkin.Controls.MaterialButton buttonHorari_deleteFranjaDilluns;
         private MaterialSkin.Controls.MaterialLabel materialLabel25;
         public System.Windows.Forms.DataGridView dataGridViewTaula_taules;
+        public MaterialSkin.Controls.MaterialButton buttonHorari_desassignarFestiu;
+        public MaterialSkin.Controls.MaterialButton buttonHorari_assignarFestiu;
+        public Pabo.Calendar.MonthCalendar monthCalendarHorari_horari;
+        public MaterialSkin.Controls.MaterialButton buttonReserva_actualitzar;
     }
 }

@@ -1,6 +1,5 @@
 using Data;
 using Microsoft.EntityFrameworkCore;
-using PerezMaximiliano_MorenoAaron_Projecte;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,12 +1,12 @@
 ﻿using Entitats.HorariClasses;
-using MaterialSkin.Controls;
+using Pabo.Calendar;
 using PerezMaximiliano_MorenoAaron_Projecte.Horari.Model;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading.Tasks;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Contacte.Controller
@@ -15,6 +15,7 @@ namespace Contacte.Controller
     {
         private MenuForm fm;
         private readonly IHorariService _horariService;
+        private bool inicialitzat = false;
 
         private const int MAX_FRANJAS = 5;
         private const int TOTAL_DIES = 7;
@@ -31,18 +32,25 @@ namespace Contacte.Controller
         public void SetForm(MenuForm menuForm)
         {
             fm = menuForm;
-        }
+        } 
 
         public void Inicialitzar()
         {
+            if (inicialitzat) return;
+            inicialitzat = true;
+
             for (int dia = 1; dia <= TOTAL_DIES; dia++)
             {
                 franjasPerDia[dia] = new List<FranjaHoraria>();
             }
 
+            fm.monthCalendarHorari_horari.MinDate = DateTime.Today;
+            fm.monthCalendarHorari_horari.MaxDate = DateTime.Today.AddYears(1);
+
             SetListeners();
             SetDeleteButtonListeners();
             LoadData();
+            PintarDiesAmbHorari();
         }
 
         private void SetListeners()
@@ -56,7 +64,187 @@ namespace Contacte.Controller
             fm.buttonHorari_addFranjaDivendres.Click += (s, e) => AddFranjaVisual(5);
             fm.buttonHorari_addFranjaDissabte.Click += (s, e) => AddFranjaVisual(6);
             fm.buttonHorari_addFranjaDiumenge.Click += (s, e) => AddFranjaVisual(7);
+            fm.buttonHorari_assignarFestiu.Click += ButtonAssignarHorari_assignar_Click;
+            fm.buttonHorari_desassignarFestiu.Click += ButtonAssignarHorari_desassignar_Click;
         }
+
+
+
+        private void ButtonAssignarHorari_assignar_Click(object sender, EventArgs e)
+        {
+            if (fm.monthCalendarHorari_horari.SelectedDates.Count == 0)
+            {
+                MessageBox.Show("Selecciona almenys una data al calendari per marcar com a festiu.");
+                return;
+            }
+
+            var datesSeleccionades = fm.monthCalendarHorari_horari.SelectedDates
+                .Cast<DateTime>()
+                .Select(d => d.Date)
+                .OrderBy(d => d)
+                .ToList();
+
+            // Filtrar solo las fechas habilitadas
+            var datesSeleccionadesHabilitades = datesSeleccionades.Where(d => IsDateEnabled(d)).ToList();
+
+            if (datesSeleccionadesHabilitades.Count == 0)
+            {
+                MessageBox.Show("Les dates seleccionades no estan habilitades per assignar com a festius.");
+                return;
+            }
+
+            if (!DiesConsecutius(datesSeleccionadesHabilitades))
+            {
+                MessageBox.Show("Només pots assignar dies festius consecutius.");
+                return;
+            }
+
+            var primerDia = datesSeleccionadesHabilitades.First();
+            var ultimDia = datesSeleccionadesHabilitades.Last();
+
+            HorariExcepcions excepcio = new HorariExcepcions
+            {
+                data_inici = primerDia,
+                data_final = ultimDia
+            };
+
+            var result = _horariService.AddHorariExcepcions(excepcio);
+
+            if (result)
+            {
+                foreach (var data in datesSeleccionadesHabilitades)
+                {
+                    var item = new DateItem
+                    {
+                        Date = data,
+                        BackColor1 = Color.Red
+                    };
+                    fm.monthCalendarHorari_horari.AddDateInfo(item);
+                }
+
+                fm.monthCalendarHorari_horari.Refresh();
+                PintarDiesAmbHorari();
+                MessageBox.Show("Dies festius assignats correctament.");
+            }
+            else
+            {
+                MessageBox.Show("No s'han pogut assignar els dies festius.");
+            }
+        }
+
+        private bool IsDateEnabled(DateTime date)
+        {
+            var today = DateTime.Today;
+
+            // Ejemplo: solo fechas del mes actual y >= hoy
+            if (date.Month != today.Month) return false;
+            if (date < today) return false;
+
+            return true;
+        }
+
+
+        private void ButtonAssignarHorari_desassignar_Click(object sender, EventArgs e)
+        {
+            if (fm.monthCalendarHorari_horari.SelectedDates.Count == 0)
+            {
+                MessageBox.Show("Selecciona almenys una data al calendari per desmarcar com a festiu.");
+                return;
+            }
+
+            var datesSeleccionades = fm.monthCalendarHorari_horari.SelectedDates
+                .Cast<DateTime>()
+                .Select(d => d.Date)
+                .OrderBy(d => d)
+                .ToList();
+
+            if (!DiesConsecutius(datesSeleccionades))
+            {
+                MessageBox.Show("Només pots desassignar dies festius consecutius.");
+                return;
+            }
+
+            bool canvisFets = false;
+
+            foreach (var data in datesSeleccionades)
+            {
+                var excepcio = _horariService
+                    .GetHorariExcepcions()
+                    .FirstOrDefault(ex =>
+                        data >= ex.data_inici.Date &&
+                        data <= ex.data_final.Date
+                    );
+
+                if (excepcio != null)
+                {
+                    canvisFets = true;
+
+                    _horariService.DeleteHorariExcepcions(excepcio);
+
+                    if (data > excepcio.data_inici)
+                    {
+                        var novaEsquerra = new HorariExcepcions
+                        {
+                            data_inici = excepcio.data_inici,
+                            data_final = data.AddDays(-1),
+                            restaurantid = excepcio.restaurantid
+                        };
+                        _horariService.AddHorariExcepcions(novaEsquerra);
+                    }
+
+                    if (data < excepcio.data_final)
+                    {
+                        var novaDretaInici = data.AddDays(1);
+                        if (novaDretaInici <= excepcio.data_final)
+                        {
+                            var novaDreta = new HorariExcepcions
+                            {
+                                data_inici = novaDretaInici,
+                                data_final = excepcio.data_final,
+                                restaurantid = excepcio.restaurantid
+                            };
+                            _horariService.AddHorariExcepcions(novaDreta);
+                        }
+                    }
+                }
+            }
+
+            if (canvisFets)
+            {
+                foreach (var data in datesSeleccionades)
+                {
+                    fm.monthCalendarHorari_horari.RemoveDateInfo(data);
+                }
+
+                fm.monthCalendarHorari_horari.Refresh();
+                PintarDiesAmbHorari();
+                MessageBox.Show("Dies festius desassignats correctament.");
+            }
+            else
+            {
+                MessageBox.Show("Cap dels dies seleccionats és festiu.");
+            }
+        }
+
+        private bool DiesConsecutius(List<DateTime> dates)
+        {
+            dates = dates.OrderBy(d => d).ToList();
+            for (int i = 1; i < dates.Count; i++)
+            {
+                if ((dates[i] - dates[i - 1]).Days != 1)
+                    return false;
+            }
+            return true;
+        }
+
+
+
+        private void ButtonHorari_assignarFestius_Click(object sender, EventArgs e)
+        {
+            PintarDiesAmbHorari();
+            fm.ShowDialog();
+        }
+
 
         private void SetDeleteButtonListeners()
         {
@@ -85,6 +273,55 @@ namespace Contacte.Controller
             // Actualiza el estado de los botones (activar/desactivar el botón de añadir según corresponda)
             UpdateButtonsState();
         }
+
+        private void PintarDiesAmbHorari()
+        {
+            // Días con horario habitual
+            var diesAmbHorari = _horariService.GetDiesAmbHorari();
+
+            // Excepciones (festivos)
+            var excepcions = _horariService.GetHorariExcepcions(); // asegúrate de tener este método
+
+            if (diesAmbHorari == null || diesAmbHorari.Count == 0)
+                return;
+
+            DateTime avui = DateTime.Today;
+            DateTime fi = avui.AddMonths(12);
+
+            for (DateTime data = avui; data <= fi; data = data.AddDays(1))
+            {
+                int diaSetmana = ((int)data.DayOfWeek == 0) ? 7 : (int)data.DayOfWeek;
+
+                bool esLaborable = diesAmbHorari.Contains(diaSetmana);
+                bool esFestiu = excepcions.Any(e => data >= e.data_inici.Date && data <= e.data_final.Date);
+
+                fm.monthCalendarHorari_horari.RemoveDateInfo(data);
+
+                if (esLaborable && !esFestiu)
+                {
+                    // Día laborable normal
+                    var item = new DateItem
+                    {
+                        Date = data,
+                        BackColor1 = Color.LightGreen
+                    };
+                    fm.monthCalendarHorari_horari.AddDateInfo(item);
+                }
+                else if (esFestiu)
+                {
+                    // Día festivo
+                    var item = new DateItem
+                    {
+                        Date = data,
+                        BackColor1 = Color.Gray
+                    };
+                    fm.monthCalendarHorari_horari.AddDateInfo(item);
+                }
+            }
+
+            fm.monthCalendarHorari_horari.Refresh();
+        }
+
 
 
         private Panel GetPanelByDia(int dia)
@@ -130,7 +367,7 @@ namespace Contacte.Controller
             };
 
             int offsetY = franjasPerDia[dia].Count * 35;
-
+             
             pickerInici.Location = new Point(10, offsetY);
             separador.Location = new Point(80, offsetY + 5); // Acercar separador al inicio
             pickerFinal.Location = new Point(95, offsetY);   // Acercar pickerFinal al separador
@@ -289,6 +526,9 @@ namespace Contacte.Controller
 
             if (result)
             {
+                fm.monthCalendarHorari_horari.Refresh();
+                PintarDiesAmbHorari();
+
                 MessageBox.Show("Tots els horaris s'han guardat correctament.");
             }
             else
@@ -296,6 +536,5 @@ namespace Contacte.Controller
                 MessageBox.Show("Error al guardar els horaris.");
             }
         }
-
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Data.Mapping.ContacteClasses;
+using Data.Mapping.HorariExcepcionsMap;
 using Data.Mapping.HorariMap;
 using Data.Mapping.PlatMap;
 using Data.Mapping.ReservaMap;
+using Data.Mapping.RessenyaMap;
 using Data.Mapping.RestaurantMap;
 using Data.Mapping.TaulaMap;
 using Data.Mappings.AuthMap;
@@ -10,14 +12,10 @@ using Entitats.ContacteClasses;
 using Entitats.HorariClasses;
 using Entitats.PlatClasses;
 using Entitats.ReservaClasses;
+using Entitats.RessenyaClasses;
 using Entitats.RestaurantClasses;
 using Entitats.TaulaClasses;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data
 {
@@ -38,6 +36,9 @@ namespace Data
         public DbSet<MissatgesView> MissatgesView { get; set; }
         public DbSet<FavoritsUsuari> FavoritsUsuaris { get; set; }
         public DbSet<Horari> Horaris { get; set; }
+        public DbSet<HorariExcepcions> HorarisExcepcions { get; set; }
+        public DbSet<Ressenya> Ressenyas { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -54,6 +55,8 @@ namespace Data
             modelBuilder.ApplyConfiguration(new MissatgesViewMap());
             modelBuilder.ApplyConfiguration(new FavoritsUsuariMap());
             modelBuilder.ApplyConfiguration(new HorariMap());
+            modelBuilder.ApplyConfiguration(new HorariExcepcionsMap());
+            modelBuilder.ApplyConfiguration(new RessenyaMap());
 
             base.OnModelCreating(modelBuilder);
         }

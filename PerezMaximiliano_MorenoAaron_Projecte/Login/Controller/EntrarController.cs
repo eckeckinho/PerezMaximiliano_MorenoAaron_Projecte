@@ -40,6 +40,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
         {
             f.comboBox_tipuscuina.DataSource = _tipusService.GetTipusCuines();
             f.comboBox_tipuscuina.DisplayMember = "descripcio";
+
             f.comboBox_tipuspreu.DataSource = _tipusService.GetTipusPreus();
             f.comboBox_tipuspreu.DisplayMember = "descripcio";
         }
@@ -52,43 +53,19 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             f.materialCheckboxEntrar_veureContrasenya.CheckedChanged += CheckboxEntrar_veureContrasenya_CheckedChanged;
             f.materialCheckboxRegistrar_veureContrasenya.CheckedChanged += CheckboxRegistrar_veureContrasenya_CheckedChanged;
         }
-
-        private void CheckboxRegistrar_veureContrasenya_CheckedChanged(object sender, EventArgs e)
-        {
-            
-            if (f.materialCheckboxRegistrar_veureContrasenya.Checked)
-            {
-                f.textbox_contrasenyaRegis.PasswordChar = '\0';
-            }
-            else
-            {
-                f.textbox_contrasenyaRegis.PasswordChar = '●';
-            }
-        }
-
-        private void CheckboxEntrar_veureContrasenya_CheckedChanged(object sender, EventArgs e)
-        {
-            if (f.materialCheckboxEntrar_veureContrasenya.Checked)
-            {
-                f.textBox_contrasenyaEntrar.PasswordChar = '\0';
-            }
-            else
-            {
-                f.textBox_contrasenyaEntrar.PasswordChar = '●';
-            }
-        }
-
         private void SetListenersMenu()
         {
             fm.materialTabControl1.SelectedIndexChanged += MaterialTabControl1_SelectedIndexChanged;
             fm.buttonMain_tancarSessio.Click += ButtonMain_tancarSessio_Click;
         }
 
+        // Reiniciar app en caso de cerrar sesión
         private void ButtonMain_tancarSessio_Click(object sender, EventArgs e)
         {
             Application.Restart();
         }
 
+        // Controla los tabs para que al hacer click se instancie el controlador correspondiente
         private void MaterialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = fm.materialTabControl1.SelectedIndex;
@@ -128,14 +105,16 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
 
             if (resultatLogin)
             {
-                // Setteamos el restaurante el cual ha realizado login correctamente para poderlo usar en todos los controllers de la aplicacion
+                // Setteamos el restaurante el cual ha realizado login correctamente para poderlo usar en todos los controladores de la aplicacion
                 var contextRest = _serviceProvider.GetRequiredService<IRestaurantContext>();
                 contextRest.restaurantActual = restaurant;
 
+                // Instanciamos el controlador de la primera vista
                 var reservesController = _serviceProvider.GetRequiredService<ReservesController>();
                 reservesController.SetForm(fm);
                 reservesController.Inicialitzar();
 
+                // Gestionar los forms correspondientes
                 f.Hide();
                 fm.Text = $"Benvingut, {restaurant.nomCompte}!";
                 SetListenersMenu();
@@ -147,6 +126,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             }
         }
 
+        // Registrar restaurant
         private void Button_registrar_Click(object sender, EventArgs e)
         {
             try
@@ -166,8 +146,11 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                 f.comboBox_tipuscuina.SelectedItem != null &&
                 f.comboBox_tipuspreu.SelectedItem != null)
                 {
-
-                    byte[] logoByteArray = logo != null ? ImageToByteArray(logo) : null;
+                    byte[] logoByteArray = null;
+                    if (logo != null)
+                    {
+                        logoByteArray = ImageToByteArray(logo);
+                    }
 
                     Restaurant newRestaurant = new Restaurant
                     {
@@ -227,6 +210,34 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             }
         }
 
+        // Mostrar contrassenya de la vista registrar
+        private void CheckboxRegistrar_veureContrasenya_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (f.materialCheckboxRegistrar_veureContrasenya.Checked)
+            {
+                f.textbox_contrasenyaRegis.PasswordChar = '\0';
+            }
+            else
+            {
+                f.textbox_contrasenyaRegis.PasswordChar = '●';
+            }
+        }
+
+        // Mostrar contrassenya de la vista login
+        private void CheckboxEntrar_veureContrasenya_CheckedChanged(object sender, EventArgs e)
+        {
+            if (f.materialCheckboxEntrar_veureContrasenya.Checked)
+            {
+                f.textBox_contrasenyaEntrar.PasswordChar = '\0';
+            }
+            else
+            {
+                f.textBox_contrasenyaEntrar.PasswordChar = '●';
+            }
+        }
+
+        // Insertar logo màxim 150x150 píxels
         private void Button_logo_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -248,7 +259,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             }
         }
 
-
+        // Convertir imatge a byte array
         private byte[] ImageToByteArray(Image logo)
         {
             using (MemoryStream ms = new MemoryStream())
