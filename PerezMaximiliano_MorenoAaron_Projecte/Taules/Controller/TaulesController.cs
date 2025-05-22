@@ -3,6 +3,7 @@ using PerezMaximiliano_MorenoAaron_Projecte.View;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Taules.View;
@@ -41,9 +42,30 @@ namespace Taules.Controller
             fm.buttonTaula_eliminar.Click += Button_eliminar_Click;
             fm.dataGridViewTaula_taules.SelectionChanged += DataGridView_taules_SelectionChanged;
             fm.comboBoxTaula_comensals.SelectedIndexChanged += ComboBoxTaula_comensals_SelectedIndexChanged;
+            fm.dataGridViewTaula_taules.CellFormatting += DataGridView_taules_CellFormatting;
 
             fa.buttonTaula_afegir_editar.Click += Button_afegir_editar_taula_Click;
         }
+
+        private void DataGridView_taules_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dgv = sender as DataGridView;
+
+            if (dgv?.Rows[e.RowIndex].DataBoundItem is Taula taula)
+            {
+                if (taula.ocupada)
+                {
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                }
+                else
+                {
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                }
+            }
+        }
+
 
         private void ComboBoxTaula_comensals_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -137,7 +159,7 @@ namespace Taules.Controller
                 }
                 else
                 {
-                    MessageBox.Show("No s'han pogut eliminar le taules.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No s'han pogut eliminar les taules.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else

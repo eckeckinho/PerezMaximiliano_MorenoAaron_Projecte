@@ -53,10 +53,30 @@ namespace Services
             var avui = DateTime.Today;
             var ara = DateTime.Now;
 
-            var taulesIds = _context.Taules.Where(t => t.restaurantId == _restaurantActual.id).Select(t => t.id).ToList();
+            var taules = _context.Taules.Where(t => t.restaurantId == _restaurantActual.id).ToList();
+            var taulesIds = taules.Select(t => t.id).ToList();
 
             // Reserves d'avui pendents de cada taula del restaurant
             var reserves = _context.Reservas.Where(r => taulesIds.Contains(r.taulaid) && r.datareserva == avui && r.estatid == (int)EstatReserva.EnProces).ToList();
+
+            // IDs de taules que tenen una reserva activa en aquest moment
+            var taulesOcupadesIds = reserves
+                .Where(r =>
+                    r.hora.HasValue &&
+                    ara >= avui.Add(r.hora.Value) &&
+                    ara < avui.Add(r.hora.Value).AddMinutes(r.durada)
+                )
+                .Select(r => r.taulaid)
+                .Distinct()
+                .ToList();
+
+            // Actualitzem l'estat 'ocupada' de totes les taules del restaurant
+            foreach (var taula in taules)
+            {
+                taula.ocupada = taulesOcupadesIds.Contains(taula.id);
+            }
+
+            _context.SaveChanges();
 
             var aforamentActual = reserves.Where(r =>
                 r.hora.HasValue && // La reserva tiene hora asignada.

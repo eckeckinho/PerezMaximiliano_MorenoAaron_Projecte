@@ -9,6 +9,7 @@ namespace Entitats.TaulaClasses
         public int id { get; set; }
         public int numComensals { get; set; }
         public int restaurantId { get; set; }
+        public bool ocupada { get; set; }
     }
 
     public class CapacitatTaulaCombo
