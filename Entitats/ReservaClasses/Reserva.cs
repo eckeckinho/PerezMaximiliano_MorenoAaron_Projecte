@@ -15,6 +15,7 @@ namespace Entitats.ReservaClasses
         public int usuariId { get; set; }
         public int durada { get; set; }
         public int restaurantid { get; set; }
+        public bool valorat { get; set; }
     }
 
     public enum EstatReserva

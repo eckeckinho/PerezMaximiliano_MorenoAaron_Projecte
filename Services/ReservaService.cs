@@ -179,6 +179,5 @@ namespace Services
                 throw new Exception("Error al actualitzar la reserva. " + ex.Message, ex);
             }
         }
-
     }
 }

@@ -30,6 +30,11 @@ namespace Contacte.Controller
             }
         }
 
+        public void SetForm(MenuForm menuForm)
+        {
+            fm = menuForm;
+        }
+
         private void SetListeners()
         {
             fm.buttonContacte_obrir.Click += Button_obrir_Click;
@@ -39,6 +44,44 @@ namespace Contacte.Controller
             fm.dataGridViewContacte_missatges.CellFormatting += DataGridViewContacte_missatges_CellFormatting; 
         }
 
+        private void LoadData()
+        {
+            fm.dataGridViewContacte_missatges.Columns["id"].Visible = false;
+            fm.dataGridViewContacte_missatges.Columns["missatge"].Visible = false;
+            fm.dataGridViewContacte_missatges.Columns["restaurantId"].Visible = false;
+            fm.dataGridViewContacte_missatges.Columns["nom"].Visible = false;
+            fm.dataGridViewContacte_missatges.Columns["cognoms"].Visible = false;
+            fm.dataGridViewContacte_missatges.Columns["telefon"].Visible = false;
+            fm.dataGridViewContacte_missatges.Columns["dataMissatge"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
+        }
+
+        private void LoadDataDgvMissatges()
+        {
+            var filtre = fm.textBoxContacte_filtre.Text;
+            var desde = fm.dateTimePickerContacte_desde.Value;
+            var hasta = fm.dateTimePickerContacte_hasta.Value;
+            fm.dataGridViewContacte_missatges.DataSource = _contacteService.GetMissatgesUsuariRestaurant(filtre, desde, hasta);
+        }
+
+        // Obrir missatge amb la informació del missatge al text del form
+        private void Button_obrir_Click(object sender, EventArgs e)
+        {
+            if (fm.dataGridViewContacte_missatges.SelectedRows.Count > 0)
+            {
+                var missatgeSeleccionat = fm.dataGridViewContacte_missatges.SelectedRows[0].DataBoundItem as MissatgesView;
+
+                if (missatgeSeleccionat != null)
+                {
+                    fo.Text = $"Autor: {missatgeSeleccionat.correu} ({missatgeSeleccionat.nom} {missatgeSeleccionat.cognoms}) - Data: {missatgeSeleccionat.dataMissatge:dd/MM/yyyy HH:mm} - Telèfon: {missatgeSeleccionat.telefon}";
+                    fo.multiLineContacte_missatge.Text = missatgeSeleccionat.missatge;
+                    _contacteService.MarcarMissatgeLlegit(missatgeSeleccionat);
+                    fo.ShowDialog();
+                    LoadDataDgvMissatges();
+                }
+            }
+        }
+
+        // Pintar fila de gris si el missatge està llegit
         private void DataGridViewContacte_missatges_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (fm.dataGridViewContacte_missatges.Columns[e.ColumnIndex].Name == "llegit")
@@ -66,48 +109,6 @@ namespace Contacte.Controller
         private void DateTimePicker_desde_ValueChanged(object sender, EventArgs e)
         {
             LoadDataDgvMissatges();
-        }
-
-        private void Button_obrir_Click(object sender, EventArgs e)
-        {
-            if (fm.dataGridViewContacte_missatges.SelectedRows.Count > 0)
-            {
-                var missatgeSeleccionat = fm.dataGridViewContacte_missatges.SelectedRows[0].DataBoundItem as MissatgesView;
-
-                if (missatgeSeleccionat != null)
-                {
-                    fo.Text = $"Autor: {missatgeSeleccionat.correu} ({missatgeSeleccionat.nom} {missatgeSeleccionat.cognoms}) - Data: {missatgeSeleccionat.dataMissatge:dd/MM/yyyy HH:mm} - Telèfon: {missatgeSeleccionat.telefon}";
-                    fo.multiLineContacte_missatge.Text = missatgeSeleccionat.missatge;
-                    _contacteService.MarcarMissatgeLlegit(missatgeSeleccionat);
-                    fo.ShowDialog();
-                    LoadDataDgvMissatges();
-                }
-            }
-        }
-
-        private void LoadData()
-        {      
-            fm.dataGridViewContacte_missatges.Columns["id"].Visible = false;
-            fm.dataGridViewContacte_missatges.Columns["missatge"].Visible = false;
-            fm.dataGridViewContacte_missatges.Columns["restaurantId"].Visible = false;
-            fm.dataGridViewContacte_missatges.Columns["nom"].Visible = false;
-            fm.dataGridViewContacte_missatges.Columns["cognoms"].Visible = false;
-            fm.dataGridViewContacte_missatges.Columns["telefon"].Visible = false;
-            fm.dataGridViewContacte_missatges.Columns["dataMissatge"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
-        }
-
-
-        private void LoadDataDgvMissatges()
-        {
-            var filtre = fm.textBoxContacte_filtre.Text;
-            var desde = fm.dateTimePickerContacte_desde.Value;
-            var hasta = fm.dateTimePickerContacte_hasta.Value;
-            fm.dataGridViewContacte_missatges.DataSource = _contacteService.GetMissatgesUsuariRestaurant(filtre, desde, hasta);
-        }
-
-        public void SetForm(MenuForm menuForm)
-        {
-            fm = menuForm;
         }
     }
 }

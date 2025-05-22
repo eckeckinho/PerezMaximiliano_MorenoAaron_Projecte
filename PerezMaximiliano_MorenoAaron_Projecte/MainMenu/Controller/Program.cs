@@ -6,6 +6,7 @@ using Reserves.Controller;
 using Contacte.Controller;
 using Configuracio.Controller;
 using Taules.Controller;
+using MenuPlats.Controller;
 
 namespace PerezMaximiliano_MorenoAaron_Projecte
 {
@@ -33,6 +34,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             services.AddScoped<HorariController>();
             services.AddScoped<ContacteController>();
             services.AddScoped<ConfiguracioController>();
+            services.AddScoped<PlatsController>();
 
             // Construye el proveedor de servicios a partir de la colección de servicios. (es responsable de crear instancias de los servicios y controladores)
 

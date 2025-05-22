@@ -21,10 +21,11 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
         {
             try
             {
-                var restaurant = _context.Restaurants.Where(x => x.nomCompte == usuariRestaurant).FirstOrDefault();
+                var restaurant = _context.Restaurants.Where(x => x.nomCompte.Equals(usuariRestaurant)).FirstOrDefault();
 
                 if (restaurant != null)
                 {
+                    // Verificar la contrasenya
                     if (BCrypt.Net.BCrypt.Verify(password, restaurant.contrasenyaCompte))
                     {
                         return (true, restaurant);
@@ -49,7 +50,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
         {
             try
             {
-                var restaurant = _context.Restaurants.Where(x => x.nomCompte == newRestaurant.nomCompte).FirstOrDefaultAsync();
+                var restaurant = _context.Restaurants.Where(x => x.nomCompte.Trim().Equals(newRestaurant.nomCompte.Trim())).FirstOrDefault();
 
                 if (restaurant == null)
                 {

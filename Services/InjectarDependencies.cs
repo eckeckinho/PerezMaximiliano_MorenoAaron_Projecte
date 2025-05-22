@@ -26,6 +26,7 @@ namespace Services
             services.AddScoped<IHorariService, HorariService>();
             services.AddScoped<IConfiguracioService, ConfiguracioService>();
             services.AddScoped<IUsuariService, UsuariService>();
+            services.AddScoped<IPlatService, PlatService>();
 
             return services;
         }

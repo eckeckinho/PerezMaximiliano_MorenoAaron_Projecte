@@ -251,6 +251,12 @@
     <Compile Include="Horari\Model\FranjaHoraria.cs" />
     <Compile Include="Login\Controller\EntrarController.cs" />
     <Compile Include="MainMenu\Controller\Program.cs" />
+    <Compile Include="MenuPlats\View\AfegirPlatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuPlats\View\AfegirPlatForm.Designer.cs">
+      <DependentUpon>AfegirPlatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reserves\Controller\ReservesController.cs" />
     <Compile Include="Reserves\View\AfegirReservaForm.cs">
@@ -259,6 +265,7 @@
     <Compile Include="Reserves\View\AfegirReservaForm.Designer.cs">
       <DependentUpon>AfegirReservaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuPlats\Controller\PlatsController.cs" />
     <Compile Include="Taules\Controller\TaulesController.cs" />
     <Compile Include="Configuracio\View\NovaContrasenyaForm.cs">
       <SubType>Form</SubType>
@@ -286,6 +293,9 @@
     </Compile>
     <EmbeddedResource Include="Contacte\View\ObrirMissatgeForm.resx">
       <DependentUpon>ObrirMissatgeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuPlats\View\AfegirPlatForm.resx">
+      <DependentUpon>AfegirPlatForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

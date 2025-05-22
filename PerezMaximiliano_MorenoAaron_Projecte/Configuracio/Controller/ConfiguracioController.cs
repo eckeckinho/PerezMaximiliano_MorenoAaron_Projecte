@@ -14,6 +14,7 @@ namespace Configuracio.Controller
         private MenuForm fm;
         NovaContrasenyaForm fn;
         Image logo;
+        Image imatgeRestaurant;
         private readonly IConfiguracioService _configuracioService;
         private readonly ITipusService _tipusService;
 
@@ -46,6 +47,7 @@ namespace Configuracio.Controller
             fn.materialCheckboxConfiguracio_veureContrasenyaRepetir.CheckedChanged += MaterialCheckbox_veureContrasenyaRepetir_CheckedChanged;
             fn.buttonConfiguracio_canviarContrasenya.Click += ButtonConfiguracio_canviarContrasenya_Click;
             fm.buttonConfiguracio_logo.Click += ButtonConfiguracio_logo_Click;
+            fm.buttonConfiguracio_imatgeRestaurant.Click += ButtonConfiguracio_imatgeRestaurant_Click;
         }
 
         private void LoadData()
@@ -86,6 +88,7 @@ namespace Configuracio.Controller
             fm.textBoxConfiguracio_paginaweb.Text = restaurant.paginaWeb;
             fm.textBoxConfiguracio_aforament.Text = restaurant.aforament.ToString();
             fm.pictureBoxConfiguracio_logo.Image = ByteArrayToImage(restaurant.logo);
+            fm.pictureBoxConfiguracio_imatgeRestaurant.Image = ByteArrayToImage(restaurant.imatgeRestaurant);
         }
 
         // Actualitzar la configuració del restaurant
@@ -105,7 +108,48 @@ namespace Configuracio.Controller
                  !string.IsNullOrWhiteSpace(fm.textBoxConfiguracio_descripcio.Text) &&
                  !string.IsNullOrWhiteSpace(fm.textBoxConfiguracio_paginaweb.Text))
                 {
-                    byte[] logoByteArray = logo != null ? ImageToByteArray(logo) : null;
+                    if (!int.TryParse(fm.textBoxConfiguracio_aforament.Text, out int aforament))
+                    {
+                        MessageBox.Show("El camp 'Aforament' ha de ser un número enter.", "Valor no vàlid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    if (fm.textBoxConfiguracio_usuari.Text.Contains(" "))
+                    {
+                        MessageBox.Show("El nom d'usuari no pot contenir espais.", "Usuari no vàlid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    byte[] logoByteArray = null;
+                    if (logo != null)
+                    {
+                        logoByteArray = ImageToByteArray(logo);
+                    }
+                    else if (fm.pictureBoxConfiguracio_logo.Image != null)
+                    {
+                        logoByteArray = ImageToByteArray(fm.pictureBoxConfiguracio_logo.Image);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Afegeix un logotip pel teu restaurant.", "Logo necessari", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    byte[] imatgeRestaurantByteArray = null;
+                    if (imatgeRestaurant != null)
+                    {
+                        imatgeRestaurantByteArray = ImageToByteArray(imatgeRestaurant);
+                    }
+                    else if (fm.pictureBoxConfiguracio_imatgeRestaurant.Image != null)
+                    {
+                        imatgeRestaurantByteArray = ImageToByteArray(fm.pictureBoxConfiguracio_imatgeRestaurant.Image);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Afegeix una imatge del teu restaurant.", "Imatge del restaurant necessària", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
 
                     Restaurant updateRestaurant = new Restaurant
                     {
@@ -117,12 +161,13 @@ namespace Configuracio.Controller
                         carrer = fm.textBoxConfiguracio_carrer.Text,
                         telefon = fm.textBoxConfiguracio_telefon.Text,
                         correu = fm.textBoxConfiguracio_correu.Text,
-                        aforament = int.Parse(fm.textBoxConfiguracio_aforament.Text),
+                        aforament = aforament,
                         tipusCuinaId = ((TipusCuina)fm.comboBoxConfiguracio_tipuscuina.SelectedItem).id,
                         tipusPreuId = ((TipusPreu)fm.comboBoxConfiguracio_tipuspreu.SelectedItem).id,
                         descripcio = fm.textBoxConfiguracio_descripcio.Text,
                         paginaWeb = fm.textBoxConfiguracio_paginaweb.Text,
-                        logo = logoByteArray
+                        logo = logoByteArray,
+                        imatgeRestaurant = imatgeRestaurantByteArray
                     };
 
                     bool resultatUpdate = _configuracioService.UpdateRestaurant(updateRestaurant);
@@ -229,12 +274,33 @@ namespace Configuracio.Controller
             }
         }
 
-        // Convertir el logo a byte array i viceversa
-        private Image ByteArrayToImage(byte[] logo)
+        private void ButtonConfiguracio_imatgeRestaurant_Click(object sender, EventArgs e)
         {
-            if (logo != null && logo.Length > 0)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Arxius d'imatge|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            openFileDialog.Title = "Seleccioni la imatge del restaurant";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                using (var ms = new MemoryStream(logo))
+                imatgeRestaurant = Image.FromFile(openFileDialog.FileName);
+
+                if (imatgeRestaurant.Width <= 500 && imatgeRestaurant.Height <= 300)
+                {
+                    fm.pictureBoxConfiguracio_imatgeRestaurant.Image = imatgeRestaurant;
+                }
+                else
+                {
+                    MessageBox.Show("La imatge del restaurant ha de tenir un màxim de 500x300 píxels.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        // Convertir imatge a byte array i viceversa
+        private Image ByteArrayToImage(byte[] imatge)
+        {
+            if (imatge != null && imatge.Length > 0)
+            {
+                using (var ms = new MemoryStream(imatge))
                 {
                     return Image.FromStream(ms);
                 }
@@ -245,11 +311,11 @@ namespace Configuracio.Controller
             }
         }
 
-        private byte[] ImageToByteArray(Image logo)
+        private byte[] ImageToByteArray(Image imatge)
         {
             using (MemoryStream ms = new MemoryStream())
             {
-                logo.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                imatge.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 return ms.ToArray();
             }
         }

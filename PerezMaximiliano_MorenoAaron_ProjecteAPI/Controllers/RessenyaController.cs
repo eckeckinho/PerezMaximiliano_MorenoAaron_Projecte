@@ -2,7 +2,6 @@
 using Entitats.RessenyaClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 {
@@ -22,7 +21,18 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
         {
             try
             {
+                //Afegim ressenya
                 _context.Ressenyas.Add(ressenya);
+
+                var ressenyesRestaurant = await _context.Ressenyas.Where(x => x.restaurantid == ressenya.restaurantid).ToListAsync();
+
+                // Calcular la mitjana de les valoracions i l'assignem al restaurant de la ressenya
+                var valoracioRestaurant = ressenyesRestaurant.Sum(x => x.valoracio) / ressenyesRestaurant.Count;
+
+                var restaurant = await _context.Restaurants.Where(x => x.id == ressenya.restaurantid).FirstOrDefaultAsync();
+
+                restaurant.valoraciomedia = (decimal?)valoracioRestaurant;
+
                 await _context.SaveChangesAsync();
                 return Ok();
             }
@@ -55,6 +65,31 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
                 var ressenyesRestaurant = await _context.Ressenyas.Where(x=> x.restaurantid == restaurantid).ToListAsync();
 
                 return Ok(ressenyesRestaurant);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+
+        [HttpPut("ConfirmarRessenya")]
+        public async Task<IActionResult> ConfirmarRessenya(int reservaId)
+        {
+            try
+            {
+                var reserva = await _context.Reservas.Where(x => x.id == reservaId).FirstOrDefaultAsync();
+
+                if (reserva == null)
+                {
+                    return NotFound();
+                }
+
+                reserva.valorat = true;
+
+                await _context.SaveChangesAsync();
+
+                return Ok("Ressenya confirmada");
             }
             catch (Exception ex)
             {

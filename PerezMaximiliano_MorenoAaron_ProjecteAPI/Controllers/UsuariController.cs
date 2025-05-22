@@ -1,6 +1,5 @@
 ﻿using Data;
 using Entitats.AuthClasses;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +25,8 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 
                 if (usuari != null)
                 {
+                    // Actualiza los valores actuales del objeto 'usuari' con los valores del objeto 'updUsuari'.
+                    // Marca el objeto como modificado para que se apliquen los cambios al hacer SaveChanges().
                     _context.Entry(usuari).CurrentValues.SetValues(updUsuari);
                     await _context.SaveChangesAsync();
                     return Ok();
@@ -50,6 +51,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 
                 if (usuari != null)
                 {
+                    // Hash de la contrasenya 
                     usuari.contrasenya = BCrypt.Net.BCrypt.HashPassword(contraRequest.contrasenya);
                     await _context.SaveChangesAsync();
                     return Ok();
@@ -65,7 +67,6 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
             }
         }
 
-
         [HttpPost("ComprovarContrasenya")]
         public async Task<IActionResult> ComprovarContrasenya([FromBody] ContrasenyaRequest contraRequest)
         {
@@ -73,6 +74,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
             {
                 var usuari = await _context.Usuaris.FirstOrDefaultAsync(x => x.id == contraRequest.idUsuari);
 
+                // Comprovar si la contrasenya existeix
                 if (usuari != null && BCrypt.Net.BCrypt.Verify(contraRequest.contrasenya, usuari.contrasenya))
                 {
                     return Ok();

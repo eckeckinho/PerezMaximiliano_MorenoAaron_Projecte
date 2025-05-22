@@ -23,6 +23,7 @@ namespace Reserves.Controller
         private readonly IUsuariService _usuariService;
         private readonly IHorariService _horariService;
         private Reserva reserva;
+        private DateTime? ultimaDataSeleccionadaValida = null;
 
 
         public ReservesController(IReservaService reservaService, ITipusService tipusService, ITaulaService taulaService, IUsuariService usuariService, IHorariService horariService)
@@ -44,8 +45,6 @@ namespace Reserves.Controller
                 SetListeners();
                 LoadData();
             }
-
-            PintarDiesAmbHorari();
         }
 
         public void SetForm(MenuForm menuForm)
@@ -83,6 +82,7 @@ namespace Reserves.Controller
             fm.dataGridViewReserva_reserves.Columns["usuariId"].Visible = false;
             fm.dataGridViewReserva_reserves.Columns["estatId"].Visible = false;
             fm.dataGridViewReserva_reserves.Columns["restaurantid"].Visible = false;
+            fm.dataGridViewReserva_reserves.Columns["valorat"].Visible = false;
 
             fr.comboBoxAfegirReserva_usuari.DataSource = _usuariService.GetUsuaris();
             fr.comboBoxAfegirReserva_usuari.DisplayMember = "correu";
@@ -172,6 +172,32 @@ namespace Reserves.Controller
             fr.monthCalendarReserva_horari.Refresh();
         }
 
+        private void SeleccionarPrimeraDataLaborable()
+        {
+            DateTime data = DateTime.Today;
+            DateTime fi = data.AddYears(1);
+
+            while (data <= fi)
+            {
+                // Buscar si la fecha seleccionada está pintada de verde (es decir: que es laborable y por lo tanto seleccionable para reservar)
+                var dateInfos = fr.monthCalendarReserva_horari.GetDateInfo(data);
+                var dateInfo = dateInfos?.FirstOrDefault();
+
+                if (dateInfo != null && dateInfo.BackColor1 == Color.LightGreen)
+                {
+                    // Seleccionamos la fecha en el calendario
+                    fr.monthCalendarReserva_horari.ClearSelection();
+                    fr.monthCalendarReserva_horari.SelectDate(data);
+
+                    // Seleccionar seleccionar el número de comensals per carregar les dades
+                    ComboBoxAfegirReserva_taula_SelectedIndexChanged(fr.comboBoxAfegirReserva_taula, EventArgs.Empty);
+                    break;
+                }   
+
+                // Següent día
+                data = data.AddDays(1);
+            }
+        }
 
         private void ComboBoxAfegirReserva_durada_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -227,6 +253,8 @@ namespace Reserves.Controller
             {
                 fr.comboBoxAfegirReserva_franjaHoraria.SelectedItem = franjaSeleccionada;
             }
+
+            fr.comboBoxAfegirReserva_hora.SelectedItem = reserva.hora;
 
             fr.comboBoxAfegirReserva_durada.DataSource = new List<int> { 60, 90, 120 }; 
             fr.comboBoxAfegirReserva_durada.SelectedItem = reserva.durada;
@@ -298,20 +326,34 @@ namespace Reserves.Controller
 
             // Buscar si la fecha seleccionada está pintada de verde (es decir: que es laborable y por lo tanto seleccionable para reservar)
             var dateInfoArray = fr.monthCalendarReserva_horari.GetDateInfo(dataSeleccionada);
-            var dateInfo = dateInfoArray?.FirstOrDefault(); 
+            var dateInfo = dateInfoArray?.FirstOrDefault();
 
             if (dateInfo == null || dateInfo.BackColor1 != Color.LightGreen)
             {
                 // Día no permitido, cancelar / no permitir que se seleccione
                 MessageBox.Show("Aquest dia no està disponible per a reserves.", "Data no vàlida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                fr.monthCalendarReserva_horari.ClearSelection();
-                fr.comboBoxAfegirReserva_franjaHoraria.DataSource = null;
-                fr.comboBoxAfegirReserva_hora.DataSource = null;
+                if (ultimaDataSeleccionadaValida.HasValue)
+                {
+                    // Volver a seleccionar la última fecha válida
+                    fr.monthCalendarReserva_horari.ClearSelection();
+                    fr.monthCalendarReserva_horari.SelectDate(ultimaDataSeleccionadaValida.Value);
+
+                    // Actualizar el combo con la última fecha válida
+                    ComboBoxAfegirReserva_taula_SelectedIndexChanged(fr.comboBoxAfegirReserva_taula, EventArgs.Empty);
+                }
+                else
+                {
+                    // Si no hay última fecha válida guardada, seleccionar la primera fecha laborable
+                    SeleccionarPrimeraDataLaborable();
+                }
             }
             else
             {
-                // Día permitido, cargar las franjas horarias disponibles para la fecha seleccionada
+                // Día válido, actualizar la última fecha válida seleccionada
+                ultimaDataSeleccionadaValida = dataSeleccionada;
+
+                // Cargar franjas horarias para esta fecha (seleccionar primera mesa)
                 ComboBoxAfegirReserva_taula_SelectedIndexChanged(fr.comboBoxAfegirReserva_taula, EventArgs.Empty);
             }
         }
@@ -367,6 +409,7 @@ namespace Reserves.Controller
                 CarregarHoresDisponibles(data, franjaSeleccionada);
             }
         }
+
         private void CarregarHoresDisponibles(DateTime data, Horari franjaSeleccionada)
         {
             int capacitatSeleccionada = (int)fr.comboBoxAfegirReserva_taula.SelectedItem;
@@ -377,12 +420,23 @@ namespace Reserves.Controller
 
             var taulesDisponibles = _taulaService.GetTaules().Where(t => t.numComensals == capacitatSeleccionada).ToList();
 
-            var reservesDelDia = _reservaService.GetReservesDia(data).Where(r =>
-                    r.estatid == (int)EstatReserva.EnProces &&
-                    taulesDisponibles.Any(t => t.id == r.taulaid) &&
-                    (reserva == null)) // Excluir la reserva que se modifica para así poder seleccionar la misma hora,
-                                       // sino, en caso de que todas las mesas del mismo tamaño coincidan en la hora, no podría coincidir la hora
+            List<Reserva> reservesDelDia = new List<Reserva>();
+
+            // Si estamos añadiendo será nulo y por tanto cogeremos todas las reservas disponibles 
+            if (reserva == null)
+            {
+                reservesDelDia = _reservaService.GetReservesDia(data).Where(r =>
+                r.estatid == (int)EstatReserva.EnProces &&
+                taulesDisponibles.Any(t => t.id == r.taulaid))
                 .ToList();
+            } else // Si estamos modificando tendrá una reserva almacenada y la excluiremos, para así poder escoger las horas sin contar que esa mesa para esa hora esté ya reservada
+            {
+                reservesDelDia = _reservaService.GetReservesDia(data).Where(r =>
+                r.estatid == (int)EstatReserva.EnProces &&
+                taulesDisponibles.Any(t => t.id == r.taulaid) &&
+                r.id != reserva?.id) // Excluir la reserva que se modifica
+                .ToList();
+            }
 
             List<TimeSpan> horesDisponibles = new List<TimeSpan>();
 
@@ -410,8 +464,7 @@ namespace Reserves.Controller
                         // Verificamos si la nueva reserva y la existente se solapan en el tiempo
                         bool solapen = hora < horaFiReserva && horaNovaFi > horaIniciReserva;
 
-                        if (solapen)
-                            taulesOcupades++; // En caso de solaparse, contamos esta mesa como ocupada
+                        if (solapen) taulesOcupades++; // En caso de solaparse, contamos esta mesa como ocupada
                     }
                 }
 
@@ -598,9 +651,16 @@ namespace Reserves.Controller
             fr.comboBoxAfegirReserva_hora.DataSource = null;
 
             PintarDiesAmbHorari();
+            SeleccionarPrimeraDataLaborable();
 
             fr.buttonAfegirReserva_actualitzar.Visible = false;
             fr.buttonAfegirReserva_reservar.Visible = true;
+
+            // Limpiar reserva para así mostrar las horas sin excluir las horas de la reserva guardada en memoria (en caso de haber modificado una reserva antes)
+            if (reserva != null)
+            {
+                reserva = null;
+            }
 
             fr.ShowDialog();
         }

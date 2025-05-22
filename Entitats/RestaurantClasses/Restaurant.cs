@@ -19,6 +19,7 @@ namespace Entitats.RestaurantClasses
         public string correu { get; set; }
         public string paginaWeb { get; set; }
         public byte[] logo { get; set; }
+        public byte[] imatgeRestaurant { get; set; }
         public int aforament { get; set; }
         public decimal? valoraciomedia { get; set; }
         public int tipusCuinaId { get; set; }

@@ -33,6 +33,8 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.buttonMain_tancarSessio = new System.Windows.Forms.Button();
             this.tabPageConfiguracio = new System.Windows.Forms.TabPage();
+            this.buttonConfiguracio_imatgeRestaurant = new System.Windows.Forms.Button();
+            this.pictureBoxConfiguracio_imatgeRestaurant = new System.Windows.Forms.PictureBox();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             this.buttonConfiguracio_newContrasenya = new MaterialSkin.Controls.MaterialButton();
             this.textBoxConfiguracio_paginaweb = new MaterialSkin.Controls.MaterialTextBox2();
@@ -99,7 +101,7 @@
             this.dateTimePickerReserva_hasta = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerReserva_desde = new System.Windows.Forms.DateTimePicker();
             this.dataGridViewReserva_reserves = new System.Windows.Forms.DataGridView();
-            this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
+            this.materialTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPageHorari = new System.Windows.Forms.TabPage();
             this.monthCalendarHorari_horari = new Pabo.Calendar.MonthCalendar();
             this.buttonHorari_desassignarFestiu = new MaterialSkin.Controls.MaterialButton();
@@ -133,7 +135,15 @@
             this.buttonHorari_addFranjaDimarts = new MaterialSkin.Controls.MaterialButton();
             this.buttonHorari_addFranjaDilluns = new MaterialSkin.Controls.MaterialButton();
             this.buttonHorari_configurar = new MaterialSkin.Controls.MaterialButton();
+            this.tabPagePlats = new System.Windows.Forms.TabPage();
+            this.buttonMenu_eliminar = new MaterialSkin.Controls.MaterialButton();
+            this.buttonMenu_editar = new MaterialSkin.Controls.MaterialButton();
+            this.buttonMenu_afegir = new MaterialSkin.Controls.MaterialButton();
+            this.materialLabel26 = new MaterialSkin.Controls.MaterialLabel();
+            this.comboBoxMenu_tipusPlats = new MaterialSkin.Controls.MaterialComboBox();
+            this.dataGridViewMenu_plats = new System.Windows.Forms.DataGridView();
             this.tabPageConfiguracio.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConfiguracio_imatgeRestaurant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConfiguracio_logo)).BeginInit();
             this.tabPageContacte.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContacte_missatges)).BeginInit();
@@ -141,8 +151,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTaula_taules)).BeginInit();
             this.tabPageReserves.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReserva_reserves)).BeginInit();
-            this.materialTabControl1.SuspendLayout();
+            this.materialTabControl.SuspendLayout();
             this.tabPageHorari.SuspendLayout();
+            this.tabPagePlats.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMenu_plats)).BeginInit();
             this.SuspendLayout();
             // 
             // imageList1
@@ -155,6 +167,7 @@
             this.imageList1.Images.SetKeyName(3, "icons8-contacto-32.png");
             this.imageList1.Images.SetKeyName(4, "icons8-mesa-de-restaurante-32.png");
             this.imageList1.Images.SetKeyName(5, "icons8-reserva-2-32.png");
+            this.imageList1.Images.SetKeyName(6, "icons8-comida-32.png");
             // 
             // buttonMain_tancarSessio
             // 
@@ -169,6 +182,8 @@
             // tabPageConfiguracio
             // 
             this.tabPageConfiguracio.BackColor = System.Drawing.Color.White;
+            this.tabPageConfiguracio.Controls.Add(this.buttonConfiguracio_imatgeRestaurant);
+            this.tabPageConfiguracio.Controls.Add(this.pictureBoxConfiguracio_imatgeRestaurant);
             this.tabPageConfiguracio.Controls.Add(this.materialLabel6);
             this.tabPageConfiguracio.Controls.Add(this.buttonConfiguracio_newContrasenya);
             this.tabPageConfiguracio.Controls.Add(this.textBoxConfiguracio_paginaweb);
@@ -203,10 +218,28 @@
             this.tabPageConfiguracio.ImageKey = "icons8-ajustes-32.png";
             this.tabPageConfiguracio.Location = new System.Drawing.Point(4, 39);
             this.tabPageConfiguracio.Name = "tabPageConfiguracio";
-            this.tabPageConfiguracio.Size = new System.Drawing.Size(1186, 690);
+            this.tabPageConfiguracio.Size = new System.Drawing.Size(1386, 882);
             this.tabPageConfiguracio.TabIndex = 3;
             this.tabPageConfiguracio.Text = "Configuració";
             this.tabPageConfiguracio.UseVisualStyleBackColor = true;
+            // 
+            // buttonConfiguracio_imatgeRestaurant
+            // 
+            this.buttonConfiguracio_imatgeRestaurant.Image = ((System.Drawing.Image)(resources.GetObject("buttonConfiguracio_imatgeRestaurant.Image")));
+            this.buttonConfiguracio_imatgeRestaurant.Location = new System.Drawing.Point(574, 628);
+            this.buttonConfiguracio_imatgeRestaurant.Name = "buttonConfiguracio_imatgeRestaurant";
+            this.buttonConfiguracio_imatgeRestaurant.Size = new System.Drawing.Size(35, 35);
+            this.buttonConfiguracio_imatgeRestaurant.TabIndex = 138;
+            this.buttonConfiguracio_imatgeRestaurant.UseVisualStyleBackColor = true;
+            // 
+            // pictureBoxConfiguracio_imatgeRestaurant
+            // 
+            this.pictureBoxConfiguracio_imatgeRestaurant.Location = new System.Drawing.Point(638, 534);
+            this.pictureBoxConfiguracio_imatgeRestaurant.Name = "pictureBoxConfiguracio_imatgeRestaurant";
+            this.pictureBoxConfiguracio_imatgeRestaurant.Size = new System.Drawing.Size(500, 300);
+            this.pictureBoxConfiguracio_imatgeRestaurant.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxConfiguracio_imatgeRestaurant.TabIndex = 137;
+            this.pictureBoxConfiguracio_imatgeRestaurant.TabStop = false;
             // 
             // materialLabel6
             // 
@@ -214,7 +247,7 @@
             this.materialLabel6.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel6.Depth = 0;
             this.materialLabel6.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel6.Location = new System.Drawing.Point(83, 358);
+            this.materialLabel6.Location = new System.Drawing.Point(49, 308);
             this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel6.Name = "materialLabel6";
             this.materialLabel6.Size = new System.Drawing.Size(197, 19);
@@ -229,7 +262,7 @@
             this.buttonConfiguracio_newContrasenya.Depth = 0;
             this.buttonConfiguracio_newContrasenya.HighEmphasis = true;
             this.buttonConfiguracio_newContrasenya.Icon = null;
-            this.buttonConfiguracio_newContrasenya.Location = new System.Drawing.Point(105, 234);
+            this.buttonConfiguracio_newContrasenya.Location = new System.Drawing.Point(71, 184);
             this.buttonConfiguracio_newContrasenya.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonConfiguracio_newContrasenya.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonConfiguracio_newContrasenya.Name = "buttonConfiguracio_newContrasenya";
@@ -250,7 +283,7 @@
             this.textBoxConfiguracio_paginaweb.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_paginaweb.HideSelection = true;
             this.textBoxConfiguracio_paginaweb.LeadingIcon = null;
-            this.textBoxConfiguracio_paginaweb.Location = new System.Drawing.Point(683, 494);
+            this.textBoxConfiguracio_paginaweb.Location = new System.Drawing.Point(649, 444);
             this.textBoxConfiguracio_paginaweb.MaxLength = 32767;
             this.textBoxConfiguracio_paginaweb.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_paginaweb.Name = "textBoxConfiguracio_paginaweb";
@@ -275,7 +308,7 @@
             this.materialLabel18.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel18.Depth = 0;
             this.materialLabel18.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel18.Location = new System.Drawing.Point(682, 472);
+            this.materialLabel18.Location = new System.Drawing.Point(648, 422);
             this.materialLabel18.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel18.Name = "materialLabel18";
             this.materialLabel18.Size = new System.Drawing.Size(84, 19);
@@ -291,7 +324,7 @@
             this.textBoxConfiguracio_descripcio.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_descripcio.HideSelection = true;
             this.textBoxConfiguracio_descripcio.LeadingIcon = null;
-            this.textBoxConfiguracio_descripcio.Location = new System.Drawing.Point(683, 413);
+            this.textBoxConfiguracio_descripcio.Location = new System.Drawing.Point(649, 363);
             this.textBoxConfiguracio_descripcio.MaxLength = 32767;
             this.textBoxConfiguracio_descripcio.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_descripcio.Name = "textBoxConfiguracio_descripcio";
@@ -316,7 +349,7 @@
             this.materialLabel17.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel17.Depth = 0;
             this.materialLabel17.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel17.Location = new System.Drawing.Point(682, 391);
+            this.materialLabel17.Location = new System.Drawing.Point(648, 341);
             this.materialLabel17.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel17.Name = "materialLabel17";
             this.materialLabel17.Size = new System.Drawing.Size(75, 19);
@@ -329,7 +362,7 @@
             this.materialLabel16.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel16.Depth = 0;
             this.materialLabel16.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel16.Location = new System.Drawing.Point(684, 311);
+            this.materialLabel16.Location = new System.Drawing.Point(650, 261);
             this.materialLabel16.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel16.Name = "materialLabel16";
             this.materialLabel16.Size = new System.Drawing.Size(76, 19);
@@ -345,7 +378,7 @@
             this.textBoxConfiguracio_aforament.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_aforament.HideSelection = true;
             this.textBoxConfiguracio_aforament.LeadingIcon = null;
-            this.textBoxConfiguracio_aforament.Location = new System.Drawing.Point(685, 329);
+            this.textBoxConfiguracio_aforament.Location = new System.Drawing.Point(651, 279);
             this.textBoxConfiguracio_aforament.MaxLength = 32767;
             this.textBoxConfiguracio_aforament.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_aforament.Name = "textBoxConfiguracio_aforament";
@@ -378,7 +411,7 @@
             this.comboBoxConfiguracio_tipuspreu.FormattingEnabled = true;
             this.comboBoxConfiguracio_tipuspreu.IntegralHeight = false;
             this.comboBoxConfiguracio_tipuspreu.ItemHeight = 43;
-            this.comboBoxConfiguracio_tipuspreu.Location = new System.Drawing.Point(999, 171);
+            this.comboBoxConfiguracio_tipuspreu.Location = new System.Drawing.Point(965, 121);
             this.comboBoxConfiguracio_tipuspreu.MaxDropDownItems = 4;
             this.comboBoxConfiguracio_tipuspreu.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBoxConfiguracio_tipuspreu.Name = "comboBoxConfiguracio_tipuspreu";
@@ -392,7 +425,7 @@
             this.materialLabel15.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel15.Depth = 0;
             this.materialLabel15.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel15.Location = new System.Drawing.Point(997, 149);
+            this.materialLabel15.Location = new System.Drawing.Point(963, 99);
             this.materialLabel15.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel15.Name = "materialLabel15";
             this.materialLabel15.Size = new System.Drawing.Size(97, 19);
@@ -413,7 +446,7 @@
             this.comboBoxConfiguracio_tipuscuina.FormattingEnabled = true;
             this.comboBoxConfiguracio_tipuscuina.IntegralHeight = false;
             this.comboBoxConfiguracio_tipuscuina.ItemHeight = 43;
-            this.comboBoxConfiguracio_tipuscuina.Location = new System.Drawing.Point(999, 332);
+            this.comboBoxConfiguracio_tipuscuina.Location = new System.Drawing.Point(965, 282);
             this.comboBoxConfiguracio_tipuscuina.MaxDropDownItems = 4;
             this.comboBoxConfiguracio_tipuscuina.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBoxConfiguracio_tipuscuina.Name = "comboBoxConfiguracio_tipuscuina";
@@ -427,7 +460,7 @@
             this.materialLabel14.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel14.Depth = 0;
             this.materialLabel14.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel14.Location = new System.Drawing.Point(997, 311);
+            this.materialLabel14.Location = new System.Drawing.Point(963, 261);
             this.materialLabel14.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel14.Name = "materialLabel14";
             this.materialLabel14.Size = new System.Drawing.Size(105, 19);
@@ -443,7 +476,7 @@
             this.textBoxConfiguracio_correu.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_correu.HideSelection = true;
             this.textBoxConfiguracio_correu.LeadingIcon = null;
-            this.textBoxConfiguracio_correu.Location = new System.Drawing.Point(687, 256);
+            this.textBoxConfiguracio_correu.Location = new System.Drawing.Point(653, 206);
             this.textBoxConfiguracio_correu.MaxLength = 32767;
             this.textBoxConfiguracio_correu.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_correu.Name = "textBoxConfiguracio_correu";
@@ -468,7 +501,7 @@
             this.materialLabel13.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel13.Depth = 0;
             this.materialLabel13.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel13.Location = new System.Drawing.Point(686, 234);
+            this.materialLabel13.Location = new System.Drawing.Point(652, 184);
             this.materialLabel13.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel13.Name = "materialLabel13";
             this.materialLabel13.Size = new System.Drawing.Size(119, 19);
@@ -484,7 +517,7 @@
             this.textBoxConfiguracio_carrer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_carrer.HideSelection = true;
             this.textBoxConfiguracio_carrer.LeadingIcon = null;
-            this.textBoxConfiguracio_carrer.Location = new System.Drawing.Point(370, 494);
+            this.textBoxConfiguracio_carrer.Location = new System.Drawing.Point(336, 444);
             this.textBoxConfiguracio_carrer.MaxLength = 32767;
             this.textBoxConfiguracio_carrer.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_carrer.Name = "textBoxConfiguracio_carrer";
@@ -509,7 +542,7 @@
             this.materialLabel12.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel12.Depth = 0;
             this.materialLabel12.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel12.Location = new System.Drawing.Point(369, 472);
+            this.materialLabel12.Location = new System.Drawing.Point(335, 422);
             this.materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel12.Name = "materialLabel12";
             this.materialLabel12.Size = new System.Drawing.Size(43, 19);
@@ -525,7 +558,7 @@
             this.textBoxConfiguracio_codipostal.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_codipostal.HideSelection = true;
             this.textBoxConfiguracio_codipostal.LeadingIcon = null;
-            this.textBoxConfiguracio_codipostal.Location = new System.Drawing.Point(370, 413);
+            this.textBoxConfiguracio_codipostal.Location = new System.Drawing.Point(336, 363);
             this.textBoxConfiguracio_codipostal.MaxLength = 32767;
             this.textBoxConfiguracio_codipostal.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_codipostal.Name = "textBoxConfiguracio_codipostal";
@@ -550,7 +583,7 @@
             this.materialLabel11.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel11.Depth = 0;
             this.materialLabel11.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel11.Location = new System.Drawing.Point(369, 391);
+            this.materialLabel11.Location = new System.Drawing.Point(335, 341);
             this.materialLabel11.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel11.Name = "materialLabel11";
             this.materialLabel11.Size = new System.Drawing.Size(81, 19);
@@ -563,7 +596,7 @@
             this.materialLabel10.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel10.Depth = 0;
             this.materialLabel10.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel10.Location = new System.Drawing.Point(372, 311);
+            this.materialLabel10.Location = new System.Drawing.Point(338, 261);
             this.materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel10.Name = "materialLabel10";
             this.materialLabel10.Size = new System.Drawing.Size(63, 19);
@@ -579,7 +612,7 @@
             this.textBoxConfiguracio_poblacio.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_poblacio.HideSelection = true;
             this.textBoxConfiguracio_poblacio.LeadingIcon = null;
-            this.textBoxConfiguracio_poblacio.Location = new System.Drawing.Point(372, 329);
+            this.textBoxConfiguracio_poblacio.Location = new System.Drawing.Point(338, 279);
             this.textBoxConfiguracio_poblacio.MaxLength = 32767;
             this.textBoxConfiguracio_poblacio.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_poblacio.Name = "textBoxConfiguracio_poblacio";
@@ -604,7 +637,7 @@
             this.materialLabel9.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel9.Depth = 0;
             this.materialLabel9.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel9.Location = new System.Drawing.Point(372, 234);
+            this.materialLabel9.Location = new System.Drawing.Point(338, 184);
             this.materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel9.Name = "materialLabel9";
             this.materialLabel9.Size = new System.Drawing.Size(32, 19);
@@ -620,7 +653,7 @@
             this.textBoxConfiguracio_pais.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_pais.HideSelection = true;
             this.textBoxConfiguracio_pais.LeadingIcon = null;
-            this.textBoxConfiguracio_pais.Location = new System.Drawing.Point(372, 252);
+            this.textBoxConfiguracio_pais.Location = new System.Drawing.Point(338, 202);
             this.textBoxConfiguracio_pais.MaxLength = 32767;
             this.textBoxConfiguracio_pais.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_pais.Name = "textBoxConfiguracio_pais";
@@ -648,7 +681,7 @@
             this.textBoxConfiguracio_telefon.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_telefon.HideSelection = true;
             this.textBoxConfiguracio_telefon.LeadingIcon = null;
-            this.textBoxConfiguracio_telefon.Location = new System.Drawing.Point(687, 170);
+            this.textBoxConfiguracio_telefon.Location = new System.Drawing.Point(653, 120);
             this.textBoxConfiguracio_telefon.MaxLength = 32767;
             this.textBoxConfiguracio_telefon.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_telefon.Name = "textBoxConfiguracio_telefon";
@@ -673,7 +706,7 @@
             this.materialLabel8.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel8.Depth = 0;
             this.materialLabel8.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel8.Location = new System.Drawing.Point(686, 149);
+            this.materialLabel8.Location = new System.Drawing.Point(652, 99);
             this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel8.Name = "materialLabel8";
             this.materialLabel8.Size = new System.Drawing.Size(55, 19);
@@ -689,7 +722,7 @@
             this.textBoxConfiguracio_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_nom.HideSelection = true;
             this.textBoxConfiguracio_nom.LeadingIcon = null;
-            this.textBoxConfiguracio_nom.Location = new System.Drawing.Point(370, 170);
+            this.textBoxConfiguracio_nom.Location = new System.Drawing.Point(336, 120);
             this.textBoxConfiguracio_nom.MaxLength = 32767;
             this.textBoxConfiguracio_nom.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_nom.Name = "textBoxConfiguracio_nom";
@@ -714,7 +747,7 @@
             this.materialLabel7.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel7.Depth = 0;
             this.materialLabel7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel7.Location = new System.Drawing.Point(372, 149);
+            this.materialLabel7.Location = new System.Drawing.Point(338, 99);
             this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel7.Name = "materialLabel7";
             this.materialLabel7.Size = new System.Drawing.Size(35, 19);
@@ -730,7 +763,7 @@
             this.textBoxConfiguracio_usuari.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_usuari.HideSelection = true;
             this.textBoxConfiguracio_usuari.LeadingIcon = null;
-            this.textBoxConfiguracio_usuari.Location = new System.Drawing.Point(62, 170);
+            this.textBoxConfiguracio_usuari.Location = new System.Drawing.Point(28, 120);
             this.textBoxConfiguracio_usuari.MaxLength = 32767;
             this.textBoxConfiguracio_usuari.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_usuari.Name = "textBoxConfiguracio_usuari";
@@ -770,7 +803,7 @@
             this.buttonConfiguracio_editar.Depth = 0;
             this.buttonConfiguracio_editar.HighEmphasis = true;
             this.buttonConfiguracio_editar.Icon = null;
-            this.buttonConfiguracio_editar.Location = new System.Drawing.Point(1000, 494);
+            this.buttonConfiguracio_editar.Location = new System.Drawing.Point(966, 451);
             this.buttonConfiguracio_editar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonConfiguracio_editar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonConfiguracio_editar.Name = "buttonConfiguracio_editar";
@@ -784,16 +817,17 @@
             // 
             // pictureBoxConfiguracio_logo
             // 
-            this.pictureBoxConfiguracio_logo.Location = new System.Drawing.Point(105, 391);
+            this.pictureBoxConfiguracio_logo.Location = new System.Drawing.Point(71, 341);
             this.pictureBoxConfiguracio_logo.Name = "pictureBoxConfiguracio_logo";
             this.pictureBoxConfiguracio_logo.Size = new System.Drawing.Size(156, 156);
+            this.pictureBoxConfiguracio_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxConfiguracio_logo.TabIndex = 102;
             this.pictureBoxConfiguracio_logo.TabStop = false;
             // 
             // buttonConfiguracio_logo
             // 
             this.buttonConfiguracio_logo.Image = ((System.Drawing.Image)(resources.GetObject("buttonConfiguracio_logo.Image")));
-            this.buttonConfiguracio_logo.Location = new System.Drawing.Point(163, 320);
+            this.buttonConfiguracio_logo.Location = new System.Drawing.Point(129, 270);
             this.buttonConfiguracio_logo.Name = "buttonConfiguracio_logo";
             this.buttonConfiguracio_logo.Size = new System.Drawing.Size(35, 35);
             this.buttonConfiguracio_logo.TabIndex = 82;
@@ -813,7 +847,7 @@
             this.tabPageContacte.ImageKey = "icons8-contacto-32.png";
             this.tabPageContacte.Location = new System.Drawing.Point(4, 39);
             this.tabPageContacte.Name = "tabPageContacte";
-            this.tabPageContacte.Size = new System.Drawing.Size(1186, 690);
+            this.tabPageContacte.Size = new System.Drawing.Size(1386, 882);
             this.tabPageContacte.TabIndex = 2;
             this.tabPageContacte.Text = "Contacte";
             // 
@@ -936,7 +970,7 @@
             this.tabPageTaules.ImageKey = "icons8-mesa-de-restaurante-32.png";
             this.tabPageTaules.Location = new System.Drawing.Point(4, 39);
             this.tabPageTaules.Name = "tabPageTaules";
-            this.tabPageTaules.Size = new System.Drawing.Size(1186, 690);
+            this.tabPageTaules.Size = new System.Drawing.Size(1386, 882);
             this.tabPageTaules.TabIndex = 1;
             this.tabPageTaules.Text = "Taules";
             // 
@@ -1095,7 +1129,7 @@
             this.tabPageReserves.ImageKey = "icons8-reserva-2-32.png";
             this.tabPageReserves.Location = new System.Drawing.Point(4, 39);
             this.tabPageReserves.Name = "tabPageReserves";
-            this.tabPageReserves.Size = new System.Drawing.Size(1186, 690);
+            this.tabPageReserves.Size = new System.Drawing.Size(1386, 882);
             this.tabPageReserves.TabIndex = 6;
             this.tabPageReserves.Text = "Reserves";
             // 
@@ -1420,23 +1454,24 @@
             this.dataGridViewReserva_reserves.Size = new System.Drawing.Size(555, 371);
             this.dataGridViewReserva_reserves.TabIndex = 0;
             // 
-            // materialTabControl1
+            // materialTabControl
             // 
-            this.materialTabControl1.Controls.Add(this.tabPageReserves);
-            this.materialTabControl1.Controls.Add(this.tabPageTaules);
-            this.materialTabControl1.Controls.Add(this.tabPageContacte);
-            this.materialTabControl1.Controls.Add(this.tabPageConfiguracio);
-            this.materialTabControl1.Controls.Add(this.tabPageHorari);
-            this.materialTabControl1.Depth = 0;
-            this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialTabControl1.ImageList = this.imageList1;
-            this.materialTabControl1.Location = new System.Drawing.Point(3, 64);
-            this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabControl1.Multiline = true;
-            this.materialTabControl1.Name = "materialTabControl1";
-            this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(1194, 733);
-            this.materialTabControl1.TabIndex = 0;
+            this.materialTabControl.Controls.Add(this.tabPageReserves);
+            this.materialTabControl.Controls.Add(this.tabPageTaules);
+            this.materialTabControl.Controls.Add(this.tabPageContacte);
+            this.materialTabControl.Controls.Add(this.tabPageConfiguracio);
+            this.materialTabControl.Controls.Add(this.tabPageHorari);
+            this.materialTabControl.Controls.Add(this.tabPagePlats);
+            this.materialTabControl.Depth = 0;
+            this.materialTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialTabControl.ImageList = this.imageList1;
+            this.materialTabControl.Location = new System.Drawing.Point(3, 64);
+            this.materialTabControl.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabControl.Multiline = true;
+            this.materialTabControl.Name = "materialTabControl";
+            this.materialTabControl.SelectedIndex = 0;
+            this.materialTabControl.Size = new System.Drawing.Size(1394, 925);
+            this.materialTabControl.TabIndex = 0;
             // 
             // tabPageHorari
             // 
@@ -1476,7 +1511,7 @@
             this.tabPageHorari.ImageKey = "icons8-calendario-32.png";
             this.tabPageHorari.Location = new System.Drawing.Point(4, 39);
             this.tabPageHorari.Name = "tabPageHorari";
-            this.tabPageHorari.Size = new System.Drawing.Size(1186, 690);
+            this.tabPageHorari.Size = new System.Drawing.Size(1386, 882);
             this.tabPageHorari.TabIndex = 4;
             this.tabPageHorari.Text = "Horari";
             // 
@@ -1981,20 +2016,143 @@
             this.buttonHorari_configurar.UseAccentColor = false;
             this.buttonHorari_configurar.UseVisualStyleBackColor = true;
             // 
+            // tabPagePlats
+            // 
+            this.tabPagePlats.BackColor = System.Drawing.Color.White;
+            this.tabPagePlats.Controls.Add(this.buttonMenu_eliminar);
+            this.tabPagePlats.Controls.Add(this.buttonMenu_editar);
+            this.tabPagePlats.Controls.Add(this.buttonMenu_afegir);
+            this.tabPagePlats.Controls.Add(this.materialLabel26);
+            this.tabPagePlats.Controls.Add(this.comboBoxMenu_tipusPlats);
+            this.tabPagePlats.Controls.Add(this.dataGridViewMenu_plats);
+            this.tabPagePlats.ImageKey = "icons8-comida-32.png";
+            this.tabPagePlats.Location = new System.Drawing.Point(4, 39);
+            this.tabPagePlats.Name = "tabPagePlats";
+            this.tabPagePlats.Size = new System.Drawing.Size(1386, 882);
+            this.tabPagePlats.TabIndex = 7;
+            this.tabPagePlats.Text = "Plats";
+            // 
+            // buttonMenu_eliminar
+            // 
+            this.buttonMenu_eliminar.AutoSize = false;
+            this.buttonMenu_eliminar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonMenu_eliminar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonMenu_eliminar.Depth = 0;
+            this.buttonMenu_eliminar.HighEmphasis = true;
+            this.buttonMenu_eliminar.Icon = null;
+            this.buttonMenu_eliminar.Location = new System.Drawing.Point(778, 500);
+            this.buttonMenu_eliminar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonMenu_eliminar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonMenu_eliminar.Name = "buttonMenu_eliminar";
+            this.buttonMenu_eliminar.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonMenu_eliminar.Size = new System.Drawing.Size(114, 20);
+            this.buttonMenu_eliminar.TabIndex = 122;
+            this.buttonMenu_eliminar.Text = "ELIMINAR";
+            this.buttonMenu_eliminar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonMenu_eliminar.UseAccentColor = false;
+            this.buttonMenu_eliminar.UseVisualStyleBackColor = true;
+            // 
+            // buttonMenu_editar
+            // 
+            this.buttonMenu_editar.AutoSize = false;
+            this.buttonMenu_editar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonMenu_editar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonMenu_editar.Depth = 0;
+            this.buttonMenu_editar.HighEmphasis = true;
+            this.buttonMenu_editar.Icon = null;
+            this.buttonMenu_editar.Location = new System.Drawing.Point(656, 500);
+            this.buttonMenu_editar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonMenu_editar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonMenu_editar.Name = "buttonMenu_editar";
+            this.buttonMenu_editar.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonMenu_editar.Size = new System.Drawing.Size(114, 20);
+            this.buttonMenu_editar.TabIndex = 121;
+            this.buttonMenu_editar.Text = "EDITAR";
+            this.buttonMenu_editar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonMenu_editar.UseAccentColor = false;
+            this.buttonMenu_editar.UseVisualStyleBackColor = true;
+            // 
+            // buttonMenu_afegir
+            // 
+            this.buttonMenu_afegir.AutoSize = false;
+            this.buttonMenu_afegir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonMenu_afegir.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonMenu_afegir.Depth = 0;
+            this.buttonMenu_afegir.HighEmphasis = true;
+            this.buttonMenu_afegir.Icon = null;
+            this.buttonMenu_afegir.Location = new System.Drawing.Point(534, 500);
+            this.buttonMenu_afegir.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonMenu_afegir.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonMenu_afegir.Name = "buttonMenu_afegir";
+            this.buttonMenu_afegir.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonMenu_afegir.Size = new System.Drawing.Size(114, 20);
+            this.buttonMenu_afegir.TabIndex = 120;
+            this.buttonMenu_afegir.Text = "AFEGIR";
+            this.buttonMenu_afegir.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonMenu_afegir.UseAccentColor = false;
+            this.buttonMenu_afegir.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel26
+            // 
+            this.materialLabel26.AutoSize = true;
+            this.materialLabel26.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel26.Depth = 0;
+            this.materialLabel26.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel26.Location = new System.Drawing.Point(688, 79);
+            this.materialLabel26.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel26.Name = "materialLabel26";
+            this.materialLabel26.Size = new System.Drawing.Size(84, 19);
+            this.materialLabel26.TabIndex = 119;
+            this.materialLabel26.Text = "Tipus plats:";
+            // 
+            // comboBoxMenu_tipusPlats
+            // 
+            this.comboBoxMenu_tipusPlats.AutoResize = false;
+            this.comboBoxMenu_tipusPlats.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.comboBoxMenu_tipusPlats.Depth = 0;
+            this.comboBoxMenu_tipusPlats.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBoxMenu_tipusPlats.DropDownHeight = 174;
+            this.comboBoxMenu_tipusPlats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxMenu_tipusPlats.DropDownWidth = 121;
+            this.comboBoxMenu_tipusPlats.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.comboBoxMenu_tipusPlats.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.comboBoxMenu_tipusPlats.FormattingEnabled = true;
+            this.comboBoxMenu_tipusPlats.IntegralHeight = false;
+            this.comboBoxMenu_tipusPlats.ItemHeight = 43;
+            this.comboBoxMenu_tipusPlats.Location = new System.Drawing.Point(778, 65);
+            this.comboBoxMenu_tipusPlats.MaxDropDownItems = 4;
+            this.comboBoxMenu_tipusPlats.MouseState = MaterialSkin.MouseState.OUT;
+            this.comboBoxMenu_tipusPlats.Name = "comboBoxMenu_tipusPlats";
+            this.comboBoxMenu_tipusPlats.Size = new System.Drawing.Size(114, 49);
+            this.comboBoxMenu_tipusPlats.StartIndex = 0;
+            this.comboBoxMenu_tipusPlats.TabIndex = 118;
+            // 
+            // dataGridViewMenu_plats
+            // 
+            this.dataGridViewMenu_plats.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewMenu_plats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMenu_plats.Location = new System.Drawing.Point(337, 120);
+            this.dataGridViewMenu_plats.Name = "dataGridViewMenu_plats";
+            this.dataGridViewMenu_plats.ReadOnly = true;
+            this.dataGridViewMenu_plats.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewMenu_plats.Size = new System.Drawing.Size(555, 371);
+            this.dataGridViewMenu_plats.TabIndex = 1;
+            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 800);
+            this.ClientSize = new System.Drawing.Size(1400, 992);
             this.Controls.Add(this.buttonMain_tancarSessio);
-            this.Controls.Add(this.materialTabControl1);
+            this.Controls.Add(this.materialTabControl);
             this.DrawerShowIconsWhenHidden = true;
-            this.DrawerTabControl = this.materialTabControl1;
+            this.DrawerTabControl = this.materialTabControl;
             this.Name = "MenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.MenuForm_Load);
             this.tabPageConfiguracio.ResumeLayout(false);
             this.tabPageConfiguracio.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConfiguracio_imatgeRestaurant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConfiguracio_logo)).EndInit();
             this.tabPageContacte.ResumeLayout(false);
             this.tabPageContacte.PerformLayout();
@@ -2005,9 +2163,12 @@
             this.tabPageReserves.ResumeLayout(false);
             this.tabPageReserves.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReserva_reserves)).EndInit();
-            this.materialTabControl1.ResumeLayout(false);
+            this.materialTabControl.ResumeLayout(false);
             this.tabPageHorari.ResumeLayout(false);
             this.tabPageHorari.PerformLayout();
+            this.tabPagePlats.ResumeLayout(false);
+            this.tabPagePlats.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMenu_plats)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2078,7 +2239,7 @@
         public System.Windows.Forms.DateTimePicker dateTimePickerReserva_hasta;
         public System.Windows.Forms.DateTimePicker dateTimePickerReserva_desde;
         public System.Windows.Forms.DataGridView dataGridViewReserva_reserves;
-        public MaterialSkin.Controls.MaterialTabControl materialTabControl1;
+        public MaterialSkin.Controls.MaterialTabControl materialTabControl;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         public System.Windows.Forms.Button buttonConfiguracio_logo;
         public System.Windows.Forms.TabPage tabPageHorari;
@@ -2117,5 +2278,14 @@
         public MaterialSkin.Controls.MaterialButton buttonHorari_assignarFestiu;
         public Pabo.Calendar.MonthCalendar monthCalendarHorari_horari;
         public MaterialSkin.Controls.MaterialButton buttonReserva_actualitzar;
+        public System.Windows.Forms.PictureBox pictureBoxConfiguracio_imatgeRestaurant;
+        public System.Windows.Forms.Button buttonConfiguracio_imatgeRestaurant;
+        public System.Windows.Forms.TabPage tabPagePlats;
+        public System.Windows.Forms.DataGridView dataGridViewMenu_plats;
+        private MaterialSkin.Controls.MaterialLabel materialLabel26;
+        public MaterialSkin.Controls.MaterialComboBox comboBoxMenu_tipusPlats;
+        public MaterialSkin.Controls.MaterialButton buttonMenu_eliminar;
+        public MaterialSkin.Controls.MaterialButton buttonMenu_editar;
+        public MaterialSkin.Controls.MaterialButton buttonMenu_afegir;
     }
 }

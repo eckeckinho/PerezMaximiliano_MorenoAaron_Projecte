@@ -1,6 +1,7 @@
 ﻿using Configuracio.Controller;
 using Contacte.Controller;
 using Entitats.RestaurantClasses;
+using MenuPlats.Controller;
 using Microsoft.Extensions.DependencyInjection;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
 using PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services.Interfaces;
@@ -19,6 +20,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
         IniciarSessioForm f;
         MenuForm fm;
         Image logo;
+        Image imatgeRestaurant;
         private readonly IServiceProvider _serviceProvider;
         private readonly IAuthService _authService;
         private readonly ITipusService _tipusService;
@@ -49,13 +51,15 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
         {
             f.button_entrar.Click += Button_entrar_Click;
             f.button_logo.Click += Button_logo_Click;
+            f.button_imatgeRestaurant.Click += Button_imatgeRestaurant_Click;
             f.button_registrar.Click += Button_registrar_Click;
             f.materialCheckboxEntrar_veureContrasenya.CheckedChanged += CheckboxEntrar_veureContrasenya_CheckedChanged;
             f.materialCheckboxRegistrar_veureContrasenya.CheckedChanged += CheckboxRegistrar_veureContrasenya_CheckedChanged;
         }
+
         private void SetListenersMenu()
         {
-            fm.materialTabControl1.SelectedIndexChanged += MaterialTabControl1_SelectedIndexChanged;
+            fm.materialTabControl.SelectedIndexChanged += MaterialTabControl1_SelectedIndexChanged;
             fm.buttonMain_tancarSessio.Click += ButtonMain_tancarSessio_Click;
         }
 
@@ -68,8 +72,8 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
         // Controla los tabs para que al hacer click se instancie el controlador correspondiente
         private void MaterialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectedIndex = fm.materialTabControl1.SelectedIndex;
-            string tabName = fm.materialTabControl1.TabPages[selectedIndex].Name;
+            int selectedIndex = fm.materialTabControl.SelectedIndex;
+            string tabName = fm.materialTabControl.TabPages[selectedIndex].Name;
 
             switch (tabName)
             {
@@ -92,6 +96,11 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                     var configuracioController = _serviceProvider.GetRequiredService<ConfiguracioController>();
                     configuracioController.SetForm(fm);
                     configuracioController.Inicialitzar();
+                    break;
+                case "tabPagePlats":
+                    var platsController = _serviceProvider.GetRequiredService<PlatsController>();
+                    platsController.SetForm(fm);
+                    platsController.Inicialitzar();
                     break;
             }
         }
@@ -146,31 +155,59 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                 f.comboBox_tipuscuina.SelectedItem != null &&
                 f.comboBox_tipuspreu.SelectedItem != null)
                 {
+                    if (!int.TryParse(f.textBox_aforament.Text, out int aforament))
+                    {
+                        MessageBox.Show("El camp 'Aforament' ha de ser un número enter.", "Valor no vàlid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    if (f.textBox_usuariRegis.Text.Contains(" "))
+                    {
+                        MessageBox.Show("El nom d'usuari no pot contenir espais.", "Usuari no vàlid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     byte[] logoByteArray = null;
                     if (logo != null)
                     {
                         logoByteArray = ImageToByteArray(logo);
+                    } else
+                    {
+                        MessageBox.Show("Afegeix un logotip pel teu restaurant.", "Logo necessari", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
 
-                    Restaurant newRestaurant = new Restaurant
+                    byte[] imatgeRestaurantByteArray = null;
+                    if (imatgeRestaurant != null)
                     {
-                        nomCompte = f.textBox_usuariRegis.Text,
-                        contrasenyaCompte = BCrypt.Net.BCrypt.HashPassword(f.textbox_contrasenyaRegis.Text),
-                        nomRestaurant = f.textbox_contrasenyaRegis.Text,
-                        pais = f.textBox_pais.Text,
-                        ciutat = f.textBox_poblacio.Text,
-                        codiPostal = f.textBox_codipostal.Text,
-                        carrer = f.textBox_carrer.Text,
-                        telefon = f.textBox_telefon.Text,
-                        correu = f.textBox_correu.Text,
-                        aforament = int.Parse(f.textBox_aforament.Text),
-                        tipusCuinaId = ((TipusCuina)f.comboBox_tipuscuina.SelectedItem).id,
-                        tipusPreuId = ((TipusPreu)f.comboBox_tipuspreu.SelectedItem).id,
-                        valoraciomedia = 0,
-                        descripcio = f.textBox_descripcio.Text,
-                        paginaWeb = f.textBox_paginaweb.Text,
-                        logo = logoByteArray
-                    };
+                        imatgeRestaurantByteArray = ImageToByteArray(imatgeRestaurant);
+                    } else
+                    {
+                        MessageBox.Show("Afegeix una imatge del teu restaurant.", "Imatge del restaurant necessària", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                        Restaurant newRestaurant = new Restaurant
+                        {
+                            nomCompte = f.textBox_usuariRegis.Text,
+                            // Hashear la contrasenya
+                            contrasenyaCompte = BCrypt.Net.BCrypt.HashPassword(f.textbox_contrasenyaRegis.Text),
+                            nomRestaurant = f.textbox_contrasenyaRegis.Text,
+                            pais = f.textBox_pais.Text,
+                            ciutat = f.textBox_poblacio.Text,
+                            codiPostal = f.textBox_codipostal.Text,
+                            carrer = f.textBox_carrer.Text,
+                            telefon = f.textBox_telefon.Text,
+                            correu = f.textBox_correu.Text,
+                            aforament = aforament,
+                            tipusCuinaId = ((TipusCuina)f.comboBox_tipuscuina.SelectedItem).id,
+                            tipusPreuId = ((TipusPreu)f.comboBox_tipuspreu.SelectedItem).id,
+                            valoraciomedia = 0,
+                            descripcio = f.textBox_descripcio.Text,
+                            paginaWeb = f.textBox_paginaweb.Text,
+                            logo = logoByteArray,
+                            imatgeRestaurant = imatgeRestaurantByteArray
+                        };
 
                     bool resultatRegistre = _authService.RegistreRestaurant(newRestaurant);
 
@@ -259,12 +296,34 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             }
         }
 
+        // Insertar imatge del restaurant màxim 300x200 píxels
+        private void Button_imatgeRestaurant_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Arxius d'imatge|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            openFileDialog.Title = "Seleccioni la imatge del restaurant";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                imatgeRestaurant = Image.FromFile(openFileDialog.FileName);
+
+                if (imatgeRestaurant.Width <= 500 && imatgeRestaurant.Height <= 300)
+                {
+                    f.pictureBox_imatgeRestaurant.Image = imatgeRestaurant;
+                }
+                else
+                {
+                    MessageBox.Show("La imatge del restaurant ha de tenir un màxim de 500x300 píxels.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
         // Convertir imatge a byte array
-        private byte[] ImageToByteArray(Image logo)
+        private byte[] ImageToByteArray(Image imatge)
         {
             using (MemoryStream ms = new MemoryStream())
             {
-                logo.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                imatge.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 return ms.ToArray();
             }
         }

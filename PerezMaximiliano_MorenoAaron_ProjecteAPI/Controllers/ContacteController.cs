@@ -1,10 +1,6 @@
 ﻿using Data;
-using Entitats.AuthClasses;
 using Entitats.ContacteClasses;
-using Entitats.RestaurantClasses;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 {
@@ -26,7 +22,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
             {
                 _context.MissatgesUsuaris.Add(missatge);
                 await _context.SaveChangesAsync();
-                return Ok("Message sent");
+                return Ok("Missatge enviat");
             }
             catch (Exception ex)
             {

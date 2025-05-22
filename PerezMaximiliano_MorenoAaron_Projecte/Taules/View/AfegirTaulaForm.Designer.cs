@@ -37,6 +37,11 @@
             // numericUpDownTaula_numcomensals
             // 
             this.numericUpDownTaula_numcomensals.Location = new System.Drawing.Point(235, 126);
+            this.numericUpDownTaula_numcomensals.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownTaula_numcomensals.Name = "numericUpDownTaula_numcomensals";
             this.numericUpDownTaula_numcomensals.Size = new System.Drawing.Size(114, 20);
             this.numericUpDownTaula_numcomensals.TabIndex = 2;

@@ -64,6 +64,7 @@ namespace Services
                 restaurantAct.descripcio = updateRestaurant.descripcio;
                 restaurantAct.paginaWeb = updateRestaurant.paginaWeb;
                 restaurantAct.logo = updateRestaurant.logo;
+                restaurantAct.imatgeRestaurant = updateRestaurant.imatgeRestaurant;
 
                 _context.Restaurants.Update(restaurantAct);
                 _context.SaveChanges();

@@ -4,7 +4,6 @@ using Entitats.ReservaClasses;
 using Entitats.RestaurantClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 {

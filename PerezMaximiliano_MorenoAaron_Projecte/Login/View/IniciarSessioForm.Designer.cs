@@ -54,6 +54,8 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button_imatgeRestaurant = new MaterialSkin.Controls.MaterialButton();
+            this.pictureBox_imatgeRestaurant = new System.Windows.Forms.PictureBox();
             this.materialLabel19 = new MaterialSkin.Controls.MaterialLabel();
             this.materialCheckboxRegistrar_veureContrasenya = new MaterialSkin.Controls.MaterialCheckbox();
             this.button_registrar = new MaterialSkin.Controls.MaterialButton();
@@ -100,6 +102,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.materialTabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imatgeRestaurant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -198,7 +201,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPage1.Location = new System.Drawing.Point(4, 39);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1418, 882);
+            this.tabPage1.Size = new System.Drawing.Size(1466, 882);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Entrar";
             // 
@@ -383,12 +386,14 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(1426, 925);
+            this.materialTabControl1.Size = new System.Drawing.Size(1474, 925);
             this.materialTabControl1.TabIndex = 38;
             // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.button_imatgeRestaurant);
+            this.tabPage2.Controls.Add(this.pictureBox_imatgeRestaurant);
             this.tabPage2.Controls.Add(this.materialLabel19);
             this.tabPage2.Controls.Add(this.materialCheckboxRegistrar_veureContrasenya);
             this.tabPage2.Controls.Add(this.button_registrar);
@@ -426,9 +431,39 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPage2.Location = new System.Drawing.Point(4, 39);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1418, 882);
+            this.tabPage2.Size = new System.Drawing.Size(1466, 882);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Registrar ";
+            // 
+            // button_imatgeRestaurant
+            // 
+            this.button_imatgeRestaurant.AutoSize = false;
+            this.button_imatgeRestaurant.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button_imatgeRestaurant.BackColor = System.Drawing.Color.White;
+            this.button_imatgeRestaurant.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.button_imatgeRestaurant.Depth = 0;
+            this.button_imatgeRestaurant.HighEmphasis = true;
+            this.button_imatgeRestaurant.Icon = null;
+            this.button_imatgeRestaurant.Location = new System.Drawing.Point(173, 550);
+            this.button_imatgeRestaurant.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.button_imatgeRestaurant.MouseState = MaterialSkin.MouseState.HOVER;
+            this.button_imatgeRestaurant.Name = "button_imatgeRestaurant";
+            this.button_imatgeRestaurant.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.button_imatgeRestaurant.Size = new System.Drawing.Size(126, 28);
+            this.button_imatgeRestaurant.TabIndex = 139;
+            this.button_imatgeRestaurant.Text = "INSERTAR LOGO";
+            this.button_imatgeRestaurant.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.button_imatgeRestaurant.UseAccentColor = false;
+            this.button_imatgeRestaurant.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox_imatgeRestaurant
+            // 
+            this.pictureBox_imatgeRestaurant.Location = new System.Drawing.Point(318, 494);
+            this.pictureBox_imatgeRestaurant.Name = "pictureBox_imatgeRestaurant";
+            this.pictureBox_imatgeRestaurant.Size = new System.Drawing.Size(500, 300);
+            this.pictureBox_imatgeRestaurant.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox_imatgeRestaurant.TabIndex = 138;
+            this.pictureBox_imatgeRestaurant.TabStop = false;
             // 
             // materialLabel19
             // 
@@ -1068,6 +1103,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.pictureBox_logo.Location = new System.Drawing.Point(72, 276);
             this.pictureBox_logo.Name = "pictureBox_logo";
             this.pictureBox_logo.Size = new System.Drawing.Size(156, 156);
+            this.pictureBox_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox_logo.TabIndex = 44;
             this.pictureBox_logo.TabStop = false;
             // 
@@ -1076,7 +1112,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1432, 992);
+            this.ClientSize = new System.Drawing.Size(1480, 992);
             this.Controls.Add(this.materialTabControl1);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialLabel1);
@@ -1107,6 +1143,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialTabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imatgeRestaurant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1169,6 +1206,8 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
         public MaterialSkin.Controls.MaterialCheckbox materialCheckboxEntrar_veureContrasenya;
         public MaterialSkin.Controls.MaterialCheckbox materialCheckboxRegistrar_veureContrasenya;
         private MaterialSkin.Controls.MaterialLabel materialLabel19;
+        public MaterialSkin.Controls.MaterialButton button_imatgeRestaurant;
+        public System.Windows.Forms.PictureBox pictureBox_imatgeRestaurant;
     }
 }
 

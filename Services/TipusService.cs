@@ -36,5 +36,10 @@ namespace Services
         {
             return _context.TipusPlats.ToList();
         }
+
+        public TipusPlat GetTipusPlatById(int tipusPlatId)
+        {
+            return _context.TipusPlats.Where(tp => tp.id == tipusPlatId).FirstOrDefault();
+        }
     }
 }

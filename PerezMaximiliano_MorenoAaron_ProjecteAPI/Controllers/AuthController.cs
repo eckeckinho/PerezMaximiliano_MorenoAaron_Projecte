@@ -1,6 +1,5 @@
 ﻿using Data;
 using Entitats.AuthClasses;
-using Entitats.ContacteClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +32,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 
                 if (usuari != null)
                 {
+                    // Verificar la contrasenya
                     if (BCrypt.Net.BCrypt.Verify(loginRequest.contrasenya, usuari.contrasenya))
                     {
                         return Ok(usuari);
@@ -63,6 +63,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 
                 if (usuari == null)
                 {
+                    // Hash de la contrasenya
                     newUsuari.contrasenya = BCrypt.Net.BCrypt.HashPassword(newUsuari.contrasenya);
                     _context.Usuaris.Add(newUsuari);
                     await _context.SaveChangesAsync();

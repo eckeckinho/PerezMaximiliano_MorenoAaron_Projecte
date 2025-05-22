@@ -1,9 +1,7 @@
 ﻿using Data;
-using Entitats.ContacteClasses;
 using Entitats.RestaurantClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 {
@@ -23,31 +21,33 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
         {
             List<Restaurant> restaurants = new List<Restaurant>();
 
+            // Si no se proporciona ni ubicación ni nombre, devolver todos los restaurantes
             if (String.IsNullOrWhiteSpace(ubicacio) && String.IsNullOrWhiteSpace(nomRestaurant))
             {
                 restaurants = await _context.Restaurants.ToListAsync();
             }
+            // Si solo se proporciona uno de los dos filtros (ubicación o nombre)
             else if (String.IsNullOrWhiteSpace(ubicacio) || String.IsNullOrWhiteSpace(nomRestaurant))
             {
+                // Si solo se proporciona la ubicación, filtrar por ciudad exacta 
                 if (!String.IsNullOrWhiteSpace(ubicacio))
                 {
-                    restaurants = await _context.Restaurants
-                        .Where(r => r.ciutat.ToLower().Equals(ubicacio.ToLower()))
-                        .ToListAsync();
+                    restaurants = await _context.Restaurants.Where(r => r.ciutat.ToLower().Equals(ubicacio.ToLower())).ToListAsync();
                 }
+
+                // Si solo se proporciona el nombre, buscar coincidencias parciales 
                 if (!String.IsNullOrWhiteSpace(nomRestaurant))
                 {
-                    restaurants = await _context.Restaurants
-                        .Where(r => r.nomRestaurant.ToLower().Contains(nomRestaurant.ToLower()))
-                        .ToListAsync();
+                    restaurants = await _context.Restaurants.Where(r => r.nomRestaurant.ToLower().Contains(nomRestaurant.ToLower())).ToListAsync();
                 }
             }
+            // Si se proporcionan ambos filtros, buscar ubicación exacta y nombre parcial
             else
             {
-                restaurants = await _context.Restaurants
-                    .Where(r => r.ciutat.ToLower().Equals(ubicacio.ToLower()) && r.nomRestaurant.ToLower().Contains(nomRestaurant.ToLower()))
-                    .ToListAsync();
+                restaurants = await _context.Restaurants.Where(r => r.ciutat.ToLower().Equals(ubicacio.ToLower()) &&
+                        r.nomRestaurant.ToLower().Contains(nomRestaurant.ToLower())).ToListAsync();
             }
+
             return Ok(restaurants);
         }
 
@@ -107,6 +107,22 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
                     return BadRequest();
                 }
             }
+        }
+
+        [HttpGet("GetPlats")]
+        public async Task<IActionResult> GetPlats(int restaurantId)
+        {
+            var plats = await _context.Plats.Where(x => x.restaurantid == restaurantId).ToListAsync();
+
+            return Ok(plats);
+        }
+
+        [HttpGet("GetHorari")]
+        public async Task<IActionResult> GetHorari(int restaurantId)
+        {
+            var horari = await _context.Horaris.Where(x => x.restaurantid == restaurantId).ToListAsync();
+
+            return Ok(horari);
         }
     }
 }

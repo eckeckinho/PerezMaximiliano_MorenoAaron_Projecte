@@ -135,6 +135,7 @@ namespace Taules.Controller
             if (fa.buttonTaula_afegir_editar.Text.Equals("AFEGIR"))
             {
                 fa.buttonTaula_afegir_editar.Text = "EDITAR";
+                fa.Text = "Editar taula";
             }
             var taulaSeleccionada = fm.dataGridViewTaula_taules.SelectedRows[0].DataBoundItem as Taula;
 
@@ -149,7 +150,10 @@ namespace Taules.Controller
             if (fa.buttonTaula_afegir_editar.Text.Equals("EDITAR"))
             {
                 fa.buttonTaula_afegir_editar.Text = "AFEGIR";
+                fa.Text = "Afegir taula";
             }
+
+            fa.numericUpDownTaula_numcomensals.Value = 1;
 
             fa.ShowDialog();
         }

@@ -11,5 +11,6 @@ namespace Services.Interfaces
         List<TipusPreu> GetTipusPreus();
         List<TipusEstat> GetTipusEstats();
         List<TipusPlat> GetTipusPlats();
+        TipusPlat GetTipusPlatById(int tipusPlatId);
     }
 }
