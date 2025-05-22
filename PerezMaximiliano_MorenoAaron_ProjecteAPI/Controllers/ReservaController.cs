@@ -83,6 +83,15 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
                  hora.Add(TimeSpan.FromMinutes(duradaSeleccionada)) <= franjaSeleccionada.hora_final; // La nueva reserva debe terminar antes o justo al final de la franja
                  hora = hora.Add(TimeSpan.FromMinutes(15))) // Avanzamos 15 minutos para probar la siguiente hora posible
             {
+
+                // Comprobar y descartar las horas que ya hayan pasado en el día de hoy para que no se muestren como reservables
+                if (data.Date == DateTime.Now.Date)
+                {
+                    DateTime horaCompleta = data.Date + hora;
+
+                    if (horaCompleta < DateTime.Now) continue; // Descarta esta hora porque ya ha pasado
+                }
+
                 int taulesOcupades = 0;
 
                 // Revisamos todas las reservas existentes para ver si alguna se solapa con esta hora

@@ -10,4 +10,15 @@ namespace Entitats.TaulaClasses
         public int numComensals { get; set; }
         public int restaurantId { get; set; }
     }
+
+    public class CapacitatTaulaCombo
+    {
+        public int capacitat { get; set; }
+        public int quantitat { get; set; }
+
+        public override string ToString()
+        {
+            return capacitat == -1 ? $"Totes ({quantitat})" : $"{capacitat} comensals ({quantitat})";
+        }
+    }
 }

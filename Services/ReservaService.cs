@@ -7,6 +7,7 @@ using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace Services
 {
@@ -63,18 +64,20 @@ namespace Services
         }
 
 
-        public List<Reserva> GetReservesRestaurant(int idEstat, DateTime desde, DateTime hasta)
+        public List<Reserva> GetReservesRestaurant(int idEstat, DateTime desde, DateTime hasta, Usuari usuari)
         {
             var idTaulesRestaurant = _context.Taules.Where(x => x.restaurantId == _restaurantActual.id).Select(x => x.id).ToList();
 
             if (idTaulesRestaurant.Count == 0) return new List<Reserva>();
 
+            var query = _context.Reservas
+                .Where(x => idTaulesRestaurant.Contains(x.taulaid))
+                .Where(x => x.estatid == idEstat)
+                .Where(x => x.datareserva >= desde.Date && x.datareserva < hasta.Date.AddDays(1));
 
-            // Devuelve las reservas del restaurante filtrados por estado y fecha (intervalo de fechas)
-            var reservasRestaurante = _context.Reservas.Where(x => idTaulesRestaurant.Contains(x.taulaid)).Where(x => x.estatid == idEstat)
-                .Where(x => x.datareserva >= desde.Date && x.datareserva < hasta.Date.AddDays(1)).OrderByDescending(x => x.id).ToList();
+            if (usuari != null && usuari.id != -1) query = query.Where(x => x.usuariId == usuari.id);
 
-            return reservasRestaurante;
+            return query.OrderByDescending(x => x.id).ToList();
         }
 
         public Usuari GetUsuariReserva(int usuariId)
@@ -178,6 +181,17 @@ namespace Services
             {
                 throw new Exception("Error al actualitzar la reserva. " + ex.Message, ex);
             }
+        }
+
+        public int GetCountReservesByEstatUsuari(int estatId, int usuariId, DateTime desde, DateTime hasta)
+        {
+            var idTaulesRestaurant = _context.Taules.Where(x => x.restaurantId == _restaurantActual.id).Select(x => x.id);
+
+            var reserves = _context.Reservas.Where(r => idTaulesRestaurant.Contains(r.taulaid)).Where(r => r.estatid == estatId).Where(r => r.datareserva >= desde.Date && r.datareserva < hasta.Date.AddDays(1));
+
+            if (usuariId != -1) reserves = reserves.Where(r => r.usuariId == usuariId);
+
+            return reserves.Count();
         }
     }
 }

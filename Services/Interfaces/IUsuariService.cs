@@ -6,5 +6,6 @@ namespace Services.Interfaces
     public interface IUsuariService
     {
         List<Usuari> GetUsuaris();
+        List<Usuari> GetUsuarisAmbReserva();
     }
 }

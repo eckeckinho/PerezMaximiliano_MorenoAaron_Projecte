@@ -10,6 +10,7 @@ namespace Services.Interfaces
         List<Taula> GetTaules();
         List<int> GetCapacitatsDisponibles();
         List<Taula> GetTaulesDisponibles(DateTime data, Horari franja);
+        List<CapacitatTaulaCombo> GetCapacitatsCombo();
         int? GetAforamentActual();
         int GetAforamentMaxim();
         bool DeleteTaules(List<Taula> taulesSeleccionades);

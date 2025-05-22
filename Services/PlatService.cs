@@ -21,8 +21,18 @@ namespace Services
 
         public List<Plat> GetPlats(int tipusPlatId)
         {
-            return _context.Plats.Where(x => x.restaurantid == _restaurantActual.id).OrderBy(x => x.tipusPlatId).ThenBy(x => x.preu).ToList();
+            var plats = _context.Plats.Where(p => p.restaurantid == _restaurantActual.id);
+
+            if (tipusPlatId != -1) plats = plats.Where(p => p.tipusPlatId == tipusPlatId);
+
+            return plats.ToList();
         }
+
+        public int GetCountPlatsByTipus(int tipusId)
+        {
+            return _context.Plats.Count(p => p.tipusPlatId == tipusId && p.restaurantid == _restaurantActual.id);
+        }
+
 
         public bool AddPlat(Plat newPlat)
         {

@@ -84,6 +84,24 @@ namespace Services
             return _context.Taules.Where(t => t.restaurantId == _restaurantActual.id).Select(t => t.numComensals).Distinct().OrderBy(c => c).ToList();
         }
 
+        public List<CapacitatTaulaCombo> GetCapacitatsCombo()
+        {
+            var capacitats = _context.Taules.Where(t => t.restaurantId == _restaurantActual.id).GroupBy(t => t.numComensals)
+                .Select(g => new CapacitatTaulaCombo
+                {
+                    capacitat = g.Key,
+                    quantitat = g.Count()
+                }).OrderBy(c => c.capacitat).ToList();
+
+            capacitats.Insert(0, new CapacitatTaulaCombo
+            {
+                capacitat = -1,
+                quantitat = capacitats.Sum(c => c.quantitat)
+            });
+
+            return capacitats;
+        }
+
         public List<Taula> GetTaulesDisponibles(DateTime data, Horari franja)
         {
             var taulesRestaurant = _context.Taules.Where(t => t.restaurantId == _restaurantActual.id).ToList();

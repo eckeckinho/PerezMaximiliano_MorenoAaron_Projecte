@@ -3,6 +3,7 @@ using PerezMaximiliano_MorenoAaron_Projecte.View;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Taules.View;
 
@@ -39,8 +40,22 @@ namespace Taules.Controller
             fm.buttonTaula_editar.Click += Button_editar_Click;
             fm.buttonTaula_eliminar.Click += Button_eliminar_Click;
             fm.dataGridViewTaula_taules.SelectionChanged += DataGridView_taules_SelectionChanged;
+            fm.comboBoxTaula_comensals.SelectedIndexChanged += ComboBoxTaula_comensals_SelectedIndexChanged;
 
             fa.buttonTaula_afegir_editar.Click += Button_afegir_editar_taula_Click;
+        }
+
+        private void ComboBoxTaula_comensals_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var comensalsSeleccionats = fm.comboBoxTaula_comensals.SelectedItem as CapacitatTaulaCombo;
+
+            if (comensalsSeleccionats == null) return;
+
+            var taules = _taulaService.GetTaules();
+
+            if (comensalsSeleccionats.capacitat != -1)taules = taules.Where(t => t.numComensals == comensalsSeleccionats.capacitat).ToList();
+
+            fm.dataGridViewTaula_taules.DataSource = taules;
         }
 
         private void LoadData()
@@ -50,6 +65,8 @@ namespace Taules.Controller
             fm.textBoxTaula_aforamentMaxim.Text = _taulaService.GetAforamentMaxim().ToString();
             fm.dataGridViewTaula_taules.Columns["id"].Visible = false;
             fm.dataGridViewTaula_taules.Columns["restaurantId"].Visible = false;
+            fm.comboBoxTaula_comensals.DataSource = _taulaService.GetCapacitatsCombo();
+            fm.comboBoxTaula_comensals.DisplayMember = "ToString";
         }
 
         // Añadir o editar mesa según el botón pulsado previamente

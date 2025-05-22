@@ -1,10 +1,10 @@
-﻿using Entitats.AuthClasses;
-using Entitats.PlatClasses;
+﻿using Entitats.PlatClasses;
 using PerezMaximiliano_MorenoAaron_Projecte.MenuPlats.View;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MenuPlats.Controller
@@ -43,36 +43,83 @@ namespace MenuPlats.Controller
             fm.buttonMenu_eliminar.Click += ButtonMenu_eliminar_Click;
             fm.dataGridViewMenu_plats.SelectionChanged += DataGridViewMenu_plats_SelectionChanged;
             fm.comboBoxMenu_tipusPlats.SelectedIndexChanged += ComboBoxMenu_tipusPlats_SelectedIndexChanged;
-            fp.buttonAfegirPlat_afegir_editar.Click += ButtonAfegirPlat_afegir_editar_Click;
-        }
 
-        private void ComboBoxMenu_tipusPlats_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadData();
+            fp.buttonAfegirPlat_afegir_editar.Click += ButtonAfegirPlat_afegir_editar_Click;
+            fp.numericUpDownAfegirPlats_preu.KeyPress += NumericUpDownAfegirPlats_preu_KeyPress; ;
         }
 
         private void LoadData()
         {
-            var tipusPlats = _tipusService.GetTipusPlats();
+            // Obtener los tipos de plato
+            var tipusPlatsOriginal = _tipusService.GetTipusPlats();
 
-            fm.comboBoxMenu_tipusPlats.DisplayMember = "descripcio";
+            // Crear lista con contador por tipo
+            var tipusPlats = tipusPlatsOriginal.Select(t => new TipusPlatCombo
+            {
+                id = t.id,
+                descripcio = t.descripcio,
+                quantitat = _platService.GetCountPlatsByTipus(t.id)
+            }).ToList();
+
+            // Calcular total para "Tots"
+            int total = tipusPlats.Sum(t => t.quantitat);
+            tipusPlats.Insert(0, new TipusPlatCombo
+            {
+                id = -1,
+                descripcio = "Tots",
+                quantitat = total
+            });
+
+            // ComboBox de filtro
+            fm.comboBoxMenu_tipusPlats.DisplayMember = "ToString";
             fm.comboBoxMenu_tipusPlats.DataSource = tipusPlats;
 
-            var tipusPlatCombo = fm.comboBoxMenu_tipusPlats.SelectedItem as TipusPlat;
-            fm.dataGridViewMenu_plats.DataSource = _platService.GetPlats(tipusPlatCombo.id);
+            // ComboBox para añadir plato (sin contador)
+            fp.comboBoxAfegirPlats_tipusPlats.DisplayMember = "descripcio";
+            fp.comboBoxAfegirPlats_tipusPlats.DataSource = tipusPlatsOriginal;
 
+            LoadDgvPlats();
+
+            // Ocultar columnas no necesarias
             fm.dataGridViewMenu_plats.Columns["id"].Visible = false;
             fm.dataGridViewMenu_plats.Columns["restaurantid"].Visible = false;
             fm.dataGridViewMenu_plats.Columns["tipusPlatId"].Visible = false;
-
-            fp.comboBoxAfegirPlats_tipusPlats.DisplayMember = "descripcio";
-            fp.comboBoxAfegirPlats_tipusPlats.DataSource = tipusPlats;
         }
 
+        // Cargar datagrid de platos
+        private void LoadDgvPlats()
+        {
+            var tipusSeleccionat = fm.comboBoxMenu_tipusPlats.SelectedItem as TipusPlatCombo;
+
+            int tipusId;
+            if (tipusSeleccionat != null) tipusId = tipusSeleccionat.id;
+            else tipusId = -1;
+
+            fm.dataGridViewMenu_plats.DataSource = _platService.GetPlats(tipusId);
+        }
+
+
+        // Al seleccionar tipo de plato cargar el datagrid
+        private void ComboBoxMenu_tipusPlats_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadDgvPlats();
+        }
 
         // Añadir o editar plato según el botón pulsado previamente
         private void ButtonAfegirPlat_afegir_editar_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(fp.textBoxAfegirPlat_nomPlat.Text) || String.IsNullOrEmpty(fp.textBoxAfegirPlat_descripcio.Text))
+            {
+                MessageBox.Show("Has d'omplir tots els camps.", "Camps buits.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (fp.numericUpDownAfegirPlats_preu.Value.ToString().Contains(","))
+            {
+                MessageBox.Show("Has d'utilitzar un punt com a separador en el preu.", "Format incorrecte.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
             if (fp.buttonAfegirPlat_afegir_editar.Text.Equals("AFEGIR"))
             {
                 Plat newPlat = new Plat
@@ -89,7 +136,7 @@ namespace MenuPlats.Controller
                 if (response)
                 {
                     MessageBox.Show("Plat afegit correctament.", "Afegir plat", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadData();
+                    LoadDgvPlats();
                     fp.Close();
                 }
                 else
@@ -111,7 +158,7 @@ namespace MenuPlats.Controller
                 if (response)
                 {
                     MessageBox.Show("Plat editat.", "Edicio exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadData();
+                    LoadDgvPlats();
                     fp.Close();
                 }
                 else
@@ -162,7 +209,7 @@ namespace MenuPlats.Controller
                 if (resultatDelete)
                 {
                     MessageBox.Show("Plats eliminats.", "Eliminacio exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadData();
+                    LoadDgvPlats();
                 }
                 else
                 {
@@ -209,6 +256,14 @@ namespace MenuPlats.Controller
             fp.numericUpDownAfegirPlats_preu.Value = 0.99M;
 
             fp.ShowDialog();
+        }
+
+        private void NumericUpDownAfegirPlats_preu_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ',')
+            {
+                e.Handled = true; // No permite escribir la coma como separador de los decimales en el precio
+            }
         }
     }
 }

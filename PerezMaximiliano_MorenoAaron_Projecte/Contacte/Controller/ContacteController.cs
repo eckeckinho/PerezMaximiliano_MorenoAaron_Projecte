@@ -101,13 +101,28 @@ namespace Contacte.Controller
             LoadDataDgvMissatges();
         }
 
-        private void DateTimePicker_hasta_ValueChanged(object sender, EventArgs e)
+        // Controlar bien los cambios de fecha y cargar los mensajes al cambiarlos
+        private void DateTimePicker_desde_ValueChanged(object sender, EventArgs e)
         {
+            if (fm.dateTimePickerContacte_desde.Value > fm.dateTimePickerContacte_hasta.Value)
+            {
+                fm.dateTimePickerContacte_desde.Value = fm.dateTimePickerContacte_hasta.Value;
+                MessageBox.Show("La data 'Des de' no pot ser posterior a la data 'Fins a'.", "Data invàlida.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             LoadDataDgvMissatges();
         }
 
-        private void DateTimePicker_desde_ValueChanged(object sender, EventArgs e)
+        private void DateTimePicker_hasta_ValueChanged(object sender, EventArgs e)
         {
+            if (fm.dateTimePickerContacte_hasta.Value < fm.dateTimePickerContacte_desde.Value)
+            {
+                fm.dateTimePickerContacte_hasta.Value = fm.dateTimePickerContacte_desde.Value;
+                MessageBox.Show("La data 'Fins a' no pot ser anterior a la data 'Des de'.", "Data invàlida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             LoadDataDgvMissatges();
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace PerezMaximiliano_MorenoAaron_Projecte.View
+﻿using System.Windows.Forms;
+
+namespace PerezMaximiliano_MorenoAaron_Projecte.View
 {
     partial class MenuForm
     {
@@ -85,6 +87,10 @@
             this.buttonTaula_editar = new MaterialSkin.Controls.MaterialButton();
             this.buttonTaula_afegir = new MaterialSkin.Controls.MaterialButton();
             this.tabPageReserves = new System.Windows.Forms.TabPage();
+            this.comboBoxReserva_usuari = new System.Windows.Forms.ComboBox();
+            this.materialLabel32 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel27 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel28 = new MaterialSkin.Controls.MaterialLabel();
             this.buttonReserva_actualitzar = new MaterialSkin.Controls.MaterialButton();
             this.materialLabel25 = new MaterialSkin.Controls.MaterialLabel();
             this.buttonReserva_enProces = new MaterialSkin.Controls.MaterialButton();
@@ -142,6 +148,8 @@
             this.materialLabel26 = new MaterialSkin.Controls.MaterialLabel();
             this.comboBoxMenu_tipusPlats = new MaterialSkin.Controls.MaterialComboBox();
             this.dataGridViewMenu_plats = new System.Windows.Forms.DataGridView();
+            this.materialLabel33 = new MaterialSkin.Controls.MaterialLabel();
+            this.comboBoxTaula_comensals = new MaterialSkin.Controls.MaterialComboBox();
             this.tabPageConfiguracio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConfiguracio_imatgeRestaurant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConfiguracio_logo)).BeginInit();
@@ -959,6 +967,8 @@
             // tabPageTaules
             // 
             this.tabPageTaules.BackColor = System.Drawing.Color.White;
+            this.tabPageTaules.Controls.Add(this.materialLabel33);
+            this.tabPageTaules.Controls.Add(this.comboBoxTaula_comensals);
             this.tabPageTaules.Controls.Add(this.dataGridViewTaula_taules);
             this.tabPageTaules.Controls.Add(this.textBoxTaula_aforamentMaxim);
             this.tabPageTaules.Controls.Add(this.textBoxTaula_aforamentActual);
@@ -1110,6 +1120,10 @@
             // tabPageReserves
             // 
             this.tabPageReserves.BackColor = System.Drawing.Color.White;
+            this.tabPageReserves.Controls.Add(this.comboBoxReserva_usuari);
+            this.tabPageReserves.Controls.Add(this.materialLabel32);
+            this.tabPageReserves.Controls.Add(this.materialLabel27);
+            this.tabPageReserves.Controls.Add(this.materialLabel28);
             this.tabPageReserves.Controls.Add(this.buttonReserva_actualitzar);
             this.tabPageReserves.Controls.Add(this.materialLabel25);
             this.tabPageReserves.Controls.Add(this.buttonReserva_enProces);
@@ -1132,6 +1146,55 @@
             this.tabPageReserves.Size = new System.Drawing.Size(1386, 882);
             this.tabPageReserves.TabIndex = 6;
             this.tabPageReserves.Text = "Reserves";
+            // 
+            // comboBoxReserva_usuari
+            // 
+            this.comboBoxReserva_usuari.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxReserva_usuari.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxReserva_usuari.FormattingEnabled = true;
+            this.comboBoxReserva_usuari.Location = new System.Drawing.Point(1104, 220);
+            this.comboBoxReserva_usuari.Name = "comboBoxReserva_usuari";
+            this.comboBoxReserva_usuari.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxReserva_usuari.TabIndex = 123;
+            // 
+            // materialLabel32
+            // 
+            this.materialLabel32.AutoSize = true;
+            this.materialLabel32.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel32.Depth = 0;
+            this.materialLabel32.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel32.Location = new System.Drawing.Point(1101, 198);
+            this.materialLabel32.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel32.Name = "materialLabel32";
+            this.materialLabel32.Size = new System.Drawing.Size(46, 19);
+            this.materialLabel32.TabIndex = 122;
+            this.materialLabel32.Text = "Usuari";
+            // 
+            // materialLabel27
+            // 
+            this.materialLabel27.AutoSize = true;
+            this.materialLabel27.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel27.Depth = 0;
+            this.materialLabel27.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel27.Location = new System.Drawing.Point(306, 37);
+            this.materialLabel27.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel27.Name = "materialLabel27";
+            this.materialLabel27.Size = new System.Drawing.Size(44, 19);
+            this.materialLabel27.TabIndex = 120;
+            this.materialLabel27.Text = "Fins a";
+            // 
+            // materialLabel28
+            // 
+            this.materialLabel28.AutoSize = true;
+            this.materialLabel28.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel28.Depth = 0;
+            this.materialLabel28.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel28.Location = new System.Drawing.Point(177, 37);
+            this.materialLabel28.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel28.Name = "materialLabel28";
+            this.materialLabel28.Size = new System.Drawing.Size(49, 19);
+            this.materialLabel28.TabIndex = 119;
+            this.materialLabel28.Text = "Des de";
             // 
             // buttonReserva_actualitzar
             // 
@@ -1160,7 +1223,7 @@
             this.materialLabel25.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel25.Depth = 0;
             this.materialLabel25.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel25.Location = new System.Drawing.Point(576, 59);
+            this.materialLabel25.Location = new System.Drawing.Point(501, 59);
             this.materialLabel25.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel25.Name = "materialLabel25";
             this.materialLabel25.Size = new System.Drawing.Size(41, 19);
@@ -1417,11 +1480,11 @@
             this.comboBoxReserva_estat.FormattingEnabled = true;
             this.comboBoxReserva_estat.IntegralHeight = false;
             this.comboBoxReserva_estat.ItemHeight = 43;
-            this.comboBoxReserva_estat.Location = new System.Drawing.Point(621, 47);
+            this.comboBoxReserva_estat.Location = new System.Drawing.Point(548, 47);
             this.comboBoxReserva_estat.MaxDropDownItems = 4;
             this.comboBoxReserva_estat.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBoxReserva_estat.Name = "comboBoxReserva_estat";
-            this.comboBoxReserva_estat.Size = new System.Drawing.Size(114, 49);
+            this.comboBoxReserva_estat.Size = new System.Drawing.Size(187, 49);
             this.comboBoxReserva_estat.StartIndex = 0;
             this.comboBoxReserva_estat.TabIndex = 4;
             // 
@@ -1458,10 +1521,10 @@
             // 
             this.materialTabControl.Controls.Add(this.tabPageReserves);
             this.materialTabControl.Controls.Add(this.tabPageTaules);
-            this.materialTabControl.Controls.Add(this.tabPageContacte);
-            this.materialTabControl.Controls.Add(this.tabPageConfiguracio);
             this.materialTabControl.Controls.Add(this.tabPageHorari);
             this.materialTabControl.Controls.Add(this.tabPagePlats);
+            this.materialTabControl.Controls.Add(this.tabPageContacte);
+            this.materialTabControl.Controls.Add(this.tabPageConfiguracio);
             this.materialTabControl.Depth = 0;
             this.materialTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialTabControl.ImageList = this.imageList1;
@@ -2098,7 +2161,7 @@
             this.materialLabel26.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel26.Depth = 0;
             this.materialLabel26.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel26.Location = new System.Drawing.Point(688, 79);
+            this.materialLabel26.Location = new System.Drawing.Point(611, 80);
             this.materialLabel26.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel26.Name = "materialLabel26";
             this.materialLabel26.Size = new System.Drawing.Size(84, 19);
@@ -2119,11 +2182,11 @@
             this.comboBoxMenu_tipusPlats.FormattingEnabled = true;
             this.comboBoxMenu_tipusPlats.IntegralHeight = false;
             this.comboBoxMenu_tipusPlats.ItemHeight = 43;
-            this.comboBoxMenu_tipusPlats.Location = new System.Drawing.Point(778, 65);
+            this.comboBoxMenu_tipusPlats.Location = new System.Drawing.Point(701, 65);
             this.comboBoxMenu_tipusPlats.MaxDropDownItems = 4;
             this.comboBoxMenu_tipusPlats.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBoxMenu_tipusPlats.Name = "comboBoxMenu_tipusPlats";
-            this.comboBoxMenu_tipusPlats.Size = new System.Drawing.Size(114, 49);
+            this.comboBoxMenu_tipusPlats.Size = new System.Drawing.Size(191, 49);
             this.comboBoxMenu_tipusPlats.StartIndex = 0;
             this.comboBoxMenu_tipusPlats.TabIndex = 118;
             // 
@@ -2137,6 +2200,41 @@
             this.dataGridViewMenu_plats.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewMenu_plats.Size = new System.Drawing.Size(555, 371);
             this.dataGridViewMenu_plats.TabIndex = 1;
+            // 
+            // materialLabel33
+            // 
+            this.materialLabel33.AutoSize = true;
+            this.materialLabel33.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel33.Depth = 0;
+            this.materialLabel33.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel33.Location = new System.Drawing.Point(412, 65);
+            this.materialLabel33.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel33.Name = "materialLabel33";
+            this.materialLabel33.Size = new System.Drawing.Size(163, 19);
+            this.materialLabel33.TabIndex = 119;
+            this.materialLabel33.Text = "Número de comensals:";
+            // 
+            // comboBoxTaula_comensals
+            // 
+            this.comboBoxTaula_comensals.AutoResize = false;
+            this.comboBoxTaula_comensals.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.comboBoxTaula_comensals.Depth = 0;
+            this.comboBoxTaula_comensals.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBoxTaula_comensals.DropDownHeight = 174;
+            this.comboBoxTaula_comensals.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTaula_comensals.DropDownWidth = 121;
+            this.comboBoxTaula_comensals.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.comboBoxTaula_comensals.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.comboBoxTaula_comensals.FormattingEnabled = true;
+            this.comboBoxTaula_comensals.IntegralHeight = false;
+            this.comboBoxTaula_comensals.ItemHeight = 43;
+            this.comboBoxTaula_comensals.Location = new System.Drawing.Point(586, 46);
+            this.comboBoxTaula_comensals.MaxDropDownItems = 4;
+            this.comboBoxTaula_comensals.MouseState = MaterialSkin.MouseState.OUT;
+            this.comboBoxTaula_comensals.Name = "comboBoxTaula_comensals";
+            this.comboBoxTaula_comensals.Size = new System.Drawing.Size(187, 49);
+            this.comboBoxTaula_comensals.StartIndex = 0;
+            this.comboBoxTaula_comensals.TabIndex = 118;
             // 
             // MenuForm
             // 
@@ -2287,5 +2385,11 @@
         public MaterialSkin.Controls.MaterialButton buttonMenu_eliminar;
         public MaterialSkin.Controls.MaterialButton buttonMenu_editar;
         public MaterialSkin.Controls.MaterialButton buttonMenu_afegir;
+        private MaterialSkin.Controls.MaterialLabel materialLabel27;
+        private MaterialSkin.Controls.MaterialLabel materialLabel28;
+        public MaterialSkin.Controls.MaterialLabel materialLabel32;
+        public ComboBox comboBoxReserva_usuari;
+        private MaterialSkin.Controls.MaterialLabel materialLabel33;
+        public MaterialSkin.Controls.MaterialComboBox comboBoxTaula_comensals;
     }
 }

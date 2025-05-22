@@ -271,24 +271,41 @@ namespace Contacte.Controller
 
             for (int dia = 1; dia <= diesSetmana; dia++)
             {
-                foreach (var franja in franjasPerDia[dia])
+                var franjasDelDia = franjasPerDia[dia];
+                var horarisDelDia = new List<Horari>();
+
+                foreach (var franja in franjasDelDia)
                 {
                     TimeSpan inici = franja.pickerInici.Value.TimeOfDay;
                     TimeSpan fi = franja.pickerFinal.Value.TimeOfDay;
 
                     if (inici >= fi)
                     {
-                        MessageBox.Show($"Franja invàlida al dia {dia}. La hora de inici no pot ser igual o posterior a la de fi.");
+                        MessageBox.Show($"Franja invàlida al dia {dia}.\n\nL'hora d'inici ha de ser menor que la de fi.", "Error de franja horària", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    // Almacenar cada franja horaria de todos los días de la semana
-                    totsElsHoraris.Add(new Horari
+                    if (horarisDelDia.Any(h => h.hora_inici == inici && h.hora_final == fi))
+                    {
+                        MessageBox.Show($"Franja duplicada al dia {dia}.\n\nJa existeix una franja amb la mateixa hora d'inici i fi.","Franja duplicada",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    if (horarisDelDia.Any(h => inici < h.hora_final && fi > h.hora_inici))
+                    {
+                        MessageBox.Show($"Solapament de franja al dia {dia}.\n\nAquesta franja se solapa amb una altra existent.","Franja solapada",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    var nouHorari = new Horari
                     {
                         dia = dia,
                         hora_inici = inici,
                         hora_final = fi
-                    });
+                    };
+
+                    horarisDelDia.Add(nouHorari);
+                    totsElsHoraris.Add(nouHorari);
                 }
             }
 
@@ -299,12 +316,13 @@ namespace Contacte.Controller
                 fm.monthCalendarHorari_horari.Refresh();
                 PintarDiesAmbHorari();
 
-                MessageBox.Show("Tots els horaris s'han guardat correctament.");
+                MessageBox.Show("Tots els horaris s'han guardat correctament.","Èxit",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Error al guardar els horaris.");
+                MessageBox.Show("Error al guardar els horaris.","Error de guardat",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
+
         }
 
         private void PintarDiesAmbHorari()

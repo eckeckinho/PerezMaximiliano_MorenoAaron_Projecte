@@ -15,6 +15,11 @@ namespace Entitats.AuthClasses
         public string contrasenya { get; set; }
         public string pais { get; set; }
         public string telefon { get; set; }
+
+        public override string ToString()
+        {
+            return $"{nom} {cognoms}";
+        }
     }
 
     public class LoginReq

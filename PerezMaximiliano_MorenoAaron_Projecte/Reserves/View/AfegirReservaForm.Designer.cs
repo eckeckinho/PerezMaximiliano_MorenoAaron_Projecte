@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBoxAfegirReserva_usuari = new MaterialSkin.Controls.MaterialComboBox();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.comboBoxAfegirReserva_taula = new MaterialSkin.Controls.MaterialComboBox();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
@@ -42,30 +41,8 @@
             this.comboBoxAfegirReserva_durada = new MaterialSkin.Controls.MaterialComboBox();
             this.monthCalendarReserva_horari = new Pabo.Calendar.MonthCalendar();
             this.buttonAfegirReserva_actualitzar = new MaterialSkin.Controls.MaterialButton();
+            this.comboBoxAfegirReserva_usuari = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // comboBoxAfegirReserva_usuari
-            // 
-            this.comboBoxAfegirReserva_usuari.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBoxAfegirReserva_usuari.AutoResize = false;
-            this.comboBoxAfegirReserva_usuari.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.comboBoxAfegirReserva_usuari.Depth = 0;
-            this.comboBoxAfegirReserva_usuari.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.comboBoxAfegirReserva_usuari.DropDownHeight = 174;
-            this.comboBoxAfegirReserva_usuari.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxAfegirReserva_usuari.DropDownWidth = 121;
-            this.comboBoxAfegirReserva_usuari.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.comboBoxAfegirReserva_usuari.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.comboBoxAfegirReserva_usuari.FormattingEnabled = true;
-            this.comboBoxAfegirReserva_usuari.IntegralHeight = false;
-            this.comboBoxAfegirReserva_usuari.ItemHeight = 43;
-            this.comboBoxAfegirReserva_usuari.Location = new System.Drawing.Point(20, 102);
-            this.comboBoxAfegirReserva_usuari.MaxDropDownItems = 4;
-            this.comboBoxAfegirReserva_usuari.MouseState = MaterialSkin.MouseState.OUT;
-            this.comboBoxAfegirReserva_usuari.Name = "comboBoxAfegirReserva_usuari";
-            this.comboBoxAfegirReserva_usuari.Size = new System.Drawing.Size(114, 49);
-            this.comboBoxAfegirReserva_usuari.StartIndex = 0;
-            this.comboBoxAfegirReserva_usuari.TabIndex = 6;
             // 
             // materialLabel4
             // 
@@ -295,11 +272,22 @@
             this.buttonAfegirReserva_actualitzar.UseAccentColor = false;
             this.buttonAfegirReserva_actualitzar.UseVisualStyleBackColor = true;
             // 
+            // comboBoxAfegirReserva_usuari
+            // 
+            this.comboBoxAfegirReserva_usuari.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxAfegirReserva_usuari.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxAfegirReserva_usuari.FormattingEnabled = true;
+            this.comboBoxAfegirReserva_usuari.Location = new System.Drawing.Point(22, 106);
+            this.comboBoxAfegirReserva_usuari.Name = "comboBoxAfegirReserva_usuari";
+            this.comboBoxAfegirReserva_usuari.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxAfegirReserva_usuari.TabIndex = 198;
+            // 
             // AfegirReservaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1149, 368);
+            this.Controls.Add(this.comboBoxAfegirReserva_usuari);
             this.Controls.Add(this.buttonAfegirReserva_actualitzar);
             this.Controls.Add(this.monthCalendarReserva_horari);
             this.Controls.Add(this.materialLabel6);
@@ -313,7 +301,6 @@
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.comboBoxAfegirReserva_taula);
             this.Controls.Add(this.materialLabel4);
-            this.Controls.Add(this.comboBoxAfegirReserva_usuari);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AfegirReservaForm";
@@ -325,7 +312,6 @@
         }
 
         #endregion
-        public MaterialSkin.Controls.MaterialComboBox comboBoxAfegirReserva_usuari;
         public MaterialSkin.Controls.MaterialLabel materialLabel4;
         public MaterialSkin.Controls.MaterialComboBox comboBoxAfegirReserva_taula;
         public MaterialSkin.Controls.MaterialLabel materialLabel2;
@@ -339,5 +325,6 @@
         public MaterialSkin.Controls.MaterialComboBox comboBoxAfegirReserva_durada;
         public Pabo.Calendar.MonthCalendar monthCalendarReserva_horari;
         public MaterialSkin.Controls.MaterialButton buttonAfegirReserva_actualitzar;
+        public System.Windows.Forms.ComboBox comboBoxAfegirReserva_usuari;
     }
 }

@@ -56,7 +56,7 @@ namespace Services
             try
             {
                 // Recoger las franjas horarias del restaurante para el día específico
-                var horaris = _context.Horaris.Where(h => h.restaurantid == _restaurantActual.id && h.dia == dia).ToList();
+                var horaris = _context.Horaris.Where(h => h.restaurantid == _restaurantActual.id && h.dia == dia).OrderBy(x=>x.hora_inici).ToList();
 
                 return horaris;
             }
