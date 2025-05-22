@@ -131,7 +131,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             }
             else
             {
-                MessageBox.Show("Usuari o contrasenya incorrectes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Usuari o contrasenya incorrectes.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -157,13 +157,13 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                 {
                     if (!int.TryParse(f.textBox_aforament.Text, out int aforament))
                     {
-                        MessageBox.Show("El camp 'Aforament' ha de ser un número enter.", "Valor no vàlid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("El camp 'Aforament' ha de ser un número enter.", "Valor no vàlid.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
                     if (f.textBox_usuariRegis.Text.Contains(" "))
                     {
-                        MessageBox.Show("El nom d'usuari no pot contenir espais.", "Usuari no vàlid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("El nom d'usuari no pot contenir espais.", "Usuari no vàlid.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -173,7 +173,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                         logoByteArray = ImageToByteArray(logo);
                     } else
                     {
-                        MessageBox.Show("Afegeix un logotip pel teu restaurant.", "Logo necessari", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Afegeix un logotip pel teu restaurant.", "Logo necessari.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -183,7 +183,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                         imatgeRestaurantByteArray = ImageToByteArray(imatgeRestaurant);
                     } else
                     {
-                        MessageBox.Show("Afegeix una imatge del teu restaurant.", "Imatge del restaurant necessària", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Afegeix una imatge del teu restaurant.", "Imatge del restaurant necessària.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -225,25 +225,25 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
                         f.textBox_aforament.Clear();
                         f.textBox_descripcio.Clear();
                         f.textBox_paginaweb.Clear();
-                        f.comboBox_tipuscuina.SelectedItem = null;
-                        f.comboBox_tipuspreu.SelectedItem = null;
                         f.pictureBox_logo.Image = null;
+                        f.pictureBox_imatgeRestaurant.Image = null;
+                        LoadData();
 
-                        MessageBox.Show("Restaurant registrat amb exit, ja pots iniciar sessio.", "Registre exitos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Restaurant registrat amb èxit, ja pots iniciar sessió.", "Registre completat.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Ja existeix aquest nom d'usuari, prova un altre.", "Nom existent", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Aquest nom d'usuari o correu electrònic ja està en ús, prova un altre.", "Identitat existent.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Completi tots els camps requerits.", "Camps incomplerts", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Completi tots els camps requerits.", "Camps incomplerts.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al registrar restaurant." + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al registrar restaurant." + ex.Message, "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -274,7 +274,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             }
         }
 
-        // Insertar logo màxim 150x150 píxels
+        // Insertar logo del restaurant
         private void Button_logo_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -285,37 +285,53 @@ namespace PerezMaximiliano_MorenoAaron_Projecte
             {
                 logo = Image.FromFile(openFileDialog.FileName);
 
-                if (logo.Width <= 150 && logo.Height <= 150)
-                {
-                    f.pictureBox_logo.Image = logo;
-                }
-                else
-                {
-                    MessageBox.Show("El logo ha de tenir un màxim de 150x150 píxels.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                Image logoAjustat = AjustarImatge(logo, 150, 150);
+                f.pictureBox_logo.Image = logoAjustat;
             }
         }
 
-        // Insertar imatge del restaurant màxim 300x200 píxels
+        // Insertar imatge del restaurant
         private void Button_imatgeRestaurant_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Arxius d'imatge|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
             openFileDialog.Title = "Seleccioni la imatge del restaurant";
 
+
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 imatgeRestaurant = Image.FromFile(openFileDialog.FileName);
 
-                if (imatgeRestaurant.Width <= 500 && imatgeRestaurant.Height <= 300)
-                {
-                    f.pictureBox_imatgeRestaurant.Image = imatgeRestaurant;
-                }
-                else
-                {
-                    MessageBox.Show("La imatge del restaurant ha de tenir un màxim de 500x300 píxels.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                Image imatgeRestaurantAjustada = AjustarImatge(imatgeRestaurant, 500, 300);
+                f.pictureBox_imatgeRestaurant.Image = imatgeRestaurantAjustada;
             }
+        }
+
+        private Image AjustarImatge(Image original, int maxWidth, int maxHeight)
+        {
+            // Calcular tamaño escalado manteniendo proporciones
+            double ratioX = (double)maxWidth / original.Width;
+            double ratioY = (double)maxHeight / original.Height;
+            double ratio = Math.Min(ratioX, ratioY);
+
+            int newWidth = (int)(original.Width * ratio);
+            int newHeight = (int)(original.Height * ratio);
+
+            // Crear imagen final del tamaño deseado
+            Bitmap finalImage = new Bitmap(maxWidth, maxHeight);
+            using (Graphics g = Graphics.FromImage(finalImage))
+            {
+                g.Clear(Color.Transparent);
+
+                // Calcular posición centrada
+                int posX = (maxWidth - newWidth) / 2;
+                int posY = (maxHeight - newHeight) / 2;
+
+                // Dibujar imagen escalada en el centro
+                g.DrawImage(original, posX, posY, newWidth, newHeight);
+            }
+
+            return finalImage;
         }
 
         // Convertir imatge a byte array

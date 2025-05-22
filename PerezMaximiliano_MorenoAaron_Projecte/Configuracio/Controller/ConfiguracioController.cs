@@ -67,7 +67,7 @@ namespace Configuracio.Controller
             }
             else
             {
-                MessageBox.Show("No s'ha pogut carregar la configuració del restaurant.");
+                MessageBox.Show("No s'ha pogut carregar la configuració del restaurant.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -87,8 +87,8 @@ namespace Configuracio.Controller
             fm.textBoxConfiguracio_correu.Text = restaurant.correu;
             fm.textBoxConfiguracio_paginaweb.Text = restaurant.paginaWeb;
             fm.textBoxConfiguracio_aforament.Text = restaurant.aforament.ToString();
-            fm.pictureBoxConfiguracio_logo.Image = ByteArrayToImage(restaurant.logo);
-            fm.pictureBoxConfiguracio_imatgeRestaurant.Image = ByteArrayToImage(restaurant.imatgeRestaurant);
+            fm.pictureBoxConfiguracio_logo.Image = AjustarImatge(ByteArrayToImage(restaurant.logo), 150, 150);
+            fm.pictureBoxConfiguracio_imatgeRestaurant.Image = AjustarImatge(ByteArrayToImage(restaurant.imatgeRestaurant), 500, 300);
         }
 
         // Actualitzar la configuració del restaurant
@@ -110,13 +110,13 @@ namespace Configuracio.Controller
                 {
                     if (!int.TryParse(fm.textBoxConfiguracio_aforament.Text, out int aforament))
                     {
-                        MessageBox.Show("El camp 'Aforament' ha de ser un número enter.", "Valor no vàlid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("El camp 'Aforament' ha de ser un número enter.", "Valor no vàlid.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
                     if (fm.textBoxConfiguracio_usuari.Text.Contains(" "))
                     {
-                        MessageBox.Show("El nom d'usuari no pot contenir espais.", "Usuari no vàlid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("El nom d'usuari no pot contenir espais.", "Usuari no vàlid.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -131,7 +131,7 @@ namespace Configuracio.Controller
                     }
                     else
                     {
-                        MessageBox.Show("Afegeix un logotip pel teu restaurant.", "Logo necessari", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Afegeix un logotip pel teu restaurant.", "Logo necessari.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -146,7 +146,7 @@ namespace Configuracio.Controller
                     }
                     else
                     {
-                        MessageBox.Show("Afegeix una imatge del teu restaurant.", "Imatge del restaurant necessària", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Afegeix una imatge del teu restaurant.", "Imatge del restaurant necessària.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -174,21 +174,22 @@ namespace Configuracio.Controller
 
                     if (resultatUpdate)
                     {
-                        MessageBox.Show("Restaurant actualitzat amb exit.", "Update exitos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Restaurant modificat amb èxit.", "Modificació realitzada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadData();
                     }
                     else
                     {
-                        MessageBox.Show("Ja existeix aquest nom d'usuari, prova un altre.", "Nom existent", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Aquest nom d'usuari ja està en ús, prova un altre.", "Nom d'usuari existent.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Completi tots els camps requerits.", "Camps incomplerts", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Completi tots els camps requerits.", "Camps incomplerts.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al editar restaurant." + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al editar el restaurant." + ex.Message, "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -209,21 +210,21 @@ namespace Configuracio.Controller
 
                     if (respostaCanviContrasenya)
                     {
-                        MessageBox.Show("Contrasenya canviada correctament.", "Contrasenya canviada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Contrasenya canviada correctament.", "Contrasenya canviada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         fn.textBoxConfiguracio_repetirContrasenya.Text = "";
                         fn.textBoxConfiguracio_novaContrasenya.Text = "";
                         fn.Close();
                     } else
                     {
-                        MessageBox.Show("Error canviant la contrasenya.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error canviant la contrasenya.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 } else
                 {
-                    MessageBox.Show("Les contrasenyes no coincideixen.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Les contrasenyes no coincideixen.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             } else
             {
-                MessageBox.Show("Insereix una contrasenya nova.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Insereix una contrasenya nova.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -263,14 +264,8 @@ namespace Configuracio.Controller
             {
                 logo = Image.FromFile(openFileDialog.FileName);
 
-                if (logo.Width <= 150 && logo.Height <= 150)
-                {
-                    fm.pictureBoxConfiguracio_logo.Image = logo;
-                }
-                else
-                {
-                    MessageBox.Show("El logo ha de tenir un màxim de 150x150 píxels.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                Image logoAjustat = AjustarImatge(logo, 150, 150);
+                fm.pictureBoxConfiguracio_logo.Image = logoAjustat;
             }
         }
 
@@ -284,16 +279,38 @@ namespace Configuracio.Controller
             {
                 imatgeRestaurant = Image.FromFile(openFileDialog.FileName);
 
-                if (imatgeRestaurant.Width <= 500 && imatgeRestaurant.Height <= 300)
-                {
-                    fm.pictureBoxConfiguracio_imatgeRestaurant.Image = imatgeRestaurant;
-                }
-                else
-                {
-                    MessageBox.Show("La imatge del restaurant ha de tenir un màxim de 500x300 píxels.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                Image imatgeRestaurantAjustada = AjustarImatge(imatgeRestaurant, 500, 300);
+                fm.pictureBoxConfiguracio_imatgeRestaurant.Image = imatgeRestaurantAjustada;
             }
         }
+
+        private Image AjustarImatge(Image original, int maxWidth, int maxHeight)
+        {
+            // Calcular tamaño escalado manteniendo proporciones
+            double ratioX = (double)maxWidth / original.Width;
+            double ratioY = (double)maxHeight / original.Height;
+            double ratio = Math.Min(ratioX, ratioY);
+
+            int newWidth = (int)(original.Width * ratio);
+            int newHeight = (int)(original.Height * ratio);
+
+            // Crear imagen final del tamaño deseado
+            Bitmap finalImage = new Bitmap(maxWidth, maxHeight);
+            using (Graphics g = Graphics.FromImage(finalImage))
+            {
+                g.Clear(Color.Transparent); 
+
+                // Calcular posición centrada
+                int posX = (maxWidth - newWidth) / 2;
+                int posY = (maxHeight - newHeight) / 2;
+
+                // Dibujar imagen escalada en el centro
+                g.DrawImage(original, posX, posY, newWidth, newHeight);
+            }
+
+            return finalImage;
+        }
+
 
         // Convertir imatge a byte array i viceversa
         private Image ByteArrayToImage(byte[] imatge)

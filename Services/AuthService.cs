@@ -50,7 +50,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers.Services
         {
             try
             {
-                var restaurant = _context.Restaurants.Where(x => x.nomCompte.Trim().Equals(newRestaurant.nomCompte.Trim())).FirstOrDefault();
+                var restaurant = _context.Restaurants.Where(x => x.nomCompte.Trim().Equals(newRestaurant.nomCompte.Trim()) || x.correu.Trim().Equals(newRestaurant.correu.Trim())).FirstOrDefault();
 
                 if (restaurant == null)
                 {

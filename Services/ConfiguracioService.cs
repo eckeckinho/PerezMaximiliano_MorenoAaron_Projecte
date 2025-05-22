@@ -45,7 +45,7 @@ namespace Services
             {
                 var restaurantAct = _context.Restaurants.Where(x => x.nomCompte == _restaurantActual.nomCompte).FirstOrDefault();
 
-                var nomUsat = _context.Restaurants.Any(x => x.nomCompte == updateRestaurant.nomCompte && x.id != restaurantAct.id);
+                var nomUsat = _context.Restaurants.Any(x => x.nomCompte.Equals(updateRestaurant.nomCompte) && x.id != restaurantAct.id);
 
                 if (nomUsat) return false;
 

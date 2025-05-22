@@ -102,7 +102,7 @@ namespace Contacte.Controller
         {
             if (fm.monthCalendarHorari_horari.SelectedDates.Count == 0)
             {
-                MessageBox.Show("Selecciona almenys una data al calendari per marcar com a festiu.");
+                MessageBox.Show("Selecciona almenys una data al calendari per marcar com a festiu.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -113,13 +113,13 @@ namespace Contacte.Controller
 
             if (datesSeleccionadesHabilitades.Count == 0)
             {
-                MessageBox.Show("Les dates seleccionades no estan habilitades per assignar com a festius.");
+                MessageBox.Show("Les dates seleccionades no estan habilitades per assignar com a festius.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!DiesConsecutius(datesSeleccionadesHabilitades))
             {
-                MessageBox.Show("Només pots assignar dies festius consecutius.");
+                MessageBox.Show("Només pots assignar dies festius consecutius.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -148,11 +148,11 @@ namespace Contacte.Controller
 
                 fm.monthCalendarHorari_horari.Refresh();
                 PintarDiesAmbHorari();
-                MessageBox.Show("Dies festius assignats correctament.");
+                MessageBox.Show("Dies festius assignats correctament.", "Assignació completada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("No s'han pogut assignar els dies festius.");
+                MessageBox.Show("No s'han pogut assignar els díes festius.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -160,7 +160,7 @@ namespace Contacte.Controller
         {
             if (fm.monthCalendarHorari_horari.SelectedDates.Count == 0)
             {
-                MessageBox.Show("Selecciona almenys una data al calendari per desmarcar com a festiu.");
+                MessageBox.Show("Selecciona almenys una data al calendari per desmarcar com a festiu.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -168,7 +168,7 @@ namespace Contacte.Controller
 
             if (!DiesConsecutius(datesSeleccionades))
             {
-                MessageBox.Show("Només pots desassignar dies festius consecutius.");
+                MessageBox.Show("Només pots desassignar dies festius consecutius.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -228,11 +228,11 @@ namespace Contacte.Controller
 
                 fm.monthCalendarHorari_horari.Refresh();
                 PintarDiesAmbHorari();
-                MessageBox.Show("Dies festius desassignats correctament.");
+                MessageBox.Show("Dies festius desassignats correctament.", "Desassingació completada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Cap dels dies seleccionats és festiu.");
+                MessageBox.Show("Cap dels dies seleccionats és festiu.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -281,19 +281,19 @@ namespace Contacte.Controller
 
                     if (inici >= fi)
                     {
-                        MessageBox.Show($"Franja invàlida al dia {dia}.\n\nL'hora d'inici ha de ser menor que la de fi.", "Error de franja horària", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show($"Franja invàlida al dia {dia}.\n\nL'hora d'inici ha de ser menor que la de fi.", "Error de franja horària.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
                     if (horarisDelDia.Any(h => h.hora_inici == inici && h.hora_final == fi))
                     {
-                        MessageBox.Show($"Franja duplicada al dia {dia}.\n\nJa existeix una franja amb la mateixa hora d'inici i fi.","Franja duplicada",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                        MessageBox.Show($"Franja duplicada al dia {dia}.\n\nJa existeix una franja amb la mateixa hora d'inici i fi.","Franja duplicada.",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                         return;
                     }
 
                     if (horarisDelDia.Any(h => inici < h.hora_final && fi > h.hora_inici))
                     {
-                        MessageBox.Show($"Solapament de franja al dia {dia}.\n\nAquesta franja se solapa amb una altra existent.","Franja solapada",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                        MessageBox.Show($"Solapament de franja al dia {dia}.\n\nAquesta franja se solapa amb una altra existent.","Franja solapada.",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -316,11 +316,11 @@ namespace Contacte.Controller
                 fm.monthCalendarHorari_horari.Refresh();
                 PintarDiesAmbHorari();
 
-                MessageBox.Show("Tots els horaris s'han guardat correctament.","Èxit",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Tots els horaris s'han guardat correctament.","Guardat completat.",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Error al guardar els horaris.","Error de guardat",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Error al guardar els horaris.","Error de guardat.",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
 
         }

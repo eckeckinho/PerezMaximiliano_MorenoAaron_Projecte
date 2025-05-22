@@ -110,13 +110,13 @@ namespace MenuPlats.Controller
         {
             if (String.IsNullOrEmpty(fp.textBoxAfegirPlat_nomPlat.Text) || String.IsNullOrEmpty(fp.textBoxAfegirPlat_descripcio.Text))
             {
-                MessageBox.Show("Has d'omplir tots els camps.", "Camps buits.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Has d'omplir tots els camps.", "Camps buits.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (fp.numericUpDownAfegirPlats_preu.Value.ToString().Contains(","))
             {
-                MessageBox.Show("Has d'utilitzar un punt com a separador en el preu.", "Format incorrecte.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Has d'utilitzar un punt com a separador en el preu.", "Format incorrecte.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             
@@ -135,13 +135,13 @@ namespace MenuPlats.Controller
 
                 if (response)
                 {
-                    MessageBox.Show("Plat afegit correctament.", "Afegir plat", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadDgvPlats();
+                    MessageBox.Show("Plat afegit correctament.", "Afegit completat.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
                     fp.Close();
                 }
                 else
                 {
-                    MessageBox.Show("No s'ha pogut afegir el plat.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No s'ha pogut afegir el plat.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
@@ -157,13 +157,13 @@ namespace MenuPlats.Controller
 
                 if (response)
                 {
-                    MessageBox.Show("Plat editat.", "Edicio exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadDgvPlats();
+                    MessageBox.Show("Plat modificat amb èxit.", "Modificació completada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
                     fp.Close();
                 }
                 else
                 {
-                    MessageBox.Show("No es possible editar el plat seleccionat.", "Edicio denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No és possible modificar el plat seleccionat.", "Modificació denegada.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -208,17 +208,17 @@ namespace MenuPlats.Controller
 
                 if (resultatDelete)
                 {
-                    MessageBox.Show("Plats eliminats.", "Eliminacio exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadDgvPlats();
+                    MessageBox.Show("Plats eliminats amb èxit.", "Eliminació completada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
                 }
                 else
                 {
-                    MessageBox.Show("No es possible eliminar els plats seleccionats.", "Eliminacio denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No és possible eliminar els plats seleccionats.", "Eliminació denegada.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("No hi ha plats seleccionats.");
+                MessageBox.Show("No hi ha plats seleccionats.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

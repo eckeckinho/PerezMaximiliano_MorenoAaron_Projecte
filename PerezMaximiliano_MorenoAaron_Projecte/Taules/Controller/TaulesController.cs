@@ -81,13 +81,13 @@ namespace Taules.Controller
 
                 if (response)
                 {
-                    MessageBox.Show("Taula afegida correctament.", "Afegir taula", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Taula afegida correctament.", "Afegit completat.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadData();
                     fa.Close();
                 }
                 else
                 {
-                    MessageBox.Show("No s'ha pogut afegir la taula.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No s'ha pogut afegir la taula.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
@@ -100,13 +100,13 @@ namespace Taules.Controller
 
                 if (response)
                 {
-                    MessageBox.Show("Taula editada.", "Edicio exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Taules modificades correctament.", "Modificació completada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadData();
                     fa.Close();
                 }
                 else
                 {
-                    MessageBox.Show("No es possible editar la taula seleccionada.", "Edicio denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No s'han pogut editar le taules.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -132,17 +132,17 @@ namespace Taules.Controller
 
                 if (resultatDelete)
                 {
-                    MessageBox.Show("Taules eliminades.", "Eliminacio exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Taules eliminades correctament.", "Eliminació completada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadData();
                 }
                 else
                 {
-                    MessageBox.Show("No es possible eliminar les taules seleccionades.", "Eliminacio denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No s'han pogut eliminar le taules.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("No hi ha taules seleccionades.");
+                MessageBox.Show("No hi ha taules seleccionades.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

@@ -21,7 +21,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
         [HttpGet("GetHorariRestaurant")]
         public async Task<IActionResult> GetHorariRestaurant([FromQuery] int restaurantid)
         {
-            var horariRestaurant = await _context.Horaris.Where(h => h.restaurantid == restaurantid).ToListAsync();
+            var horariRestaurant = await _context.Horaris.Where(h => h.restaurantid == restaurantid).OrderBy(x=>x.hora_inici).ToListAsync();
 
             return Ok(horariRestaurant);
         }
@@ -41,7 +41,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
             try
             {
                 // Recoge las franjas horarias del restaurante para el día específico
-                var horaris = await _context.Horaris.Where(h => h.restaurantid == restaurantid && h.dia == dia).ToListAsync();
+                var horaris = await _context.Horaris.Where(h => h.restaurantid == restaurantid && h.dia == dia).OrderBy(x=>x.hora_inici).ToListAsync();
 
                 return Ok(horaris);
             }

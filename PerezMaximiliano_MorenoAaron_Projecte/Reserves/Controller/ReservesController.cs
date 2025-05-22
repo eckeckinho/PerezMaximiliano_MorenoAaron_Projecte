@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace Reserves.Controller
@@ -24,7 +25,6 @@ namespace Reserves.Controller
         private readonly IHorariService _horariService;
         private Reserva reserva;
         private DateTime? ultimaDataSeleccionadaValida = null;
-
 
         public ReservesController(IReservaService reservaService, ITipusService tipusService, ITaulaService taulaService, IUsuariService usuariService, IHorariService horariService)
         {
@@ -75,19 +75,7 @@ namespace Reserves.Controller
 
         private void LoadData()
         {
-            var usuaris = _usuariService.GetUsuarisAmbReserva();
-
-            // Crear y añadir opción "Tots"
-            var usuariTots = new Usuari
-            {
-                id = -1,
-                nom = "Tots",
-                cognoms = "",
-            };
-            usuaris.Insert(0, usuariTots);
-
-            fm.comboBoxReserva_usuari.DataSource = usuaris;
-            fm.comboBoxReserva_usuari.DisplayMember = "ToString";
+            CarregarUsuarisAmbReserva();
 
             var desde = fm.dateTimePickerReserva_desde.Value;
             var hasta = fm.dateTimePickerReserva_hasta.Value;
@@ -116,7 +104,7 @@ namespace Reserves.Controller
             {
                 if (fm.comboBoxReserva_estat.SelectedItem == null)
                 {
-                    MessageBox.Show("Selecciona un estat de reserva.", "Advertència", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Selecciona un estat de reserva.", "Advertència.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -129,7 +117,7 @@ namespace Reserves.Controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error carregant reserves: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error carregant reserves: {ex.Message}", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -145,10 +133,37 @@ namespace Reserves.Controller
             }).ToList();
 
             fm.comboBoxReserva_estat.DataSource = estatsAmbCompte;
-            fm.comboBoxReserva_estat.DisplayMember = "mostrarText"; // nombre exacto de tu propiedad
-            fm.comboBoxReserva_estat.ValueMember = "id";
+            fm.comboBoxReserva_estat.DisplayMember = "mostrarText"; 
         }
 
+        private void RefrescarComboBoxEstats()
+        {
+            int usuariId = -1;
+            var usuariSeleccionat = fm.comboBoxReserva_usuari.SelectedItem as Usuari;
+            if (usuariSeleccionat != null) usuariId = usuariSeleccionat.id;
+
+            var desde = fm.dateTimePickerReserva_desde.Value;
+            var hasta = fm.dateTimePickerReserva_hasta.Value;
+
+            ActualitzarEstatsAmbCompte(usuariId, desde, hasta);
+        }
+
+        private void CarregarUsuarisAmbReserva()
+        {
+            var usuaris = _usuariService.GetUsuarisAmbReserva();
+
+            // Crear y añadir opción "Tots"
+            var usuariTots = new Usuari
+            {
+                id = -1,
+                nom = "Tots",
+                cognoms = "",
+            };
+            usuaris.Insert(0, usuariTots);
+
+            fm.comboBoxReserva_usuari.DataSource = usuaris;
+            fm.comboBoxReserva_usuari.DisplayMember = "ToString";
+        }
 
 
         private void PintarDiesAmbHorari()
@@ -249,7 +264,7 @@ namespace Reserves.Controller
         {
             if (fm.dataGridViewReserva_reserves.SelectedRows.Count != 1)
             {
-                MessageBox.Show("Selecciona una única reserva per modificar.", "Atenció", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecciona una única reserva per modificar.", "Atenció.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -257,7 +272,7 @@ namespace Reserves.Controller
 
             if (reserva == null)
             {
-                MessageBox.Show("Reserva no vàlida.");
+                MessageBox.Show("Reserva no vàlida.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -302,13 +317,13 @@ namespace Reserves.Controller
         {
             if (reserva == null)
             {
-                MessageBox.Show("No hi ha cap reserva seleccionada per actualitzar.");
+                MessageBox.Show("No hi ha cap reserva seleccionada per actualitzar.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (fr.monthCalendarReserva_horari.SelectedDates.Count == 0)
             {
-                MessageBox.Show("Selecciona una data abans d'actualitzar la reserva.");
+                MessageBox.Show("Selecciona una data abans d'actualitzar la reserva.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -317,7 +332,7 @@ namespace Reserves.Controller
                 fr.comboBoxAfegirReserva_hora.SelectedItem == null ||
                 fr.comboBoxAfegirReserva_durada.SelectedItem == null)            
             {
-                MessageBox.Show("Ompli tots els camps abans d'actualitzar la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ompli tots els camps abans d'actualitzar la reserva.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -332,7 +347,7 @@ namespace Reserves.Controller
 
             if (taulaDisponible == null)
             {
-                MessageBox.Show("No hi ha cap taula disponible per a aquest horari.", "Sense disponibilitat", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No hi ha cap taula disponible per a aquest horari.", "Sense disponibilitat.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -345,7 +360,7 @@ namespace Reserves.Controller
                            $"Comensals: {numComensals}\n\n" +
                            "Vols confirmar els canvis?";
 
-            var confirmResult = MessageBox.Show(resum, "Confirmar modificació", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirmResult = MessageBox.Show(resum, "Confirmar modificació.", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmResult == DialogResult.No) return; 
 
@@ -368,12 +383,15 @@ namespace Reserves.Controller
             {
                 reserva = null;
                 fr.Close();
-                MessageBox.Show("Reserva actualitzada correctament.");
+                MessageBox.Show("Reserva modificada correctament.", "Reserva modificada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                CarregarUsuarisAmbReserva();
+                RefrescarComboBoxEstats();
                 LoadDgvReservas(); 
             }
             else
             {
-                MessageBox.Show("Error al actualitzar la reserva.");
+                MessageBox.Show("Error al modificar la reserva.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -388,7 +406,7 @@ namespace Reserves.Controller
             if (dateInfo == null || dateInfo.BackColor1 != Color.LightGreen)
             {
                 // Día no permitido, cancelar / no permitir que se seleccione
-                MessageBox.Show("Aquest dia no està disponible per a reserves.", "Data no vàlida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Aquest día no està disponible per a reserves.", "Data no vàlida.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 if (ultimaDataSeleccionadaValida.HasValue)
                 {
@@ -550,7 +568,7 @@ namespace Reserves.Controller
         {
             if (fr.monthCalendarReserva_horari.SelectedDates.Count == 0)
             {
-                MessageBox.Show("Selecciona una data abans d'afegir la reserva.");
+                MessageBox.Show("Selecciona una data abans d'afegir la reserva.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -559,7 +577,7 @@ namespace Reserves.Controller
                     fr.comboBoxAfegirReserva_hora.SelectedItem == null ||
                     fr.comboBoxAfegirReserva_durada.SelectedItem == null)
             {
-                MessageBox.Show("Ompli tots els camps abans d'afegir la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ompli tots els camps abans d'afegir la reserva", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -597,7 +615,7 @@ namespace Reserves.Controller
                                      $"Comensals: {numComensals}\n\n" +
                                      "Vols confirmar la reserva?";
 
-                    var confirmResult = MessageBox.Show(resumen, "Confirmar reserva", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var confirmResult = MessageBox.Show(resumen, "Confirmar reserva.", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (confirmResult == DialogResult.Yes)
                     {
@@ -622,23 +640,26 @@ namespace Reserves.Controller
                             if (resultat)
                             {
                                 fr.Close();
-                                MessageBox.Show("Reserva afegida amb èxit.", "Èxit", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Reserva afegida amb èxit.", "Reserva completada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                CarregarUsuarisAmbReserva();
+                                RefrescarComboBoxEstats();
                                 LoadDgvReservas();
                             }
                             else
                             {
-                                MessageBox.Show("Error al afegir la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Error al afegir la reserva.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("No hi ha cap taula disponible per a aquest horari.", "Sense disponibilitat", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("No hi ha cap taula disponible per a aquest horari.", "Sense disponibilitat.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
             }
             else
             {
-                MessageBox.Show("Ompli els camps.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ompli tots els camps.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -703,7 +724,6 @@ namespace Reserves.Controller
             }
         }
 
-
         private void CargarInfoUsuari()
         {
             if (fm.dataGridViewReserva_reserves.SelectedRows.Count > 0)
@@ -737,16 +757,7 @@ namespace Reserves.Controller
                 return;
             }
 
-            var usuari = fm.comboBoxReserva_usuari.SelectedItem as Usuari;
-
-            int usuariId;
-            if (usuari != null) usuariId = usuari.id;
-            else usuariId = -1;
-
-            var desde = fm.dateTimePickerReserva_desde.Value;
-            var hasta = fm.dateTimePickerReserva_hasta.Value;
-
-            ActualitzarEstatsAmbCompte(usuariId, desde, hasta);
+            RefrescarComboBoxEstats();
             LoadDgvReservas();
         }
 
@@ -755,20 +766,11 @@ namespace Reserves.Controller
             if (fm.dateTimePickerReserva_hasta.Value < fm.dateTimePickerReserva_desde.Value)
             {
                 fm.dateTimePickerReserva_hasta.Value = fm.dateTimePickerReserva_desde.Value;
-                MessageBox.Show("La data 'Fins a' no pot ser anterior a la data 'Des de'.", "Data invàlida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("La data 'Fins a' no pot ser anterior a la data 'Des de'.", "Data invàlida.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            var usuari = fm.comboBoxReserva_usuari.SelectedItem as Usuari;
-
-            int usuariId;
-            if (usuari != null) usuariId = usuari.id;
-            else usuariId = -1;
-
-            var desde = fm.dateTimePickerReserva_desde.Value;
-            var hasta = fm.dateTimePickerReserva_hasta.Value;
-
-            ActualitzarEstatsAmbCompte(usuariId, desde, hasta);
+            RefrescarComboBoxEstats();
             LoadDgvReservas();
         }
 
@@ -848,17 +850,19 @@ namespace Reserves.Controller
 
                 if (resultatEnProces)
                 {
-                    MessageBox.Show("Reserves en proces.", "En proces exitos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Reserves canviades a 'En procés'.", "Canvi d'estat completat. ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    RefrescarComboBoxEstats();
                     LoadDgvReservas();
                 }
                 else
                 {
-                    MessageBox.Show("No es possible possar en proces les reserves seleccionades.", "En proces denegat", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No és possible possar en procés les reserves seleccionades ja que es solapen amb reserves ja existents.", "Canvi d'estat denegat.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("No hi ha reserves seleccionades.");
+                MessageBox.Show("No hi ha reserves seleccionades.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -884,17 +888,19 @@ namespace Reserves.Controller
 
                 if (resultatFinalitzacio)
                 {
-                    MessageBox.Show("Reserves finalitzades.", "Finalitzacio exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Reserves canviades a 'Finalitzades'.", "Canvi d'estat completat. ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    RefrescarComboBoxEstats();
                     LoadDgvReservas();
                 }
                 else
                 {
-                    MessageBox.Show("No es possible finalitzar les reserves seleccionades.", "Finalitzacio denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No és possible finalitzar les reserves seleccionades.", "Canvi d'estat denegat", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("No hi ha reserves seleccionades.");
+                MessageBox.Show("No hi ha reserves seleccionades.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -920,17 +926,19 @@ namespace Reserves.Controller
 
                 if (resultatCancelacio)
                 {
-                    MessageBox.Show("Reserves cancelades.", "Cancelacio exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Reserves canviades a 'Cancel.lades'.", "Canvi d'estat completat. ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    RefrescarComboBoxEstats();
                     LoadDgvReservas();
                 }
                 else
                 {
-                    MessageBox.Show("No es possible cancelar les reserves seleccionades.", "Cancelacio denegada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No és possible cancelar les reserves seleccionades.", "Canvi d'estat denegat", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("No hi ha reserves seleccionades.");
+                MessageBox.Show("No hi ha reserves seleccionades.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

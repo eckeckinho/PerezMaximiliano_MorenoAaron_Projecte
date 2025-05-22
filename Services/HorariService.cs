@@ -74,7 +74,7 @@ namespace Services
                 int diaSetmana = ((int)data.DayOfWeek + 6) % 7 + 1;
 
                 // Recoger las franjas horarias del restaurante para el día específico
-                var horaris = _context.Horaris.Where(h => h.restaurantid == _restaurantActual.id && h.dia == diaSetmana).ToList();
+                var horaris = _context.Horaris.Where(h => h.restaurantid == _restaurantActual.id && h.dia == diaSetmana).OrderBy(x=>x.hora_inici).ToList();
 
                 return horaris;
             }
@@ -133,7 +133,7 @@ namespace Services
             try
             {
                 // Devuelve las excepciones / festivos de horario del restaurante en cuestion (aunque tengan franja cuenta como no laborable ya que prevalece sobre las franjas).
-                var excepcions = _context.HorarisExcepcions.Where(h => h.restaurantid == _restaurantActual.id).ToList();
+                var excepcions = _context.HorarisExcepcions.Where(h => h.restaurantid == _restaurantActual.id).OrderBy(x => x.data_inici).ToList();
 
                 return excepcions;
             }

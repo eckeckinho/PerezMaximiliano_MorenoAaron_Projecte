@@ -46,6 +46,18 @@ namespace Services
         {
             if (reservesSeleccionades == null || reservesSeleccionades.Count == 0) return false;
 
+            if (nouEstat == (int)EstatReserva.EnProces)
+            {
+                foreach (var reserva in reservesSeleccionades)
+                {
+                    if (HiHaSolapamentReserva(reserva))
+                    {
+                        // No se puede cambiar a EnProces porque hay solapamiento
+                        return false;
+                    }
+                }
+            }
+
             foreach (Reserva reserva in reservesSeleccionades)
             {
                 reserva.estatid = nouEstat;
@@ -54,13 +66,7 @@ namespace Services
 
             int changes = _context.SaveChanges();
 
-            if (changes > 0)
-            {
-                return true; 
-            } else
-            {
-                return false;
-            }
+            return changes > 0;
         }
 
 
@@ -155,6 +161,27 @@ namespace Services
                 return false;
             }
         }
+
+        private bool HiHaSolapamentReserva(Reserva reserva)
+        {
+            var reservesEnProces = _context.Reservas
+                .Where(r => r.estatid == (int)EstatReserva.EnProces
+                            && r.taulaid == reserva.taulaid
+                            && r.datareserva == reserva.datareserva
+                            && r.id != reserva.id)
+                .ToList();
+
+            foreach (var rExist in reservesEnProces)
+            {
+                if (SolapaAmbReservaExistente(reserva.hora, reserva.durada, rExist.hora, rExist.durada))
+                {
+                    return true; // Hay solapamiento
+                }
+            }
+
+            return false; // No hay solapamiento
+        }
+
 
         public bool ActualitzarReserva(Reserva reserva)
         {

@@ -69,6 +69,13 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.pictureBoxConfiguracio_logo = new System.Windows.Forms.PictureBox();
             this.buttonConfiguracio_logo = new System.Windows.Forms.Button();
             this.tabPageContacte = new System.Windows.Forms.TabPage();
+            this.checkBoxContacte_veureLlegits = new MaterialSkin.Controls.MaterialCheckbox();
+            this.textBoxContacte_llegits = new MaterialSkin.Controls.MaterialTextBox();
+            this.textBoxContacte_noLlegits = new MaterialSkin.Controls.MaterialTextBox();
+            this.materialLabel35 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel36 = new MaterialSkin.Controls.MaterialLabel();
+            this.comboBoxContacte_usuari = new System.Windows.Forms.ComboBox();
+            this.materialLabel34 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel30 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel29 = new MaterialSkin.Controls.MaterialLabel();
             this.buttonContacte_obrir = new MaterialSkin.Controls.MaterialButton();
@@ -78,6 +85,8 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.dataGridViewContacte_missatges = new System.Windows.Forms.DataGridView();
             this.tabPageTaules = new System.Windows.Forms.TabPage();
+            this.materialLabel33 = new MaterialSkin.Controls.MaterialLabel();
+            this.comboBoxTaula_comensals = new MaterialSkin.Controls.MaterialComboBox();
             this.dataGridViewTaula_taules = new System.Windows.Forms.DataGridView();
             this.textBoxTaula_aforamentMaxim = new MaterialSkin.Controls.MaterialTextBox();
             this.textBoxTaula_aforamentActual = new MaterialSkin.Controls.MaterialTextBox();
@@ -148,8 +157,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel26 = new MaterialSkin.Controls.MaterialLabel();
             this.comboBoxMenu_tipusPlats = new MaterialSkin.Controls.MaterialComboBox();
             this.dataGridViewMenu_plats = new System.Windows.Forms.DataGridView();
-            this.materialLabel33 = new MaterialSkin.Controls.MaterialLabel();
-            this.comboBoxTaula_comensals = new MaterialSkin.Controls.MaterialComboBox();
             this.tabPageConfiguracio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConfiguracio_imatgeRestaurant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConfiguracio_logo)).BeginInit();
@@ -490,7 +497,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_correu.Name = "textBoxConfiguracio_correu";
             this.textBoxConfiguracio_correu.PasswordChar = '\0';
             this.textBoxConfiguracio_correu.PrefixSuffixText = null;
-            this.textBoxConfiguracio_correu.ReadOnly = false;
+            this.textBoxConfiguracio_correu.ReadOnly = true;
             this.textBoxConfiguracio_correu.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBoxConfiguracio_correu.SelectedText = "";
             this.textBoxConfiguracio_correu.SelectionLength = 0;
@@ -844,6 +851,13 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // tabPageContacte
             // 
             this.tabPageContacte.BackColor = System.Drawing.Color.White;
+            this.tabPageContacte.Controls.Add(this.checkBoxContacte_veureLlegits);
+            this.tabPageContacte.Controls.Add(this.textBoxContacte_llegits);
+            this.tabPageContacte.Controls.Add(this.textBoxContacte_noLlegits);
+            this.tabPageContacte.Controls.Add(this.materialLabel35);
+            this.tabPageContacte.Controls.Add(this.materialLabel36);
+            this.tabPageContacte.Controls.Add(this.comboBoxContacte_usuari);
+            this.tabPageContacte.Controls.Add(this.materialLabel34);
             this.tabPageContacte.Controls.Add(this.materialLabel30);
             this.tabPageContacte.Controls.Add(this.materialLabel29);
             this.tabPageContacte.Controls.Add(this.buttonContacte_obrir);
@@ -858,6 +872,107 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPageContacte.Size = new System.Drawing.Size(1386, 882);
             this.tabPageContacte.TabIndex = 2;
             this.tabPageContacte.Text = "Contacte";
+            // 
+            // checkBoxContacte_veureLlegits
+            // 
+            this.checkBoxContacte_veureLlegits.AutoSize = true;
+            this.checkBoxContacte_veureLlegits.Depth = 0;
+            this.checkBoxContacte_veureLlegits.Location = new System.Drawing.Point(864, 339);
+            this.checkBoxContacte_veureLlegits.Margin = new System.Windows.Forms.Padding(0);
+            this.checkBoxContacte_veureLlegits.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.checkBoxContacte_veureLlegits.MouseState = MaterialSkin.MouseState.HOVER;
+            this.checkBoxContacte_veureLlegits.Name = "checkBoxContacte_veureLlegits";
+            this.checkBoxContacte_veureLlegits.ReadOnly = false;
+            this.checkBoxContacte_veureLlegits.Ripple = true;
+            this.checkBoxContacte_veureLlegits.Size = new System.Drawing.Size(219, 37);
+            this.checkBoxContacte_veureLlegits.TabIndex = 130;
+            this.checkBoxContacte_veureLlegits.Text = "Veure nomès els no llegits";
+            this.checkBoxContacte_veureLlegits.UseVisualStyleBackColor = true;
+            // 
+            // textBoxContacte_llegits
+            // 
+            this.textBoxContacte_llegits.AnimateReadOnly = true;
+            this.textBoxContacte_llegits.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxContacte_llegits.Depth = 0;
+            this.textBoxContacte_llegits.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.textBoxContacte_llegits.LeadingIcon = null;
+            this.textBoxContacte_llegits.Location = new System.Drawing.Point(938, 264);
+            this.textBoxContacte_llegits.MaxLength = 50;
+            this.textBoxContacte_llegits.MouseState = MaterialSkin.MouseState.OUT;
+            this.textBoxContacte_llegits.Multiline = false;
+            this.textBoxContacte_llegits.Name = "textBoxContacte_llegits";
+            this.textBoxContacte_llegits.ReadOnly = true;
+            this.textBoxContacte_llegits.Size = new System.Drawing.Size(100, 50);
+            this.textBoxContacte_llegits.TabIndex = 129;
+            this.textBoxContacte_llegits.Text = "";
+            this.textBoxContacte_llegits.TrailingIcon = null;
+            // 
+            // textBoxContacte_noLlegits
+            // 
+            this.textBoxContacte_noLlegits.AnimateReadOnly = true;
+            this.textBoxContacte_noLlegits.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxContacte_noLlegits.Depth = 0;
+            this.textBoxContacte_noLlegits.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.textBoxContacte_noLlegits.LeadingIcon = null;
+            this.textBoxContacte_noLlegits.Location = new System.Drawing.Point(938, 191);
+            this.textBoxContacte_noLlegits.MaxLength = 50;
+            this.textBoxContacte_noLlegits.MouseState = MaterialSkin.MouseState.OUT;
+            this.textBoxContacte_noLlegits.Multiline = false;
+            this.textBoxContacte_noLlegits.Name = "textBoxContacte_noLlegits";
+            this.textBoxContacte_noLlegits.ReadOnly = true;
+            this.textBoxContacte_noLlegits.Size = new System.Drawing.Size(100, 50);
+            this.textBoxContacte_noLlegits.TabIndex = 128;
+            this.textBoxContacte_noLlegits.Text = "";
+            this.textBoxContacte_noLlegits.TrailingIcon = null;
+            // 
+            // materialLabel35
+            // 
+            this.materialLabel35.AutoSize = true;
+            this.materialLabel35.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel35.Depth = 0;
+            this.materialLabel35.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel35.Location = new System.Drawing.Point(865, 281);
+            this.materialLabel35.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel35.Name = "materialLabel35";
+            this.materialLabel35.Size = new System.Drawing.Size(48, 19);
+            this.materialLabel35.TabIndex = 127;
+            this.materialLabel35.Text = "Llegits";
+            // 
+            // materialLabel36
+            // 
+            this.materialLabel36.AutoSize = true;
+            this.materialLabel36.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel36.Depth = 0;
+            this.materialLabel36.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel36.Location = new System.Drawing.Point(865, 210);
+            this.materialLabel36.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel36.Name = "materialLabel36";
+            this.materialLabel36.Size = new System.Drawing.Size(67, 19);
+            this.materialLabel36.TabIndex = 126;
+            this.materialLabel36.Text = "No llegits";
+            // 
+            // comboBoxContacte_usuari
+            // 
+            this.comboBoxContacte_usuari.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxContacte_usuari.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxContacte_usuari.FormattingEnabled = true;
+            this.comboBoxContacte_usuari.Location = new System.Drawing.Point(864, 164);
+            this.comboBoxContacte_usuari.Name = "comboBoxContacte_usuari";
+            this.comboBoxContacte_usuari.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxContacte_usuari.TabIndex = 125;
+            // 
+            // materialLabel34
+            // 
+            this.materialLabel34.AutoSize = true;
+            this.materialLabel34.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel34.Depth = 0;
+            this.materialLabel34.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel34.Location = new System.Drawing.Point(861, 142);
+            this.materialLabel34.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel34.Name = "materialLabel34";
+            this.materialLabel34.Size = new System.Drawing.Size(46, 19);
+            this.materialLabel34.TabIndex = 124;
+            this.materialLabel34.Text = "Usuari";
             // 
             // materialLabel30
             // 
@@ -946,18 +1061,19 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel2.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(159, 95);
+            this.materialLabel2.Location = new System.Drawing.Point(72, 96);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(63, 19);
+            this.materialLabel2.Size = new System.Drawing.Size(150, 19);
             this.materialLabel2.TabIndex = 96;
-            this.materialLabel2.Text = "FILTRAR";
+            this.materialLabel2.Text = "FILTRAR ASSUMPTE";
             // 
             // dataGridViewContacte_missatges
             // 
             this.dataGridViewContacte_missatges.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewContacte_missatges.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewContacte_missatges.Location = new System.Drawing.Point(162, 136);
+            this.dataGridViewContacte_missatges.MultiSelect = false;
             this.dataGridViewContacte_missatges.Name = "dataGridViewContacte_missatges";
             this.dataGridViewContacte_missatges.ReadOnly = true;
             this.dataGridViewContacte_missatges.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -983,6 +1099,41 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPageTaules.Size = new System.Drawing.Size(1386, 882);
             this.tabPageTaules.TabIndex = 1;
             this.tabPageTaules.Text = "Taules";
+            // 
+            // materialLabel33
+            // 
+            this.materialLabel33.AutoSize = true;
+            this.materialLabel33.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel33.Depth = 0;
+            this.materialLabel33.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel33.Location = new System.Drawing.Point(412, 65);
+            this.materialLabel33.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel33.Name = "materialLabel33";
+            this.materialLabel33.Size = new System.Drawing.Size(163, 19);
+            this.materialLabel33.TabIndex = 119;
+            this.materialLabel33.Text = "Número de comensals:";
+            // 
+            // comboBoxTaula_comensals
+            // 
+            this.comboBoxTaula_comensals.AutoResize = false;
+            this.comboBoxTaula_comensals.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.comboBoxTaula_comensals.Depth = 0;
+            this.comboBoxTaula_comensals.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBoxTaula_comensals.DropDownHeight = 174;
+            this.comboBoxTaula_comensals.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTaula_comensals.DropDownWidth = 121;
+            this.comboBoxTaula_comensals.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.comboBoxTaula_comensals.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.comboBoxTaula_comensals.FormattingEnabled = true;
+            this.comboBoxTaula_comensals.IntegralHeight = false;
+            this.comboBoxTaula_comensals.ItemHeight = 43;
+            this.comboBoxTaula_comensals.Location = new System.Drawing.Point(586, 46);
+            this.comboBoxTaula_comensals.MaxDropDownItems = 4;
+            this.comboBoxTaula_comensals.MouseState = MaterialSkin.MouseState.OUT;
+            this.comboBoxTaula_comensals.Name = "comboBoxTaula_comensals";
+            this.comboBoxTaula_comensals.Size = new System.Drawing.Size(187, 49);
+            this.comboBoxTaula_comensals.StartIndex = 0;
+            this.comboBoxTaula_comensals.TabIndex = 118;
             // 
             // dataGridViewTaula_taules
             // 
@@ -2201,41 +2352,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.dataGridViewMenu_plats.Size = new System.Drawing.Size(555, 371);
             this.dataGridViewMenu_plats.TabIndex = 1;
             // 
-            // materialLabel33
-            // 
-            this.materialLabel33.AutoSize = true;
-            this.materialLabel33.BackColor = System.Drawing.Color.AliceBlue;
-            this.materialLabel33.Depth = 0;
-            this.materialLabel33.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel33.Location = new System.Drawing.Point(412, 65);
-            this.materialLabel33.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel33.Name = "materialLabel33";
-            this.materialLabel33.Size = new System.Drawing.Size(163, 19);
-            this.materialLabel33.TabIndex = 119;
-            this.materialLabel33.Text = "Número de comensals:";
-            // 
-            // comboBoxTaula_comensals
-            // 
-            this.comboBoxTaula_comensals.AutoResize = false;
-            this.comboBoxTaula_comensals.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.comboBoxTaula_comensals.Depth = 0;
-            this.comboBoxTaula_comensals.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.comboBoxTaula_comensals.DropDownHeight = 174;
-            this.comboBoxTaula_comensals.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxTaula_comensals.DropDownWidth = 121;
-            this.comboBoxTaula_comensals.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.comboBoxTaula_comensals.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.comboBoxTaula_comensals.FormattingEnabled = true;
-            this.comboBoxTaula_comensals.IntegralHeight = false;
-            this.comboBoxTaula_comensals.ItemHeight = 43;
-            this.comboBoxTaula_comensals.Location = new System.Drawing.Point(586, 46);
-            this.comboBoxTaula_comensals.MaxDropDownItems = 4;
-            this.comboBoxTaula_comensals.MouseState = MaterialSkin.MouseState.OUT;
-            this.comboBoxTaula_comensals.Name = "comboBoxTaula_comensals";
-            this.comboBoxTaula_comensals.Size = new System.Drawing.Size(187, 49);
-            this.comboBoxTaula_comensals.StartIndex = 0;
-            this.comboBoxTaula_comensals.TabIndex = 118;
-            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2391,5 +2507,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
         public ComboBox comboBoxReserva_usuari;
         private MaterialSkin.Controls.MaterialLabel materialLabel33;
         public MaterialSkin.Controls.MaterialComboBox comboBoxTaula_comensals;
+        public ComboBox comboBoxContacte_usuari;
+        public MaterialSkin.Controls.MaterialLabel materialLabel34;
+        private MaterialSkin.Controls.MaterialLabel materialLabel35;
+        private MaterialSkin.Controls.MaterialLabel materialLabel36;
+        public MaterialSkin.Controls.MaterialTextBox textBoxContacte_llegits;
+        public MaterialSkin.Controls.MaterialTextBox textBoxContacte_noLlegits;
+        public MaterialSkin.Controls.MaterialCheckbox checkBoxContacte_veureLlegits;
     }
 }

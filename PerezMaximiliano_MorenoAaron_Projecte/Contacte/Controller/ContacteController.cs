@@ -1,4 +1,5 @@
-﻿using Entitats.ContacteClasses;
+﻿using Entitats.AuthClasses;
+using Entitats.ContacteClasses;
 using PerezMaximiliano_MorenoAaron_Projecte.View;
 using Services.Interfaces;
 using System;
@@ -21,13 +22,13 @@ namespace Contacte.Controller
 
         public void Inicialitzar()
         {
-            LoadDataDgvMissatges();
             if (fo == null)
             {
                 fo = new ObrirMissatgeForm();
                 SetListeners();
                 LoadData();
             }
+            LoadDataDgvMissatges();
         }
 
         public void SetForm(MenuForm menuForm)
@@ -41,11 +42,82 @@ namespace Contacte.Controller
             fm.dateTimePickerContacte_desde.ValueChanged += DateTimePicker_desde_ValueChanged;
             fm.dateTimePickerContacte_hasta.ValueChanged += DateTimePicker_hasta_ValueChanged;
             fm.textBoxContacte_filtre.TextChanged += TextBox_filtre_TextChanged;
-            fm.dataGridViewContacte_missatges.CellFormatting += DataGridViewContacte_missatges_CellFormatting; 
+            fm.dataGridViewContacte_missatges.CellFormatting += DataGridViewContacte_missatges_CellFormatting;
+            fm.comboBoxContacte_usuari.SelectedIndexChanged += ComboBoxContacte_usuari_SelectedIndexChanged; 
+            fm.checkBoxContacte_veureLlegits.CheckedChanged += CheckBoxContacte_veureLlegits_CheckedChanged;
+            fm.dataGridViewContacte_missatges.SelectionChanged += DataGridViewContacte_missatges_SelectionChanged;
+        }
+
+        private void DataGridViewContacte_missatges_SelectionChanged(object sender, EventArgs e)
+        {
+            if (fm.dataGridViewContacte_missatges.SelectedRows.Count > 0)
+            {
+                fm.buttonContacte_obrir.Enabled = true;
+            }
+            else
+            {
+                fm.buttonContacte_obrir.Enabled = false;
+            }
+        }
+
+        private void ComboBoxContacte_usuari_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var usuariSeleccionat = fm.comboBoxContacte_usuari.SelectedItem as Usuari;
+
+            string correu;
+            if (usuariSeleccionat != null) correu = usuariSeleccionat.correu;
+            else correu = "Tots";
+
+            var filtre = fm.textBoxContacte_filtre.Text;
+            var desde = fm.dateTimePickerContacte_desde.Value;
+            var hasta = fm.dateTimePickerContacte_hasta.Value;
+
+            LoadDataDgvMissatges(correu, filtre, desde, hasta);
+        }
+
+        private void LoadDataDgvMissatges(string correuUsuari, string filtre, DateTime desde, DateTime hasta)
+        {
+            bool tots = true;
+
+            if (fm.checkBoxContacte_veureLlegits.Checked) tots = false;
+
+            var missatges = _contacteService.GetMissatgesUsuariRestaurant(filtre, desde, hasta, correuUsuari, tots);
+            fm.dataGridViewContacte_missatges.DataSource = missatges;
+
+            var (llegits, noLlegits) = _contacteService.ComptarMissatgesLlegitsINoLlegits(filtre, desde, hasta, correuUsuari, tots);
+            fm.textBoxContacte_llegits.Text = llegits.ToString();
+            fm.textBoxContacte_noLlegits.Text = noLlegits.ToString();
+        }
+
+
+        private void LoadDataDgvMissatges()
+        {
+            var usuariSeleccionat = fm.comboBoxContacte_usuari.SelectedItem as Usuari;
+            string correu = usuariSeleccionat?.correu ?? "Tots";
+
+            var filtre = fm.textBoxContacte_filtre.Text;
+            var desde = fm.dateTimePickerContacte_desde.Value;
+            var hasta = fm.dateTimePickerContacte_hasta.Value;
+
+            LoadDataDgvMissatges(correu, filtre, desde, hasta);
         }
 
         private void LoadData()
         {
+            var usuaris = _contacteService.GetUsuarisAmbMissatges();
+
+            var usuariTots = new Usuari
+            {
+                id = -1,
+                correu = "Tots",
+            };
+            usuaris.Insert(0, usuariTots);
+
+            fm.comboBoxContacte_usuari.DataSource = usuaris;
+            fm.comboBoxContacte_usuari.DisplayMember = "correu";
+
+            LoadDataDgvMissatges("Tots", fm.textBoxContacte_filtre.Text, fm.dateTimePickerContacte_desde.Value, fm.dateTimePickerContacte_hasta.Value);
+
             fm.dataGridViewContacte_missatges.Columns["id"].Visible = false;
             fm.dataGridViewContacte_missatges.Columns["missatge"].Visible = false;
             fm.dataGridViewContacte_missatges.Columns["restaurantId"].Visible = false;
@@ -55,13 +127,6 @@ namespace Contacte.Controller
             fm.dataGridViewContacte_missatges.Columns["dataMissatge"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
         }
 
-        private void LoadDataDgvMissatges()
-        {
-            var filtre = fm.textBoxContacte_filtre.Text;
-            var desde = fm.dateTimePickerContacte_desde.Value;
-            var hasta = fm.dateTimePickerContacte_hasta.Value;
-            fm.dataGridViewContacte_missatges.DataSource = _contacteService.GetMissatgesUsuariRestaurant(filtre, desde, hasta);
-        }
 
         // Obrir missatge amb la informació del missatge al text del form
         private void Button_obrir_Click(object sender, EventArgs e)
@@ -123,6 +188,11 @@ namespace Contacte.Controller
                 return;
             }
 
+            LoadDataDgvMissatges();
+        }
+
+        private void CheckBoxContacte_veureLlegits_CheckedChanged(object sender, EventArgs e)
+        {
             LoadDataDgvMissatges();
         }
     }

@@ -56,7 +56,7 @@ namespace Services
             var taulesIds = _context.Taules.Where(t => t.restaurantId == _restaurantActual.id).Select(t => t.id).ToList();
 
             // Reserves d'avui pendents de cada taula del restaurant
-            var reserves = _context.Reservas.Where(r => taulesIds.Contains(r.taulaid) && r.datareserva == avui && r.estatid == (int)EstatReserva.EnProces) .ToList();
+            var reserves = _context.Reservas.Where(r => taulesIds.Contains(r.taulaid) && r.datareserva == avui && r.estatid == (int)EstatReserva.EnProces).ToList();
 
             var aforamentActual = reserves.Where(r =>
                 r.hora.HasValue && // La reserva tiene hora asignada.
