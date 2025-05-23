@@ -1,10 +1,13 @@
 ﻿using Data;
+using Entitats.AuthClasses;
 using Entitats.HorariClasses;
 using Entitats.ReservaClasses;
 using Entitats.TaulaClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Net.Mail;
+using System.Net;
+using Entitats.RestaurantClasses;
 
 namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 {
@@ -136,43 +139,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
         [HttpPost("AddReserva")]
         public async Task<IActionResult> AddReserva([FromBody] Reserva novaReserva)
         {
-            // Mesas disponibles para el número de comensales y el restaurante
-            var taules = await _context.Taules.Where(t => t.numComensals == novaReserva.numcomensals && t.restaurantId == novaReserva.restaurantid).ToListAsync();
-
-            var reservesDelDia = await _context.Reservas.Where(r => r.datareserva.Date == novaReserva.datareserva.Date && r.estatid == (int)EstatReserva.EnProces).ToListAsync();
-
-            Taula taulaDisponible = null;
-
-            foreach (var taula in taules)
-            {
-                // Reservas de cada mesa con el número de comensales correspondiente
-                var reservesTaula = reservesDelDia.Where(r => r.taulaid == taula.id);
-
-                bool solapada = false;
-
-                foreach (var r in reservesTaula)
-                {
-                    var horaExistente = r.hora;
-                    var duracioExistente = r.durada;
-
-                    var fiNova = novaReserva.hora.Value.Add(TimeSpan.FromMinutes(novaReserva.durada)); // Calcular la hora de fin de la reserva nueva
-                    var fiExistente = horaExistente.Value.Add(TimeSpan.FromMinutes(duracioExistente)); // Calcular la hora de fin de la reserva existente
-
-                    // Comprobar si la nueva reserva empieza antes de que termine la reserva existente, y si la reserva existente empieza antes de que termine la nueva reserva
-                    if (novaReserva.hora < fiExistente && horaExistente < fiNova)
-                    {
-                        solapada = true;
-                        break;
-                    }
-                }
-
-                // Si no está solapada guardamos la mesa
-                if (!solapada)
-                {
-                    taulaDisponible = taula;
-                    break;
-                }
-            }
+            var taulaDisponible = GetTaulaDisponible(novaReserva.numcomensals, novaReserva.datareserva, novaReserva.hora, novaReserva.durada, novaReserva.restaurantid);
 
             // Si no hi ha cap taula disponible no reservem
             if (taulaDisponible == null) return BadRequest("No hi ha cap taula disponible per a aquest horari.");
@@ -182,6 +149,12 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 
             _context.Reservas.Add(novaReserva);
             await _context.SaveChangesAsync();
+
+            var restaurante = await _context.Restaurants.FindAsync(novaReserva.restaurantid);
+
+            var usuari = await _context.Usuaris.FindAsync(novaReserva.usuariId);
+
+            if (usuari != null && EsCorreoValido(usuari.correu) && EsCorreoValido(restaurante.correu)) EnviarCorreuConfirmacio(usuari, restaurante, novaReserva);
 
             return Ok("Reserva afegida amb èxit.");
         }
@@ -197,35 +170,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 
                 if (reservaExistente == null) return NotFound();
 
-                // Buscar mesas disponibles
-                var taules = await _context.Taules.Where(t => t.numComensals == updReserva.numcomensals && t.restaurantId == updReserva.restaurantid).ToListAsync();
-                var reservesDelDia = await _context.Reservas.Where(r => r.datareserva.Date == updReserva.datareserva.Date && (r.estatid == (int)EstatReserva.EnProces)).ToListAsync();
-
-                Taula taulaDisponible = null;
-
-                foreach (var taula in taules)
-                {
-                    var solapada = false;
-
-                    TimeSpan fiNova = updReserva.hora.Value.Add(TimeSpan.FromMinutes(updReserva.durada)); // Calcular la hora de fin de la reserva nueva
-                    TimeSpan fiExistente = reservaExistente.hora.Value.Add(TimeSpan.FromMinutes(reservaExistente.durada)); // Calcular la hora de fin de la reserva existente 
-
-                    // Comprobar si la nueva reserva empieza antes de que termine la reserva existente, y si la reserva existente empieza antes de que termine la nueva reserva
-
-                    if (updReserva.hora.Value < fiExistente && reservaExistente.hora.Value < fiNova)
-                    {
-                        solapada = true; // Si ambas coinciden (solapadas)
-                    }
-
-                    // Comprobar si hay alguna mesa libre para esa hora
-                    bool ocupada = reservesDelDia.Any(r => r.taulaid == taula.id && solapada);
-
-                    // Devuelve la primera mesa disponible que no esté ocupada en el rango de horas
-                    if (!ocupada)
-                    {
-                        taulaDisponible = taula;
-                    }
-                }
+                var taulaDisponible = GetTaulaDisponible(updReserva.numcomensals, updReserva.datareserva, updReserva.hora, updReserva.durada, updReserva.restaurantid);
 
                 if (taulaDisponible == null) return NotFound();
 
@@ -257,6 +202,129 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
             await _context.SaveChangesAsync();
 
             return Ok("Reserva cancel.lada amb èxit.");
+        }
+
+        #region Helpers
+
+        private Taula GetTaulaDisponible(int? numComensals, DateTime data, TimeSpan? novaHora, int novaDurada, int restaurantid)
+        {
+            // Coger las mesas del rest por numero de comensales
+            var taules = _context.Taules.Where(t => t.numComensals == numComensals && t.restaurantId == restaurantid).ToList();
+
+            // Coger las reservas del dia pendientes
+            var reservesDelDia = _context.Reservas.Where(r => r.datareserva.Date == data.Date && (r.estatid == (int)EstatReserva.EnProces)).ToList();
+
+            foreach (var taula in taules)
+            {
+                // Comprobar si hay alguna mesa libre para esa hora
+                bool solapada = reservesDelDia.Any(r => r.taulaid == taula.id && SolapaAmbReservaExistente(novaHora, novaDurada, r.hora, r.durada));
+
+                // Devuelve la primera mesa disponible que no esté ocupada en el rango de horas
+                if (!solapada)
+                {
+                    return taula;
+                }
+            }
+
+            return null;
+        }
+
+        private bool SolapaAmbReservaExistente(TimeSpan? novaHora, int novaDuracio, TimeSpan? horaExistente, int duracioExistente)
+        {
+            if (!novaHora.HasValue || !horaExistente.HasValue) return false;
+
+            TimeSpan fiNova = novaHora.Value.Add(TimeSpan.FromMinutes(novaDuracio)); // Calcular la hora de fin de la reserva nueva
+            TimeSpan fiExistente = horaExistente.Value.Add(TimeSpan.FromMinutes(duracioExistente)); // Calcular la hora de fin de la reserva existente 
+
+            // Comprobar si la nueva reserva empieza antes de que termine la reserva existente, y si la reserva existente empieza antes de que termine la nueva reserva
+
+            if (novaHora.Value < fiExistente && horaExistente.Value < fiNova)
+            {
+                return true; // Si ambas coinciden (solapadas)
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool EsCorreoValido(string correo)
+        {
+            try
+            {
+                // Comprobar si el formato del correo es válido para enviar o recibir el mail
+                var mail = new MailAddress(correo);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void EnviarCorreuConfirmacio(Usuari usuari, Restaurant restaurant, Reserva reserva)
+        {
+            var fromAddress = new MailAddress(restaurant.correu, restaurant.nomRestaurant);
+            var toAddress = new MailAddress(usuari.correu, usuari.nom);
+
+            const string subject = "Confirmació de la teva reserva";
+
+            // Logo
+            byte[] logoBytes = restaurant.logo;
+            MemoryStream logoStream = new MemoryStream(logoBytes);
+
+            LinkedResource logo = new LinkedResource(logoStream, "image/png")
+            {
+                ContentId = "logoCid",
+                TransferEncoding = System.Net.Mime.TransferEncoding.Base64
+            };
+
+            // Cuerpo del mensaje con html para darle mejor estética
+            string htmlBody = $@"
+            <html>
+            <body style='font-family: Arial, sans-serif; color: #000000; background-color: #FFFFFF; margin:0; padding:20px;'>
+                <div style='text-align: center; max-width: 600px; margin: auto; background-color: #FFFFFF; padding: 20px; border-radius: 8px;'>
+                    <img src='cid:logoCid' alt='Logo del restaurant' width='120' style='margin-bottom: 20px;'/>
+                    <h2 style='color: #FFB997; margin-bottom: 10px;'>Confirmació de Reserva</h2>
+                    <p style='font-size: 16px; color: #000000;'>Hola <strong>{usuari.nom} {usuari.cognoms}</strong>,</p>
+                    <p style='font-size: 16px; color: #000000;'>La teva reserva ha estat confirmada:</p>
+                    <ul style='display: inline-block; text-align: left; font-size: 16px; color: #000000; padding-left: 20px; margin-bottom: 20px;'>
+                        <li><strong>Data:</strong> {reserva.datareserva:dd/MM/yyyy}</li>
+                        <li><strong>Hora:</strong> {reserva.hora?.ToString(@"hh\:mm")}</li>
+                        <li><strong>Comensals:</strong> {reserva.numcomensals}</li>
+                    </ul>
+                    <p style='font-size: 16px; color: #000000;'>Gràcies per confiar en nosaltres.</p>
+                    <p style='font-weight: bold; color: #000000; font-size: 14px;'>Restaurant {restaurant.nomRestaurant}</p>
+                </div>
+            </body>
+            </html>";
+
+
+            AlternateView htmlView = AlternateView.CreateAlternateViewFromString(htmlBody, null, "text/html");
+            htmlView.LinkedResources.Add(logo);
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                // Credenciales generadas en gmail
+                Credentials = new NetworkCredential("aaron_morenobarradas@iescarlesvallbona.cat", "ypsv xpzw mssg kkeq")
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                IsBodyHtml = true
+            })
+            {
+                message.AlternateViews.Add(htmlView);
+                smtp.Send(message);
+            }
+            #endregion
+
         }
     }
 }

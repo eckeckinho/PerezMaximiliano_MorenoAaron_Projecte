@@ -1,5 +1,4 @@
 ﻿using Entitats.PlatClasses;
-using Entitats.TaulaClasses;
 using System.Collections.Generic;
 
 namespace Services.Interfaces

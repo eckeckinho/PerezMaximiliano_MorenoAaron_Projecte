@@ -7,7 +7,9 @@ using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
+using System.Net.Mail;
+using System.Net;
+using System.IO;
 
 namespace Services
 {
@@ -33,6 +35,12 @@ namespace Services
                 _context.Reservas.Add(newReserva);
                 _context.SaveChanges();
 
+                var usuari = _context.Usuaris.FirstOrDefault(u => u.id == newReserva.usuariId);
+                if (usuari != null)
+                {
+                    if (EsCorreoValido(usuari.correu) && EsCorreoValido(_restaurantActual.correu)) EnviarCorreuConfirmacio(usuari, newReserva);
+                }
+
                 return true;
             }
             catch (Exception ex)
@@ -40,7 +48,6 @@ namespace Services
                 throw new Exception("Error al afegir la reserva. " + ex.Message, ex);
             }
         }
-
 
         public bool CanviarEstatReserva(List<Reserva> reservesSeleccionades, int nouEstat)
         {
@@ -52,7 +59,7 @@ namespace Services
                 {
                     if (HiHaSolapamentReserva(reserva))
                     {
-                        // No se puede cambiar a EnProces porque hay solapamiento
+                        // No se puede cambiar a "En procés" porque hay solapamiento
                         return false;
                     }
                 }
@@ -143,6 +150,45 @@ namespace Services
             return null; 
         }
 
+        public bool ActualitzarReserva(Reserva reserva)
+        {
+            try
+            {
+                if (reserva == null) return false;
+
+                var reservaExistente = _context.Reservas.Find(reserva.id);
+
+                if (reservaExistente == null) return false;
+
+                reservaExistente.datareserva = reserva.datareserva;
+                reservaExistente.numcomensals = reserva.numcomensals;
+                reservaExistente.taulaid = reserva.taulaid;
+                reservaExistente.durada = reserva.durada;
+                reservaExistente.hora = reserva.hora;
+                reservaExistente.usuariId = reserva.usuariId;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualitzar la reserva. " + ex.Message, ex);
+            }
+        }
+
+        public int GetCountReservesByEstatUsuari(int estatId, int usuariId, DateTime desde, DateTime hasta)
+        {
+            var idTaulesRestaurant = _context.Taules.Where(x => x.restaurantId == _restaurantActual.id).Select(x => x.id);
+
+            var reserves = _context.Reservas.Where(r => idTaulesRestaurant.Contains(r.taulaid)).Where(r => r.estatid == estatId).Where(r => r.datareserva >= desde.Date && r.datareserva < hasta.Date.AddDays(1));
+
+            if (usuariId != -1) reserves = reserves.Where(r => r.usuariId == usuariId);
+
+            return reserves.Count();
+        }
+
+        #region helpers
         private bool SolapaAmbReservaExistente(TimeSpan? novaHora, int novaDuracio, TimeSpan? horaExistente, int duracioExistente)
         {
             if (!novaHora.HasValue || !horaExistente.HasValue) return false;
@@ -182,43 +228,80 @@ namespace Services
             return false; // No hay solapamiento
         }
 
-
-        public bool ActualitzarReserva(Reserva reserva)
+        private bool EsCorreoValido(string correo)
         {
             try
             {
-                if (reserva == null) return false;
-
-                var reservaExistente = _context.Reservas.Find(reserva.id);
-
-                if (reservaExistente == null) return false;
-
-                reservaExistente.datareserva = reserva.datareserva;
-                reservaExistente.numcomensals = reserva.numcomensals;
-                reservaExistente.taulaid = reserva.taulaid;
-                reservaExistente.durada = reserva.durada;
-                reservaExistente.hora = reserva.hora;
-                reservaExistente.usuariId = reserva.usuariId;
-
-                _context.SaveChanges();
-
+                var mail = new MailAddress(correo);
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
-                throw new Exception("Error al actualitzar la reserva. " + ex.Message, ex);
+                return false;
             }
         }
 
-        public int GetCountReservesByEstatUsuari(int estatId, int usuariId, DateTime desde, DateTime hasta)
+        private void EnviarCorreuConfirmacio(Usuari usuari, Reserva reserva)
         {
-            var idTaulesRestaurant = _context.Taules.Where(x => x.restaurantId == _restaurantActual.id).Select(x => x.id);
+            var fromAddress = new MailAddress(_restaurantActual.correu, _restaurantActual.nomRestaurant);
+            var toAddress = new MailAddress(usuari.correu, usuari.nom);
 
-            var reserves = _context.Reservas.Where(r => idTaulesRestaurant.Contains(r.taulaid)).Where(r => r.estatid == estatId).Where(r => r.datareserva >= desde.Date && r.datareserva < hasta.Date.AddDays(1));
+            const string subject = "Confirmació de la teva reserva";
 
-            if (usuariId != -1) reserves = reserves.Where(r => r.usuariId == usuariId);
+            byte[] logoBytes = _restaurantActual.logo;
+            MemoryStream logoStream = new MemoryStream(logoBytes);
 
-            return reserves.Count();
+            LinkedResource logo = new LinkedResource(logoStream, "image/png")
+            {
+                ContentId = "logoCid",
+                TransferEncoding = System.Net.Mime.TransferEncoding.Base64
+            };
+
+            string htmlBody = $@"
+            <html>
+            <body style='font-family: Arial, sans-serif; color: #000000; background-color: #FFFFFF; margin:0; padding:20px;'>
+                <div style='text-align: center; max-width: 600px; margin: auto; background-color: #FFFFFF; padding: 20px; border-radius: 8px;'>
+                    <img src='cid:logoCid' alt='Logo del restaurant' width='120' style='margin-bottom: 20px;'/>
+                    <h2 style='color: #FFB997; margin-bottom: 10px;'>Confirmació de Reserva</h2>
+                    <p style='font-size: 16px; color: #000000;'>Hola <strong>{usuari.nom} {usuari.cognoms}</strong>,</p>
+                    <p style='font-size: 16px; color: #000000;'>La teva reserva ha estat confirmada:</p>
+                    <ul style='display: inline-block; text-align: left; font-size: 16px; color: #000000; padding-left: 20px; margin-bottom: 20px;'>
+                        <li><strong>Data:</strong> {reserva.datareserva:dd/MM/yyyy}</li>
+                        <li><strong>Hora:</strong> {reserva.hora?.ToString(@"hh\:mm")}</li>
+                        <li><strong>Comensals:</strong> {reserva.numcomensals}</li>
+                    </ul>
+                    <p style='font-size: 16px; color: #000000;'>Gràcies per confiar en nosaltres.</p>
+                    <p style='font-weight: bold; color: #000000; font-size: 14px;'>Restaurant {_restaurantActual.nomRestaurant}</p>
+                </div>
+            </body>
+            </html>";
+
+
+            AlternateView htmlView = AlternateView.CreateAlternateViewFromString(htmlBody, null, "text/html");
+            htmlView.LinkedResources.Add(logo);
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential("aaron_morenobarradas@iescarlesvallbona.cat", "ypsv xpzw mssg kkeq")
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                IsBodyHtml = true
+            })
+            {
+                message.AlternateViews.Add(htmlView);
+                smtp.Send(message);
+            }
         }
+
+        #endregion
+
     }
 }

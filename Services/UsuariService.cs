@@ -1,7 +1,6 @@
 ﻿using Data;
 using Entitats.AuthClasses;
 using Entitats.RestaurantClasses;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using Services.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +25,16 @@ namespace Services
 
         public List<Usuari> GetUsuarisAmbReserva()
         {
-            var idTaulesRestaurant = _context.Taules.Where(t => t.restaurantId == _restaurantActual.id).Select(t => t.id).ToList();
+            // Obtener los IDs de las taules que pertenecen al restaurant actual
+            var idTaulesDelRestaurant = _context.Taules .Where(t => t.restaurantId == _restaurantActual.id).Select(t => t.id).ToList();
 
-            var usuarisAmbReserva = _context.Reservas.Where(r => idTaulesRestaurant.Contains(r.taulaid)).Select(r => r.usuariId).Distinct().ToList();
+            // Obtener los IDs de usuaris que han hecho una reserva en alguna de esas taules
+            var idsUsuarisAmbReserva = _context.Reservas.Where(r => idTaulesDelRestaurant.Contains(r.taulaid)).Select(r => r.usuariId).Distinct().ToList();
 
-            return _context.Usuaris.Where(u => usuarisAmbReserva.Contains(u.id)).OrderBy(u => u.nom).ThenBy(u => u.cognoms).ToList();
+            // Devolver la lista de usuaris ordenada por nom y cognoms
+            var usuarisAmbReserva = _context.Usuaris.Where(u => idsUsuarisAmbReserva.Contains(u.id)).OrderBy(u => u.nom).ThenBy(u => u.cognoms).ToList();
+
+            return usuarisAmbReserva;
         }
     }
 }

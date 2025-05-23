@@ -47,6 +47,7 @@ namespace Taules.Controller
             fa.buttonTaula_afegir_editar.Click += Button_afegir_editar_taula_Click;
         }
 
+        // Marcar mesa como ocupada
         private void DataGridView_taules_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             var dgv = sender as DataGridView;

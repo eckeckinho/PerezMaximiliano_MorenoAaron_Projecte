@@ -1,5 +1,4 @@
-﻿using Entitats.ReservaClasses;
-using Entitats.RestaurantClasses;
+﻿using Entitats.RestaurantClasses;
 using System;
 
 namespace Services.Interfaces

@@ -1,6 +1,4 @@
-﻿using Entitats.HorariClasses;
-using Entitats.TaulaClasses;
-using System;
+﻿using Entitats.TaulaClasses;
 using System.Collections.Generic;
 
 namespace Services.Interfaces
@@ -9,7 +7,6 @@ namespace Services.Interfaces
     {
         List<Taula> GetTaules();
         List<int> GetCapacitatsDisponibles();
-        List<Taula> GetTaulesDisponibles(DateTime data, Horari franja);
         List<CapacitatTaulaCombo> GetCapacitatsCombo();
         int? GetAforamentActual();
         int GetAforamentMaxim();

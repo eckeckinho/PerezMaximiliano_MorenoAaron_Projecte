@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace Reserves.Controller
@@ -43,8 +42,8 @@ namespace Reserves.Controller
                 fr.monthCalendarReserva_horari.MinDate = DateTime.Today;
                 fr.monthCalendarReserva_horari.MaxDate = DateTime.Today.AddYears(1);
                 SetListeners();
-                LoadData();
             }
+            LoadData();
         }
 
         public void SetForm(MenuForm menuForm)

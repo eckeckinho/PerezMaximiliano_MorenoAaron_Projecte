@@ -1,5 +1,4 @@
 ﻿using Data;
-using Entitats.HorariClasses;
 using Entitats.ReservaClasses;
 using Entitats.RestaurantClasses;
 using Entitats.TaulaClasses;
@@ -73,7 +72,15 @@ namespace Services
             // Actualitzem l'estat 'ocupada' de totes les taules del restaurant
             foreach (var taula in taules)
             {
-                taula.ocupada = taulesOcupadesIds.Contains(taula.id);
+                // Si el ID de la taula está en la lista de ocupadas, marcamos la taula como ocupada
+                if (taulesOcupadesIds.Contains(taula.id))
+                {
+                    taula.ocupada = true;
+                }
+                else
+                {
+                    taula.ocupada = false;
+                }
             }
 
             _context.SaveChanges();
@@ -85,6 +92,7 @@ namespace Services
             )
             .Sum(r => r.numcomensals);
 
+            // Después de marcar las mesas ocupadas, devolvemos el aforo actual
             return aforamentActual;
         }
 
@@ -103,43 +111,6 @@ namespace Services
             // Obtenim les capacitats de les taules del restaurant actual (amb distinct per evitar duplicats en cas de que hi hagi més d'una taula amb la mateixa capacitat).
             return _context.Taules.Where(t => t.restaurantId == _restaurantActual.id).Select(t => t.numComensals).Distinct().OrderBy(c => c).ToList();
         }
-
-        public List<CapacitatTaulaCombo> GetCapacitatsCombo()
-        {
-            var capacitats = _context.Taules.Where(t => t.restaurantId == _restaurantActual.id).GroupBy(t => t.numComensals)
-                .Select(g => new CapacitatTaulaCombo
-                {
-                    capacitat = g.Key,
-                    quantitat = g.Count()
-                }).OrderBy(c => c.capacitat).ToList();
-
-            capacitats.Insert(0, new CapacitatTaulaCombo
-            {
-                capacitat = -1,
-                quantitat = capacitats.Sum(c => c.quantitat)
-            });
-
-            return capacitats;
-        }
-
-        public List<Taula> GetTaulesDisponibles(DateTime data, Horari franja)
-        {
-            var taulesRestaurant = _context.Taules.Where(t => t.restaurantId == _restaurantActual.id).ToList();
-
-            // Obtener las reservas pendientes que coinciden con la fecha y se solapan con la franja (estan reservadas)
-            var taulesReservadesIds = _context.Reservas
-                .Where(r => 
-                    r.datareserva.Date == data.Date &&
-                    r.hora >= franja.hora_inici && r.hora < franja.hora_final &&
-                    r.estatid == (int)EstatReserva.EnProces)
-                .Select(r => r.taulaid).Distinct().ToList();
-
-            // Devolver las mesas no reservadas
-            var taulesDisponibles = taulesRestaurant.Where(t => !taulesReservadesIds.Contains(t.id)).OrderBy(t => t.numComensals).ToList();
-
-            return taulesDisponibles;
-        }
-
 
         public bool AddTaula(int comensalsTaula)
         {
@@ -178,6 +149,24 @@ namespace Services
             {
                 throw new Exception("Error al modificar taula. " + ex.Message, ex);
             }
+        }
+
+        public List<CapacitatTaulaCombo> GetCapacitatsCombo()
+        {
+            var capacitats = _context.Taules.Where(t => t.restaurantId == _restaurantActual.id).GroupBy(t => t.numComensals)
+                .Select(g => new CapacitatTaulaCombo
+                {
+                    capacitat = g.Key,
+                    quantitat = g.Count()
+                }).OrderBy(c => c.capacitat).ToList();
+
+            capacitats.Insert(0, new CapacitatTaulaCombo
+            {
+                capacitat = -1,
+                quantitat = capacitats.Sum(c => c.quantitat)
+            });
+
+            return capacitats;
         }
     }
 }
