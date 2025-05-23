@@ -34,7 +34,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IniciarSessioForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
@@ -89,9 +88,9 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBox_usuariRegis = new MaterialSkin.Controls.MaterialTextBox2();
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.pictureBox_logo = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabPage1.SuspendLayout();
@@ -104,6 +103,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imatgeRestaurant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -124,16 +124,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.pictureBox2.Size = new System.Drawing.Size(40, 40);
             this.pictureBox2.TabIndex = 27;
             this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(164, 113);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(180, 180);
-            this.pictureBox1.TabIndex = 26;
-            this.pictureBox1.TabStop = false;
             // 
             // panel3
             // 
@@ -201,16 +191,16 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPage1.Location = new System.Drawing.Point(4, 39);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1466, 882);
+            this.tabPage1.Size = new System.Drawing.Size(1730, 493);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Entrar";
+            this.tabPage1.Text = "Inici sessió";
             // 
             // materialCheckboxEntrar_veureContrasenya
             // 
             this.materialCheckboxEntrar_veureContrasenya.AutoSize = true;
             this.materialCheckboxEntrar_veureContrasenya.Depth = 0;
             this.materialCheckboxEntrar_veureContrasenya.ImageKey = "icons8-cierre-de-sesión-redondeado-hacia-la-izquierda-32.png";
-            this.materialCheckboxEntrar_veureContrasenya.Location = new System.Drawing.Point(741, 319);
+            this.materialCheckboxEntrar_veureContrasenya.Location = new System.Drawing.Point(916, 348);
             this.materialCheckboxEntrar_veureContrasenya.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckboxEntrar_veureContrasenya.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckboxEntrar_veureContrasenya.MouseState = MaterialSkin.MouseState.HOVER;
@@ -230,14 +220,14 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.button_entrar.Depth = 0;
             this.button_entrar.HighEmphasis = true;
             this.button_entrar.Icon = null;
-            this.button_entrar.Location = new System.Drawing.Point(435, 422);
+            this.button_entrar.Location = new System.Drawing.Point(663, 455);
             this.button_entrar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button_entrar.MouseState = MaterialSkin.MouseState.HOVER;
             this.button_entrar.Name = "button_entrar";
             this.button_entrar.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.button_entrar.Size = new System.Drawing.Size(292, 45);
+            this.button_entrar.Size = new System.Drawing.Size(239, 45);
             this.button_entrar.TabIndex = 65;
-            this.button_entrar.Text = "ENTRAR";
+            this.button_entrar.Text = "INICIAR SESSIÓ";
             this.button_entrar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.button_entrar.UseAccentColor = false;
             this.button_entrar.UseVisualStyleBackColor = false;
@@ -248,7 +238,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel3.BackColor = System.Drawing.Color.Transparent;
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel3.Location = new System.Drawing.Point(432, 285);
+            this.materialLabel3.Location = new System.Drawing.Point(607, 314);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(90, 19);
@@ -261,7 +251,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel4.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel4.Depth = 0;
             this.materialLabel4.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel4.Location = new System.Drawing.Point(432, 184);
+            this.materialLabel4.Location = new System.Drawing.Point(607, 213);
             this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel4.Name = "materialLabel4";
             this.materialLabel4.Size = new System.Drawing.Size(46, 19);
@@ -273,7 +263,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.textBox_contrasenyaEntrar);
             this.panel2.Controls.Add(this.pictureBox4);
-            this.panel2.Location = new System.Drawing.Point(424, 307);
+            this.panel2.Location = new System.Drawing.Point(599, 336);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(314, 63);
             this.panel2.TabIndex = 62;
@@ -320,7 +310,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(506, 3);
+            this.pictureBox5.Location = new System.Drawing.Point(681, 32);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(180, 180);
             this.pictureBox5.TabIndex = 61;
@@ -331,7 +321,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.textBox_usuariEntrar);
             this.panel4.Controls.Add(this.pictureBox6);
-            this.panel4.Location = new System.Drawing.Point(424, 206);
+            this.panel4.Location = new System.Drawing.Point(599, 235);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(314, 63);
             this.panel4.TabIndex = 60;
@@ -376,17 +366,19 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // 
             // materialTabControl1
             // 
+            this.materialTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.materialTabControl1.Controls.Add(this.tabPage1);
             this.materialTabControl1.Controls.Add(this.tabPage2);
             this.materialTabControl1.Depth = 0;
-            this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialTabControl1.ImageList = this.imageList1;
             this.materialTabControl1.Location = new System.Drawing.Point(3, 64);
             this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(1474, 925);
+            this.materialTabControl1.Size = new System.Drawing.Size(1738, 536);
             this.materialTabControl1.TabIndex = 38;
             // 
             // tabPage2
@@ -431,9 +423,9 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPage2.Location = new System.Drawing.Point(4, 39);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1466, 882);
+            this.tabPage2.Size = new System.Drawing.Size(1730, 493);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Registrar ";
+            this.tabPage2.Text = "Registre";
             // 
             // button_imatgeRestaurant
             // 
@@ -444,21 +436,21 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.button_imatgeRestaurant.Depth = 0;
             this.button_imatgeRestaurant.HighEmphasis = true;
             this.button_imatgeRestaurant.Icon = null;
-            this.button_imatgeRestaurant.Location = new System.Drawing.Point(173, 550);
+            this.button_imatgeRestaurant.Location = new System.Drawing.Point(1315, 87);
             this.button_imatgeRestaurant.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button_imatgeRestaurant.MouseState = MaterialSkin.MouseState.HOVER;
             this.button_imatgeRestaurant.Name = "button_imatgeRestaurant";
             this.button_imatgeRestaurant.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.button_imatgeRestaurant.Size = new System.Drawing.Size(126, 28);
+            this.button_imatgeRestaurant.Size = new System.Drawing.Size(164, 48);
             this.button_imatgeRestaurant.TabIndex = 139;
-            this.button_imatgeRestaurant.Text = "INSERTAR LOGO";
+            this.button_imatgeRestaurant.Text = "INSERTAR IMATGE DEL RESTAURANT";
             this.button_imatgeRestaurant.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.button_imatgeRestaurant.UseAccentColor = false;
             this.button_imatgeRestaurant.UseVisualStyleBackColor = false;
             // 
             // pictureBox_imatgeRestaurant
             // 
-            this.pictureBox_imatgeRestaurant.Location = new System.Drawing.Point(318, 494);
+            this.pictureBox_imatgeRestaurant.Location = new System.Drawing.Point(979, 158);
             this.pictureBox_imatgeRestaurant.Name = "pictureBox_imatgeRestaurant";
             this.pictureBox_imatgeRestaurant.Size = new System.Drawing.Size(500, 300);
             this.pictureBox_imatgeRestaurant.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -471,7 +463,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel19.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel19.Depth = 0;
             this.materialLabel19.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel19.Location = new System.Drawing.Point(54, 248);
+            this.materialLabel19.Location = new System.Drawing.Point(63, 274);
             this.materialLabel19.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel19.Name = "materialLabel19";
             this.materialLabel19.Size = new System.Drawing.Size(197, 19);
@@ -483,7 +475,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialCheckboxRegistrar_veureContrasenya.AutoSize = true;
             this.materialCheckboxRegistrar_veureContrasenya.Depth = 0;
             this.materialCheckboxRegistrar_veureContrasenya.ImageKey = "icons8-cierre-de-sesión-redondeado-hacia-la-izquierda-32.png";
-            this.materialCheckboxRegistrar_veureContrasenya.Location = new System.Drawing.Point(275, 146);
+            this.materialCheckboxRegistrar_veureContrasenya.Location = new System.Drawing.Point(284, 172);
             this.materialCheckboxRegistrar_veureContrasenya.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckboxRegistrar_veureContrasenya.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckboxRegistrar_veureContrasenya.MouseState = MaterialSkin.MouseState.HOVER;
@@ -503,12 +495,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.button_registrar.Depth = 0;
             this.button_registrar.HighEmphasis = true;
             this.button_registrar.Icon = null;
-            this.button_registrar.Location = new System.Drawing.Point(971, 384);
+            this.button_registrar.Location = new System.Drawing.Point(1511, 253);
             this.button_registrar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button_registrar.MouseState = MaterialSkin.MouseState.HOVER;
             this.button_registrar.Name = "button_registrar";
             this.button_registrar.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.button_registrar.Size = new System.Drawing.Size(126, 48);
+            this.button_registrar.Size = new System.Drawing.Size(136, 73);
             this.button_registrar.TabIndex = 101;
             this.button_registrar.Text = "REGISTRAR-SE";
             this.button_registrar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -524,7 +516,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBox_paginaweb.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBox_paginaweb.HideSelection = true;
             this.textBox_paginaweb.LeadingIcon = null;
-            this.textBox_paginaweb.Location = new System.Drawing.Point(654, 384);
+            this.textBox_paginaweb.Location = new System.Drawing.Point(663, 410);
             this.textBox_paginaweb.MaxLength = 32767;
             this.textBox_paginaweb.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox_paginaweb.Name = "textBox_paginaweb";
@@ -549,7 +541,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel18.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel18.Depth = 0;
             this.materialLabel18.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel18.Location = new System.Drawing.Point(653, 362);
+            this.materialLabel18.Location = new System.Drawing.Point(662, 388);
             this.materialLabel18.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel18.Name = "materialLabel18";
             this.materialLabel18.Size = new System.Drawing.Size(84, 19);
@@ -565,7 +557,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBox_descripcio.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBox_descripcio.HideSelection = true;
             this.textBox_descripcio.LeadingIcon = null;
-            this.textBox_descripcio.Location = new System.Drawing.Point(654, 303);
+            this.textBox_descripcio.Location = new System.Drawing.Point(663, 329);
             this.textBox_descripcio.MaxLength = 32767;
             this.textBox_descripcio.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox_descripcio.Name = "textBox_descripcio";
@@ -590,7 +582,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel17.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel17.Depth = 0;
             this.materialLabel17.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel17.Location = new System.Drawing.Point(653, 281);
+            this.materialLabel17.Location = new System.Drawing.Point(662, 307);
             this.materialLabel17.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel17.Name = "materialLabel17";
             this.materialLabel17.Size = new System.Drawing.Size(75, 19);
@@ -603,7 +595,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel16.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel16.Depth = 0;
             this.materialLabel16.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel16.Location = new System.Drawing.Point(655, 201);
+            this.materialLabel16.Location = new System.Drawing.Point(664, 227);
             this.materialLabel16.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel16.Name = "materialLabel16";
             this.materialLabel16.Size = new System.Drawing.Size(76, 19);
@@ -619,7 +611,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBox_aforament.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBox_aforament.HideSelection = true;
             this.textBox_aforament.LeadingIcon = null;
-            this.textBox_aforament.Location = new System.Drawing.Point(656, 219);
+            this.textBox_aforament.Location = new System.Drawing.Point(665, 245);
             this.textBox_aforament.MaxLength = 32767;
             this.textBox_aforament.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox_aforament.Name = "textBox_aforament";
@@ -652,7 +644,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.comboBox_tipuspreu.FormattingEnabled = true;
             this.comboBox_tipuspreu.IntegralHeight = false;
             this.comboBox_tipuspreu.ItemHeight = 43;
-            this.comboBox_tipuspreu.Location = new System.Drawing.Point(970, 61);
+            this.comboBox_tipuspreu.Location = new System.Drawing.Point(979, 85);
             this.comboBox_tipuspreu.MaxDropDownItems = 4;
             this.comboBox_tipuspreu.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBox_tipuspreu.Name = "comboBox_tipuspreu";
@@ -666,7 +658,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel15.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel15.Depth = 0;
             this.materialLabel15.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel15.Location = new System.Drawing.Point(968, 39);
+            this.materialLabel15.Location = new System.Drawing.Point(977, 63);
             this.materialLabel15.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel15.Name = "materialLabel15";
             this.materialLabel15.Size = new System.Drawing.Size(97, 19);
@@ -687,7 +679,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.comboBox_tipuscuina.FormattingEnabled = true;
             this.comboBox_tipuscuina.IntegralHeight = false;
             this.comboBox_tipuscuina.ItemHeight = 43;
-            this.comboBox_tipuscuina.Location = new System.Drawing.Point(970, 222);
+            this.comboBox_tipuscuina.Location = new System.Drawing.Point(1141, 85);
             this.comboBox_tipuscuina.MaxDropDownItems = 4;
             this.comboBox_tipuscuina.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBox_tipuscuina.Name = "comboBox_tipuscuina";
@@ -701,7 +693,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel14.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel14.Depth = 0;
             this.materialLabel14.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel14.Location = new System.Drawing.Point(968, 201);
+            this.materialLabel14.Location = new System.Drawing.Point(1138, 63);
             this.materialLabel14.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel14.Name = "materialLabel14";
             this.materialLabel14.Size = new System.Drawing.Size(105, 19);
@@ -717,7 +709,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBox_correu.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBox_correu.HideSelection = true;
             this.textBox_correu.LeadingIcon = null;
-            this.textBox_correu.Location = new System.Drawing.Point(658, 146);
+            this.textBox_correu.Location = new System.Drawing.Point(667, 172);
             this.textBox_correu.MaxLength = 32767;
             this.textBox_correu.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox_correu.Name = "textBox_correu";
@@ -742,7 +734,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel13.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel13.Depth = 0;
             this.materialLabel13.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel13.Location = new System.Drawing.Point(657, 124);
+            this.materialLabel13.Location = new System.Drawing.Point(666, 150);
             this.materialLabel13.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel13.Name = "materialLabel13";
             this.materialLabel13.Size = new System.Drawing.Size(119, 19);
@@ -758,7 +750,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBox_carrer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBox_carrer.HideSelection = true;
             this.textBox_carrer.LeadingIcon = null;
-            this.textBox_carrer.Location = new System.Drawing.Point(341, 384);
+            this.textBox_carrer.Location = new System.Drawing.Point(350, 410);
             this.textBox_carrer.MaxLength = 32767;
             this.textBox_carrer.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox_carrer.Name = "textBox_carrer";
@@ -783,7 +775,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel12.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel12.Depth = 0;
             this.materialLabel12.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel12.Location = new System.Drawing.Point(340, 362);
+            this.materialLabel12.Location = new System.Drawing.Point(349, 388);
             this.materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel12.Name = "materialLabel12";
             this.materialLabel12.Size = new System.Drawing.Size(43, 19);
@@ -799,7 +791,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBox_codipostal.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBox_codipostal.HideSelection = true;
             this.textBox_codipostal.LeadingIcon = null;
-            this.textBox_codipostal.Location = new System.Drawing.Point(341, 303);
+            this.textBox_codipostal.Location = new System.Drawing.Point(350, 329);
             this.textBox_codipostal.MaxLength = 32767;
             this.textBox_codipostal.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox_codipostal.Name = "textBox_codipostal";
@@ -824,7 +816,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel11.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel11.Depth = 0;
             this.materialLabel11.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel11.Location = new System.Drawing.Point(340, 281);
+            this.materialLabel11.Location = new System.Drawing.Point(349, 307);
             this.materialLabel11.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel11.Name = "materialLabel11";
             this.materialLabel11.Size = new System.Drawing.Size(81, 19);
@@ -837,7 +829,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel10.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel10.Depth = 0;
             this.materialLabel10.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel10.Location = new System.Drawing.Point(343, 201);
+            this.materialLabel10.Location = new System.Drawing.Point(352, 227);
             this.materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel10.Name = "materialLabel10";
             this.materialLabel10.Size = new System.Drawing.Size(63, 19);
@@ -853,7 +845,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBox_poblacio.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBox_poblacio.HideSelection = true;
             this.textBox_poblacio.LeadingIcon = null;
-            this.textBox_poblacio.Location = new System.Drawing.Point(343, 219);
+            this.textBox_poblacio.Location = new System.Drawing.Point(352, 245);
             this.textBox_poblacio.MaxLength = 32767;
             this.textBox_poblacio.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox_poblacio.Name = "textBox_poblacio";
@@ -878,7 +870,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel9.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel9.Depth = 0;
             this.materialLabel9.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel9.Location = new System.Drawing.Point(343, 124);
+            this.materialLabel9.Location = new System.Drawing.Point(352, 150);
             this.materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel9.Name = "materialLabel9";
             this.materialLabel9.Size = new System.Drawing.Size(32, 19);
@@ -894,7 +886,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBox_pais.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBox_pais.HideSelection = true;
             this.textBox_pais.LeadingIcon = null;
-            this.textBox_pais.Location = new System.Drawing.Point(343, 142);
+            this.textBox_pais.Location = new System.Drawing.Point(352, 168);
             this.textBox_pais.MaxLength = 32767;
             this.textBox_pais.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox_pais.Name = "textBox_pais";
@@ -922,7 +914,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBox_telefon.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBox_telefon.HideSelection = true;
             this.textBox_telefon.LeadingIcon = null;
-            this.textBox_telefon.Location = new System.Drawing.Point(658, 60);
+            this.textBox_telefon.Location = new System.Drawing.Point(667, 86);
             this.textBox_telefon.MaxLength = 32767;
             this.textBox_telefon.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox_telefon.Name = "textBox_telefon";
@@ -947,7 +939,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel8.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel8.Depth = 0;
             this.materialLabel8.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel8.Location = new System.Drawing.Point(657, 39);
+            this.materialLabel8.Location = new System.Drawing.Point(666, 65);
             this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel8.Name = "materialLabel8";
             this.materialLabel8.Size = new System.Drawing.Size(55, 19);
@@ -963,7 +955,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBox_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBox_nom.HideSelection = true;
             this.textBox_nom.LeadingIcon = null;
-            this.textBox_nom.Location = new System.Drawing.Point(343, 61);
+            this.textBox_nom.Location = new System.Drawing.Point(352, 87);
             this.textBox_nom.MaxLength = 32767;
             this.textBox_nom.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox_nom.Name = "textBox_nom";
@@ -988,7 +980,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel7.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel7.Depth = 0;
             this.materialLabel7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel7.Location = new System.Drawing.Point(343, 39);
+            this.materialLabel7.Location = new System.Drawing.Point(352, 65);
             this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel7.Name = "materialLabel7";
             this.materialLabel7.Size = new System.Drawing.Size(35, 19);
@@ -1004,7 +996,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.button_logo.Depth = 0;
             this.button_logo.HighEmphasis = true;
             this.button_logo.Icon = null;
-            this.button_logo.Location = new System.Drawing.Point(85, 214);
+            this.button_logo.Location = new System.Drawing.Point(94, 240);
             this.button_logo.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button_logo.MouseState = MaterialSkin.MouseState.HOVER;
             this.button_logo.Name = "button_logo";
@@ -1022,7 +1014,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel6.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel6.Depth = 0;
             this.materialLabel6.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel6.Location = new System.Drawing.Point(32, 124);
+            this.materialLabel6.Location = new System.Drawing.Point(41, 150);
             this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel6.Name = "materialLabel6";
             this.materialLabel6.Size = new System.Drawing.Size(90, 19);
@@ -1038,7 +1030,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textbox_contrasenyaRegis.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textbox_contrasenyaRegis.HideSelection = true;
             this.textbox_contrasenyaRegis.LeadingIcon = null;
-            this.textbox_contrasenyaRegis.Location = new System.Drawing.Point(33, 142);
+            this.textbox_contrasenyaRegis.Location = new System.Drawing.Point(42, 168);
             this.textbox_contrasenyaRegis.MaxLength = 32767;
             this.textbox_contrasenyaRegis.MouseState = MaterialSkin.MouseState.OUT;
             this.textbox_contrasenyaRegis.Name = "textbox_contrasenyaRegis";
@@ -1066,7 +1058,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBox_usuariRegis.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBox_usuariRegis.HideSelection = true;
             this.textBox_usuariRegis.LeadingIcon = null;
-            this.textBox_usuariRegis.Location = new System.Drawing.Point(33, 60);
+            this.textBox_usuariRegis.Location = new System.Drawing.Point(42, 86);
             this.textBox_usuariRegis.MaxLength = 32767;
             this.textBox_usuariRegis.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox_usuariRegis.Name = "textBox_usuariRegis";
@@ -1091,7 +1083,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel5.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel5.Depth = 0;
             this.materialLabel5.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel5.Location = new System.Drawing.Point(32, 39);
+            this.materialLabel5.Location = new System.Drawing.Point(41, 65);
             this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel5.Name = "materialLabel5";
             this.materialLabel5.Size = new System.Drawing.Size(46, 19);
@@ -1100,19 +1092,29 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // 
             // pictureBox_logo
             // 
-            this.pictureBox_logo.Location = new System.Drawing.Point(72, 276);
+            this.pictureBox_logo.Location = new System.Drawing.Point(81, 302);
             this.pictureBox_logo.Name = "pictureBox_logo";
             this.pictureBox_logo.Size = new System.Drawing.Size(156, 156);
             this.pictureBox_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox_logo.TabIndex = 44;
             this.pictureBox_logo.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(164, 113);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(180, 180);
+            this.pictureBox1.TabIndex = 26;
+            this.pictureBox1.TabStop = false;
+            // 
             // IniciarSessioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1480, 992);
+            this.ClientSize = new System.Drawing.Size(1760, 625);
             this.Controls.Add(this.materialTabControl1);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialLabel1);
@@ -1123,14 +1125,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.DrawerTabControl = this.materialTabControl1;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "IniciarSessioForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Iniciar sessió";
+            this.Text = "Autenticació";
             this.Load += new System.EventHandler(this.IniciarSessioForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabPage1.ResumeLayout(false);
@@ -1145,6 +1145,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imatgeRestaurant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

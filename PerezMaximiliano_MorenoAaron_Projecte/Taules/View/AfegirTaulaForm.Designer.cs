@@ -36,7 +36,7 @@
             // 
             // numericUpDownTaula_numcomensals
             // 
-            this.numericUpDownTaula_numcomensals.Location = new System.Drawing.Point(235, 126);
+            this.numericUpDownTaula_numcomensals.Location = new System.Drawing.Point(222, 114);
             this.numericUpDownTaula_numcomensals.Minimum = new decimal(new int[] {
             1,
             0,
@@ -59,7 +59,7 @@
             this.buttonTaula_afegir_editar.Depth = 0;
             this.buttonTaula_afegir_editar.HighEmphasis = true;
             this.buttonTaula_afegir_editar.Icon = null;
-            this.buttonTaula_afegir_editar.Location = new System.Drawing.Point(235, 177);
+            this.buttonTaula_afegir_editar.Location = new System.Drawing.Point(222, 171);
             this.buttonTaula_afegir_editar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonTaula_afegir_editar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonTaula_afegir_editar.Name = "buttonTaula_afegir_editar";
@@ -77,12 +77,12 @@
             this.materialLabel5.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel5.Depth = 0;
             this.materialLabel5.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel5.Location = new System.Drawing.Point(70, 126);
+            this.materialLabel5.Location = new System.Drawing.Point(47, 114);
             this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel5.Name = "materialLabel5";
             this.materialLabel5.Size = new System.Drawing.Size(159, 19);
             this.materialLabel5.TabIndex = 81;
-            this.materialLabel5.Text = "Numero de comensals";
+            this.materialLabel5.Text = "Número de comensals";
             // 
             // AfegirTaulaForm
             // 
@@ -93,8 +93,8 @@
             this.Controls.Add(this.buttonTaula_afegir_editar);
             this.Controls.Add(this.numericUpDownTaula_numcomensals);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "AfegirTaulaForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Afegir taula";
             this.Load += new System.EventHandler(this.AfegirTaulaForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTaula_numcomensals)).EndInit();

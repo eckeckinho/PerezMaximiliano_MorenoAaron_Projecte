@@ -139,7 +139,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
         [HttpPost("AddReserva")]
         public async Task<IActionResult> AddReserva([FromBody] Reserva novaReserva)
         {
-            var taulaDisponible = GetTaulaDisponible(novaReserva.numcomensals, novaReserva.datareserva, novaReserva.hora, novaReserva.durada, novaReserva.restaurantid);
+            var taulaDisponible = GetTaulaDisponible(novaReserva.numcomensals, novaReserva.datareserva, novaReserva.hora, novaReserva.durada, novaReserva.restaurantid, null);
 
             // Si no hi ha cap taula disponible no reservem
             if (taulaDisponible == null) return BadRequest("No hi ha cap taula disponible per a aquest horari.");
@@ -170,7 +170,7 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 
                 if (reservaExistente == null) return NotFound();
 
-                var taulaDisponible = GetTaulaDisponible(updReserva.numcomensals, updReserva.datareserva, updReserva.hora, updReserva.durada, updReserva.restaurantid);
+                var taulaDisponible = GetTaulaDisponible(updReserva.numcomensals, updReserva.datareserva, updReserva.hora, updReserva.durada, updReserva.restaurantid, updReserva.id);
 
                 if (taulaDisponible == null) return NotFound();
 
@@ -206,13 +206,31 @@ namespace PerezMaximiliano_MorenoAaron_ProjecteAPI.Controllers
 
         #region Helpers
 
-        private Taula GetTaulaDisponible(int? numComensals, DateTime data, TimeSpan? novaHora, int novaDurada, int restaurantid)
+        private Taula GetTaulaDisponible(int? numComensals, DateTime data, TimeSpan? novaHora, int novaDurada, int restaurantid, int? reservaIdAExcloure)
         {
             // Coger las mesas del rest por numero de comensales
             var taules = _context.Taules.Where(t => t.numComensals == numComensals && t.restaurantId == restaurantid).ToList();
 
             // Coger las reservas del dia pendientes
-            var reservesDelDia = _context.Reservas.Where(r => r.datareserva.Date == data.Date && (r.estatid == (int)EstatReserva.EnProces)).ToList();
+            List<Reserva> reservesDelDia;
+
+            // Coger las reservas del dia pendientes
+            if (reservaIdAExcloure.HasValue)
+            {
+                // Excluir la reserva a modificar para así poder seleccionar su hora sin que cuente como seleccionada
+                reservesDelDia = _context.Reservas.Where(r =>
+                        r.datareserva.Date == data.Date &&
+                        r.estatid == (int)EstatReserva.EnProces &&
+                        r.id != reservaIdAExcloure.Value)
+                    .ToList();
+            }
+            else // Es una reserva nueva, se cargan todas las reservas en proceso del día
+            {
+                reservesDelDia = _context.Reservas.Where(r =>
+                        r.datareserva.Date == data.Date &&
+                        r.estatid == (int)EstatReserva.EnProces)
+                    .ToList();
+            }
 
             foreach (var taula in taules)
             {

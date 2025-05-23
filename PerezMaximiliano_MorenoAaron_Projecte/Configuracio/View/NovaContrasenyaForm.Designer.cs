@@ -184,8 +184,8 @@
             this.Controls.Add(this.materialLabel5);
             this.Controls.Add(this.buttonConfiguracio_canviarContrasenya);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "NovaContrasenyaForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Canviar contrasenya";
             this.Load += new System.EventHandler(this.NovaContrasenyaForm_Load);
             this.ResumeLayout(false);

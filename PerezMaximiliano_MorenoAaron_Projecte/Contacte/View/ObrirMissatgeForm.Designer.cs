@@ -37,22 +37,23 @@
             this.materialLabel5.AutoSize = true;
             this.materialLabel5.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel5.Depth = 0;
-            this.materialLabel5.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel5.Location = new System.Drawing.Point(68, 85);
+            this.materialLabel5.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel5.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
+            this.materialLabel5.Location = new System.Drawing.Point(66, 85);
             this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel5.Name = "materialLabel5";
-            this.materialLabel5.Size = new System.Drawing.Size(66, 19);
+            this.materialLabel5.Size = new System.Drawing.Size(64, 17);
             this.materialLabel5.TabIndex = 81;
-            this.materialLabel5.Text = "Missatge";
+            this.materialLabel5.Text = "Missatge:";
             // 
             // multiLineContacte_missatge
             // 
             this.multiLineContacte_missatge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.multiLineContacte_missatge.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.multiLineContacte_missatge.Depth = 0;
-            this.multiLineContacte_missatge.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.multiLineContacte_missatge.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.multiLineContacte_missatge.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.multiLineContacte_missatge.Location = new System.Drawing.Point(69, 107);
+            this.multiLineContacte_missatge.Location = new System.Drawing.Point(65, 118);
             this.multiLineContacte_missatge.MouseState = MaterialSkin.MouseState.HOVER;
             this.multiLineContacte_missatge.Name = "multiLineContacte_missatge";
             this.multiLineContacte_missatge.ReadOnly = true;
@@ -64,12 +65,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 463);
+            this.ClientSize = new System.Drawing.Size(887, 470);
             this.Controls.Add(this.multiLineContacte_missatge);
             this.Controls.Add(this.materialLabel5);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "ObrirMissatgeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.ObrirMissatgeForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

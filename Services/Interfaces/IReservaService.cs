@@ -10,7 +10,7 @@ namespace Services.Interfaces
     {
         List<Reserva> GetReservesRestaurant(int idEstat, DateTime desde, DateTime hasta, Usuari usuari);
         List<Reserva> GetReservesDia(DateTime dia);
-        Taula GetTaulaDisponible(int? numComensals, DateTime data, TimeSpan? novaHora, int durada);
+        Taula GetTaulaDisponible(int? numComensals, DateTime data, TimeSpan? novaHora, int durada, int? reservaid);
         Usuari GetUsuariReserva(int usuariId);
         int GetCountReservesByEstatUsuari(int estatId, int usuariId, DateTime desde, DateTime hasta);
         bool CanviarEstatReserva(List<Reserva> reservesSeleccionades, int nouEstat);

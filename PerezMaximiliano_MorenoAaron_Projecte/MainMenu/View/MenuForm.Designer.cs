@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace PerezMaximiliano_MorenoAaron_Projecte.View
 {
@@ -33,10 +34,8 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuForm));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.buttonMain_tancarSessio = new System.Windows.Forms.Button();
             this.tabPageConfiguracio = new System.Windows.Forms.TabPage();
-            this.buttonConfiguracio_imatgeRestaurant = new System.Windows.Forms.Button();
-            this.pictureBoxConfiguracio_imatgeRestaurant = new System.Windows.Forms.PictureBox();
+            this.materialLabel37 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             this.buttonConfiguracio_newContrasenya = new MaterialSkin.Controls.MaterialButton();
             this.textBoxConfiguracio_paginaweb = new MaterialSkin.Controls.MaterialTextBox2();
@@ -64,11 +63,13 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_nom = new MaterialSkin.Controls.MaterialTextBox2();
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             this.textBoxConfiguracio_usuari = new MaterialSkin.Controls.MaterialTextBox2();
-            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.buttonConfiguracio_editar = new MaterialSkin.Controls.MaterialButton();
+            this.buttonConfiguracio_imatgeRestaurant = new System.Windows.Forms.Button();
+            this.pictureBoxConfiguracio_imatgeRestaurant = new System.Windows.Forms.PictureBox();
             this.pictureBoxConfiguracio_logo = new System.Windows.Forms.PictureBox();
             this.buttonConfiguracio_logo = new System.Windows.Forms.Button();
             this.tabPageContacte = new System.Windows.Forms.TabPage();
+            this.materialLabel50 = new MaterialSkin.Controls.MaterialLabel();
             this.checkBoxContacte_veureLlegits = new MaterialSkin.Controls.MaterialCheckbox();
             this.textBoxContacte_llegits = new MaterialSkin.Controls.MaterialTextBox();
             this.textBoxContacte_noLlegits = new MaterialSkin.Controls.MaterialTextBox();
@@ -85,6 +86,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.dataGridViewContacte_missatges = new System.Windows.Forms.DataGridView();
             this.tabPageTaules = new System.Windows.Forms.TabPage();
+            this.materialLabel48 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel33 = new MaterialSkin.Controls.MaterialLabel();
             this.comboBoxTaula_comensals = new MaterialSkin.Controls.MaterialComboBox();
             this.dataGridViewTaula_taules = new System.Windows.Forms.DataGridView();
@@ -96,6 +98,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonTaula_editar = new MaterialSkin.Controls.MaterialButton();
             this.buttonTaula_afegir = new MaterialSkin.Controls.MaterialButton();
             this.tabPageReserves = new System.Windows.Forms.TabPage();
+            this.materialLabel47 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel46 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel45 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel44 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel38 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.comboBoxReserva_usuari = new System.Windows.Forms.ComboBox();
             this.materialLabel32 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel27 = new MaterialSkin.Controls.MaterialLabel();
@@ -118,45 +126,56 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.dataGridViewReserva_reserves = new System.Windows.Forms.DataGridView();
             this.materialTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPageHorari = new System.Windows.Forms.TabPage();
+            this.materialLabel43 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel42 = new MaterialSkin.Controls.MaterialLabel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panelHorari_dilluns = new System.Windows.Forms.Panel();
+            this.buttonHorari_addFranjaDilluns = new MaterialSkin.Controls.MaterialButton();
+            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            this.buttonHorari_deleteFranjaDilluns = new MaterialSkin.Controls.MaterialButton();
+            this.panelHorari_dimarts = new System.Windows.Forms.Panel();
+            this.buttonHorari_addFranjaDimarts = new MaterialSkin.Controls.MaterialButton();
+            this.buttonHorari_addFranjaDimecres = new MaterialSkin.Controls.MaterialButton();
+            this.buttonHorari_addFranjaDijous = new MaterialSkin.Controls.MaterialButton();
+            this.materialLabel19 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel20 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel21 = new MaterialSkin.Controls.MaterialLabel();
+            this.buttonHorari_deleteFranjaDiumenge = new MaterialSkin.Controls.MaterialButton();
+            this.panelHorari_dimecres = new System.Windows.Forms.Panel();
+            this.buttonHorari_deleteFranjaDissabte = new MaterialSkin.Controls.MaterialButton();
+            this.panelHorari_dijous = new System.Windows.Forms.Panel();
+            this.buttonHorari_deleteFranjaDivendres = new MaterialSkin.Controls.MaterialButton();
+            this.buttonHorari_deleteFranjaDimarts = new MaterialSkin.Controls.MaterialButton();
+            this.panelHorari_divendres = new System.Windows.Forms.Panel();
+            this.buttonHorari_deleteFranjaDijous = new MaterialSkin.Controls.MaterialButton();
+            this.panelHorari_dissabte = new System.Windows.Forms.Panel();
+            this.buttonHorari_deleteFranjaDimecres = new MaterialSkin.Controls.MaterialButton();
+            this.panelHorari_diumenge = new System.Windows.Forms.Panel();
+            this.buttonHorari_addFranjaDivendres = new MaterialSkin.Controls.MaterialButton();
+            this.materialLabel24 = new MaterialSkin.Controls.MaterialLabel();
+            this.buttonHorari_addFranjaDiumenge = new MaterialSkin.Controls.MaterialButton();
+            this.materialLabel23 = new MaterialSkin.Controls.MaterialLabel();
+            this.buttonHorari_addFranjaDissabte = new MaterialSkin.Controls.MaterialButton();
+            this.materialLabel22 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel41 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel40 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel39 = new MaterialSkin.Controls.MaterialLabel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.monthCalendarHorari_horari = new Pabo.Calendar.MonthCalendar();
             this.buttonHorari_desassignarFestiu = new MaterialSkin.Controls.MaterialButton();
             this.buttonHorari_assignarFestiu = new MaterialSkin.Controls.MaterialButton();
-            this.buttonHorari_deleteFranjaDiumenge = new MaterialSkin.Controls.MaterialButton();
-            this.buttonHorari_deleteFranjaDissabte = new MaterialSkin.Controls.MaterialButton();
-            this.buttonHorari_deleteFranjaDivendres = new MaterialSkin.Controls.MaterialButton();
-            this.buttonHorari_deleteFranjaDijous = new MaterialSkin.Controls.MaterialButton();
-            this.buttonHorari_deleteFranjaDimecres = new MaterialSkin.Controls.MaterialButton();
-            this.buttonHorari_deleteFranjaDimarts = new MaterialSkin.Controls.MaterialButton();
-            this.buttonHorari_deleteFranjaDilluns = new MaterialSkin.Controls.MaterialButton();
-            this.panelHorari_dilluns = new System.Windows.Forms.Panel();
-            this.panelHorari_dijous = new System.Windows.Forms.Panel();
-            this.panelHorari_divendres = new System.Windows.Forms.Panel();
-            this.panelHorari_dissabte = new System.Windows.Forms.Panel();
-            this.panelHorari_diumenge = new System.Windows.Forms.Panel();
-            this.panelHorari_dimecres = new System.Windows.Forms.Panel();
-            this.panelHorari_dimarts = new System.Windows.Forms.Panel();
-            this.materialLabel24 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel23 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel22 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel21 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel20 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel19 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
-            this.buttonHorari_addFranjaDivendres = new MaterialSkin.Controls.MaterialButton();
-            this.buttonHorari_addFranjaDijous = new MaterialSkin.Controls.MaterialButton();
-            this.buttonHorari_addFranjaDissabte = new MaterialSkin.Controls.MaterialButton();
-            this.buttonHorari_addFranjaDiumenge = new MaterialSkin.Controls.MaterialButton();
-            this.buttonHorari_addFranjaDimecres = new MaterialSkin.Controls.MaterialButton();
-            this.buttonHorari_addFranjaDimarts = new MaterialSkin.Controls.MaterialButton();
-            this.buttonHorari_addFranjaDilluns = new MaterialSkin.Controls.MaterialButton();
             this.buttonHorari_configurar = new MaterialSkin.Controls.MaterialButton();
             this.tabPagePlats = new System.Windows.Forms.TabPage();
+            this.materialLabel49 = new MaterialSkin.Controls.MaterialLabel();
             this.buttonMenu_eliminar = new MaterialSkin.Controls.MaterialButton();
             this.buttonMenu_editar = new MaterialSkin.Controls.MaterialButton();
             this.buttonMenu_afegir = new MaterialSkin.Controls.MaterialButton();
             this.materialLabel26 = new MaterialSkin.Controls.MaterialLabel();
             this.comboBoxMenu_tipusPlats = new MaterialSkin.Controls.MaterialComboBox();
             this.dataGridViewMenu_plats = new System.Windows.Forms.DataGridView();
+            this.buttonMain_tancarSessio = new System.Windows.Forms.Button();
             this.tabPageConfiguracio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConfiguracio_imatgeRestaurant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConfiguracio_logo)).BeginInit();
@@ -168,6 +187,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReserva_reserves)).BeginInit();
             this.materialTabControl.SuspendLayout();
             this.tabPageHorari.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.tabPagePlats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMenu_plats)).BeginInit();
             this.SuspendLayout();
@@ -184,21 +204,10 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.imageList1.Images.SetKeyName(5, "icons8-reserva-2-32.png");
             this.imageList1.Images.SetKeyName(6, "icons8-comida-32.png");
             // 
-            // buttonMain_tancarSessio
-            // 
-            this.buttonMain_tancarSessio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.buttonMain_tancarSessio.Location = new System.Drawing.Point(1092, 29);
-            this.buttonMain_tancarSessio.Name = "buttonMain_tancarSessio";
-            this.buttonMain_tancarSessio.Size = new System.Drawing.Size(101, 29);
-            this.buttonMain_tancarSessio.TabIndex = 85;
-            this.buttonMain_tancarSessio.Text = "TANCAR SESSIÓ";
-            this.buttonMain_tancarSessio.UseVisualStyleBackColor = false;
-            // 
             // tabPageConfiguracio
             // 
             this.tabPageConfiguracio.BackColor = System.Drawing.Color.White;
-            this.tabPageConfiguracio.Controls.Add(this.buttonConfiguracio_imatgeRestaurant);
-            this.tabPageConfiguracio.Controls.Add(this.pictureBoxConfiguracio_imatgeRestaurant);
+            this.tabPageConfiguracio.Controls.Add(this.materialLabel37);
             this.tabPageConfiguracio.Controls.Add(this.materialLabel6);
             this.tabPageConfiguracio.Controls.Add(this.buttonConfiguracio_newContrasenya);
             this.tabPageConfiguracio.Controls.Add(this.textBoxConfiguracio_paginaweb);
@@ -226,35 +235,31 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPageConfiguracio.Controls.Add(this.textBoxConfiguracio_nom);
             this.tabPageConfiguracio.Controls.Add(this.materialLabel7);
             this.tabPageConfiguracio.Controls.Add(this.textBoxConfiguracio_usuari);
-            this.tabPageConfiguracio.Controls.Add(this.materialLabel3);
             this.tabPageConfiguracio.Controls.Add(this.buttonConfiguracio_editar);
+            this.tabPageConfiguracio.Controls.Add(this.buttonConfiguracio_imatgeRestaurant);
+            this.tabPageConfiguracio.Controls.Add(this.pictureBoxConfiguracio_imatgeRestaurant);
             this.tabPageConfiguracio.Controls.Add(this.pictureBoxConfiguracio_logo);
             this.tabPageConfiguracio.Controls.Add(this.buttonConfiguracio_logo);
             this.tabPageConfiguracio.ImageKey = "icons8-ajustes-32.png";
             this.tabPageConfiguracio.Location = new System.Drawing.Point(4, 39);
             this.tabPageConfiguracio.Name = "tabPageConfiguracio";
-            this.tabPageConfiguracio.Size = new System.Drawing.Size(1386, 882);
+            this.tabPageConfiguracio.Size = new System.Drawing.Size(1730, 520);
             this.tabPageConfiguracio.TabIndex = 3;
             this.tabPageConfiguracio.Text = "Configuració";
             this.tabPageConfiguracio.UseVisualStyleBackColor = true;
             // 
-            // buttonConfiguracio_imatgeRestaurant
+            // materialLabel37
             // 
-            this.buttonConfiguracio_imatgeRestaurant.Image = ((System.Drawing.Image)(resources.GetObject("buttonConfiguracio_imatgeRestaurant.Image")));
-            this.buttonConfiguracio_imatgeRestaurant.Location = new System.Drawing.Point(574, 628);
-            this.buttonConfiguracio_imatgeRestaurant.Name = "buttonConfiguracio_imatgeRestaurant";
-            this.buttonConfiguracio_imatgeRestaurant.Size = new System.Drawing.Size(35, 35);
-            this.buttonConfiguracio_imatgeRestaurant.TabIndex = 138;
-            this.buttonConfiguracio_imatgeRestaurant.UseVisualStyleBackColor = true;
-            // 
-            // pictureBoxConfiguracio_imatgeRestaurant
-            // 
-            this.pictureBoxConfiguracio_imatgeRestaurant.Location = new System.Drawing.Point(638, 534);
-            this.pictureBoxConfiguracio_imatgeRestaurant.Name = "pictureBoxConfiguracio_imatgeRestaurant";
-            this.pictureBoxConfiguracio_imatgeRestaurant.Size = new System.Drawing.Size(500, 300);
-            this.pictureBoxConfiguracio_imatgeRestaurant.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBoxConfiguracio_imatgeRestaurant.TabIndex = 137;
-            this.pictureBoxConfiguracio_imatgeRestaurant.TabStop = false;
+            this.materialLabel37.AutoSize = true;
+            this.materialLabel37.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel37.Depth = 0;
+            this.materialLabel37.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel37.Location = new System.Drawing.Point(36, 66);
+            this.materialLabel37.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel37.Name = "materialLabel37";
+            this.materialLabel37.Size = new System.Drawing.Size(46, 19);
+            this.materialLabel37.TabIndex = 139;
+            this.materialLabel37.Text = "Usuari";
             // 
             // materialLabel6
             // 
@@ -262,7 +267,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel6.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel6.Depth = 0;
             this.materialLabel6.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel6.Location = new System.Drawing.Point(49, 308);
+            this.materialLabel6.Location = new System.Drawing.Point(58, 276);
             this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel6.Name = "materialLabel6";
             this.materialLabel6.Size = new System.Drawing.Size(197, 19);
@@ -277,7 +282,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonConfiguracio_newContrasenya.Depth = 0;
             this.buttonConfiguracio_newContrasenya.HighEmphasis = true;
             this.buttonConfiguracio_newContrasenya.Icon = null;
-            this.buttonConfiguracio_newContrasenya.Location = new System.Drawing.Point(71, 184);
+            this.buttonConfiguracio_newContrasenya.Location = new System.Drawing.Point(80, 152);
             this.buttonConfiguracio_newContrasenya.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonConfiguracio_newContrasenya.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonConfiguracio_newContrasenya.Name = "buttonConfiguracio_newContrasenya";
@@ -298,7 +303,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_paginaweb.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_paginaweb.HideSelection = true;
             this.textBoxConfiguracio_paginaweb.LeadingIcon = null;
-            this.textBoxConfiguracio_paginaweb.Location = new System.Drawing.Point(649, 444);
+            this.textBoxConfiguracio_paginaweb.Location = new System.Drawing.Point(658, 412);
             this.textBoxConfiguracio_paginaweb.MaxLength = 32767;
             this.textBoxConfiguracio_paginaweb.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_paginaweb.Name = "textBoxConfiguracio_paginaweb";
@@ -323,7 +328,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel18.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel18.Depth = 0;
             this.materialLabel18.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel18.Location = new System.Drawing.Point(648, 422);
+            this.materialLabel18.Location = new System.Drawing.Point(657, 390);
             this.materialLabel18.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel18.Name = "materialLabel18";
             this.materialLabel18.Size = new System.Drawing.Size(84, 19);
@@ -339,7 +344,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_descripcio.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_descripcio.HideSelection = true;
             this.textBoxConfiguracio_descripcio.LeadingIcon = null;
-            this.textBoxConfiguracio_descripcio.Location = new System.Drawing.Point(649, 363);
+            this.textBoxConfiguracio_descripcio.Location = new System.Drawing.Point(658, 331);
             this.textBoxConfiguracio_descripcio.MaxLength = 32767;
             this.textBoxConfiguracio_descripcio.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_descripcio.Name = "textBoxConfiguracio_descripcio";
@@ -364,7 +369,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel17.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel17.Depth = 0;
             this.materialLabel17.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel17.Location = new System.Drawing.Point(648, 341);
+            this.materialLabel17.Location = new System.Drawing.Point(657, 309);
             this.materialLabel17.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel17.Name = "materialLabel17";
             this.materialLabel17.Size = new System.Drawing.Size(75, 19);
@@ -377,7 +382,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel16.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel16.Depth = 0;
             this.materialLabel16.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel16.Location = new System.Drawing.Point(650, 261);
+            this.materialLabel16.Location = new System.Drawing.Point(659, 229);
             this.materialLabel16.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel16.Name = "materialLabel16";
             this.materialLabel16.Size = new System.Drawing.Size(76, 19);
@@ -393,7 +398,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_aforament.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_aforament.HideSelection = true;
             this.textBoxConfiguracio_aforament.LeadingIcon = null;
-            this.textBoxConfiguracio_aforament.Location = new System.Drawing.Point(651, 279);
+            this.textBoxConfiguracio_aforament.Location = new System.Drawing.Point(660, 247);
             this.textBoxConfiguracio_aforament.MaxLength = 32767;
             this.textBoxConfiguracio_aforament.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_aforament.Name = "textBoxConfiguracio_aforament";
@@ -426,7 +431,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.comboBoxConfiguracio_tipuspreu.FormattingEnabled = true;
             this.comboBoxConfiguracio_tipuspreu.IntegralHeight = false;
             this.comboBoxConfiguracio_tipuspreu.ItemHeight = 43;
-            this.comboBoxConfiguracio_tipuspreu.Location = new System.Drawing.Point(965, 121);
+            this.comboBoxConfiguracio_tipuspreu.Location = new System.Drawing.Point(974, 89);
             this.comboBoxConfiguracio_tipuspreu.MaxDropDownItems = 4;
             this.comboBoxConfiguracio_tipuspreu.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBoxConfiguracio_tipuspreu.Name = "comboBoxConfiguracio_tipuspreu";
@@ -440,7 +445,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel15.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel15.Depth = 0;
             this.materialLabel15.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel15.Location = new System.Drawing.Point(963, 99);
+            this.materialLabel15.Location = new System.Drawing.Point(972, 67);
             this.materialLabel15.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel15.Name = "materialLabel15";
             this.materialLabel15.Size = new System.Drawing.Size(97, 19);
@@ -461,7 +466,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.comboBoxConfiguracio_tipuscuina.FormattingEnabled = true;
             this.comboBoxConfiguracio_tipuscuina.IntegralHeight = false;
             this.comboBoxConfiguracio_tipuscuina.ItemHeight = 43;
-            this.comboBoxConfiguracio_tipuscuina.Location = new System.Drawing.Point(965, 282);
+            this.comboBoxConfiguracio_tipuscuina.Location = new System.Drawing.Point(1197, 87);
             this.comboBoxConfiguracio_tipuscuina.MaxDropDownItems = 4;
             this.comboBoxConfiguracio_tipuscuina.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBoxConfiguracio_tipuscuina.Name = "comboBoxConfiguracio_tipuscuina";
@@ -475,7 +480,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel14.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel14.Depth = 0;
             this.materialLabel14.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel14.Location = new System.Drawing.Point(963, 261);
+            this.materialLabel14.Location = new System.Drawing.Point(1196, 66);
             this.materialLabel14.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel14.Name = "materialLabel14";
             this.materialLabel14.Size = new System.Drawing.Size(105, 19);
@@ -491,7 +496,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_correu.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_correu.HideSelection = true;
             this.textBoxConfiguracio_correu.LeadingIcon = null;
-            this.textBoxConfiguracio_correu.Location = new System.Drawing.Point(653, 206);
+            this.textBoxConfiguracio_correu.Location = new System.Drawing.Point(662, 174);
             this.textBoxConfiguracio_correu.MaxLength = 32767;
             this.textBoxConfiguracio_correu.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_correu.Name = "textBoxConfiguracio_correu";
@@ -516,7 +521,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel13.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel13.Depth = 0;
             this.materialLabel13.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel13.Location = new System.Drawing.Point(652, 184);
+            this.materialLabel13.Location = new System.Drawing.Point(661, 152);
             this.materialLabel13.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel13.Name = "materialLabel13";
             this.materialLabel13.Size = new System.Drawing.Size(119, 19);
@@ -532,7 +537,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_carrer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_carrer.HideSelection = true;
             this.textBoxConfiguracio_carrer.LeadingIcon = null;
-            this.textBoxConfiguracio_carrer.Location = new System.Drawing.Point(336, 444);
+            this.textBoxConfiguracio_carrer.Location = new System.Drawing.Point(345, 412);
             this.textBoxConfiguracio_carrer.MaxLength = 32767;
             this.textBoxConfiguracio_carrer.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_carrer.Name = "textBoxConfiguracio_carrer";
@@ -557,7 +562,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel12.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel12.Depth = 0;
             this.materialLabel12.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel12.Location = new System.Drawing.Point(335, 422);
+            this.materialLabel12.Location = new System.Drawing.Point(344, 390);
             this.materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel12.Name = "materialLabel12";
             this.materialLabel12.Size = new System.Drawing.Size(43, 19);
@@ -573,7 +578,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_codipostal.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_codipostal.HideSelection = true;
             this.textBoxConfiguracio_codipostal.LeadingIcon = null;
-            this.textBoxConfiguracio_codipostal.Location = new System.Drawing.Point(336, 363);
+            this.textBoxConfiguracio_codipostal.Location = new System.Drawing.Point(345, 331);
             this.textBoxConfiguracio_codipostal.MaxLength = 32767;
             this.textBoxConfiguracio_codipostal.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_codipostal.Name = "textBoxConfiguracio_codipostal";
@@ -598,7 +603,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel11.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel11.Depth = 0;
             this.materialLabel11.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel11.Location = new System.Drawing.Point(335, 341);
+            this.materialLabel11.Location = new System.Drawing.Point(344, 309);
             this.materialLabel11.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel11.Name = "materialLabel11";
             this.materialLabel11.Size = new System.Drawing.Size(81, 19);
@@ -611,7 +616,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel10.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel10.Depth = 0;
             this.materialLabel10.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel10.Location = new System.Drawing.Point(338, 261);
+            this.materialLabel10.Location = new System.Drawing.Point(347, 229);
             this.materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel10.Name = "materialLabel10";
             this.materialLabel10.Size = new System.Drawing.Size(63, 19);
@@ -627,7 +632,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_poblacio.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_poblacio.HideSelection = true;
             this.textBoxConfiguracio_poblacio.LeadingIcon = null;
-            this.textBoxConfiguracio_poblacio.Location = new System.Drawing.Point(338, 279);
+            this.textBoxConfiguracio_poblacio.Location = new System.Drawing.Point(347, 247);
             this.textBoxConfiguracio_poblacio.MaxLength = 32767;
             this.textBoxConfiguracio_poblacio.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_poblacio.Name = "textBoxConfiguracio_poblacio";
@@ -652,7 +657,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel9.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel9.Depth = 0;
             this.materialLabel9.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel9.Location = new System.Drawing.Point(338, 184);
+            this.materialLabel9.Location = new System.Drawing.Point(347, 152);
             this.materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel9.Name = "materialLabel9";
             this.materialLabel9.Size = new System.Drawing.Size(32, 19);
@@ -668,7 +673,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_pais.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_pais.HideSelection = true;
             this.textBoxConfiguracio_pais.LeadingIcon = null;
-            this.textBoxConfiguracio_pais.Location = new System.Drawing.Point(338, 202);
+            this.textBoxConfiguracio_pais.Location = new System.Drawing.Point(347, 170);
             this.textBoxConfiguracio_pais.MaxLength = 32767;
             this.textBoxConfiguracio_pais.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_pais.Name = "textBoxConfiguracio_pais";
@@ -696,7 +701,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_telefon.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_telefon.HideSelection = true;
             this.textBoxConfiguracio_telefon.LeadingIcon = null;
-            this.textBoxConfiguracio_telefon.Location = new System.Drawing.Point(653, 120);
+            this.textBoxConfiguracio_telefon.Location = new System.Drawing.Point(662, 88);
             this.textBoxConfiguracio_telefon.MaxLength = 32767;
             this.textBoxConfiguracio_telefon.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_telefon.Name = "textBoxConfiguracio_telefon";
@@ -721,7 +726,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel8.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel8.Depth = 0;
             this.materialLabel8.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel8.Location = new System.Drawing.Point(652, 99);
+            this.materialLabel8.Location = new System.Drawing.Point(661, 67);
             this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel8.Name = "materialLabel8";
             this.materialLabel8.Size = new System.Drawing.Size(55, 19);
@@ -737,7 +742,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_nom.HideSelection = true;
             this.textBoxConfiguracio_nom.LeadingIcon = null;
-            this.textBoxConfiguracio_nom.Location = new System.Drawing.Point(336, 120);
+            this.textBoxConfiguracio_nom.Location = new System.Drawing.Point(345, 88);
             this.textBoxConfiguracio_nom.MaxLength = 32767;
             this.textBoxConfiguracio_nom.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_nom.Name = "textBoxConfiguracio_nom";
@@ -762,7 +767,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel7.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel7.Depth = 0;
             this.materialLabel7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel7.Location = new System.Drawing.Point(338, 99);
+            this.materialLabel7.Location = new System.Drawing.Point(347, 67);
             this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel7.Name = "materialLabel7";
             this.materialLabel7.Size = new System.Drawing.Size(35, 19);
@@ -778,7 +783,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_usuari.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxConfiguracio_usuari.HideSelection = true;
             this.textBoxConfiguracio_usuari.LeadingIcon = null;
-            this.textBoxConfiguracio_usuari.Location = new System.Drawing.Point(28, 120);
+            this.textBoxConfiguracio_usuari.Location = new System.Drawing.Point(38, 87);
             this.textBoxConfiguracio_usuari.MaxLength = 32767;
             this.textBoxConfiguracio_usuari.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxConfiguracio_usuari.Name = "textBoxConfiguracio_usuari";
@@ -797,19 +802,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxConfiguracio_usuari.TrailingIcon = null;
             this.textBoxConfiguracio_usuari.UseSystemPasswordChar = false;
             // 
-            // materialLabel3
-            // 
-            this.materialLabel3.AutoSize = true;
-            this.materialLabel3.BackColor = System.Drawing.Color.AliceBlue;
-            this.materialLabel3.Depth = 0;
-            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel3.Location = new System.Drawing.Point(61, 149);
-            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel3.Name = "materialLabel3";
-            this.materialLabel3.Size = new System.Drawing.Size(46, 19);
-            this.materialLabel3.TabIndex = 103;
-            this.materialLabel3.Text = "Usuari";
-            // 
             // buttonConfiguracio_editar
             // 
             this.buttonConfiguracio_editar.AutoSize = false;
@@ -818,21 +810,39 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonConfiguracio_editar.Depth = 0;
             this.buttonConfiguracio_editar.HighEmphasis = true;
             this.buttonConfiguracio_editar.Icon = null;
-            this.buttonConfiguracio_editar.Location = new System.Drawing.Point(966, 451);
+            this.buttonConfiguracio_editar.Location = new System.Drawing.Point(1508, 247);
             this.buttonConfiguracio_editar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonConfiguracio_editar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonConfiguracio_editar.Name = "buttonConfiguracio_editar";
             this.buttonConfiguracio_editar.NoAccentTextColor = System.Drawing.Color.Empty;
             this.buttonConfiguracio_editar.Size = new System.Drawing.Size(120, 46);
             this.buttonConfiguracio_editar.TabIndex = 83;
-            this.buttonConfiguracio_editar.Text = "EDITAR";
+            this.buttonConfiguracio_editar.Text = "GUARDAR CONFIGURACIÓ";
             this.buttonConfiguracio_editar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.buttonConfiguracio_editar.UseAccentColor = false;
             this.buttonConfiguracio_editar.UseVisualStyleBackColor = true;
             // 
+            // buttonConfiguracio_imatgeRestaurant
+            // 
+            this.buttonConfiguracio_imatgeRestaurant.Image = ((System.Drawing.Image)(resources.GetObject("buttonConfiguracio_imatgeRestaurant.Image")));
+            this.buttonConfiguracio_imatgeRestaurant.Location = new System.Drawing.Point(1440, 89);
+            this.buttonConfiguracio_imatgeRestaurant.Name = "buttonConfiguracio_imatgeRestaurant";
+            this.buttonConfiguracio_imatgeRestaurant.Size = new System.Drawing.Size(35, 35);
+            this.buttonConfiguracio_imatgeRestaurant.TabIndex = 138;
+            this.buttonConfiguracio_imatgeRestaurant.UseVisualStyleBackColor = true;
+            // 
+            // pictureBoxConfiguracio_imatgeRestaurant
+            // 
+            this.pictureBoxConfiguracio_imatgeRestaurant.Location = new System.Drawing.Point(974, 160);
+            this.pictureBoxConfiguracio_imatgeRestaurant.Name = "pictureBoxConfiguracio_imatgeRestaurant";
+            this.pictureBoxConfiguracio_imatgeRestaurant.Size = new System.Drawing.Size(500, 300);
+            this.pictureBoxConfiguracio_imatgeRestaurant.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxConfiguracio_imatgeRestaurant.TabIndex = 137;
+            this.pictureBoxConfiguracio_imatgeRestaurant.TabStop = false;
+            // 
             // pictureBoxConfiguracio_logo
             // 
-            this.pictureBoxConfiguracio_logo.Location = new System.Drawing.Point(71, 341);
+            this.pictureBoxConfiguracio_logo.Location = new System.Drawing.Point(80, 309);
             this.pictureBoxConfiguracio_logo.Name = "pictureBoxConfiguracio_logo";
             this.pictureBoxConfiguracio_logo.Size = new System.Drawing.Size(156, 156);
             this.pictureBoxConfiguracio_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -842,7 +852,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // buttonConfiguracio_logo
             // 
             this.buttonConfiguracio_logo.Image = ((System.Drawing.Image)(resources.GetObject("buttonConfiguracio_logo.Image")));
-            this.buttonConfiguracio_logo.Location = new System.Drawing.Point(129, 270);
+            this.buttonConfiguracio_logo.Location = new System.Drawing.Point(138, 238);
             this.buttonConfiguracio_logo.Name = "buttonConfiguracio_logo";
             this.buttonConfiguracio_logo.Size = new System.Drawing.Size(35, 35);
             this.buttonConfiguracio_logo.TabIndex = 82;
@@ -851,6 +861,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // tabPageContacte
             // 
             this.tabPageContacte.BackColor = System.Drawing.Color.White;
+            this.tabPageContacte.Controls.Add(this.materialLabel50);
             this.tabPageContacte.Controls.Add(this.checkBoxContacte_veureLlegits);
             this.tabPageContacte.Controls.Add(this.textBoxContacte_llegits);
             this.tabPageContacte.Controls.Add(this.textBoxContacte_noLlegits);
@@ -869,24 +880,38 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPageContacte.ImageKey = "icons8-contacto-32.png";
             this.tabPageContacte.Location = new System.Drawing.Point(4, 39);
             this.tabPageContacte.Name = "tabPageContacte";
-            this.tabPageContacte.Size = new System.Drawing.Size(1386, 882);
+            this.tabPageContacte.Size = new System.Drawing.Size(1730, 520);
             this.tabPageContacte.TabIndex = 2;
             this.tabPageContacte.Text = "Contacte";
+            // 
+            // materialLabel50
+            // 
+            this.materialLabel50.AutoSize = true;
+            this.materialLabel50.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel50.Depth = 0;
+            this.materialLabel50.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel50.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel50.Location = new System.Drawing.Point(176, 42);
+            this.materialLabel50.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel50.Name = "materialLabel50";
+            this.materialLabel50.Size = new System.Drawing.Size(111, 24);
+            this.materialLabel50.TabIndex = 208;
+            this.materialLabel50.Text = "MISSATGES";
             // 
             // checkBoxContacte_veureLlegits
             // 
             this.checkBoxContacte_veureLlegits.AutoSize = true;
             this.checkBoxContacte_veureLlegits.Depth = 0;
-            this.checkBoxContacte_veureLlegits.Location = new System.Drawing.Point(864, 339);
+            this.checkBoxContacte_veureLlegits.Location = new System.Drawing.Point(640, 91);
             this.checkBoxContacte_veureLlegits.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxContacte_veureLlegits.MouseLocation = new System.Drawing.Point(-1, -1);
             this.checkBoxContacte_veureLlegits.MouseState = MaterialSkin.MouseState.HOVER;
             this.checkBoxContacte_veureLlegits.Name = "checkBoxContacte_veureLlegits";
             this.checkBoxContacte_veureLlegits.ReadOnly = false;
             this.checkBoxContacte_veureLlegits.Ripple = true;
-            this.checkBoxContacte_veureLlegits.Size = new System.Drawing.Size(219, 37);
+            this.checkBoxContacte_veureLlegits.Size = new System.Drawing.Size(101, 37);
             this.checkBoxContacte_veureLlegits.TabIndex = 130;
-            this.checkBoxContacte_veureLlegits.Text = "Veure nomès els no llegits";
+            this.checkBoxContacte_veureLlegits.Text = "No llegits";
             this.checkBoxContacte_veureLlegits.UseVisualStyleBackColor = true;
             // 
             // textBoxContacte_llegits
@@ -896,7 +921,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxContacte_llegits.Depth = 0;
             this.textBoxContacte_llegits.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxContacte_llegits.LeadingIcon = null;
-            this.textBoxContacte_llegits.Location = new System.Drawing.Point(938, 264);
+            this.textBoxContacte_llegits.Location = new System.Drawing.Point(1382, 312);
             this.textBoxContacte_llegits.MaxLength = 50;
             this.textBoxContacte_llegits.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxContacte_llegits.Multiline = false;
@@ -914,7 +939,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxContacte_noLlegits.Depth = 0;
             this.textBoxContacte_noLlegits.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxContacte_noLlegits.LeadingIcon = null;
-            this.textBoxContacte_noLlegits.Location = new System.Drawing.Point(938, 191);
+            this.textBoxContacte_noLlegits.Location = new System.Drawing.Point(1382, 239);
             this.textBoxContacte_noLlegits.MaxLength = 50;
             this.textBoxContacte_noLlegits.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxContacte_noLlegits.Multiline = false;
@@ -931,12 +956,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel35.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel35.Depth = 0;
             this.materialLabel35.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel35.Location = new System.Drawing.Point(865, 281);
+            this.materialLabel35.Location = new System.Drawing.Point(1287, 329);
             this.materialLabel35.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel35.Name = "materialLabel35";
-            this.materialLabel35.Size = new System.Drawing.Size(48, 19);
+            this.materialLabel35.Size = new System.Drawing.Size(63, 19);
             this.materialLabel35.TabIndex = 127;
-            this.materialLabel35.Text = "Llegits";
+            this.materialLabel35.Text = "LLEGITS";
             // 
             // materialLabel36
             // 
@@ -944,19 +969,19 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel36.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel36.Depth = 0;
             this.materialLabel36.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel36.Location = new System.Drawing.Point(865, 210);
+            this.materialLabel36.Location = new System.Drawing.Point(1287, 257);
             this.materialLabel36.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel36.Name = "materialLabel36";
-            this.materialLabel36.Size = new System.Drawing.Size(67, 19);
+            this.materialLabel36.Size = new System.Drawing.Size(89, 19);
             this.materialLabel36.TabIndex = 126;
-            this.materialLabel36.Text = "No llegits";
+            this.materialLabel36.Text = "NO LLEGITS";
             // 
             // comboBoxContacte_usuari
             // 
             this.comboBoxContacte_usuari.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxContacte_usuari.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxContacte_usuari.FormattingEnabled = true;
-            this.comboBoxContacte_usuari.Location = new System.Drawing.Point(864, 164);
+            this.comboBoxContacte_usuari.Location = new System.Drawing.Point(889, 115);
             this.comboBoxContacte_usuari.Name = "comboBoxContacte_usuari";
             this.comboBoxContacte_usuari.Size = new System.Drawing.Size(121, 21);
             this.comboBoxContacte_usuari.TabIndex = 125;
@@ -967,12 +992,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel34.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel34.Depth = 0;
             this.materialLabel34.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel34.Location = new System.Drawing.Point(861, 142);
+            this.materialLabel34.Location = new System.Drawing.Point(833, 115);
             this.materialLabel34.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel34.Name = "materialLabel34";
-            this.materialLabel34.Size = new System.Drawing.Size(46, 19);
+            this.materialLabel34.Size = new System.Drawing.Size(50, 19);
             this.materialLabel34.TabIndex = 124;
-            this.materialLabel34.Text = "Usuari";
+            this.materialLabel34.Text = "Usuari:";
             // 
             // materialLabel30
             // 
@@ -980,7 +1005,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel30.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel30.Depth = 0;
             this.materialLabel30.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel30.Location = new System.Drawing.Point(716, 82);
+            this.materialLabel30.Location = new System.Drawing.Point(1142, 88);
             this.materialLabel30.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel30.Name = "materialLabel30";
             this.materialLabel30.Size = new System.Drawing.Size(44, 19);
@@ -993,7 +1018,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel29.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel29.Depth = 0;
             this.materialLabel29.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel29.Location = new System.Drawing.Point(589, 82);
+            this.materialLabel29.Location = new System.Drawing.Point(1015, 88);
             this.materialLabel29.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel29.Name = "materialLabel29";
             this.materialLabel29.Size = new System.Drawing.Size(49, 19);
@@ -1008,12 +1033,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonContacte_obrir.Depth = 0;
             this.buttonContacte_obrir.HighEmphasis = true;
             this.buttonContacte_obrir.Icon = null;
-            this.buttonContacte_obrir.Location = new System.Drawing.Point(724, 504);
+            this.buttonContacte_obrir.Location = new System.Drawing.Point(1143, 55);
             this.buttonContacte_obrir.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonContacte_obrir.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonContacte_obrir.Name = "buttonContacte_obrir";
             this.buttonContacte_obrir.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonContacte_obrir.Size = new System.Drawing.Size(114, 20);
+            this.buttonContacte_obrir.Size = new System.Drawing.Size(121, 20);
             this.buttonContacte_obrir.TabIndex = 98;
             this.buttonContacte_obrir.Text = "OBRIR";
             this.buttonContacte_obrir.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -1027,7 +1052,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxContacte_filtre.Depth = 0;
             this.textBoxContacte_filtre.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxContacte_filtre.LeadingIcon = null;
-            this.textBoxContacte_filtre.Location = new System.Drawing.Point(228, 82);
+            this.textBoxContacte_filtre.Location = new System.Drawing.Point(293, 86);
             this.textBoxContacte_filtre.MaxLength = 50;
             this.textBoxContacte_filtre.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxContacte_filtre.Multiline = false;
@@ -1041,7 +1066,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // 
             this.dateTimePickerContacte_hasta.CustomFormat = "dd/MM/yyyy";
             this.dateTimePickerContacte_hasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerContacte_hasta.Location = new System.Drawing.Point(717, 110);
+            this.dateTimePickerContacte_hasta.Location = new System.Drawing.Point(1143, 116);
             this.dateTimePickerContacte_hasta.Name = "dateTimePickerContacte_hasta";
             this.dateTimePickerContacte_hasta.Size = new System.Drawing.Size(121, 20);
             this.dateTimePickerContacte_hasta.TabIndex = 100;
@@ -1050,7 +1075,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // 
             this.dateTimePickerContacte_desde.CustomFormat = "dd/MM/yyyy";
             this.dateTimePickerContacte_desde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerContacte_desde.Location = new System.Drawing.Point(590, 110);
+            this.dateTimePickerContacte_desde.Location = new System.Drawing.Point(1016, 116);
             this.dateTimePickerContacte_desde.Name = "dateTimePickerContacte_desde";
             this.dateTimePickerContacte_desde.Size = new System.Drawing.Size(121, 20);
             this.dateTimePickerContacte_desde.TabIndex = 99;
@@ -1060,29 +1085,31 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel2.AutoSize = true;
             this.materialLabel2.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(72, 96);
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
+            this.materialLabel2.Location = new System.Drawing.Point(177, 100);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(150, 19);
+            this.materialLabel2.Size = new System.Drawing.Size(110, 17);
             this.materialLabel2.TabIndex = 96;
-            this.materialLabel2.Text = "FILTRAR ASSUMPTE";
+            this.materialLabel2.Text = "Filtrar assumpte:";
             // 
             // dataGridViewContacte_missatges
             // 
             this.dataGridViewContacte_missatges.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewContacte_missatges.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewContacte_missatges.Location = new System.Drawing.Point(162, 136);
+            this.dataGridViewContacte_missatges.Location = new System.Drawing.Point(179, 142);
             this.dataGridViewContacte_missatges.MultiSelect = false;
             this.dataGridViewContacte_missatges.Name = "dataGridViewContacte_missatges";
             this.dataGridViewContacte_missatges.ReadOnly = true;
             this.dataGridViewContacte_missatges.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewContacte_missatges.Size = new System.Drawing.Size(676, 345);
+            this.dataGridViewContacte_missatges.Size = new System.Drawing.Size(1085, 345);
             this.dataGridViewContacte_missatges.TabIndex = 63;
             // 
             // tabPageTaules
             // 
             this.tabPageTaules.BackColor = System.Drawing.Color.White;
+            this.tabPageTaules.Controls.Add(this.materialLabel48);
             this.tabPageTaules.Controls.Add(this.materialLabel33);
             this.tabPageTaules.Controls.Add(this.comboBoxTaula_comensals);
             this.tabPageTaules.Controls.Add(this.dataGridViewTaula_taules);
@@ -1096,9 +1123,23 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPageTaules.ImageKey = "icons8-mesa-de-restaurante-32.png";
             this.tabPageTaules.Location = new System.Drawing.Point(4, 39);
             this.tabPageTaules.Name = "tabPageTaules";
-            this.tabPageTaules.Size = new System.Drawing.Size(1386, 882);
+            this.tabPageTaules.Size = new System.Drawing.Size(1730, 520);
             this.tabPageTaules.TabIndex = 1;
             this.tabPageTaules.Text = "Taules";
+            // 
+            // materialLabel48
+            // 
+            this.materialLabel48.AutoSize = true;
+            this.materialLabel48.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel48.Depth = 0;
+            this.materialLabel48.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel48.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel48.Location = new System.Drawing.Point(411, 92);
+            this.materialLabel48.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel48.Name = "materialLabel48";
+            this.materialLabel48.Size = new System.Drawing.Size(73, 24);
+            this.materialLabel48.TabIndex = 207;
+            this.materialLabel48.Text = "TAULES";
             // 
             // materialLabel33
             // 
@@ -1106,7 +1147,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel33.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel33.Depth = 0;
             this.materialLabel33.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel33.Location = new System.Drawing.Point(412, 65);
+            this.materialLabel33.Location = new System.Drawing.Point(712, 92);
             this.materialLabel33.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel33.Name = "materialLabel33";
             this.materialLabel33.Size = new System.Drawing.Size(163, 19);
@@ -1127,7 +1168,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.comboBoxTaula_comensals.FormattingEnabled = true;
             this.comboBoxTaula_comensals.IntegralHeight = false;
             this.comboBoxTaula_comensals.ItemHeight = 43;
-            this.comboBoxTaula_comensals.Location = new System.Drawing.Point(586, 46);
+            this.comboBoxTaula_comensals.Location = new System.Drawing.Point(881, 77);
             this.comboBoxTaula_comensals.MaxDropDownItems = 4;
             this.comboBoxTaula_comensals.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBoxTaula_comensals.Name = "comboBoxTaula_comensals";
@@ -1139,7 +1180,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // 
             this.dataGridViewTaula_taules.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewTaula_taules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTaula_taules.Location = new System.Drawing.Point(120, 144);
+            this.dataGridViewTaula_taules.Location = new System.Drawing.Point(415, 132);
             this.dataGridViewTaula_taules.Name = "dataGridViewTaula_taules";
             this.dataGridViewTaula_taules.ReadOnly = true;
             this.dataGridViewTaula_taules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1153,7 +1194,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxTaula_aforamentMaxim.Depth = 0;
             this.textBoxTaula_aforamentMaxim.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxTaula_aforamentMaxim.LeadingIcon = null;
-            this.textBoxTaula_aforamentMaxim.Location = new System.Drawing.Point(673, 468);
+            this.textBoxTaula_aforamentMaxim.Location = new System.Drawing.Point(968, 456);
             this.textBoxTaula_aforamentMaxim.MaxLength = 50;
             this.textBoxTaula_aforamentMaxim.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxTaula_aforamentMaxim.Multiline = false;
@@ -1171,7 +1212,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxTaula_aforamentActual.Depth = 0;
             this.textBoxTaula_aforamentActual.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxTaula_aforamentActual.LeadingIcon = null;
-            this.textBoxTaula_aforamentActual.Location = new System.Drawing.Point(673, 412);
+            this.textBoxTaula_aforamentActual.Location = new System.Drawing.Point(968, 400);
             this.textBoxTaula_aforamentActual.MaxLength = 50;
             this.textBoxTaula_aforamentActual.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxTaula_aforamentActual.Multiline = false;
@@ -1188,7 +1229,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel1.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(509, 483);
+            this.materialLabel1.Location = new System.Drawing.Point(804, 471);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(151, 19);
@@ -1201,7 +1242,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel5.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel5.Depth = 0;
             this.materialLabel5.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel5.Location = new System.Drawing.Point(509, 427);
+            this.materialLabel5.Location = new System.Drawing.Point(804, 415);
             this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel5.Name = "materialLabel5";
             this.materialLabel5.Size = new System.Drawing.Size(158, 19);
@@ -1216,7 +1257,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonTaula_eliminar.Depth = 0;
             this.buttonTaula_eliminar.HighEmphasis = true;
             this.buttonTaula_eliminar.Icon = null;
-            this.buttonTaula_eliminar.Location = new System.Drawing.Point(659, 115);
+            this.buttonTaula_eliminar.Location = new System.Drawing.Point(954, 48);
             this.buttonTaula_eliminar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonTaula_eliminar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonTaula_eliminar.Name = "buttonTaula_eliminar";
@@ -1236,14 +1277,14 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonTaula_editar.Depth = 0;
             this.buttonTaula_editar.HighEmphasis = true;
             this.buttonTaula_editar.Icon = null;
-            this.buttonTaula_editar.Location = new System.Drawing.Point(537, 115);
+            this.buttonTaula_editar.Location = new System.Drawing.Point(832, 48);
             this.buttonTaula_editar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonTaula_editar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonTaula_editar.Name = "buttonTaula_editar";
             this.buttonTaula_editar.NoAccentTextColor = System.Drawing.Color.Empty;
             this.buttonTaula_editar.Size = new System.Drawing.Size(114, 20);
             this.buttonTaula_editar.TabIndex = 78;
-            this.buttonTaula_editar.Text = "EDITAR";
+            this.buttonTaula_editar.Text = "MODIFICAR";
             this.buttonTaula_editar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.buttonTaula_editar.UseAccentColor = false;
             this.buttonTaula_editar.UseVisualStyleBackColor = true;
@@ -1256,12 +1297,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonTaula_afegir.Depth = 0;
             this.buttonTaula_afegir.HighEmphasis = true;
             this.buttonTaula_afegir.Icon = null;
-            this.buttonTaula_afegir.Location = new System.Drawing.Point(415, 115);
+            this.buttonTaula_afegir.Location = new System.Drawing.Point(715, 48);
             this.buttonTaula_afegir.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonTaula_afegir.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonTaula_afegir.Name = "buttonTaula_afegir";
             this.buttonTaula_afegir.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonTaula_afegir.Size = new System.Drawing.Size(114, 20);
+            this.buttonTaula_afegir.Size = new System.Drawing.Size(109, 20);
             this.buttonTaula_afegir.TabIndex = 77;
             this.buttonTaula_afegir.Text = "AFEGIR";
             this.buttonTaula_afegir.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -1271,6 +1312,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // tabPageReserves
             // 
             this.tabPageReserves.BackColor = System.Drawing.Color.White;
+            this.tabPageReserves.Controls.Add(this.materialLabel47);
+            this.tabPageReserves.Controls.Add(this.materialLabel46);
+            this.tabPageReserves.Controls.Add(this.materialLabel45);
+            this.tabPageReserves.Controls.Add(this.materialLabel44);
+            this.tabPageReserves.Controls.Add(this.materialLabel38);
+            this.tabPageReserves.Controls.Add(this.materialLabel3);
             this.tabPageReserves.Controls.Add(this.comboBoxReserva_usuari);
             this.tabPageReserves.Controls.Add(this.materialLabel32);
             this.tabPageReserves.Controls.Add(this.materialLabel27);
@@ -1294,16 +1341,95 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPageReserves.ImageKey = "icons8-reserva-2-32.png";
             this.tabPageReserves.Location = new System.Drawing.Point(4, 39);
             this.tabPageReserves.Name = "tabPageReserves";
-            this.tabPageReserves.Size = new System.Drawing.Size(1386, 882);
+            this.tabPageReserves.Size = new System.Drawing.Size(1730, 520);
             this.tabPageReserves.TabIndex = 6;
             this.tabPageReserves.Text = "Reserves";
+            // 
+            // materialLabel47
+            // 
+            this.materialLabel47.AutoSize = true;
+            this.materialLabel47.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel47.Depth = 0;
+            this.materialLabel47.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel47.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel47.Location = new System.Drawing.Point(198, 14);
+            this.materialLabel47.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel47.Name = "materialLabel47";
+            this.materialLabel47.Size = new System.Drawing.Size(95, 24);
+            this.materialLabel47.TabIndex = 206;
+            this.materialLabel47.Text = "RESERVES";
+            // 
+            // materialLabel46
+            // 
+            this.materialLabel46.AutoSize = true;
+            this.materialLabel46.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel46.Depth = 0;
+            this.materialLabel46.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel46.Location = new System.Drawing.Point(1125, 405);
+            this.materialLabel46.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel46.Name = "materialLabel46";
+            this.materialLabel46.Size = new System.Drawing.Size(59, 19);
+            this.materialLabel46.TabIndex = 128;
+            this.materialLabel46.Text = "Telèfon:";
+            // 
+            // materialLabel45
+            // 
+            this.materialLabel45.AutoSize = true;
+            this.materialLabel45.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel45.Depth = 0;
+            this.materialLabel45.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel45.Location = new System.Drawing.Point(1112, 353);
+            this.materialLabel45.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel45.Name = "materialLabel45";
+            this.materialLabel45.Size = new System.Drawing.Size(73, 19);
+            this.materialLabel45.TabIndex = 127;
+            this.materialLabel45.Text = "Cognoms:";
+            // 
+            // materialLabel44
+            // 
+            this.materialLabel44.AutoSize = true;
+            this.materialLabel44.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel44.Depth = 0;
+            this.materialLabel44.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel44.Location = new System.Drawing.Point(1145, 298);
+            this.materialLabel44.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel44.Name = "materialLabel44";
+            this.materialLabel44.Size = new System.Drawing.Size(39, 19);
+            this.materialLabel44.TabIndex = 126;
+            this.materialLabel44.Text = "Nom:";
+            // 
+            // materialLabel38
+            // 
+            this.materialLabel38.AutoSize = true;
+            this.materialLabel38.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel38.Depth = 0;
+            this.materialLabel38.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel38.Location = new System.Drawing.Point(1134, 241);
+            this.materialLabel38.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel38.Name = "materialLabel38";
+            this.materialLabel38.Size = new System.Drawing.Size(51, 19);
+            this.materialLabel38.TabIndex = 125;
+            this.materialLabel38.Text = "Correu:";
+            // 
+            // materialLabel3
+            // 
+            this.materialLabel3.AutoSize = true;
+            this.materialLabel3.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel3.Depth = 0;
+            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel3.Location = new System.Drawing.Point(1164, 186);
+            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel3.Name = "materialLabel3";
+            this.materialLabel3.Size = new System.Drawing.Size(20, 19);
+            this.materialLabel3.TabIndex = 124;
+            this.materialLabel3.Text = "ID:";
             // 
             // comboBoxReserva_usuari
             // 
             this.comboBoxReserva_usuari.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxReserva_usuari.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxReserva_usuari.FormattingEnabled = true;
-            this.comboBoxReserva_usuari.Location = new System.Drawing.Point(1104, 220);
+            this.comboBoxReserva_usuari.Location = new System.Drawing.Point(713, 70);
             this.comboBoxReserva_usuari.Name = "comboBoxReserva_usuari";
             this.comboBoxReserva_usuari.Size = new System.Drawing.Size(121, 21);
             this.comboBoxReserva_usuari.TabIndex = 123;
@@ -1314,12 +1440,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel32.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel32.Depth = 0;
             this.materialLabel32.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel32.Location = new System.Drawing.Point(1101, 198);
+            this.materialLabel32.Location = new System.Drawing.Point(657, 71);
             this.materialLabel32.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel32.Name = "materialLabel32";
-            this.materialLabel32.Size = new System.Drawing.Size(46, 19);
+            this.materialLabel32.Size = new System.Drawing.Size(50, 19);
             this.materialLabel32.TabIndex = 122;
-            this.materialLabel32.Text = "Usuari";
+            this.materialLabel32.Text = "Usuari:";
             // 
             // materialLabel27
             // 
@@ -1327,7 +1453,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel27.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel27.Depth = 0;
             this.materialLabel27.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel27.Location = new System.Drawing.Point(306, 37);
+            this.materialLabel27.Location = new System.Drawing.Point(328, 47);
             this.materialLabel27.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel27.Name = "materialLabel27";
             this.materialLabel27.Size = new System.Drawing.Size(44, 19);
@@ -1340,7 +1466,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel28.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel28.Depth = 0;
             this.materialLabel28.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel28.Location = new System.Drawing.Point(177, 37);
+            this.materialLabel28.Location = new System.Drawing.Point(199, 47);
             this.materialLabel28.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel28.Name = "materialLabel28";
             this.materialLabel28.Size = new System.Drawing.Size(49, 19);
@@ -1356,14 +1482,14 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonReserva_actualitzar.Enabled = false;
             this.buttonReserva_actualitzar.HighEmphasis = true;
             this.buttonReserva_actualitzar.Icon = null;
-            this.buttonReserva_actualitzar.Location = new System.Drawing.Point(621, 6);
+            this.buttonReserva_actualitzar.Location = new System.Drawing.Point(970, 28);
             this.buttonReserva_actualitzar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonReserva_actualitzar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonReserva_actualitzar.Name = "buttonReserva_actualitzar";
             this.buttonReserva_actualitzar.NoAccentTextColor = System.Drawing.Color.Empty;
             this.buttonReserva_actualitzar.Size = new System.Drawing.Size(114, 20);
             this.buttonReserva_actualitzar.TabIndex = 118;
-            this.buttonReserva_actualitzar.Text = "ACTUALITZAR";
+            this.buttonReserva_actualitzar.Text = "MODIFICAR";
             this.buttonReserva_actualitzar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.buttonReserva_actualitzar.UseAccentColor = false;
             this.buttonReserva_actualitzar.UseVisualStyleBackColor = true;
@@ -1374,7 +1500,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel25.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel25.Depth = 0;
             this.materialLabel25.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel25.Location = new System.Drawing.Point(501, 59);
+            this.materialLabel25.Location = new System.Drawing.Point(850, 70);
             this.materialLabel25.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel25.Name = "materialLabel25";
             this.materialLabel25.Size = new System.Drawing.Size(41, 19);
@@ -1390,7 +1516,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonReserva_enProces.Enabled = false;
             this.buttonReserva_enProces.HighEmphasis = true;
             this.buttonReserva_enProces.Icon = null;
-            this.buttonReserva_enProces.Location = new System.Drawing.Point(377, 482);
+            this.buttonReserva_enProces.Location = new System.Drawing.Point(726, 494);
             this.buttonReserva_enProces.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonReserva_enProces.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonReserva_enProces.Name = "buttonReserva_enProces";
@@ -1411,7 +1537,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxReserva_idUsuari.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxReserva_idUsuari.HideSelection = true;
             this.textBoxReserva_idUsuari.LeadingIcon = null;
-            this.textBoxReserva_idUsuari.Location = new System.Drawing.Point(797, 137);
+            this.textBoxReserva_idUsuari.Location = new System.Drawing.Point(1190, 172);
             this.textBoxReserva_idUsuari.MaxLength = 32767;
             this.textBoxReserva_idUsuari.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxReserva_idUsuari.Name = "textBoxReserva_idUsuari";
@@ -1435,13 +1561,14 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel31.AutoSize = true;
             this.materialLabel31.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel31.Depth = 0;
-            this.materialLabel31.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel31.Location = new System.Drawing.Point(806, 102);
+            this.materialLabel31.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel31.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
+            this.materialLabel31.Location = new System.Drawing.Point(1207, 137);
             this.materialLabel31.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel31.Name = "materialLabel31";
-            this.materialLabel31.Size = new System.Drawing.Size(215, 19);
+            this.materialLabel31.Size = new System.Drawing.Size(198, 17);
             this.materialLabel31.TabIndex = 114;
-            this.materialLabel31.Text = "Dades de l\'usuari de la reserva";
+            this.materialLabel31.Text = "Dades de l\'usuari de la reserva:";
             // 
             // buttonReserva_finalitzar
             // 
@@ -1452,7 +1579,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonReserva_finalitzar.Enabled = false;
             this.buttonReserva_finalitzar.HighEmphasis = true;
             this.buttonReserva_finalitzar.Icon = null;
-            this.buttonReserva_finalitzar.Location = new System.Drawing.Point(499, 482);
+            this.buttonReserva_finalitzar.Location = new System.Drawing.Point(848, 494);
             this.buttonReserva_finalitzar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonReserva_finalitzar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonReserva_finalitzar.Name = "buttonReserva_finalitzar";
@@ -1473,7 +1600,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonReserva_cancelar.Enabled = false;
             this.buttonReserva_cancelar.HighEmphasis = true;
             this.buttonReserva_cancelar.Icon = null;
-            this.buttonReserva_cancelar.Location = new System.Drawing.Point(621, 482);
+            this.buttonReserva_cancelar.Location = new System.Drawing.Point(970, 494);
             this.buttonReserva_cancelar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonReserva_cancelar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonReserva_cancelar.Name = "buttonReserva_cancelar";
@@ -1493,12 +1620,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonReserva_afegir.Depth = 0;
             this.buttonReserva_afegir.HighEmphasis = true;
             this.buttonReserva_afegir.Icon = null;
-            this.buttonReserva_afegir.Location = new System.Drawing.Point(503, 6);
+            this.buttonReserva_afegir.Location = new System.Drawing.Point(853, 28);
             this.buttonReserva_afegir.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonReserva_afegir.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonReserva_afegir.Name = "buttonReserva_afegir";
             this.buttonReserva_afegir.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonReserva_afegir.Size = new System.Drawing.Size(114, 20);
+            this.buttonReserva_afegir.Size = new System.Drawing.Size(109, 20);
             this.buttonReserva_afegir.TabIndex = 1;
             this.buttonReserva_afegir.Text = "AFEGIR";
             this.buttonReserva_afegir.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -1514,7 +1641,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxReserva_correuUsuari.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxReserva_correuUsuari.HideSelection = true;
             this.textBoxReserva_correuUsuari.LeadingIcon = null;
-            this.textBoxReserva_correuUsuari.Location = new System.Drawing.Point(797, 191);
+            this.textBoxReserva_correuUsuari.Location = new System.Drawing.Point(1190, 226);
             this.textBoxReserva_correuUsuari.MaxLength = 32767;
             this.textBoxReserva_correuUsuari.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxReserva_correuUsuari.Name = "textBoxReserva_correuUsuari";
@@ -1542,7 +1669,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxReserva_telefonUsuari.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxReserva_telefonUsuari.HideSelection = true;
             this.textBoxReserva_telefonUsuari.LeadingIcon = null;
-            this.textBoxReserva_telefonUsuari.Location = new System.Drawing.Point(797, 353);
+            this.textBoxReserva_telefonUsuari.Location = new System.Drawing.Point(1190, 388);
             this.textBoxReserva_telefonUsuari.MaxLength = 32767;
             this.textBoxReserva_telefonUsuari.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxReserva_telefonUsuari.Name = "textBoxReserva_telefonUsuari";
@@ -1570,7 +1697,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxReserva_cognomsUsuari.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxReserva_cognomsUsuari.HideSelection = true;
             this.textBoxReserva_cognomsUsuari.LeadingIcon = null;
-            this.textBoxReserva_cognomsUsuari.Location = new System.Drawing.Point(797, 299);
+            this.textBoxReserva_cognomsUsuari.Location = new System.Drawing.Point(1190, 334);
             this.textBoxReserva_cognomsUsuari.MaxLength = 32767;
             this.textBoxReserva_cognomsUsuari.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxReserva_cognomsUsuari.Name = "textBoxReserva_cognomsUsuari";
@@ -1598,7 +1725,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.textBoxReserva_nomUsuari.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxReserva_nomUsuari.HideSelection = true;
             this.textBoxReserva_nomUsuari.LeadingIcon = null;
-            this.textBoxReserva_nomUsuari.Location = new System.Drawing.Point(797, 245);
+            this.textBoxReserva_nomUsuari.Location = new System.Drawing.Point(1190, 280);
             this.textBoxReserva_nomUsuari.MaxLength = 32767;
             this.textBoxReserva_nomUsuari.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxReserva_nomUsuari.Name = "textBoxReserva_nomUsuari";
@@ -1631,7 +1758,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.comboBoxReserva_estat.FormattingEnabled = true;
             this.comboBoxReserva_estat.IntegralHeight = false;
             this.comboBoxReserva_estat.ItemHeight = 43;
-            this.comboBoxReserva_estat.Location = new System.Drawing.Point(548, 47);
+            this.comboBoxReserva_estat.Location = new System.Drawing.Point(897, 57);
             this.comboBoxReserva_estat.MaxDropDownItems = 4;
             this.comboBoxReserva_estat.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBoxReserva_estat.Name = "comboBoxReserva_estat";
@@ -1643,7 +1770,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // 
             this.dateTimePickerReserva_hasta.CustomFormat = "dd/MM/yyyy";
             this.dateTimePickerReserva_hasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerReserva_hasta.Location = new System.Drawing.Point(307, 59);
+            this.dateTimePickerReserva_hasta.Location = new System.Drawing.Point(329, 69);
             this.dateTimePickerReserva_hasta.Name = "dateTimePickerReserva_hasta";
             this.dateTimePickerReserva_hasta.Size = new System.Drawing.Size(121, 20);
             this.dateTimePickerReserva_hasta.TabIndex = 3;
@@ -1652,7 +1779,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // 
             this.dateTimePickerReserva_desde.CustomFormat = "dd/MM/yyyy";
             this.dateTimePickerReserva_desde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerReserva_desde.Location = new System.Drawing.Point(180, 59);
+            this.dateTimePickerReserva_desde.Location = new System.Drawing.Point(202, 69);
             this.dateTimePickerReserva_desde.Name = "dateTimePickerReserva_desde";
             this.dateTimePickerReserva_desde.Size = new System.Drawing.Size(121, 20);
             this.dateTimePickerReserva_desde.TabIndex = 2;
@@ -1661,11 +1788,11 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // 
             this.dataGridViewReserva_reserves.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewReserva_reserves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewReserva_reserves.Location = new System.Drawing.Point(180, 102);
+            this.dataGridViewReserva_reserves.Location = new System.Drawing.Point(202, 112);
             this.dataGridViewReserva_reserves.Name = "dataGridViewReserva_reserves";
             this.dataGridViewReserva_reserves.ReadOnly = true;
             this.dataGridViewReserva_reserves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewReserva_reserves.Size = new System.Drawing.Size(555, 371);
+            this.dataGridViewReserva_reserves.Size = new System.Drawing.Size(882, 371);
             this.dataGridViewReserva_reserves.TabIndex = 0;
             // 
             // materialTabControl
@@ -1684,50 +1811,587 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialTabControl.Multiline = true;
             this.materialTabControl.Name = "materialTabControl";
             this.materialTabControl.SelectedIndex = 0;
-            this.materialTabControl.Size = new System.Drawing.Size(1394, 925);
+            this.materialTabControl.Size = new System.Drawing.Size(1738, 563);
             this.materialTabControl.TabIndex = 0;
             // 
             // tabPageHorari
             // 
             this.tabPageHorari.BackColor = System.Drawing.Color.White;
+            this.tabPageHorari.Controls.Add(this.materialLabel43);
+            this.tabPageHorari.Controls.Add(this.materialLabel42);
+            this.tabPageHorari.Controls.Add(this.panel4);
+            this.tabPageHorari.Controls.Add(this.materialLabel41);
+            this.tabPageHorari.Controls.Add(this.materialLabel40);
+            this.tabPageHorari.Controls.Add(this.materialLabel39);
+            this.tabPageHorari.Controls.Add(this.panel3);
+            this.tabPageHorari.Controls.Add(this.panel2);
+            this.tabPageHorari.Controls.Add(this.panel1);
             this.tabPageHorari.Controls.Add(this.monthCalendarHorari_horari);
             this.tabPageHorari.Controls.Add(this.buttonHorari_desassignarFestiu);
             this.tabPageHorari.Controls.Add(this.buttonHorari_assignarFestiu);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_deleteFranjaDiumenge);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_deleteFranjaDissabte);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_deleteFranjaDivendres);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_deleteFranjaDijous);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_deleteFranjaDimecres);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_deleteFranjaDimarts);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_deleteFranjaDilluns);
-            this.tabPageHorari.Controls.Add(this.panelHorari_dilluns);
-            this.tabPageHorari.Controls.Add(this.panelHorari_dijous);
-            this.tabPageHorari.Controls.Add(this.panelHorari_divendres);
-            this.tabPageHorari.Controls.Add(this.panelHorari_dissabte);
-            this.tabPageHorari.Controls.Add(this.panelHorari_diumenge);
-            this.tabPageHorari.Controls.Add(this.panelHorari_dimecres);
-            this.tabPageHorari.Controls.Add(this.panelHorari_dimarts);
-            this.tabPageHorari.Controls.Add(this.materialLabel24);
-            this.tabPageHorari.Controls.Add(this.materialLabel23);
-            this.tabPageHorari.Controls.Add(this.materialLabel22);
-            this.tabPageHorari.Controls.Add(this.materialLabel21);
-            this.tabPageHorari.Controls.Add(this.materialLabel20);
-            this.tabPageHorari.Controls.Add(this.materialLabel19);
-            this.tabPageHorari.Controls.Add(this.materialLabel4);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_addFranjaDivendres);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_addFranjaDijous);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_addFranjaDissabte);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_addFranjaDiumenge);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_addFranjaDimecres);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_addFranjaDimarts);
-            this.tabPageHorari.Controls.Add(this.buttonHorari_addFranjaDilluns);
             this.tabPageHorari.Controls.Add(this.buttonHorari_configurar);
             this.tabPageHorari.ImageKey = "icons8-calendario-32.png";
             this.tabPageHorari.Location = new System.Drawing.Point(4, 39);
             this.tabPageHorari.Name = "tabPageHorari";
-            this.tabPageHorari.Size = new System.Drawing.Size(1386, 882);
+            this.tabPageHorari.Size = new System.Drawing.Size(1730, 520);
             this.tabPageHorari.TabIndex = 4;
             this.tabPageHorari.Text = "Horari";
+            // 
+            // materialLabel43
+            // 
+            this.materialLabel43.AutoSize = true;
+            this.materialLabel43.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel43.Depth = 0;
+            this.materialLabel43.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel43.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel43.Location = new System.Drawing.Point(1091, 60);
+            this.materialLabel43.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel43.Name = "materialLabel43";
+            this.materialLabel43.Size = new System.Drawing.Size(317, 24);
+            this.materialLabel43.TabIndex = 205;
+            this.materialLabel43.Text = "Assigna díes festius personalitzats:";
+            // 
+            // materialLabel42
+            // 
+            this.materialLabel42.AutoSize = true;
+            this.materialLabel42.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel42.Depth = 0;
+            this.materialLabel42.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel42.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel42.Location = new System.Drawing.Point(166, 60);
+            this.materialLabel42.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel42.Name = "materialLabel42";
+            this.materialLabel42.Size = new System.Drawing.Size(616, 24);
+            this.materialLabel42.TabIndex = 204;
+            this.materialLabel42.Text = "Configura el teu horari amb les franges horàries que vulguis (5 màx.):";
+            // 
+            // panel4
+            // 
+            this.panel4.AutoScroll = true;
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel4.Controls.Add(this.panelHorari_dilluns);
+            this.panel4.Controls.Add(this.buttonHorari_addFranjaDilluns);
+            this.panel4.Controls.Add(this.materialLabel4);
+            this.panel4.Controls.Add(this.buttonHorari_deleteFranjaDilluns);
+            this.panel4.Controls.Add(this.panelHorari_dimarts);
+            this.panel4.Controls.Add(this.buttonHorari_addFranjaDimarts);
+            this.panel4.Controls.Add(this.buttonHorari_addFranjaDimecres);
+            this.panel4.Controls.Add(this.buttonHorari_addFranjaDijous);
+            this.panel4.Controls.Add(this.materialLabel19);
+            this.panel4.Controls.Add(this.materialLabel20);
+            this.panel4.Controls.Add(this.materialLabel21);
+            this.panel4.Controls.Add(this.buttonHorari_deleteFranjaDiumenge);
+            this.panel4.Controls.Add(this.panelHorari_dimecres);
+            this.panel4.Controls.Add(this.buttonHorari_deleteFranjaDissabte);
+            this.panel4.Controls.Add(this.panelHorari_dijous);
+            this.panel4.Controls.Add(this.buttonHorari_deleteFranjaDivendres);
+            this.panel4.Controls.Add(this.buttonHorari_deleteFranjaDimarts);
+            this.panel4.Controls.Add(this.panelHorari_divendres);
+            this.panel4.Controls.Add(this.buttonHorari_deleteFranjaDijous);
+            this.panel4.Controls.Add(this.panelHorari_dissabte);
+            this.panel4.Controls.Add(this.buttonHorari_deleteFranjaDimecres);
+            this.panel4.Controls.Add(this.panelHorari_diumenge);
+            this.panel4.Controls.Add(this.buttonHorari_addFranjaDivendres);
+            this.panel4.Controls.Add(this.materialLabel24);
+            this.panel4.Controls.Add(this.buttonHorari_addFranjaDiumenge);
+            this.panel4.Controls.Add(this.materialLabel23);
+            this.panel4.Controls.Add(this.buttonHorari_addFranjaDissabte);
+            this.panel4.Controls.Add(this.materialLabel22);
+            this.panel4.Location = new System.Drawing.Point(40, 108);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(898, 290);
+            this.panel4.TabIndex = 203;
+            // 
+            // panelHorari_dilluns
+            // 
+            this.panelHorari_dilluns.Location = new System.Drawing.Point(1, 70);
+            this.panelHorari_dilluns.Name = "panelHorari_dilluns";
+            this.panelHorari_dilluns.Size = new System.Drawing.Size(169, 195);
+            this.panelHorari_dilluns.TabIndex = 181;
+            // 
+            // buttonHorari_addFranjaDilluns
+            // 
+            this.buttonHorari_addFranjaDilluns.AutoSize = false;
+            this.buttonHorari_addFranjaDilluns.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_addFranjaDilluns.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_addFranjaDilluns.Depth = 0;
+            this.buttonHorari_addFranjaDilluns.HighEmphasis = true;
+            this.buttonHorari_addFranjaDilluns.Icon = null;
+            this.buttonHorari_addFranjaDilluns.Location = new System.Drawing.Point(35, 33);
+            this.buttonHorari_addFranjaDilluns.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_addFranjaDilluns.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_addFranjaDilluns.Name = "buttonHorari_addFranjaDilluns";
+            this.buttonHorari_addFranjaDilluns.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_addFranjaDilluns.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_addFranjaDilluns.TabIndex = 167;
+            this.buttonHorari_addFranjaDilluns.Text = "+";
+            this.buttonHorari_addFranjaDilluns.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_addFranjaDilluns.UseAccentColor = false;
+            this.buttonHorari_addFranjaDilluns.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel4
+            // 
+            this.materialLabel4.AutoSize = true;
+            this.materialLabel4.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel4.Depth = 0;
+            this.materialLabel4.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel4.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
+            this.materialLabel4.Location = new System.Drawing.Point(50, 10);
+            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel4.Name = "materialLabel4";
+            this.materialLabel4.Size = new System.Drawing.Size(45, 17);
+            this.materialLabel4.TabIndex = 174;
+            this.materialLabel4.Text = "Dilluns";
+            // 
+            // buttonHorari_deleteFranjaDilluns
+            // 
+            this.buttonHorari_deleteFranjaDilluns.AutoSize = false;
+            this.buttonHorari_deleteFranjaDilluns.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_deleteFranjaDilluns.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_deleteFranjaDilluns.Depth = 0;
+            this.buttonHorari_deleteFranjaDilluns.HighEmphasis = true;
+            this.buttonHorari_deleteFranjaDilluns.Icon = null;
+            this.buttonHorari_deleteFranjaDilluns.Location = new System.Drawing.Point(81, 33);
+            this.buttonHorari_deleteFranjaDilluns.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_deleteFranjaDilluns.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_deleteFranjaDilluns.Name = "buttonHorari_deleteFranjaDilluns";
+            this.buttonHorari_deleteFranjaDilluns.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_deleteFranjaDilluns.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_deleteFranjaDilluns.TabIndex = 185;
+            this.buttonHorari_deleteFranjaDilluns.Text = "-";
+            this.buttonHorari_deleteFranjaDilluns.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_deleteFranjaDilluns.UseAccentColor = false;
+            this.buttonHorari_deleteFranjaDilluns.UseVisualStyleBackColor = true;
+            // 
+            // panelHorari_dimarts
+            // 
+            this.panelHorari_dimarts.Location = new System.Drawing.Point(239, 70);
+            this.panelHorari_dimarts.Name = "panelHorari_dimarts";
+            this.panelHorari_dimarts.Size = new System.Drawing.Size(169, 195);
+            this.panelHorari_dimarts.TabIndex = 182;
+            // 
+            // buttonHorari_addFranjaDimarts
+            // 
+            this.buttonHorari_addFranjaDimarts.AutoSize = false;
+            this.buttonHorari_addFranjaDimarts.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_addFranjaDimarts.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_addFranjaDimarts.Depth = 0;
+            this.buttonHorari_addFranjaDimarts.HighEmphasis = true;
+            this.buttonHorari_addFranjaDimarts.Icon = null;
+            this.buttonHorari_addFranjaDimarts.Location = new System.Drawing.Point(287, 33);
+            this.buttonHorari_addFranjaDimarts.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_addFranjaDimarts.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_addFranjaDimarts.Name = "buttonHorari_addFranjaDimarts";
+            this.buttonHorari_addFranjaDimarts.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_addFranjaDimarts.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_addFranjaDimarts.TabIndex = 168;
+            this.buttonHorari_addFranjaDimarts.Text = "+";
+            this.buttonHorari_addFranjaDimarts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_addFranjaDimarts.UseAccentColor = false;
+            this.buttonHorari_addFranjaDimarts.UseVisualStyleBackColor = true;
+            // 
+            // buttonHorari_addFranjaDimecres
+            // 
+            this.buttonHorari_addFranjaDimecres.AutoSize = false;
+            this.buttonHorari_addFranjaDimecres.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_addFranjaDimecres.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_addFranjaDimecres.Depth = 0;
+            this.buttonHorari_addFranjaDimecres.HighEmphasis = true;
+            this.buttonHorari_addFranjaDimecres.Icon = null;
+            this.buttonHorari_addFranjaDimecres.Location = new System.Drawing.Point(511, 33);
+            this.buttonHorari_addFranjaDimecres.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_addFranjaDimecres.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_addFranjaDimecres.Name = "buttonHorari_addFranjaDimecres";
+            this.buttonHorari_addFranjaDimecres.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_addFranjaDimecres.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_addFranjaDimecres.TabIndex = 169;
+            this.buttonHorari_addFranjaDimecres.Text = "+";
+            this.buttonHorari_addFranjaDimecres.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_addFranjaDimecres.UseAccentColor = false;
+            this.buttonHorari_addFranjaDimecres.UseVisualStyleBackColor = true;
+            // 
+            // buttonHorari_addFranjaDijous
+            // 
+            this.buttonHorari_addFranjaDijous.AutoSize = false;
+            this.buttonHorari_addFranjaDijous.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_addFranjaDijous.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_addFranjaDijous.Depth = 0;
+            this.buttonHorari_addFranjaDijous.HighEmphasis = true;
+            this.buttonHorari_addFranjaDijous.Icon = null;
+            this.buttonHorari_addFranjaDijous.Location = new System.Drawing.Point(744, 33);
+            this.buttonHorari_addFranjaDijous.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_addFranjaDijous.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_addFranjaDijous.Name = "buttonHorari_addFranjaDijous";
+            this.buttonHorari_addFranjaDijous.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_addFranjaDijous.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_addFranjaDijous.TabIndex = 172;
+            this.buttonHorari_addFranjaDijous.Text = "+";
+            this.buttonHorari_addFranjaDijous.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_addFranjaDijous.UseAccentColor = false;
+            this.buttonHorari_addFranjaDijous.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel19
+            // 
+            this.materialLabel19.AutoSize = true;
+            this.materialLabel19.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel19.Depth = 0;
+            this.materialLabel19.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel19.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
+            this.materialLabel19.Location = new System.Drawing.Point(296, 8);
+            this.materialLabel19.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel19.Name = "materialLabel19";
+            this.materialLabel19.Size = new System.Drawing.Size(51, 17);
+            this.materialLabel19.TabIndex = 175;
+            this.materialLabel19.Text = "Dimarts";
+            // 
+            // materialLabel20
+            // 
+            this.materialLabel20.AutoSize = true;
+            this.materialLabel20.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel20.Depth = 0;
+            this.materialLabel20.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel20.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
+            this.materialLabel20.Location = new System.Drawing.Point(518, 8);
+            this.materialLabel20.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel20.Name = "materialLabel20";
+            this.materialLabel20.Size = new System.Drawing.Size(61, 17);
+            this.materialLabel20.TabIndex = 176;
+            this.materialLabel20.Text = "Dimecres";
+            // 
+            // materialLabel21
+            // 
+            this.materialLabel21.AutoSize = true;
+            this.materialLabel21.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel21.Depth = 0;
+            this.materialLabel21.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel21.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
+            this.materialLabel21.Location = new System.Drawing.Point(758, 8);
+            this.materialLabel21.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel21.Name = "materialLabel21";
+            this.materialLabel21.Size = new System.Drawing.Size(41, 17);
+            this.materialLabel21.TabIndex = 177;
+            this.materialLabel21.Text = "Dijous";
+            // 
+            // buttonHorari_deleteFranjaDiumenge
+            // 
+            this.buttonHorari_deleteFranjaDiumenge.AutoSize = false;
+            this.buttonHorari_deleteFranjaDiumenge.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_deleteFranjaDiumenge.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_deleteFranjaDiumenge.Depth = 0;
+            this.buttonHorari_deleteFranjaDiumenge.HighEmphasis = true;
+            this.buttonHorari_deleteFranjaDiumenge.Icon = null;
+            this.buttonHorari_deleteFranjaDiumenge.Location = new System.Drawing.Point(1458, 33);
+            this.buttonHorari_deleteFranjaDiumenge.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_deleteFranjaDiumenge.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_deleteFranjaDiumenge.Name = "buttonHorari_deleteFranjaDiumenge";
+            this.buttonHorari_deleteFranjaDiumenge.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_deleteFranjaDiumenge.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_deleteFranjaDiumenge.TabIndex = 191;
+            this.buttonHorari_deleteFranjaDiumenge.Text = "-";
+            this.buttonHorari_deleteFranjaDiumenge.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_deleteFranjaDiumenge.UseAccentColor = false;
+            this.buttonHorari_deleteFranjaDiumenge.UseVisualStyleBackColor = true;
+            // 
+            // panelHorari_dimecres
+            // 
+            this.panelHorari_dimecres.Location = new System.Drawing.Point(469, 70);
+            this.panelHorari_dimecres.Name = "panelHorari_dimecres";
+            this.panelHorari_dimecres.Size = new System.Drawing.Size(169, 195);
+            this.panelHorari_dimecres.TabIndex = 183;
+            // 
+            // buttonHorari_deleteFranjaDissabte
+            // 
+            this.buttonHorari_deleteFranjaDissabte.AutoSize = false;
+            this.buttonHorari_deleteFranjaDissabte.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_deleteFranjaDissabte.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_deleteFranjaDissabte.Depth = 0;
+            this.buttonHorari_deleteFranjaDissabte.HighEmphasis = true;
+            this.buttonHorari_deleteFranjaDissabte.Icon = null;
+            this.buttonHorari_deleteFranjaDissabte.Location = new System.Drawing.Point(1240, 31);
+            this.buttonHorari_deleteFranjaDissabte.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_deleteFranjaDissabte.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_deleteFranjaDissabte.Name = "buttonHorari_deleteFranjaDissabte";
+            this.buttonHorari_deleteFranjaDissabte.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_deleteFranjaDissabte.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_deleteFranjaDissabte.TabIndex = 190;
+            this.buttonHorari_deleteFranjaDissabte.Text = "-";
+            this.buttonHorari_deleteFranjaDissabte.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_deleteFranjaDissabte.UseAccentColor = false;
+            this.buttonHorari_deleteFranjaDissabte.UseVisualStyleBackColor = true;
+            // 
+            // panelHorari_dijous
+            // 
+            this.panelHorari_dijous.Location = new System.Drawing.Point(698, 70);
+            this.panelHorari_dijous.Name = "panelHorari_dijous";
+            this.panelHorari_dijous.Size = new System.Drawing.Size(169, 195);
+            this.panelHorari_dijous.TabIndex = 184;
+            // 
+            // buttonHorari_deleteFranjaDivendres
+            // 
+            this.buttonHorari_deleteFranjaDivendres.AutoSize = false;
+            this.buttonHorari_deleteFranjaDivendres.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_deleteFranjaDivendres.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_deleteFranjaDivendres.Depth = 0;
+            this.buttonHorari_deleteFranjaDivendres.HighEmphasis = true;
+            this.buttonHorari_deleteFranjaDivendres.Icon = null;
+            this.buttonHorari_deleteFranjaDivendres.Location = new System.Drawing.Point(1010, 33);
+            this.buttonHorari_deleteFranjaDivendres.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_deleteFranjaDivendres.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_deleteFranjaDivendres.Name = "buttonHorari_deleteFranjaDivendres";
+            this.buttonHorari_deleteFranjaDivendres.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_deleteFranjaDivendres.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_deleteFranjaDivendres.TabIndex = 189;
+            this.buttonHorari_deleteFranjaDivendres.Text = "-";
+            this.buttonHorari_deleteFranjaDivendres.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_deleteFranjaDivendres.UseAccentColor = false;
+            this.buttonHorari_deleteFranjaDivendres.UseVisualStyleBackColor = true;
+            // 
+            // buttonHorari_deleteFranjaDimarts
+            // 
+            this.buttonHorari_deleteFranjaDimarts.AutoSize = false;
+            this.buttonHorari_deleteFranjaDimarts.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_deleteFranjaDimarts.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_deleteFranjaDimarts.Depth = 0;
+            this.buttonHorari_deleteFranjaDimarts.HighEmphasis = true;
+            this.buttonHorari_deleteFranjaDimarts.Icon = null;
+            this.buttonHorari_deleteFranjaDimarts.Location = new System.Drawing.Point(337, 33);
+            this.buttonHorari_deleteFranjaDimarts.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_deleteFranjaDimarts.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_deleteFranjaDimarts.Name = "buttonHorari_deleteFranjaDimarts";
+            this.buttonHorari_deleteFranjaDimarts.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_deleteFranjaDimarts.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_deleteFranjaDimarts.TabIndex = 186;
+            this.buttonHorari_deleteFranjaDimarts.Text = "-";
+            this.buttonHorari_deleteFranjaDimarts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_deleteFranjaDimarts.UseAccentColor = false;
+            this.buttonHorari_deleteFranjaDimarts.UseVisualStyleBackColor = true;
+            // 
+            // panelHorari_divendres
+            // 
+            this.panelHorari_divendres.Location = new System.Drawing.Point(917, 70);
+            this.panelHorari_divendres.Name = "panelHorari_divendres";
+            this.panelHorari_divendres.Size = new System.Drawing.Size(169, 195);
+            this.panelHorari_divendres.TabIndex = 184;
+            // 
+            // buttonHorari_deleteFranjaDijous
+            // 
+            this.buttonHorari_deleteFranjaDijous.AutoSize = false;
+            this.buttonHorari_deleteFranjaDijous.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_deleteFranjaDijous.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_deleteFranjaDijous.Depth = 0;
+            this.buttonHorari_deleteFranjaDijous.HighEmphasis = true;
+            this.buttonHorari_deleteFranjaDijous.Icon = null;
+            this.buttonHorari_deleteFranjaDijous.Location = new System.Drawing.Point(792, 33);
+            this.buttonHorari_deleteFranjaDijous.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_deleteFranjaDijous.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_deleteFranjaDijous.Name = "buttonHorari_deleteFranjaDijous";
+            this.buttonHorari_deleteFranjaDijous.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_deleteFranjaDijous.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_deleteFranjaDijous.TabIndex = 188;
+            this.buttonHorari_deleteFranjaDijous.Text = "-";
+            this.buttonHorari_deleteFranjaDijous.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_deleteFranjaDijous.UseAccentColor = false;
+            this.buttonHorari_deleteFranjaDijous.UseVisualStyleBackColor = true;
+            // 
+            // panelHorari_dissabte
+            // 
+            this.panelHorari_dissabte.Location = new System.Drawing.Point(1135, 70);
+            this.panelHorari_dissabte.Name = "panelHorari_dissabte";
+            this.panelHorari_dissabte.Size = new System.Drawing.Size(169, 195);
+            this.panelHorari_dissabte.TabIndex = 184;
+            // 
+            // buttonHorari_deleteFranjaDimecres
+            // 
+            this.buttonHorari_deleteFranjaDimecres.AutoSize = false;
+            this.buttonHorari_deleteFranjaDimecres.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_deleteFranjaDimecres.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_deleteFranjaDimecres.Depth = 0;
+            this.buttonHorari_deleteFranjaDimecres.HighEmphasis = true;
+            this.buttonHorari_deleteFranjaDimecres.Icon = null;
+            this.buttonHorari_deleteFranjaDimecres.Location = new System.Drawing.Point(568, 33);
+            this.buttonHorari_deleteFranjaDimecres.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_deleteFranjaDimecres.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_deleteFranjaDimecres.Name = "buttonHorari_deleteFranjaDimecres";
+            this.buttonHorari_deleteFranjaDimecres.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_deleteFranjaDimecres.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_deleteFranjaDimecres.TabIndex = 187;
+            this.buttonHorari_deleteFranjaDimecres.Text = "-";
+            this.buttonHorari_deleteFranjaDimecres.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_deleteFranjaDimecres.UseAccentColor = false;
+            this.buttonHorari_deleteFranjaDimecres.UseVisualStyleBackColor = true;
+            // 
+            // panelHorari_diumenge
+            // 
+            this.panelHorari_diumenge.Location = new System.Drawing.Point(1363, 70);
+            this.panelHorari_diumenge.Name = "panelHorari_diumenge";
+            this.panelHorari_diumenge.Size = new System.Drawing.Size(169, 195);
+            this.panelHorari_diumenge.TabIndex = 184;
+            // 
+            // buttonHorari_addFranjaDivendres
+            // 
+            this.buttonHorari_addFranjaDivendres.AutoSize = false;
+            this.buttonHorari_addFranjaDivendres.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_addFranjaDivendres.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_addFranjaDivendres.Depth = 0;
+            this.buttonHorari_addFranjaDivendres.HighEmphasis = true;
+            this.buttonHorari_addFranjaDivendres.Icon = null;
+            this.buttonHorari_addFranjaDivendres.Location = new System.Drawing.Point(948, 33);
+            this.buttonHorari_addFranjaDivendres.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_addFranjaDivendres.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_addFranjaDivendres.Name = "buttonHorari_addFranjaDivendres";
+            this.buttonHorari_addFranjaDivendres.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_addFranjaDivendres.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_addFranjaDivendres.TabIndex = 173;
+            this.buttonHorari_addFranjaDivendres.Text = "+";
+            this.buttonHorari_addFranjaDivendres.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_addFranjaDivendres.UseAccentColor = false;
+            this.buttonHorari_addFranjaDivendres.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel24
+            // 
+            this.materialLabel24.AutoSize = true;
+            this.materialLabel24.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel24.Depth = 0;
+            this.materialLabel24.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel24.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
+            this.materialLabel24.Location = new System.Drawing.Point(1409, 8);
+            this.materialLabel24.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel24.Name = "materialLabel24";
+            this.materialLabel24.Size = new System.Drawing.Size(66, 17);
+            this.materialLabel24.TabIndex = 180;
+            this.materialLabel24.Text = "Diumenge";
+            // 
+            // buttonHorari_addFranjaDiumenge
+            // 
+            this.buttonHorari_addFranjaDiumenge.AutoSize = false;
+            this.buttonHorari_addFranjaDiumenge.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_addFranjaDiumenge.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_addFranjaDiumenge.Depth = 0;
+            this.buttonHorari_addFranjaDiumenge.HighEmphasis = true;
+            this.buttonHorari_addFranjaDiumenge.Icon = null;
+            this.buttonHorari_addFranjaDiumenge.Location = new System.Drawing.Point(1403, 33);
+            this.buttonHorari_addFranjaDiumenge.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_addFranjaDiumenge.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_addFranjaDiumenge.Name = "buttonHorari_addFranjaDiumenge";
+            this.buttonHorari_addFranjaDiumenge.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_addFranjaDiumenge.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_addFranjaDiumenge.TabIndex = 170;
+            this.buttonHorari_addFranjaDiumenge.Text = "+";
+            this.buttonHorari_addFranjaDiumenge.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_addFranjaDiumenge.UseAccentColor = false;
+            this.buttonHorari_addFranjaDiumenge.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel23
+            // 
+            this.materialLabel23.AutoSize = true;
+            this.materialLabel23.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel23.Depth = 0;
+            this.materialLabel23.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel23.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
+            this.materialLabel23.Location = new System.Drawing.Point(958, 8);
+            this.materialLabel23.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel23.Name = "materialLabel23";
+            this.materialLabel23.Size = new System.Drawing.Size(65, 17);
+            this.materialLabel23.TabIndex = 179;
+            this.materialLabel23.Text = "Divendres";
+            // 
+            // buttonHorari_addFranjaDissabte
+            // 
+            this.buttonHorari_addFranjaDissabte.AutoSize = false;
+            this.buttonHorari_addFranjaDissabte.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonHorari_addFranjaDissabte.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonHorari_addFranjaDissabte.Depth = 0;
+            this.buttonHorari_addFranjaDissabte.HighEmphasis = true;
+            this.buttonHorari_addFranjaDissabte.Icon = null;
+            this.buttonHorari_addFranjaDissabte.Location = new System.Drawing.Point(1174, 31);
+            this.buttonHorari_addFranjaDissabte.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonHorari_addFranjaDissabte.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonHorari_addFranjaDissabte.Name = "buttonHorari_addFranjaDissabte";
+            this.buttonHorari_addFranjaDissabte.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.buttonHorari_addFranjaDissabte.Size = new System.Drawing.Size(26, 20);
+            this.buttonHorari_addFranjaDissabte.TabIndex = 171;
+            this.buttonHorari_addFranjaDissabte.Text = "+";
+            this.buttonHorari_addFranjaDissabte.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonHorari_addFranjaDissabte.UseAccentColor = false;
+            this.buttonHorari_addFranjaDissabte.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel22
+            // 
+            this.materialLabel22.AutoSize = true;
+            this.materialLabel22.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel22.Depth = 0;
+            this.materialLabel22.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel22.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
+            this.materialLabel22.Location = new System.Drawing.Point(1189, 8);
+            this.materialLabel22.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel22.Name = "materialLabel22";
+            this.materialLabel22.Size = new System.Drawing.Size(57, 17);
+            this.materialLabel22.TabIndex = 178;
+            this.materialLabel22.Text = "Dissabte";
+            this.materialLabel22.Click += new System.EventHandler(this.materialLabel22_Click);
+            // 
+            // materialLabel41
+            // 
+            this.materialLabel41.AutoSize = true;
+            this.materialLabel41.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel41.Depth = 0;
+            this.materialLabel41.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel41.Location = new System.Drawing.Point(1534, 265);
+            this.materialLabel41.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel41.Name = "materialLabel41";
+            this.materialLabel41.Size = new System.Drawing.Size(44, 19);
+            this.materialLabel41.TabIndex = 202;
+            this.materialLabel41.Text = "Festiu";
+            // 
+            // materialLabel40
+            // 
+            this.materialLabel40.AutoSize = true;
+            this.materialLabel40.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel40.Depth = 0;
+            this.materialLabel40.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel40.Location = new System.Drawing.Point(1534, 239);
+            this.materialLabel40.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel40.Name = "materialLabel40";
+            this.materialLabel40.Size = new System.Drawing.Size(74, 19);
+            this.materialLabel40.TabIndex = 201;
+            this.materialLabel40.Text = "No laboral";
+            // 
+            // materialLabel39
+            // 
+            this.materialLabel39.AutoSize = true;
+            this.materialLabel39.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel39.Depth = 0;
+            this.materialLabel39.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel39.Location = new System.Drawing.Point(1534, 213);
+            this.materialLabel39.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel39.Name = "materialLabel39";
+            this.materialLabel39.Size = new System.Drawing.Size(55, 19);
+            this.materialLabel39.TabIndex = 200;
+            this.materialLabel39.Text = "Laboral";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Location = new System.Drawing.Point(1508, 237);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(20, 20);
+            this.panel3.TabIndex = 199;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Gray;
+            this.panel2.Location = new System.Drawing.Point(1508, 266);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(20, 20);
+            this.panel2.TabIndex = 198;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.LightGreen;
+            this.panel1.Location = new System.Drawing.Point(1508, 212);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(20, 20);
+            this.panel1.TabIndex = 197;
             // 
             // monthCalendarHorari_horari
             // 
@@ -1738,14 +2402,14 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.monthCalendarHorari_horari.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.monthCalendarHorari_horari.Header.TextColor = System.Drawing.Color.White;
             this.monthCalendarHorari_horari.ImageList = null;
-            this.monthCalendarHorari_horari.Location = new System.Drawing.Point(875, 87);
+            this.monthCalendarHorari_horari.Location = new System.Drawing.Point(1024, 107);
             this.monthCalendarHorari_horari.MaxDate = new System.DateTime(2026, 5, 14, 0, 0, 0, 0);
             this.monthCalendarHorari_horari.MinDate = new System.DateTime(2025, 5, 14, 0, 0, 0, 0);
             this.monthCalendarHorari_horari.Month.BackgroundImage = null;
             this.monthCalendarHorari_horari.Month.DateFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.monthCalendarHorari_horari.Month.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.monthCalendarHorari_horari.Name = "monthCalendarHorari_horari";
-            this.monthCalendarHorari_horari.Size = new System.Drawing.Size(281, 221);
+            this.monthCalendarHorari_horari.Size = new System.Drawing.Size(464, 275);
             this.monthCalendarHorari_horari.TabIndex = 195;
             this.monthCalendarHorari_horari.Weekdays.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.monthCalendarHorari_horari.Weeknumbers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -1758,14 +2422,14 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonHorari_desassignarFestiu.Depth = 0;
             this.buttonHorari_desassignarFestiu.HighEmphasis = true;
             this.buttonHorari_desassignarFestiu.Icon = null;
-            this.buttonHorari_desassignarFestiu.Location = new System.Drawing.Point(1011, 50);
+            this.buttonHorari_desassignarFestiu.Location = new System.Drawing.Point(1377, 411);
             this.buttonHorari_desassignarFestiu.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonHorari_desassignarFestiu.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonHorari_desassignarFestiu.Name = "buttonHorari_desassignarFestiu";
             this.buttonHorari_desassignarFestiu.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_desassignarFestiu.Size = new System.Drawing.Size(104, 20);
+            this.buttonHorari_desassignarFestiu.Size = new System.Drawing.Size(111, 35);
             this.buttonHorari_desassignarFestiu.TabIndex = 194;
-            this.buttonHorari_desassignarFestiu.Text = "DESASSIGNAR";
+            this.buttonHorari_desassignarFestiu.Text = "TREURE";
             this.buttonHorari_desassignarFestiu.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.buttonHorari_desassignarFestiu.UseAccentColor = false;
             this.buttonHorari_desassignarFestiu.UseVisualStyleBackColor = true;
@@ -1778,437 +2442,17 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonHorari_assignarFestiu.Depth = 0;
             this.buttonHorari_assignarFestiu.HighEmphasis = true;
             this.buttonHorari_assignarFestiu.Icon = null;
-            this.buttonHorari_assignarFestiu.Location = new System.Drawing.Point(906, 50);
+            this.buttonHorari_assignarFestiu.Location = new System.Drawing.Point(1024, 411);
             this.buttonHorari_assignarFestiu.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonHorari_assignarFestiu.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonHorari_assignarFestiu.Name = "buttonHorari_assignarFestiu";
             this.buttonHorari_assignarFestiu.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_assignarFestiu.Size = new System.Drawing.Size(77, 20);
+            this.buttonHorari_assignarFestiu.Size = new System.Drawing.Size(111, 35);
             this.buttonHorari_assignarFestiu.TabIndex = 193;
             this.buttonHorari_assignarFestiu.Text = "ASSIGNAR";
             this.buttonHorari_assignarFestiu.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.buttonHorari_assignarFestiu.UseAccentColor = false;
             this.buttonHorari_assignarFestiu.UseVisualStyleBackColor = true;
-            // 
-            // buttonHorari_deleteFranjaDiumenge
-            // 
-            this.buttonHorari_deleteFranjaDiumenge.AutoSize = false;
-            this.buttonHorari_deleteFranjaDiumenge.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_deleteFranjaDiumenge.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_deleteFranjaDiumenge.Depth = 0;
-            this.buttonHorari_deleteFranjaDiumenge.HighEmphasis = true;
-            this.buttonHorari_deleteFranjaDiumenge.Icon = null;
-            this.buttonHorari_deleteFranjaDiumenge.Location = new System.Drawing.Point(673, 373);
-            this.buttonHorari_deleteFranjaDiumenge.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_deleteFranjaDiumenge.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_deleteFranjaDiumenge.Name = "buttonHorari_deleteFranjaDiumenge";
-            this.buttonHorari_deleteFranjaDiumenge.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_deleteFranjaDiumenge.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_deleteFranjaDiumenge.TabIndex = 191;
-            this.buttonHorari_deleteFranjaDiumenge.Text = "-";
-            this.buttonHorari_deleteFranjaDiumenge.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_deleteFranjaDiumenge.UseAccentColor = false;
-            this.buttonHorari_deleteFranjaDiumenge.UseVisualStyleBackColor = true;
-            // 
-            // buttonHorari_deleteFranjaDissabte
-            // 
-            this.buttonHorari_deleteFranjaDissabte.AutoSize = false;
-            this.buttonHorari_deleteFranjaDissabte.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_deleteFranjaDissabte.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_deleteFranjaDissabte.Depth = 0;
-            this.buttonHorari_deleteFranjaDissabte.HighEmphasis = true;
-            this.buttonHorari_deleteFranjaDissabte.Icon = null;
-            this.buttonHorari_deleteFranjaDissabte.Location = new System.Drawing.Point(463, 373);
-            this.buttonHorari_deleteFranjaDissabte.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_deleteFranjaDissabte.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_deleteFranjaDissabte.Name = "buttonHorari_deleteFranjaDissabte";
-            this.buttonHorari_deleteFranjaDissabte.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_deleteFranjaDissabte.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_deleteFranjaDissabte.TabIndex = 190;
-            this.buttonHorari_deleteFranjaDissabte.Text = "-";
-            this.buttonHorari_deleteFranjaDissabte.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_deleteFranjaDissabte.UseAccentColor = false;
-            this.buttonHorari_deleteFranjaDissabte.UseVisualStyleBackColor = true;
-            // 
-            // buttonHorari_deleteFranjaDivendres
-            // 
-            this.buttonHorari_deleteFranjaDivendres.AutoSize = false;
-            this.buttonHorari_deleteFranjaDivendres.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_deleteFranjaDivendres.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_deleteFranjaDivendres.Depth = 0;
-            this.buttonHorari_deleteFranjaDivendres.HighEmphasis = true;
-            this.buttonHorari_deleteFranjaDivendres.Icon = null;
-            this.buttonHorari_deleteFranjaDivendres.Location = new System.Drawing.Point(252, 373);
-            this.buttonHorari_deleteFranjaDivendres.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_deleteFranjaDivendres.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_deleteFranjaDivendres.Name = "buttonHorari_deleteFranjaDivendres";
-            this.buttonHorari_deleteFranjaDivendres.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_deleteFranjaDivendres.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_deleteFranjaDivendres.TabIndex = 189;
-            this.buttonHorari_deleteFranjaDivendres.Text = "-";
-            this.buttonHorari_deleteFranjaDivendres.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_deleteFranjaDivendres.UseAccentColor = false;
-            this.buttonHorari_deleteFranjaDivendres.UseVisualStyleBackColor = true;
-            // 
-            // buttonHorari_deleteFranjaDijous
-            // 
-            this.buttonHorari_deleteFranjaDijous.AutoSize = false;
-            this.buttonHorari_deleteFranjaDijous.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_deleteFranjaDijous.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_deleteFranjaDijous.Depth = 0;
-            this.buttonHorari_deleteFranjaDijous.HighEmphasis = true;
-            this.buttonHorari_deleteFranjaDijous.Icon = null;
-            this.buttonHorari_deleteFranjaDijous.Location = new System.Drawing.Point(773, 50);
-            this.buttonHorari_deleteFranjaDijous.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_deleteFranjaDijous.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_deleteFranjaDijous.Name = "buttonHorari_deleteFranjaDijous";
-            this.buttonHorari_deleteFranjaDijous.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_deleteFranjaDijous.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_deleteFranjaDijous.TabIndex = 188;
-            this.buttonHorari_deleteFranjaDijous.Text = "-";
-            this.buttonHorari_deleteFranjaDijous.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_deleteFranjaDijous.UseAccentColor = false;
-            this.buttonHorari_deleteFranjaDijous.UseVisualStyleBackColor = true;
-            // 
-            // buttonHorari_deleteFranjaDimecres
-            // 
-            this.buttonHorari_deleteFranjaDimecres.AutoSize = false;
-            this.buttonHorari_deleteFranjaDimecres.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_deleteFranjaDimecres.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_deleteFranjaDimecres.Depth = 0;
-            this.buttonHorari_deleteFranjaDimecres.HighEmphasis = true;
-            this.buttonHorari_deleteFranjaDimecres.Icon = null;
-            this.buttonHorari_deleteFranjaDimecres.Location = new System.Drawing.Point(569, 50);
-            this.buttonHorari_deleteFranjaDimecres.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_deleteFranjaDimecres.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_deleteFranjaDimecres.Name = "buttonHorari_deleteFranjaDimecres";
-            this.buttonHorari_deleteFranjaDimecres.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_deleteFranjaDimecres.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_deleteFranjaDimecres.TabIndex = 187;
-            this.buttonHorari_deleteFranjaDimecres.Text = "-";
-            this.buttonHorari_deleteFranjaDimecres.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_deleteFranjaDimecres.UseAccentColor = false;
-            this.buttonHorari_deleteFranjaDimecres.UseVisualStyleBackColor = true;
-            // 
-            // buttonHorari_deleteFranjaDimarts
-            // 
-            this.buttonHorari_deleteFranjaDimarts.AutoSize = false;
-            this.buttonHorari_deleteFranjaDimarts.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_deleteFranjaDimarts.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_deleteFranjaDimarts.Depth = 0;
-            this.buttonHorari_deleteFranjaDimarts.HighEmphasis = true;
-            this.buttonHorari_deleteFranjaDimarts.Icon = null;
-            this.buttonHorari_deleteFranjaDimarts.Location = new System.Drawing.Point(362, 50);
-            this.buttonHorari_deleteFranjaDimarts.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_deleteFranjaDimarts.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_deleteFranjaDimarts.Name = "buttonHorari_deleteFranjaDimarts";
-            this.buttonHorari_deleteFranjaDimarts.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_deleteFranjaDimarts.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_deleteFranjaDimarts.TabIndex = 186;
-            this.buttonHorari_deleteFranjaDimarts.Text = "-";
-            this.buttonHorari_deleteFranjaDimarts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_deleteFranjaDimarts.UseAccentColor = false;
-            this.buttonHorari_deleteFranjaDimarts.UseVisualStyleBackColor = true;
-            // 
-            // buttonHorari_deleteFranjaDilluns
-            // 
-            this.buttonHorari_deleteFranjaDilluns.AutoSize = false;
-            this.buttonHorari_deleteFranjaDilluns.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_deleteFranjaDilluns.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_deleteFranjaDilluns.Depth = 0;
-            this.buttonHorari_deleteFranjaDilluns.HighEmphasis = true;
-            this.buttonHorari_deleteFranjaDilluns.Icon = null;
-            this.buttonHorari_deleteFranjaDilluns.Location = new System.Drawing.Point(148, 50);
-            this.buttonHorari_deleteFranjaDilluns.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_deleteFranjaDilluns.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_deleteFranjaDilluns.Name = "buttonHorari_deleteFranjaDilluns";
-            this.buttonHorari_deleteFranjaDilluns.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_deleteFranjaDilluns.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_deleteFranjaDilluns.TabIndex = 185;
-            this.buttonHorari_deleteFranjaDilluns.Text = "-";
-            this.buttonHorari_deleteFranjaDilluns.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_deleteFranjaDilluns.UseAccentColor = false;
-            this.buttonHorari_deleteFranjaDilluns.UseVisualStyleBackColor = true;
-            // 
-            // panelHorari_dilluns
-            // 
-            this.panelHorari_dilluns.Location = new System.Drawing.Point(51, 87);
-            this.panelHorari_dilluns.Name = "panelHorari_dilluns";
-            this.panelHorari_dilluns.Size = new System.Drawing.Size(169, 246);
-            this.panelHorari_dilluns.TabIndex = 181;
-            // 
-            // panelHorari_dijous
-            // 
-            this.panelHorari_dijous.Location = new System.Drawing.Point(685, 87);
-            this.panelHorari_dijous.Name = "panelHorari_dijous";
-            this.panelHorari_dijous.Size = new System.Drawing.Size(169, 246);
-            this.panelHorari_dijous.TabIndex = 184;
-            // 
-            // panelHorari_divendres
-            // 
-            this.panelHorari_divendres.Location = new System.Drawing.Point(158, 410);
-            this.panelHorari_divendres.Name = "panelHorari_divendres";
-            this.panelHorari_divendres.Size = new System.Drawing.Size(169, 246);
-            this.panelHorari_divendres.TabIndex = 184;
-            // 
-            // panelHorari_dissabte
-            // 
-            this.panelHorari_dissabte.Location = new System.Drawing.Point(378, 410);
-            this.panelHorari_dissabte.Name = "panelHorari_dissabte";
-            this.panelHorari_dissabte.Size = new System.Drawing.Size(169, 246);
-            this.panelHorari_dissabte.TabIndex = 184;
-            // 
-            // panelHorari_diumenge
-            // 
-            this.panelHorari_diumenge.Location = new System.Drawing.Point(587, 410);
-            this.panelHorari_diumenge.Name = "panelHorari_diumenge";
-            this.panelHorari_diumenge.Size = new System.Drawing.Size(169, 246);
-            this.panelHorari_diumenge.TabIndex = 184;
-            // 
-            // panelHorari_dimecres
-            // 
-            this.panelHorari_dimecres.Location = new System.Drawing.Point(474, 87);
-            this.panelHorari_dimecres.Name = "panelHorari_dimecres";
-            this.panelHorari_dimecres.Size = new System.Drawing.Size(169, 246);
-            this.panelHorari_dimecres.TabIndex = 183;
-            // 
-            // panelHorari_dimarts
-            // 
-            this.panelHorari_dimarts.Location = new System.Drawing.Point(265, 87);
-            this.panelHorari_dimarts.Name = "panelHorari_dimarts";
-            this.panelHorari_dimarts.Size = new System.Drawing.Size(169, 246);
-            this.panelHorari_dimarts.TabIndex = 182;
-            // 
-            // materialLabel24
-            // 
-            this.materialLabel24.AutoSize = true;
-            this.materialLabel24.BackColor = System.Drawing.Color.AliceBlue;
-            this.materialLabel24.Depth = 0;
-            this.materialLabel24.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel24.Location = new System.Drawing.Point(626, 348);
-            this.materialLabel24.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel24.Name = "materialLabel24";
-            this.materialLabel24.Size = new System.Drawing.Size(73, 19);
-            this.materialLabel24.TabIndex = 180;
-            this.materialLabel24.Text = "Diumenge";
-            // 
-            // materialLabel23
-            // 
-            this.materialLabel23.AutoSize = true;
-            this.materialLabel23.BackColor = System.Drawing.Color.AliceBlue;
-            this.materialLabel23.Depth = 0;
-            this.materialLabel23.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel23.Location = new System.Drawing.Point(208, 348);
-            this.materialLabel23.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel23.Name = "materialLabel23";
-            this.materialLabel23.Size = new System.Drawing.Size(71, 19);
-            this.materialLabel23.TabIndex = 179;
-            this.materialLabel23.Text = "Divendres";
-            // 
-            // materialLabel22
-            // 
-            this.materialLabel22.AutoSize = true;
-            this.materialLabel22.BackColor = System.Drawing.Color.AliceBlue;
-            this.materialLabel22.Depth = 0;
-            this.materialLabel22.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel22.Location = new System.Drawing.Point(426, 348);
-            this.materialLabel22.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel22.Name = "materialLabel22";
-            this.materialLabel22.Size = new System.Drawing.Size(63, 19);
-            this.materialLabel22.TabIndex = 178;
-            this.materialLabel22.Text = "Dissabte";
-            // 
-            // materialLabel21
-            // 
-            this.materialLabel21.AutoSize = true;
-            this.materialLabel21.BackColor = System.Drawing.Color.AliceBlue;
-            this.materialLabel21.Depth = 0;
-            this.materialLabel21.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel21.Location = new System.Drawing.Point(744, 25);
-            this.materialLabel21.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel21.Name = "materialLabel21";
-            this.materialLabel21.Size = new System.Drawing.Size(46, 19);
-            this.materialLabel21.TabIndex = 177;
-            this.materialLabel21.Text = "Dijous";
-            // 
-            // materialLabel20
-            // 
-            this.materialLabel20.AutoSize = true;
-            this.materialLabel20.BackColor = System.Drawing.Color.AliceBlue;
-            this.materialLabel20.Depth = 0;
-            this.materialLabel20.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel20.Location = new System.Drawing.Point(528, 25);
-            this.materialLabel20.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel20.Name = "materialLabel20";
-            this.materialLabel20.Size = new System.Drawing.Size(67, 19);
-            this.materialLabel20.TabIndex = 176;
-            this.materialLabel20.Text = "Dimecres";
-            // 
-            // materialLabel19
-            // 
-            this.materialLabel19.AutoSize = true;
-            this.materialLabel19.BackColor = System.Drawing.Color.AliceBlue;
-            this.materialLabel19.Depth = 0;
-            this.materialLabel19.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel19.Location = new System.Drawing.Point(322, 25);
-            this.materialLabel19.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel19.Name = "materialLabel19";
-            this.materialLabel19.Size = new System.Drawing.Size(57, 19);
-            this.materialLabel19.TabIndex = 175;
-            this.materialLabel19.Text = "Dimarts";
-            // 
-            // materialLabel4
-            // 
-            this.materialLabel4.AutoSize = true;
-            this.materialLabel4.BackColor = System.Drawing.Color.AliceBlue;
-            this.materialLabel4.Depth = 0;
-            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel4.Location = new System.Drawing.Point(111, 25);
-            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel4.Name = "materialLabel4";
-            this.materialLabel4.Size = new System.Drawing.Size(50, 19);
-            this.materialLabel4.TabIndex = 174;
-            this.materialLabel4.Text = "Dilluns";
-            // 
-            // buttonHorari_addFranjaDivendres
-            // 
-            this.buttonHorari_addFranjaDivendres.AutoSize = false;
-            this.buttonHorari_addFranjaDivendres.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_addFranjaDivendres.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_addFranjaDivendres.Depth = 0;
-            this.buttonHorari_addFranjaDivendres.HighEmphasis = true;
-            this.buttonHorari_addFranjaDivendres.Icon = null;
-            this.buttonHorari_addFranjaDivendres.Location = new System.Drawing.Point(209, 373);
-            this.buttonHorari_addFranjaDivendres.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_addFranjaDivendres.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_addFranjaDivendres.Name = "buttonHorari_addFranjaDivendres";
-            this.buttonHorari_addFranjaDivendres.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_addFranjaDivendres.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_addFranjaDivendres.TabIndex = 173;
-            this.buttonHorari_addFranjaDivendres.Text = "+";
-            this.buttonHorari_addFranjaDivendres.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_addFranjaDivendres.UseAccentColor = false;
-            this.buttonHorari_addFranjaDivendres.UseVisualStyleBackColor = true;
-            // 
-            // buttonHorari_addFranjaDijous
-            // 
-            this.buttonHorari_addFranjaDijous.AutoSize = false;
-            this.buttonHorari_addFranjaDijous.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_addFranjaDijous.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_addFranjaDijous.Depth = 0;
-            this.buttonHorari_addFranjaDijous.HighEmphasis = true;
-            this.buttonHorari_addFranjaDijous.Icon = null;
-            this.buttonHorari_addFranjaDijous.Location = new System.Drawing.Point(730, 50);
-            this.buttonHorari_addFranjaDijous.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_addFranjaDijous.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_addFranjaDijous.Name = "buttonHorari_addFranjaDijous";
-            this.buttonHorari_addFranjaDijous.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_addFranjaDijous.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_addFranjaDijous.TabIndex = 172;
-            this.buttonHorari_addFranjaDijous.Text = "+";
-            this.buttonHorari_addFranjaDijous.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_addFranjaDijous.UseAccentColor = false;
-            this.buttonHorari_addFranjaDijous.UseVisualStyleBackColor = true;
-            // 
-            // buttonHorari_addFranjaDissabte
-            // 
-            this.buttonHorari_addFranjaDissabte.AutoSize = false;
-            this.buttonHorari_addFranjaDissabte.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_addFranjaDissabte.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_addFranjaDissabte.Depth = 0;
-            this.buttonHorari_addFranjaDissabte.HighEmphasis = true;
-            this.buttonHorari_addFranjaDissabte.Icon = null;
-            this.buttonHorari_addFranjaDissabte.Location = new System.Drawing.Point(418, 373);
-            this.buttonHorari_addFranjaDissabte.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_addFranjaDissabte.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_addFranjaDissabte.Name = "buttonHorari_addFranjaDissabte";
-            this.buttonHorari_addFranjaDissabte.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_addFranjaDissabte.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_addFranjaDissabte.TabIndex = 171;
-            this.buttonHorari_addFranjaDissabte.Text = "+";
-            this.buttonHorari_addFranjaDissabte.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_addFranjaDissabte.UseAccentColor = false;
-            this.buttonHorari_addFranjaDissabte.UseVisualStyleBackColor = true;
-            // 
-            // buttonHorari_addFranjaDiumenge
-            // 
-            this.buttonHorari_addFranjaDiumenge.AutoSize = false;
-            this.buttonHorari_addFranjaDiumenge.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_addFranjaDiumenge.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_addFranjaDiumenge.Depth = 0;
-            this.buttonHorari_addFranjaDiumenge.HighEmphasis = true;
-            this.buttonHorari_addFranjaDiumenge.Icon = null;
-            this.buttonHorari_addFranjaDiumenge.Location = new System.Drawing.Point(627, 373);
-            this.buttonHorari_addFranjaDiumenge.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_addFranjaDiumenge.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_addFranjaDiumenge.Name = "buttonHorari_addFranjaDiumenge";
-            this.buttonHorari_addFranjaDiumenge.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_addFranjaDiumenge.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_addFranjaDiumenge.TabIndex = 170;
-            this.buttonHorari_addFranjaDiumenge.Text = "+";
-            this.buttonHorari_addFranjaDiumenge.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_addFranjaDiumenge.UseAccentColor = false;
-            this.buttonHorari_addFranjaDiumenge.UseVisualStyleBackColor = true;
-            // 
-            // buttonHorari_addFranjaDimecres
-            // 
-            this.buttonHorari_addFranjaDimecres.AutoSize = false;
-            this.buttonHorari_addFranjaDimecres.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_addFranjaDimecres.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_addFranjaDimecres.Depth = 0;
-            this.buttonHorari_addFranjaDimecres.HighEmphasis = true;
-            this.buttonHorari_addFranjaDimecres.Icon = null;
-            this.buttonHorari_addFranjaDimecres.Location = new System.Drawing.Point(521, 50);
-            this.buttonHorari_addFranjaDimecres.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_addFranjaDimecres.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_addFranjaDimecres.Name = "buttonHorari_addFranjaDimecres";
-            this.buttonHorari_addFranjaDimecres.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_addFranjaDimecres.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_addFranjaDimecres.TabIndex = 169;
-            this.buttonHorari_addFranjaDimecres.Text = "+";
-            this.buttonHorari_addFranjaDimecres.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_addFranjaDimecres.UseAccentColor = false;
-            this.buttonHorari_addFranjaDimecres.UseVisualStyleBackColor = true;
-            // 
-            // buttonHorari_addFranjaDimarts
-            // 
-            this.buttonHorari_addFranjaDimarts.AutoSize = false;
-            this.buttonHorari_addFranjaDimarts.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_addFranjaDimarts.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_addFranjaDimarts.Depth = 0;
-            this.buttonHorari_addFranjaDimarts.HighEmphasis = true;
-            this.buttonHorari_addFranjaDimarts.Icon = null;
-            this.buttonHorari_addFranjaDimarts.Location = new System.Drawing.Point(313, 50);
-            this.buttonHorari_addFranjaDimarts.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_addFranjaDimarts.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_addFranjaDimarts.Name = "buttonHorari_addFranjaDimarts";
-            this.buttonHorari_addFranjaDimarts.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_addFranjaDimarts.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_addFranjaDimarts.TabIndex = 168;
-            this.buttonHorari_addFranjaDimarts.Text = "+";
-            this.buttonHorari_addFranjaDimarts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_addFranjaDimarts.UseAccentColor = false;
-            this.buttonHorari_addFranjaDimarts.UseVisualStyleBackColor = true;
-            // 
-            // buttonHorari_addFranjaDilluns
-            // 
-            this.buttonHorari_addFranjaDilluns.AutoSize = false;
-            this.buttonHorari_addFranjaDilluns.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonHorari_addFranjaDilluns.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.buttonHorari_addFranjaDilluns.Depth = 0;
-            this.buttonHorari_addFranjaDilluns.HighEmphasis = true;
-            this.buttonHorari_addFranjaDilluns.Icon = null;
-            this.buttonHorari_addFranjaDilluns.Location = new System.Drawing.Point(101, 50);
-            this.buttonHorari_addFranjaDilluns.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonHorari_addFranjaDilluns.MouseState = MaterialSkin.MouseState.HOVER;
-            this.buttonHorari_addFranjaDilluns.Name = "buttonHorari_addFranjaDilluns";
-            this.buttonHorari_addFranjaDilluns.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_addFranjaDilluns.Size = new System.Drawing.Size(26, 20);
-            this.buttonHorari_addFranjaDilluns.TabIndex = 167;
-            this.buttonHorari_addFranjaDilluns.Text = "+";
-            this.buttonHorari_addFranjaDilluns.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.buttonHorari_addFranjaDilluns.UseAccentColor = false;
-            this.buttonHorari_addFranjaDilluns.UseVisualStyleBackColor = true;
             // 
             // buttonHorari_configurar
             // 
@@ -2218,12 +2462,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonHorari_configurar.Depth = 0;
             this.buttonHorari_configurar.HighEmphasis = true;
             this.buttonHorari_configurar.Icon = null;
-            this.buttonHorari_configurar.Location = new System.Drawing.Point(773, 390);
+            this.buttonHorari_configurar.Location = new System.Drawing.Point(405, 411);
             this.buttonHorari_configurar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonHorari_configurar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonHorari_configurar.Name = "buttonHorari_configurar";
             this.buttonHorari_configurar.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonHorari_configurar.Size = new System.Drawing.Size(120, 46);
+            this.buttonHorari_configurar.Size = new System.Drawing.Size(152, 35);
             this.buttonHorari_configurar.TabIndex = 108;
             this.buttonHorari_configurar.Text = "CONFIGURAR HORARI";
             this.buttonHorari_configurar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -2233,6 +2477,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // tabPagePlats
             // 
             this.tabPagePlats.BackColor = System.Drawing.Color.White;
+            this.tabPagePlats.Controls.Add(this.materialLabel49);
             this.tabPagePlats.Controls.Add(this.buttonMenu_eliminar);
             this.tabPagePlats.Controls.Add(this.buttonMenu_editar);
             this.tabPagePlats.Controls.Add(this.buttonMenu_afegir);
@@ -2242,9 +2487,23 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.tabPagePlats.ImageKey = "icons8-comida-32.png";
             this.tabPagePlats.Location = new System.Drawing.Point(4, 39);
             this.tabPagePlats.Name = "tabPagePlats";
-            this.tabPagePlats.Size = new System.Drawing.Size(1386, 882);
+            this.tabPagePlats.Size = new System.Drawing.Size(1730, 520);
             this.tabPagePlats.TabIndex = 7;
             this.tabPagePlats.Text = "Plats";
+            // 
+            // materialLabel49
+            // 
+            this.materialLabel49.AutoSize = true;
+            this.materialLabel49.BackColor = System.Drawing.Color.AliceBlue;
+            this.materialLabel49.Depth = 0;
+            this.materialLabel49.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel49.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel49.Location = new System.Drawing.Point(406, 79);
+            this.materialLabel49.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel49.Name = "materialLabel49";
+            this.materialLabel49.Size = new System.Drawing.Size(62, 24);
+            this.materialLabel49.TabIndex = 208;
+            this.materialLabel49.Text = "PLATS";
             // 
             // buttonMenu_eliminar
             // 
@@ -2254,12 +2513,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonMenu_eliminar.Depth = 0;
             this.buttonMenu_eliminar.HighEmphasis = true;
             this.buttonMenu_eliminar.Icon = null;
-            this.buttonMenu_eliminar.Location = new System.Drawing.Point(778, 500);
+            this.buttonMenu_eliminar.Location = new System.Drawing.Point(1015, 36);
             this.buttonMenu_eliminar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonMenu_eliminar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonMenu_eliminar.Name = "buttonMenu_eliminar";
             this.buttonMenu_eliminar.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonMenu_eliminar.Size = new System.Drawing.Size(114, 20);
+            this.buttonMenu_eliminar.Size = new System.Drawing.Size(86, 20);
             this.buttonMenu_eliminar.TabIndex = 122;
             this.buttonMenu_eliminar.Text = "ELIMINAR";
             this.buttonMenu_eliminar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -2274,14 +2533,14 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonMenu_editar.Depth = 0;
             this.buttonMenu_editar.HighEmphasis = true;
             this.buttonMenu_editar.Icon = null;
-            this.buttonMenu_editar.Location = new System.Drawing.Point(656, 500);
+            this.buttonMenu_editar.Location = new System.Drawing.Point(922, 36);
             this.buttonMenu_editar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonMenu_editar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonMenu_editar.Name = "buttonMenu_editar";
             this.buttonMenu_editar.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonMenu_editar.Size = new System.Drawing.Size(114, 20);
+            this.buttonMenu_editar.Size = new System.Drawing.Size(85, 20);
             this.buttonMenu_editar.TabIndex = 121;
-            this.buttonMenu_editar.Text = "EDITAR";
+            this.buttonMenu_editar.Text = "MODIFICAR";
             this.buttonMenu_editar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.buttonMenu_editar.UseAccentColor = false;
             this.buttonMenu_editar.UseVisualStyleBackColor = true;
@@ -2294,12 +2553,12 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.buttonMenu_afegir.Depth = 0;
             this.buttonMenu_afegir.HighEmphasis = true;
             this.buttonMenu_afegir.Icon = null;
-            this.buttonMenu_afegir.Location = new System.Drawing.Point(534, 500);
+            this.buttonMenu_afegir.Location = new System.Drawing.Point(824, 36);
             this.buttonMenu_afegir.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonMenu_afegir.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonMenu_afegir.Name = "buttonMenu_afegir";
             this.buttonMenu_afegir.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonMenu_afegir.Size = new System.Drawing.Size(114, 20);
+            this.buttonMenu_afegir.Size = new System.Drawing.Size(90, 20);
             this.buttonMenu_afegir.TabIndex = 120;
             this.buttonMenu_afegir.Text = "AFEGIR";
             this.buttonMenu_afegir.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -2312,7 +2571,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialLabel26.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel26.Depth = 0;
             this.materialLabel26.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel26.Location = new System.Drawing.Point(611, 80);
+            this.materialLabel26.Location = new System.Drawing.Point(821, 79);
             this.materialLabel26.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel26.Name = "materialLabel26";
             this.materialLabel26.Size = new System.Drawing.Size(84, 19);
@@ -2333,7 +2592,7 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.comboBoxMenu_tipusPlats.FormattingEnabled = true;
             this.comboBoxMenu_tipusPlats.IntegralHeight = false;
             this.comboBoxMenu_tipusPlats.ItemHeight = 43;
-            this.comboBoxMenu_tipusPlats.Location = new System.Drawing.Point(701, 65);
+            this.comboBoxMenu_tipusPlats.Location = new System.Drawing.Point(911, 64);
             this.comboBoxMenu_tipusPlats.MaxDropDownItems = 4;
             this.comboBoxMenu_tipusPlats.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBoxMenu_tipusPlats.Name = "comboBoxMenu_tipusPlats";
@@ -2345,22 +2604,38 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             // 
             this.dataGridViewMenu_plats.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewMenu_plats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMenu_plats.Location = new System.Drawing.Point(337, 120);
+            this.dataGridViewMenu_plats.Location = new System.Drawing.Point(410, 119);
             this.dataGridViewMenu_plats.Name = "dataGridViewMenu_plats";
             this.dataGridViewMenu_plats.ReadOnly = true;
             this.dataGridViewMenu_plats.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewMenu_plats.Size = new System.Drawing.Size(555, 371);
+            this.dataGridViewMenu_plats.Size = new System.Drawing.Size(692, 371);
             this.dataGridViewMenu_plats.TabIndex = 1;
+            // 
+            // buttonMain_tancarSessio
+            // 
+            this.buttonMain_tancarSessio.BackColor = System.Drawing.Color.Transparent;
+            this.buttonMain_tancarSessio.FlatAppearance.BorderSize = 0;
+            this.buttonMain_tancarSessio.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonMain_tancarSessio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(113)))), ((int)(((byte)(80)))));
+            this.buttonMain_tancarSessio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMain_tancarSessio.Image = global::PerezMaximiliano_MorenoAaron_Projecte.Properties.Resources.icons8_cerrar_sesión_30;
+            this.buttonMain_tancarSessio.Location = new System.Drawing.Point(1700, 24);
+            this.buttonMain_tancarSessio.Name = "buttonMain_tancarSessio";
+            this.buttonMain_tancarSessio.Size = new System.Drawing.Size(45, 40);
+            this.buttonMain_tancarSessio.TabIndex = 85;
+            this.buttonMain_tancarSessio.UseVisualStyleBackColor = false;
+            this.buttonMain_tancarSessio.Click += new System.EventHandler(this.buttonMain_tancarSessio_Click);
             // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1400, 992);
+            this.ClientSize = new System.Drawing.Size(1744, 630);
             this.Controls.Add(this.buttonMain_tancarSessio);
             this.Controls.Add(this.materialTabControl);
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.materialTabControl;
+            this.MaximizeBox = false;
             this.Name = "MenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.MenuForm_Load);
@@ -2380,6 +2655,8 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
             this.materialTabControl.ResumeLayout(false);
             this.tabPageHorari.ResumeLayout(false);
             this.tabPageHorari.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.tabPagePlats.ResumeLayout(false);
             this.tabPagePlats.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMenu_plats)).EndInit();
@@ -2418,7 +2695,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
         public MaterialSkin.Controls.MaterialTextBox2 textBoxConfiguracio_nom;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
         public MaterialSkin.Controls.MaterialTextBox2 textBoxConfiguracio_usuari;
-        private MaterialSkin.Controls.MaterialLabel materialLabel3;
         public MaterialSkin.Controls.MaterialButton buttonConfiguracio_editar;
         public System.Windows.Forms.PictureBox pictureBoxConfiguracio_logo;
         public System.Windows.Forms.TabPage tabPageContacte;
@@ -2457,7 +2733,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         public System.Windows.Forms.Button buttonConfiguracio_logo;
         public System.Windows.Forms.TabPage tabPageHorari;
-        public MaterialSkin.Controls.MaterialLabel materialLabel24;
         public MaterialSkin.Controls.MaterialLabel materialLabel23;
         public MaterialSkin.Controls.MaterialLabel materialLabel22;
         public MaterialSkin.Controls.MaterialLabel materialLabel21;
@@ -2467,7 +2742,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
         public MaterialSkin.Controls.MaterialButton buttonHorari_addFranjaDivendres;
         public MaterialSkin.Controls.MaterialButton buttonHorari_addFranjaDijous;
         public MaterialSkin.Controls.MaterialButton buttonHorari_addFranjaDissabte;
-        public MaterialSkin.Controls.MaterialButton buttonHorari_addFranjaDiumenge;
         public MaterialSkin.Controls.MaterialButton buttonHorari_addFranjaDimecres;
         public MaterialSkin.Controls.MaterialButton buttonHorari_addFranjaDimarts;
         public MaterialSkin.Controls.MaterialButton buttonHorari_addFranjaDilluns;
@@ -2475,7 +2749,6 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
         public System.Windows.Forms.Panel panelHorari_dijous;
         public System.Windows.Forms.Panel panelHorari_divendres;
         public System.Windows.Forms.Panel panelHorari_dissabte;
-        public System.Windows.Forms.Panel panelHorari_diumenge;
         public System.Windows.Forms.Panel panelHorari_dimecres;
         public System.Windows.Forms.Panel panelHorari_dimarts;
         public System.Windows.Forms.Panel panelHorari_dilluns;
@@ -2514,5 +2787,27 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
         public MaterialSkin.Controls.MaterialTextBox textBoxContacte_llegits;
         public MaterialSkin.Controls.MaterialTextBox textBoxContacte_noLlegits;
         public MaterialSkin.Controls.MaterialCheckbox checkBoxContacte_veureLlegits;
+        private MaterialSkin.Controls.MaterialLabel materialLabel37;
+        public MaterialSkin.Controls.MaterialLabel materialLabel39;
+        private Panel panel3;
+        private Panel panel2;
+        private Panel panel1;
+        public MaterialSkin.Controls.MaterialLabel materialLabel41;
+        public MaterialSkin.Controls.MaterialLabel materialLabel40;
+        private Panel panel4;
+        public Panel panelHorari_diumenge;
+        public MaterialSkin.Controls.MaterialLabel materialLabel24;
+        public MaterialSkin.Controls.MaterialButton buttonHorari_addFranjaDiumenge;
+        public MaterialSkin.Controls.MaterialLabel materialLabel42;
+        public MaterialSkin.Controls.MaterialLabel materialLabel43;
+        public MaterialSkin.Controls.MaterialLabel materialLabel38;
+        public MaterialSkin.Controls.MaterialLabel materialLabel3;
+        public MaterialSkin.Controls.MaterialLabel materialLabel44;
+        public MaterialSkin.Controls.MaterialLabel materialLabel45;
+        public MaterialSkin.Controls.MaterialLabel materialLabel46;
+        public MaterialSkin.Controls.MaterialLabel materialLabel47;
+        public MaterialSkin.Controls.MaterialLabel materialLabel48;
+        public MaterialSkin.Controls.MaterialLabel materialLabel49;
+        public MaterialSkin.Controls.MaterialLabel materialLabel50;
     }
 }

@@ -1,13 +1,5 @@
-﻿using MaterialSkin;
-using MaterialSkin.Controls;
+﻿using MaterialSkin.Controls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PerezMaximiliano_MorenoAaron_Projecte.View
@@ -18,22 +10,20 @@ namespace PerezMaximiliano_MorenoAaron_Projecte.View
         {
             InitializeComponent();
 
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-
-            Color mainColor = ColorTranslator.FromHtml("#FFB997");
-            Color hoverColor = ColorTranslator.FromHtml("#D57150");
-            TextShade textColor = TextShade.BLACK;
-            Color formBackColor = Color.White;
-
-            materialSkinManager.ColorScheme = new ColorScheme(mainColor, hoverColor, formBackColor, mainColor, textColor);
-
             this.FormClosed += (s, e) => Application.Exit();
         }
 
         private void MenuForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonMain_tancarSessio_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialLabel22_Click(object sender, EventArgs e)
         {
 
         }

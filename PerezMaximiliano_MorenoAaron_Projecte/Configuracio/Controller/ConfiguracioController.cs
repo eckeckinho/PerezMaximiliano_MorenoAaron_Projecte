@@ -189,7 +189,7 @@ namespace Configuracio.Controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al editar el restaurant." + ex.Message, "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al modificar el restaurant." + ex.Message, "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

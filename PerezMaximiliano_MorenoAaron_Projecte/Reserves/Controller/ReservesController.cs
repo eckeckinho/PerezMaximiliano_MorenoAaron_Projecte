@@ -342,7 +342,7 @@ namespace Reserves.Controller
             int duradaReserva = (int)fr.comboBoxAfegirReserva_durada.SelectedItem;
             var usuari = (Usuari)fr.comboBoxAfegirReserva_usuari.SelectedItem;
 
-            var taulaDisponible = _reservaService.GetTaulaDisponible(numComensals, dataReserva, horaReserva, duradaReserva);
+            var taulaDisponible = _reservaService.GetTaulaDisponible(numComensals, dataReserva, horaReserva, duradaReserva, reserva.id);
 
             if (taulaDisponible == null)
             {
@@ -351,7 +351,7 @@ namespace Reserves.Controller
             }
 
             // Mostrar resumen y pedir confirmación
-            string resum = $"Confirmar actualització de la reserva:\n\n" +
+            string resum = $"Confirmar modificació de la reserva:\n\n" +
                            $"Usuari: {usuari.nom}\n" +
                            $"Data: {dataReserva:dd/MM/yyyy}\n" +
                            $"Hora: {horaReserva:hh\\:mm}\n" +
@@ -618,7 +618,7 @@ namespace Reserves.Controller
 
                     if (confirmResult == DialogResult.Yes)
                     {
-                        var taulaDisponible = _reservaService.GetTaulaDisponible(numComensals, data, hora, durada);
+                        var taulaDisponible = _reservaService.GetTaulaDisponible(numComensals, data, hora, durada, null);
 
                         if (taulaDisponible != null)
                         {

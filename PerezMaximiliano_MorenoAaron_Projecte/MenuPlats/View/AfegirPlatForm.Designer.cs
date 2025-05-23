@@ -46,12 +46,12 @@
             this.materialLabel5.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel5.Depth = 0;
             this.materialLabel5.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel5.Location = new System.Drawing.Point(40, 105);
+            this.materialLabel5.Location = new System.Drawing.Point(74, 106);
             this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel5.Name = "materialLabel5";
-            this.materialLabel5.Size = new System.Drawing.Size(72, 19);
+            this.materialLabel5.Size = new System.Drawing.Size(41, 19);
             this.materialLabel5.TabIndex = 84;
-            this.materialLabel5.Text = "Tipus plat";
+            this.materialLabel5.Text = "Tipus";
             // 
             // buttonAfegirPlat_afegir_editar
             // 
@@ -61,12 +61,12 @@
             this.buttonAfegirPlat_afegir_editar.Depth = 0;
             this.buttonAfegirPlat_afegir_editar.HighEmphasis = true;
             this.buttonAfegirPlat_afegir_editar.Icon = null;
-            this.buttonAfegirPlat_afegir_editar.Location = new System.Drawing.Point(300, 293);
+            this.buttonAfegirPlat_afegir_editar.Location = new System.Drawing.Point(246, 310);
             this.buttonAfegirPlat_afegir_editar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonAfegirPlat_afegir_editar.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonAfegirPlat_afegir_editar.Name = "buttonAfegirPlat_afegir_editar";
             this.buttonAfegirPlat_afegir_editar.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.buttonAfegirPlat_afegir_editar.Size = new System.Drawing.Size(114, 20);
+            this.buttonAfegirPlat_afegir_editar.Size = new System.Drawing.Size(114, 28);
             this.buttonAfegirPlat_afegir_editar.TabIndex = 83;
             this.buttonAfegirPlat_afegir_editar.Text = "AFEGIR";
             this.buttonAfegirPlat_afegir_editar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -87,11 +87,11 @@
             this.comboBoxAfegirPlats_tipusPlats.FormattingEnabled = true;
             this.comboBoxAfegirPlats_tipusPlats.IntegralHeight = false;
             this.comboBoxAfegirPlats_tipusPlats.ItemHeight = 43;
-            this.comboBoxAfegirPlats_tipusPlats.Location = new System.Drawing.Point(118, 89);
+            this.comboBoxAfegirPlats_tipusPlats.Location = new System.Drawing.Point(121, 89);
             this.comboBoxAfegirPlats_tipusPlats.MaxDropDownItems = 4;
             this.comboBoxAfegirPlats_tipusPlats.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBoxAfegirPlats_tipusPlats.Name = "comboBoxAfegirPlats_tipusPlats";
-            this.comboBoxAfegirPlats_tipusPlats.Size = new System.Drawing.Size(114, 49);
+            this.comboBoxAfegirPlats_tipusPlats.Size = new System.Drawing.Size(170, 49);
             this.comboBoxAfegirPlats_tipusPlats.StartIndex = 0;
             this.comboBoxAfegirPlats_tipusPlats.TabIndex = 119;
             // 
@@ -104,7 +104,7 @@
             this.textBoxAfegirPlat_nomPlat.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxAfegirPlat_nomPlat.HideSelection = true;
             this.textBoxAfegirPlat_nomPlat.LeadingIcon = null;
-            this.textBoxAfegirPlat_nomPlat.Location = new System.Drawing.Point(137, 144);
+            this.textBoxAfegirPlat_nomPlat.Location = new System.Drawing.Point(121, 151);
             this.textBoxAfegirPlat_nomPlat.MaxLength = 32767;
             this.textBoxAfegirPlat_nomPlat.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxAfegirPlat_nomPlat.Name = "textBoxAfegirPlat_nomPlat";
@@ -129,17 +129,17 @@
             this.materialLabel1.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(40, 159);
+            this.materialLabel1.Location = new System.Drawing.Point(74, 160);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(91, 19);
+            this.materialLabel1.Size = new System.Drawing.Size(35, 19);
             this.materialLabel1.TabIndex = 121;
-            this.materialLabel1.Text = "Nom del plat";
+            this.materialLabel1.Text = "Nom";
             // 
             // numericUpDownAfegirPlats_preu
             // 
             this.numericUpDownAfegirPlats_preu.DecimalPlaces = 2;
-            this.numericUpDownAfegirPlats_preu.Location = new System.Drawing.Point(118, 295);
+            this.numericUpDownAfegirPlats_preu.Location = new System.Drawing.Point(121, 274);
             this.numericUpDownAfegirPlats_preu.Minimum = new decimal(new int[] {
             1,
             0,
@@ -160,7 +160,7 @@
             this.materialLabel2.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(40, 297);
+            this.materialLabel2.Location = new System.Drawing.Point(74, 274);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(33, 19);
@@ -173,12 +173,12 @@
             this.materialLabel3.BackColor = System.Drawing.Color.AliceBlue;
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel3.Location = new System.Drawing.Point(40, 225);
+            this.materialLabel3.Location = new System.Drawing.Point(40, 221);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(75, 19);
             this.materialLabel3.TabIndex = 124;
-            this.materialLabel3.Text = "Descripcio";
+            this.materialLabel3.Text = "Descripció";
             // 
             // textBoxAfegirPlat_descripcio
             // 
@@ -189,7 +189,7 @@
             this.textBoxAfegirPlat_descripcio.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBoxAfegirPlat_descripcio.HideSelection = true;
             this.textBoxAfegirPlat_descripcio.LeadingIcon = null;
-            this.textBoxAfegirPlat_descripcio.Location = new System.Drawing.Point(137, 216);
+            this.textBoxAfegirPlat_descripcio.Location = new System.Drawing.Point(121, 207);
             this.textBoxAfegirPlat_descripcio.MaxLength = 32767;
             this.textBoxAfegirPlat_descripcio.MouseState = MaterialSkin.MouseState.OUT;
             this.textBoxAfegirPlat_descripcio.Name = "textBoxAfegirPlat_descripcio";
@@ -212,7 +212,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(483, 361);
+            this.ClientSize = new System.Drawing.Size(444, 361);
             this.Controls.Add(this.textBoxAfegirPlat_descripcio);
             this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.materialLabel2);
@@ -224,6 +224,7 @@
             this.Controls.Add(this.buttonAfegirPlat_afegir_editar);
             this.MaximizeBox = false;
             this.Name = "AfegirPlatForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Afegir plat";
             this.Load += new System.EventHandler(this.AfegirPlatForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAfegirPlats_preu)).EndInit();

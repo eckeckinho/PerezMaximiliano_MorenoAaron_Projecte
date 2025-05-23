@@ -123,13 +123,13 @@ namespace Taules.Controller
 
                 if (response)
                 {
-                    MessageBox.Show("Taules modificades correctament.", "Modificació completada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Taula modificada correctament.", "Modificació completada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadData();
                     fa.Close();
                 }
                 else
                 {
-                    MessageBox.Show("No s'han pogut editar le taules.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No s'ha pogut modificar la taula.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -174,8 +174,8 @@ namespace Taules.Controller
         {
             if (fa.buttonTaula_afegir_editar.Text.Equals("AFEGIR"))
             {
-                fa.buttonTaula_afegir_editar.Text = "EDITAR";
-                fa.Text = "Editar taula";
+                fa.buttonTaula_afegir_editar.Text = "MODIFICAR";
+                fa.Text = "Modificar taula";
             }
             var taulaSeleccionada = fm.dataGridViewTaula_taules.SelectedRows[0].DataBoundItem as Taula;
 
@@ -187,7 +187,7 @@ namespace Taules.Controller
         // Decidir si el metodo será para editar o añadir una mesa (en este caso añadir)
         private void Button_afegir_Click(object sender, EventArgs e)
         {
-            if (fa.buttonTaula_afegir_editar.Text.Equals("EDITAR"))
+            if (fa.buttonTaula_afegir_editar.Text.Equals("MODIFICAR"))
             {
                 fa.buttonTaula_afegir_editar.Text = "AFEGIR";
                 fa.Text = "Afegir taula";

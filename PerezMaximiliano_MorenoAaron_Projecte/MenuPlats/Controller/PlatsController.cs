@@ -227,8 +227,8 @@ namespace MenuPlats.Controller
         {
             if (fp.buttonAfegirPlat_afegir_editar.Text.Equals("AFEGIR"))
             {
-                fp.buttonAfegirPlat_afegir_editar.Text = "EDITAR";
-                fp.Text = "Editar plat";
+                fp.buttonAfegirPlat_afegir_editar.Text = "MODIFICAR";
+                fp.Text = "Modificar plat";
             }
             var platSeleccionat = fm.dataGridViewMenu_plats.SelectedRows[0].DataBoundItem as Plat;
 
@@ -244,7 +244,7 @@ namespace MenuPlats.Controller
         // Decidir si el metodo será para editar o añadir un plato (en este caso añadir)
         private void ButtonMenu_afegir_Click(object sender, EventArgs e)
         {
-            if (fp.buttonAfegirPlat_afegir_editar.Text.Equals("EDITAR"))
+            if (fp.buttonAfegirPlat_afegir_editar.Text.Equals("MODIFICAR"))
             {
                 fp.buttonAfegirPlat_afegir_editar.Text = "AFEGIR";
                 fp.Text = "Afegir plat";

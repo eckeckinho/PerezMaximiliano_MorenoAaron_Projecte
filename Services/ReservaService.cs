@@ -127,13 +127,30 @@ namespace Services
             return reservasDelDia;
         }
 
-        public Taula GetTaulaDisponible(int? numComensals, DateTime data, TimeSpan? novaHora, int novaDurada)
+        public Taula GetTaulaDisponible(int? numComensals, DateTime data, TimeSpan? novaHora, int novaDurada, int? reservaIdAExcloure)
         {
             // Coger las mesas del rest por numero de comensales
             var taules = _context.Taules.Where(t => t.numComensals == numComensals && t.restaurantId == _restaurantActual.id).ToList();
 
+            List<Reserva> reservesDelDia;
+
             // Coger las reservas del dia pendientes
-            var reservesDelDia = _context.Reservas.Where(r => r.datareserva.Date == data.Date && (r.estatid == (int)EstatReserva.EnProces)).ToList();
+            if (reservaIdAExcloure.HasValue)
+            {
+                // Excluir la reserva a modificar para así poder seleccionar su hora sin que cuente como seleccionada
+                reservesDelDia = _context.Reservas.Where(r =>
+                        r.datareserva.Date == data.Date &&
+                        r.estatid == (int)EstatReserva.EnProces &&
+                        r.id != reservaIdAExcloure.Value)
+                    .ToList();
+            }
+            else // Es una reserva nueva, se cargan todas las reservas en proceso del día
+            {
+                reservesDelDia = _context.Reservas.Where(r =>
+                        r.datareserva.Date == data.Date &&
+                        r.estatid == (int)EstatReserva.EnProces)
+                    .ToList();
+            }
 
             foreach (var taula in taules)
             {
